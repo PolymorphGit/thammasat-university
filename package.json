@@ -1,29 +1,30 @@
 {
-  "name": "node-js-sample",
-  "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "tu-heroku",
+  "version": "0.1.0",
+  "description": "A Thammasat University's server for dormitory Mobile Apps",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "node-gcm": "^0.14.4"
   },
   "engines": {
     "node": "4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-sample"
+    "url": "https://github.com/PolymorphGit/thammasat-university"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "author": "Mark Pundsack",
+  "author": "Yingyong Taechayingyongchai",
   "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
+    "Yingyong Taechayingyongchai <yingyong.t@polymorph.com>"
   ],
-  "license": "MIT"
+  "license": "Polymorph"
 }
