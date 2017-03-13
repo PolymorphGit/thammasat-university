@@ -16,3 +16,5 @@ var router = express.Router();
 router.get('/Test', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
+
+app.use('/api', router);
