@@ -17,5 +17,5 @@ api.get('/Test', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
 
-api.get('/userinfo', account.UserInfo);
+//api.get('/userinfo', account.UserInfo);
 
