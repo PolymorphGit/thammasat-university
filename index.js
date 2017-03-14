@@ -10,9 +10,9 @@ app.get('/', function(request, response) {
 })
 
 app.get('/Test', function(req, res) {
-	var head = req.header['Authorization'];
-	console.log(req.header);	
-    res.json({ header: head + '_0', message: 'hooray! welcome to our api!' });   
+	var head = req.headers['authorization'];
+	console.log(req.headers);	
+    res.json({ header: head, message: 'hooray! welcome to our api!' });   
 });
 
 app.get('/userinfo/:id', account.UserInfobyId);
