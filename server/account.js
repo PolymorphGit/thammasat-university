@@ -1,5 +1,3 @@
-"use strict";
-
 var db = require('./pghelper');
 
 exports.UserInfo = (req, res, next) => {
