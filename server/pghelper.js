@@ -14,7 +14,10 @@ client.connect();
 
 exports.select = function (sql) {
 	const results = [];
-	const query = client.query(sql);
+	const query = client.query(sql, function (err, result) {
+    	if (err) throw err;
+    });
+	console.log(result.rows[0]);
 	
 	query.on('row', (row) => {
       results.push(row);
