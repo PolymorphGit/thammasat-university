@@ -13,14 +13,14 @@ var client = new pg.Client(databaseURL);
 client.connect();
 
 exports.select = function (sql) {
-	client.query(sql, function (err, result) {
-    	if (err) throw err;
-    	console.log(sql);
-    	//console.log(result.rows);
-    	
-    	return result.rows;
-    });
-	
+	return new Promise((resolve, reject) => {
+		client.query(sql, function (err, result) {
+			if (err) throw err;
+			console.log(sql);
+			//console.log(result.rows);
+			resolve(result.rows);
+		});
+	});
 };
 
 exports.upsert = function (sql) {
