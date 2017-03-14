@@ -15,6 +15,7 @@ client.connect();
 exports.select = function (sql) {
 	return new Promise((resolve, reject) => {
 		client.query(sql, function (err, result) {
+			done();
 			if (err) throw err;
 			console.log(sql);
 			//console.log(result.rows);
