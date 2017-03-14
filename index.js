@@ -14,6 +14,7 @@ app.get('/Test', function(req, res) {
 });
 
 app.get('/userinfo/:id', account.UserInfobyId);
+app.get('/userinfo2/:name', account.UserInfo2);
 app.get('/userinfo/:firstname/:lastname', account.UserInfobyName);
 
 app.listen(app.get('port'), function() {
