@@ -18,7 +18,7 @@ exports.select = function (sql) {
     	console.log(sql);
     	console.log(result.rows);
     	
-    	resolve(result.rows);
+    	return result.rows;
     });
 	
 };
