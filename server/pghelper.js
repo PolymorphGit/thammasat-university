@@ -9,17 +9,23 @@ if (process.env.DATABASE_URL !== undefined)
 	pg.defaults.ssl = true;	
 }
 */
-var client = new pg.Client(databaseURL);
-client.connect();
 
 exports.select = function (sql) {
 	return new Promise((resolve, reject) => {
-		client.query(sql, function (err, result) {
-			done();
-			if (err) throw err;
-			console.log(sql);
-			//console.log(result.rows);
-			resolve(result.rows);
+		pg.connect(databaseURL, function (err, conn, done) {
+			if (err) reject(err);
+			try{
+				conn.query(sql, function (err, result) {
+					done();
+					console.log(sql);
+					if(err) reject(err);
+					else resolve(result.rows);
+				});
+			}
+			catch (e) {
+                done();
+                reject(e);
+            }
 		});
 	});
 };
