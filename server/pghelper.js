@@ -20,9 +20,6 @@ exports.select = function (sql) {
       results.push(row);
     });
 	
-	query.on('end', () => {
-      done();
-    });
 	return results;
 };
 
