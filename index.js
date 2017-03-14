@@ -13,9 +13,9 @@ app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
  
-api.get('/Test', function(req, res) {
+app.get('/Test', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
 
-api.get('/userinfo', account.UserInfo);
+app.get('/userinfo', account.UserInfo);
 
