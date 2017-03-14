@@ -16,7 +16,7 @@ exports.select = function (sql) {
 	client.query(sql, function (err, result) {
     	if (err) throw err;
     	console.log(sql);
-    	console.log(result.rows);
+    	//console.log(result.rows);
     	
     	return result.rows;
     });
