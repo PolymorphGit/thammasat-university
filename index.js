@@ -2,7 +2,7 @@ var express = require('express')
 //var bodyParser = require('body-parser'), compression = require('compression'), cors = require('cors');
 var	account = require('./server/account')
 var app = express()
-let pg = require('pg'),databaseURL = process.env.DATABASE_URL || 'postgres://localhost:5432/df3pgi81qfmoc7';
+var pg = require('pg'),databaseURL = process.env.DATABASE_URL || 'postgres://localhost:5432/df3pgi81qfmoc7';
 var client = new pg.Client(databaseURL);
 client.connect();
 
