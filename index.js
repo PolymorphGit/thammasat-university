@@ -22,6 +22,7 @@ app.get('/Test', function(req, res) {
 });
 
 app.get('/userinfo/:id', function(req, res) {
+	var id = req.params.id;
 	var sql = "SELECT name, identification_number__c, gender__c FROM salesforce.Account WHERE SFID='" + id + "'";
 	client.query(sql, function(error, data) {res.json(data.rows[0]);});
 })
