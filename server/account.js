@@ -14,19 +14,23 @@ exports.getInfo = function(req, res, next) {
 	  headers: { 'authorization': head }
 	};
 	
+	var mobileId = '';
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			console.log(chunk);	
+			console.log(JSON.parse(chunk));	
 		    str += chunk;
 		});
 		results.on('end', function() {
-		    res.json(str);
+		    var jsonobj = JSON.parse(str);
+		    mobileId = jsonobj.identities.user_id;
+		    //res.json(str);
 		});
 	}
 	
 	var httprequest = https.request(options, callback);
 	httprequest.end();
+	res.send(mobileId);
 };
 
 exports.UserInfobyId = function(req, res, next) {
