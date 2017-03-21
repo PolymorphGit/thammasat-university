@@ -17,8 +17,8 @@ exports.getInfo = function(req, res, next) {
 		res.json(results);
 	}
 	*/
-	var req = http.request(options, null);
-	req.end();
+	var httprequest = http.request(options, null);
+	httprequest.end();
 	
 	res.json({ header: head })
 };
