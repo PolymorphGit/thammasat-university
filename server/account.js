@@ -2,14 +2,14 @@ var db = require('./pghelper');
 
 exports.getInfo = function(req, res, next) {
 	var head = req.headers['authorization'];
-	var http = require('http');
+	var https = require('https');
 
 	var options = {
 	  host: 'app64319644.auth0.com',
 	  path: '/userinfo',
 	  port: '443',
 	  method: 'GET',
-	  authorization: head	  
+	  headers: { 'authorization': head }
 	};
 	
 	callback = function(results) {
@@ -17,9 +17,9 @@ exports.getInfo = function(req, res, next) {
 		//res.json(results);
 	}
 	
-	var httprequest = http.request(options, callback);
+	var httprequest = https.request(options, callback);
 	httprequest.end();
-	res.json({ header: head })
+	res.send("Teest");
 };
 
 exports.UserInfobyId = function(req, res, next) {
