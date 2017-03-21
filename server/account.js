@@ -11,14 +11,16 @@ exports.getInfo = function(req, res, next) {
 	  //This is the only line that is new. `headers` is an object with the headers to request
 	  Authorization: {'custom': head}
 	};
-	
+	/*
 	callback = function(results) {
 		console.log(results);	
 		res.json(results);
 	}
 	
 	var req = http.request(options, callback);
-	//req.end();
+	req.end();
+	*/
+	res.json({ header: head })
 };
 
 exports.UserInfobyId = function(req, res, next) {
