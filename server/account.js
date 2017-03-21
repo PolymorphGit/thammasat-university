@@ -9,8 +9,7 @@ exports.getInfo = function(req, res, next) {
 	  path: '/userinfo',
 	  port: '443',
 	  method: 'GET',
-	  //This is the only line that is new. `headers` is an object with the headers to request
-	  Authorization: {'custom': head}
+	  Authorization: 'Bearer ' + head	  
 	};
 	
 	callback = function(results) {
