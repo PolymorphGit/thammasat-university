@@ -18,7 +18,7 @@ exports.getInfo = function(req, res, next) {
 	}
 	
 	var req = http.request(options, callback);
-	req.end();
+	//req.end();
 };
 
 exports.UserInfobyId = function(req, res, next) {
