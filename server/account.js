@@ -21,7 +21,7 @@ exports.getInfo = function(req, res, next) {
 		    str += chunk;
 		});
 		results.on('end', function() {
-		    res.send(str);
+		    res.json(str);
 		});
 	}
 	
