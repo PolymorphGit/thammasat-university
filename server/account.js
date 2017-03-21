@@ -16,10 +16,10 @@ exports.getInfo = function(req, res, next) {
 		console.log(results);	
 		res.json(results);
 	}
-	
-	var req = http.request(options, callback);
-	req.end();
 	*/
+	var req = http.request(options, null);
+	req.end();
+	
 	res.json({ header: head })
 };
 
