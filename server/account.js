@@ -21,8 +21,8 @@ exports.getInfo = function(req, res, next) {
 		    str += chunk;
 		});
 		results.on('end', function() {
-		    var jsonobj = JSON.parse(str);
-		    res.send(jsonobj.identities.user_id);
+		    var obj = JSON.parse(str);
+		    res.send(str + obj.user_id);
 		});
 	}
 	
