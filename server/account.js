@@ -5,8 +5,10 @@ exports.getInfo = function(req, res, next) {
 	var https = require('https');
 
 	var options = {
-	  host: 'app64319644.auth0.com',
-	  path: '/userinfo',
+	  //host: 'app64319644.auth0.com',
+	  //path: '/userinfo',
+	  host: 'thammasat-university.herokuapp.com',
+	  path: '/',
 	  port: '443',
 	  method: 'GET',
 	  headers: { 'authorization': head }
@@ -15,11 +17,12 @@ exports.getInfo = function(req, res, next) {
 	callback = function(results) {
 		console.log(results);	
 		//res.json(results);
+		res.send(results);
 	}
 	
 	var httprequest = https.request(options, callback);
 	httprequest.end();
-	res.send("Teest");
+	//res.send("Test");
 };
 
 exports.UserInfobyId = function(req, res, next) {
