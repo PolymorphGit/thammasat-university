@@ -1,5 +1,26 @@
 var db = require('./pghelper');
 
+exports.getInfo = function(req, res, next) {
+	var head = req.headers['authorization'];
+	var http = require('http');
+
+	var options = {
+	  host: 'https://app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  //This is the only line that is new. `headers` is an object with the headers to request
+	  Authorization: {'custom': head}
+	};
+	
+	callback = function(results) {
+		console.log(results);	
+		res.json(results);
+	}
+	
+	var req = http.request(options, callback);
+	req.end();
+};
+
 exports.UserInfobyId = function(req, res, next) {
 	var id = req.params.id;
 	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
@@ -10,9 +31,9 @@ exports.UserInfobyId = function(req, res, next) {
     .catch(next);
 };
 
-exports.UserInfo2 = function(req, res, next) {
-	var name = req.params.name;
-	db.select("SELECT * FROM salesforce.Account WHERE name='" + name + "'")
+exports.UserInfobyMobileId = function(req, res, next) {
+	var id = req.params.mobileid;
+	db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + id + "'")
 	.then(function(results) {
 		console.log(results);	
 		res.json(results);
@@ -20,13 +41,7 @@ exports.UserInfo2 = function(req, res, next) {
     .catch(next);
 };
 
-exports.UserInfobyName = function(req, res, next) {
-	var first = req.params.firstname;
-	var last = req.params.lastname;
-	db.select("SELECT * FROM salesforce.Account WHERE firstname='" + first + "' and lastname='" + last + "'")
-	.then(function(results) {
-		console.log(results);	
-		res.json(results);
-	})
-    .catch(next);
+exports.logout = function(req, res, next) {
+	var head = req.headers['authorization'];
+	
 };

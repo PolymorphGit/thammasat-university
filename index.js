@@ -15,9 +15,11 @@ app.get('/Test', function(req, res) {
     res.json({ header: head, message: 'hooray! welcome to our api!' });   
 });
 
-app.get('/userinfo/:id', account.UserInfobyId);
-app.get('/userinfo2/:name', account.UserInfo2);
-app.get('/userinfo/:firstname/:lastname', account.UserInfobyName);
+app.get('/userinfo', account.getInfo);
+//app.get('/userinfo/:id', account.UserInfobyId);
+//app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
+
+app.get('/logout', account.logout);
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
