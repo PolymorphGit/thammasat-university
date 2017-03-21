@@ -24,13 +24,13 @@ exports.getInfo = function(req, res, next) {
 		results.on('end', function() {
 		    var jsonobj = JSON.parse(str);
 		    mobileId = jsonobj.identities.user_id;
-		    //res.json(str);
+		    res.json(mobileId);
 		});
 	}
 	
 	var httprequest = https.request(options, callback);
 	httprequest.end();
-	res.send(mobileId);
+	//res.send(mobileId);
 };
 
 exports.UserInfobyId = function(req, res, next) {
