@@ -15,9 +15,9 @@ exports.getInfo = function(req, res, next) {
 	};
 	
 	callback = function(results) {
-		console.log(results);	
+		//console.log(results);	
 		//res.json(results);
-		res.send(results);
+		//res.send(results);
 	}
 	
 	var httprequest = https.request(options, callback);
