@@ -18,9 +18,8 @@ exports.getInfo = function(req, res, next) {
 	}
 	
 	var httprequest = http.request(options, callback);
-	httprequest.end();
-	
-	res.json({ header: head })
+	//httprequest.end();
+	//res.json({ header: head })
 };
 
 exports.UserInfobyId = function(req, res, next) {
