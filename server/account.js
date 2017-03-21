@@ -5,7 +5,7 @@ exports.getInfo = function(req, res, next) {
 	var http = require('http');
 
 	var options = {
-	  host: 'https://app64319644.auth0.com',
+	  host: 'app64319644.auth0.com',
 	  path: '/userinfo',
 	  port: '443',
 	  //This is the only line that is new. `headers` is an object with the headers to request
