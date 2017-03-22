@@ -17,8 +17,15 @@ exports.getInfo = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			console.log(JSON.parse(chunk));	
-		    str += chunk;
+			try
+			{
+				console.log(JSON.parse(chunk));	
+			    str += chunk;
+			}
+			catch(ex)
+			{
+				res.send("Invalid access token");
+			}
 		});
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
@@ -35,7 +42,7 @@ exports.getInfo = function(req, res, next) {
 	var httprequest = https.request(options, callback);
 	httprequest.on('error', (e) => {
 		//console.log(`problem with request: ${e.message}`);
-		res.send('Token expired');
+		res.send('problem with request: ${e.message}');
 	});
 	httprequest.end();
 };
