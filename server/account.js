@@ -22,7 +22,7 @@ exports.getInfo = function(req, res, next) {
 		});
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
-		    res.send(str + obj.user_id);
+		    res.send(obj.identities[0].user_id);
 		});
 	}
 	
