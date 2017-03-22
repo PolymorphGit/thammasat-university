@@ -22,7 +22,13 @@ exports.getInfo = function(req, res, next) {
 		});
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
-		    res.send(obj.identities[0].user_id);
+		    //res.send(obj.identities[0].user_id);
+		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + id + "'")
+			.then(function(results) {
+				console.log(results);	
+				res.json(results);
+			})
+		    .catch(next);
 		});
 	}
 	
@@ -49,6 +55,8 @@ exports.UserInfobyMobileId = function(req, res, next) {
 	})
     .catch(next);
 };
+
+
 
 exports.logout = function(req, res, next) {
 	var head = req.headers['authorization'];
