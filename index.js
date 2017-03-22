@@ -20,6 +20,9 @@ app.get('/userinfo', account.getInfo);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 
 app.get('/logout', account.logout);
+app.get('/checkin', account.checkin);
+app.get('/checkout', account.checkout);
+
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
