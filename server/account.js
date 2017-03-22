@@ -33,6 +33,10 @@ exports.getInfo = function(req, res, next) {
 	}
 	
 	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('Token expired');
+	});
 	httprequest.end();
 };
 
@@ -52,7 +56,7 @@ exports.UserInfobyMobileId = function(req, res, next) {
 	.then(function(results) {
 		console.log(results);	
 		res.json(results);
-	})
+	})	
     .catch(next);
 };
 
