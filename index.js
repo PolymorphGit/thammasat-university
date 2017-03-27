@@ -2,6 +2,7 @@ var express = require('express')
 var	account = require('./server/account')
 var	clean = require('./server/cleanandcare')
 var room = require('./server/Room')
+var announcement = require('./server/announcement')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -27,6 +28,7 @@ app.get('/logout', account.logout);
 app.get('/checkin', account.checkin);
 app.get('/checkout', account.checkout);
 
+app.get('/announcement', clean.getDetail)
 app.get('/getcleanrate', clean.getCleanRate)
 
 app.listen(app.get('port'), function() {
