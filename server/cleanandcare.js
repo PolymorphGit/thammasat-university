@@ -32,11 +32,11 @@ exports.getCleanRate = function(req, res, next) {
 		    //res.send(obj.identities[0].user_id);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var acc = JSON.parse(results);
-				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + acc.room__c + "'")
+				//var acc = JSON.parse(results);
+				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results.room__c + "'")
 				.then(function(results2) {
-					var room = JSON.parse(results2);
-					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + room.room_type__c + "'")
+					//var room = JSON.parse(results2);
+					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2.room_type__c + "'")
 					.then(function(results2) {
 						console.log(results2);	
 						res.json(results2);
