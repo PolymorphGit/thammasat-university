@@ -28,8 +28,8 @@ app.get('/logout', account.logout);
 app.get('/checkin', account.checkin);
 app.get('/checkout', account.checkout);
 
-app.get('/announcement', announcement.getDetail)
-app.get('/getcleanrate', clean.getCleanRate)
+app.get('/announcement', announcement.getDetail);
+app.get('/getcleanrate', clean.getCleanRate);
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
