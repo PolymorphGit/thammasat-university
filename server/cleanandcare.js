@@ -34,7 +34,7 @@ exports.getCleanRate = function(req, res, next) {
 			.then(function(results) {
 				//console.log(results);	
 				var acc = JSON.parse('[{ "name": "L Kung", "room__c": "01tO0000004uepZIAQ" }]');
-				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results.room__c + "'")
+				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + acc.room__c + "'")
 				.then(function(results2) {
 					//var room = JSON.parse(results2);
 					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2.room_type__c + "'")
