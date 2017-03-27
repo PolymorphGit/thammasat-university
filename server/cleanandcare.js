@@ -32,7 +32,7 @@ exports.getCleanRate = function(req, res, next) {
 		    //res.send(obj.identities[0].user_id);
 		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results.room + "'")
+				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results.room__c + "'")
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results.room_type__c + "'")
 					.then(function(results) {
