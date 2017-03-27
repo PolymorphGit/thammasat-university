@@ -30,7 +30,7 @@ exports.getCleanRate = function(req, res, next) {
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
 				var acc = JSON.parse(results);
 				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + acc.room__c + "'")
