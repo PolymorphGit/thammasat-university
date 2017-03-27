@@ -5,6 +5,6 @@ exports.getDetail = function(req, res, next) {
 	var limit = req.headers['limit'];
 	var https = require('https');
 
-	console.Log(limit);
+	console.log(limit);	
 	res.send(limit);
 }
