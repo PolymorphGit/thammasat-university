@@ -28,7 +28,7 @@ app.get('/logout', account.logout);
 app.get('/checkin', account.checkin);
 app.get('/checkout', account.checkout);
 
-app.get('/announcement', clean.getDetail)
+app.get('/announcement', announcement.getDetail)
 app.get('/getcleanrate', clean.getCleanRate)
 
 app.listen(app.get('port'), function() {
