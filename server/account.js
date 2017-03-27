@@ -1,7 +1,5 @@
 var db = require('./pghelper');
 
-
-
 exports.getInfo = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var https = require('https');
@@ -104,7 +102,7 @@ exports.checkin = function(req, res, next){
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkin' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
 				console.log(results);	
 				res.send("Success");
