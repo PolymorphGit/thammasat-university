@@ -1,7 +1,7 @@
 var express = require('express')
 var	account = require('./server/account')
 var	clean = require('./server/cleanandcare')
-var room = require('./server/room')
+var room = require('./server/Room')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
