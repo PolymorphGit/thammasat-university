@@ -11,5 +11,4 @@ exports.getCleanRate = function(req, res, next) {
 	})
     .catch(next);
 	
-	res.send("1");
 }
