@@ -52,6 +52,7 @@ exports.getCleanRate = function(req, res, next) {
 				    allow_check_out__c: false,
 				    room__c: null
 				  });
+				//Comment
 				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + acc.room__c + "'")
 				.then(function(results2) {
 					//var room = JSON.parse(results2);
