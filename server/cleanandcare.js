@@ -32,27 +32,8 @@ exports.getCleanRate = function(req, res, next) {
 		    //res.send(obj.identities[0].user_id);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var acc = JSON.parse({
-				    name: "L Kung",
-				    first_name_th__c: "แอล",
-				    mobile_id__c: "58d0a8c06983e422876e9e6f",
-				    firstname: "L",
-				    identification_number__c: "1004000012345",
-				    createddate: "2017-03-20T08:27:50.000Z",
-				    systemmodstamp: "2017-03-24T08:54:25.000Z",
-				    last_name_th__c: "คุง",
-				    isdeleted: false,
-				    id: 24,
-				    faculty__c: "อื่นๆ 99/10",
-				    congenital_disease__c: null,
-				    _hc_lastop: "SYNCED",
-				    _hc_err: null,
-				    sfid: "001O0000018HJQ3IAO",
-				    status__c: "Checkin",
-				    allow_check_out__c: false,
-				    room__c: null
-				  });
-				//Comment
+				console.log(results);	
+				var acc = JSON.parse(results);
 				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + acc.room__c + "'")
 				.then(function(results2) {
 					//var room = JSON.parse(results2);
