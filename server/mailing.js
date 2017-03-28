@@ -39,6 +39,7 @@ exports.getList = function(req, res, next) {
 				{
 					query += " limit " + limit;
 				}
+				console.log(query);
 				db.select(query)
 				.then(function(results2) {
 					console.log(results2);	
