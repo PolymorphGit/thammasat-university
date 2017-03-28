@@ -77,10 +77,10 @@ exports.checkinDetail = function(req, res, next){
 	var output = '[{"URL":[';
 	db.select("SELECT * FROM salesforce.Master_Checklist__c")
 	.then(function(results) {
-		console.log(results.length);	
-		for(var data in results)
+		//console.log(results.length);	
+		for(var i = 0 ; i < results.length; i++)
 		{
-			output += '"' + data.image_path__c + '", ';
+			output += '"' + results[0]image_path__c + '", ';
 		}
 		output = output.slice(0, -1);
 		output += ']}]';
