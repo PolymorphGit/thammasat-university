@@ -1,7 +1,13 @@
 var db = require('./pghelper');
 
 exports.getDetail = function(req, res, next) {
-	
+	var id = req.params.id;
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
+	.then(function(results) {
+		//console.log(results);	
+		res.json(results);
+	})
+    .catch(next);
 }
 
 exports.getList = function(req, res, next) {
@@ -46,7 +52,8 @@ exports.getList = function(req, res, next) {
 					var output = '[';
 					for(var i = 0 ; i <results2.length ; i++)
 					{
-						output += '{"Mailing Number":"' + results2[i].name;
+						output += '{"Mailing id":"' + results2[i].sfid;
+						output += '", "Mailing Number":"' + results2[i].name;
 						output += '", "Student Name":"' + results[0].name;
 						output += '", "Delivery Date":"' + results[0].createddate;
 						output += '", "Mailing Type":"' + results2[i].mailing_type__c + '"},';
