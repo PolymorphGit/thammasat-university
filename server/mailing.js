@@ -43,7 +43,13 @@ exports.getList = function(req, res, next) {
 				db.select(query)
 				.then(function(results2) {
 					console.log(results2);	
-					res.json(results2);
+					//Build Output
+					var output = '[{';
+					output += '"Mailing Number":"' + results2[0].name;
+					output += ', "Student Name":"' + results[0].name;
+					output += ', "Mailing Type":"' + results2[0].Mailing_Type__c;
+					output+= '}]';
+					res.json(JSON.Parse(output));
 				})
 			    .catch(next);
 			})
