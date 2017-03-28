@@ -72,6 +72,16 @@ exports.logout = function(req, res, next) {
 	res.send("Success");
 };
 
+exports.checkinDetail = function(req, res, next){
+	var head = req.headers['authorization'];
+	db.select("SELECT * FROM salesforce.Master_Checklist__c")
+	.then(function(results) {
+		console.log(results);	
+		res.json(results);
+	})	
+    .catch(next);
+}
+
 exports.checkin = function(req, res, next){
 	var head = req.headers['authorization'];
 	var https = require('https');

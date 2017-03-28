@@ -25,6 +25,7 @@ app.get('/userinfo', account.getInfo);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 
 app.get('/logout', account.logout);
+app.get('/checkindetail', account.checkinDetail);
 app.get('/checkin', account.checkin);
 app.get('/checkout', account.checkout);
 
