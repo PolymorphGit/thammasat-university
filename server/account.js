@@ -74,10 +74,18 @@ exports.logout = function(req, res, next) {
 
 exports.checkinDetail = function(req, res, next){
 	var head = req.headers['authorization'];
+	var output = '[{"URL":[';
 	db.select("SELECT * FROM salesforce.Master_Checklist__c")
 	.then(function(results) {
-		console.log(results);	
-		res.json(results);
+		//console.log(results);	
+		for(var data in results)
+		{
+			output += '"' + data.image_path__c + '", ';
+		}
+		output = output.slice(0, -1);
+		output += ']}]';
+		//res.json(results);
+		res.json(JSON.parse(output));
 	})	
     .catch(next);
 }
