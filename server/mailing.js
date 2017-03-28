@@ -41,14 +41,18 @@ exports.getList = function(req, res, next) {
 				}
 				console.log(query);
 				db.select(query)
-				.then(function(results2) {
-					console.log(results2);	
+				.then(function(results2) {	
 					//Build Output
-					var output = '[{';
-					output += '"Mailing Number":"' + results2[0].name;
-					output += ', "Student Name":"' + results[0].name;
-					output += ', "Mailing Type":"' + results2[0].Mailing_Type__c;
-					output+= '}]';
+					var output = '[';
+					for(var i = 0 ; i <results2.length ; i++)
+					{
+						output += '"{Mailing Number":"' + results2[i].name;
+						output += ', "Student Name":"' + results[0].name;
+						output += ', "Mailing Type":"' + results2[i].Mailing_Type__c + '},';
+					}
+					output = output.substr(0, output.length - 1);
+					output+= ']';
+					console.log(output);
 					res.json(JSON.Parse(output));
 				})
 			    .catch(next);
