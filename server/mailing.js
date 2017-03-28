@@ -46,9 +46,9 @@ exports.getList = function(req, res, next) {
 					var output = '[';
 					for(var i = 0 ; i <results2.length ; i++)
 					{
-						output += '{Mailing Number:"' + results2[i].name;
-						output += '", Student Name:"' + results[0].name;
-						output += '", Mailing Type:"' + results2[i].mailing_type__c + '"},';
+						output += '{"Mailing Number":"' + results2[i].name;
+						output += '", "Student Name":"' + results[0].name;
+						output += '", "Mailing Type":"' + results2[i].mailing_type__c + '"},';
 					}
 					output = output.substr(0, output.length - 1);
 					output+= ']';
