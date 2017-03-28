@@ -84,6 +84,7 @@ exports.checkinDetail = function(req, res, next){
 		}
 		output = output.slice(0, -1);
 		output += ']}]';
+		console.log(output);
 		//res.json(results);
 		res.json(JSON.parse(output));
 	})	
