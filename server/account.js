@@ -82,7 +82,7 @@ exports.checkinDetail = function(req, res, next){
 		{
 			output += '"' + results[0].image_path__c + '", ';
 		}
-		output = output.substr(0, output.length - 1);
+		output = output.substr(0, output.length - 2);
 		output += ']}]';
 		console.log(output);
 		//res.json(results);
