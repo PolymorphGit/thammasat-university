@@ -3,6 +3,8 @@ var	account = require('./server/account')
 var	clean = require('./server/cleanandcare')
 var room = require('./server/Room')
 var announcement = require('./server/announcement')
+var mail = require('./server/mailing')
+var pay = require('./server/payment')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -30,6 +32,10 @@ app.get('/checkin', account.checkin);
 app.get('/checkout', account.checkout);
 
 app.get('/announcement', announcement.getDetail);
+app.get('/mailing', mail.getList);
+app.get('/mailing/:id', mail.getDetail);
+app.get('/payment', pay.getList);
+app.get('/payment/:id', pay.getDetail);
 app.get('/getcleanrate', clean.getCleanRate);
 
 app.listen(app.get('port'), function() {

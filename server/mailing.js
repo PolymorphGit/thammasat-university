@@ -1,7 +1,12 @@
 var db = require('./pghelper');
 
-exports.getCleanRate = function(req, res, next) {
+exports.getDetail = function(req, res, next) {
+	
+}
+
+exports.getList = function(req, res, next) {
 	var head = req.headers['authorization'];
+	var limit = req.headers['limit'];
 	var https = require('https');
 	
 	var options = {
@@ -27,17 +32,17 @@ exports.getCleanRate = function(req, res, next) {
 		});
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
-		    //res.send(obj.identities[0].user_id);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results[0].room__c + "'")
+				var query = "SELECT * FROM salesforce.Mailing__c where Stundent_Name__c='" + results[0].sfid + "'";
+				if(!isNaN(limit))
+				{
+					query += " limit " + limit;
+				}
+				db.select(query)
 				.then(function(results2) {
-					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2[0].room_type__c + "'")
-					.then(function(results2) {
-						console.log(results2);	
-						res.json(results2);
-					})
-				    .catch(next);
+					console.log(results2);	
+					res.json(results2);
 				})
 			    .catch(next);
 			})
@@ -51,5 +56,4 @@ exports.getCleanRate = function(req, res, next) {
 		res.send('problem with request: ${e.message}');
 	});
 	httprequest.end();
-	
 }
