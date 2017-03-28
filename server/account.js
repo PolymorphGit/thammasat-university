@@ -80,7 +80,7 @@ exports.checkinDetail = function(req, res, next){
 		//console.log(results.length);	
 		for(var i = 0 ; i < results.length; i++)
 		{
-			output += '"' + results[0]image_path__c + '", ';
+			output += '"' + results[0].image_path__c + '", ';
 		}
 		output = output.slice(0, -1);
 		output += ']}]';
