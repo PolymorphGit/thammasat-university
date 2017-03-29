@@ -40,12 +40,12 @@ exports.getList = function(req, res, next) {
 		    var obj = JSON.parse(str);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var query = "SELECT * FROM salesforce.Payment__c where Stundent_Name__c='" + results[0].sfid + "'";
+				var query = "SELECT * FROM salesforce.Payment__c where Student_Name__c='" + results[0].sfid + "'";
 				if(!isNaN(limit))
 				{
 					query += " limit " + limit;
 				}
-				console.log(query);
+				//console.log(query);
 				db.select(query)
 				.then(function(results2) {	
 					//Build Output
@@ -61,7 +61,7 @@ exports.getList = function(req, res, next) {
 					}
 					output = output.substr(0, output.length - 1);
 					output+= ']';
-					console.log(output);
+					//console.log(output);
 					res.json(JSON.parse(output));
 				})
 			    .catch(next);
