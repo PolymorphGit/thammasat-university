@@ -148,5 +148,7 @@ exports.getList = function(req, res, next) {
 
 exports.OpenClean = function(req, res, next) {
 	var body = req.body;
+	console.log(req);
+	console.log(body);
 	res.send(body);
 }
