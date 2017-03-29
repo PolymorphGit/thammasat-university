@@ -91,6 +91,8 @@ exports.getList = function(req, res, next) {
 			}
 		});
 		results.on('end', function() {
+			res.send(str);
+			/*
 		    var obj = JSON.parse(str);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
@@ -121,6 +123,7 @@ exports.getList = function(req, res, next) {
 			    .catch(next);
 			})
 		    .catch(next);
+		    */
 		});
 	}
 }
