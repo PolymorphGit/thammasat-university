@@ -154,7 +154,7 @@ exports.OpenClean = function(req, res, next) {
 		try { body += chunk; }
 		catch(ex) { res.send("Request is invalid format."); }
 	});
-	results.on('end', function() 
+	req.on('end', function() 
 	{
 		console.log(body);
 		res.send(body);
