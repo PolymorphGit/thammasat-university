@@ -49,26 +49,22 @@ exports.getList = function(req, res, next) {
 				db.select(query)
 				.then(function(results2) {	
 					//Build Output
-					if(results2.length > 0)
+					var output = '[';
+					for(var i = 0 ; i <results2.length ; i++)
 					{
-						var output = '[';
-						for(var i = 0 ; i <results2.length ; i++)
-						{
-							output += '{"Mailing id":"' + results2[i].sfid;
-							output += '", "Mailing Number":"' + results2[i].name;
-							output += '", "Student Name":"' + results[0].name;
-							output += '", "Delivery Date":"' + results2[i].createddate;
-							output += '", "Mailing Type":"' + results2[i].mailing_type__c + '"},';
-						}
+						output += '{"Mailing id":"' + results2[i].sfid;
+						output += '", "Mailing Number":"' + results2[i].name;
+						output += '", "Student Name":"' + results[0].name;
+						output += '", "Delivery Date":"' + results2[i].createddate;
+						output += '", "Mailing Type":"' + results2[i].mailing_type__c + '"},';
+					}
+					if(results2.length)
+					{
 						output = output.substr(0, output.length - 1);
-						output+= ']';
-						console.log(output);
-						res.json(JSON.parse(output));
 					}
-					else
-					{
-						res.send("No Mail Avaliable.");
-					}
+					output+= ']';
+					console.log(output);
+					res.json(JSON.parse(output));
 				})
 			    .catch(next);
 			})

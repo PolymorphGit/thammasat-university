@@ -49,29 +49,25 @@ exports.getList = function(req, res, next) {
 				db.select(query)
 				.then(function(results2) {	
 					//Build Output
+					var output = '[';
+					for(var i = 0 ; i < results2.length ; i++)
+					{
+						output += '{"Case id":"' + results2[i].sfid;
+						output += '", "Type":"' + results2[i].type;
+						output += '", "Sub Type":"' + results2[i].sub_type__c;
+						output += '", "Room Problem Type":"' + results2[i].room_problem_type__c;
+						output += '", "Priority":"' + results2[i].Priority;
+						output += '", "Subject":"' + results2[i].subject;
+						output += '", "Due Date":"' + results2[i].due_date__c;
+						output += '", "Status":"' + results2[i].status + '"},';
+					}
 					if(results2.length > 0)
 					{
-						var output = '[';
-						for(var i = 0 ; i < results2.length ; i++)
-						{
-							output += '{"Case id":"' + results2[i].sfid;
-							output += '", "Type":"' + results2[i].type;
-							output += '", "Sub Type":"' + results2[i].sub_type__c;
-							output += '", "Room Problem Type":"' + results2[i].room_problem_type__c;
-							output += '", "Priority":"' + results2[i].Priority;
-							output += '", "Subject":"' + results2[i].subject;
-							output += '", "Due Date":"' + results2[i].due_date__c;
-							output += '", "Status":"' + results2[i].status + '"},';
-						}
 						output = output.substr(0, output.length - 1);
-						output += ']';
-						console.log(output);
-						res.json(JSON.parse(output));
 					}
-					else
-					{
-						res.send("No Case Avaliable.");
-					}
+					output += ']';
+					console.log(output);
+					res.json(JSON.parse(output));
 				})
 			    .catch(next);
 			})

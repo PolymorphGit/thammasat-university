@@ -49,27 +49,23 @@ exports.getList = function(req, res, next) {
 				db.select(query)
 				.then(function(results2) {	
 					//Build Output
+					var output = '[';
+					for(var i = 0 ; i <results2.length ; i++)
+					{
+						output += '{"Payment id":"' + results2[i].sfid;
+						output += '", "Payment Number":"' + results2[i].name;
+						output += '", "Payment Type":"' + results2[i].payment_type__c;
+						output += '", "Student Name":"' + results[0].name;
+						output += '", "Due Date":"' + results2[i].due_date__c;
+						output += '", "Amount":"' + results2[i].amount__c + '"},';
+					}
 					if(results2.length)
 					{
-						var output = '[';
-						for(var i = 0 ; i <results2.length ; i++)
-						{
-							output += '{"Payment id":"' + results2[i].sfid;
-							output += '", "Payment Number":"' + results2[i].name;
-							output += '", "Payment Type":"' + results2[i].payment_type__c;
-							output += '", "Student Name":"' + results[0].name;
-							output += '", "Due Date":"' + results2[i].due_date__c;
-							output += '", "Amount":"' + results2[i].amount__c + '"},';
-						}
 						output = output.substr(0, output.length - 1);
-						output+= ']';
-						//console.log(output);
-						res.json(JSON.parse(output));
 					}
-					else
-					{
-						res.send("No Payment Avaliable.")
-					}
+					output+= ']';
+					//console.log(output);
+					res.json(JSON.parse(output));
 				})
 			    .catch(next);
 			})
