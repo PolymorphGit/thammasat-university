@@ -56,10 +56,23 @@ exports.getCleanRate = function(req, res, next) {
 
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
+	var output = '';
 	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
 		//console.log(results);	
-		res.json(results);
+		output = JSON.stringify(results);
+		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
+		.then(function(results2) {
+			//console.log(results);	
+			if(results2.length > 0)
+			{
+				output = output.substr(0, output.length - 2) + ',';
+				output += JSON.stringify(results2);
+			}
+			output += '}]';
+			res.json(output);
+		})
+	    .catch(next);
 	})
     .catch(next);
 }
