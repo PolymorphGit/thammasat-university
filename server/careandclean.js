@@ -59,19 +59,19 @@ exports.getDetail = function(req, res, next) {
 	var output = '';
 	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
-		console.log(results);	
+		//console.log(results);	
 		output = JSON.stringify(results);
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
-			console.log(results2);
+			//console.log(results2);
 			if(results2.length > 0)
 			{
 				output = output.substr(0, output.length - 2) + ', "Clean":';
 				output += JSON.stringify(results2);
 			}
 			output += '}]';
-			console.log(output);
 			output = JSON.parse(output);
+			//console.log(output);
 			res.json(output);
 		})
 	    .catch(next);
@@ -147,5 +147,6 @@ exports.getList = function(req, res, next) {
 }
 
 exports.OpenClean = function(req, res, next) {
-	
+	var body = req.body;
+	res.send(body);
 }
