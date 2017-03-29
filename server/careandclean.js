@@ -147,8 +147,12 @@ exports.getList = function(req, res, next) {
 }
 
 exports.OpenClean = function(req, res, next) {
-	var body = req.body;
+	var body = '';
 	console.log(req);
+	req.on('data', function(chunk) {
+		try { body += chunk; }
+		catch(ex) { res.send("Request is invalid format."); }
+	});
 	console.log(body);
 	res.send(body);
 }
