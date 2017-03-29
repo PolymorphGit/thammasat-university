@@ -71,7 +71,7 @@ exports.getDetail = function(req, res, next) {
 			}
 			output += '}]';
 			console.log(output);
-			output = JSON.prase(output);
+			output = JSON.parse(output);
 			res.json(output);
 		})
 	    .catch(next);
