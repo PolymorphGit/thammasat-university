@@ -157,12 +157,12 @@ exports.OpenClean = function(req, res, next) {
 	{
 		//console.log(body);
 		body = JSON.parse(body);
-		console.log(body[0].Comment);
-		console.log(body[0].Approve_Access);
-		console.log(body[0].Approve_Payment);
+		//Update Case
+		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
 		for(var i = 0 ; i < body[0].Schedule.length ; i++)
 		{
-			console.log("Date: " + body[0].Schedule[i].Date + ", Time" + body[0].Schedule[i].Time);
+			//Update WorkOrder
+			//console.log("Date: " + body[0].Schedule[i].Date + ", Time" + body[0].Schedule[i].Time);
 		}
 		res.json(body);
 	});

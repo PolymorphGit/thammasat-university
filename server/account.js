@@ -138,6 +138,22 @@ exports.checkin = function(req, res, next){
 	httprequest.end();	
 };
 
+exports.RequestCheckout = function(req, res, next) {
+	var body = '';
+	req.on('data', function(chunk) 
+	{
+		try { body += chunk; }
+		catch(ex) { res.send("Request is invalid format."); }
+	});
+	req.on('end', function() 
+	{
+		//console.log(body);
+		body = JSON.parse(body);
+		//Open Case type checkout
+		
+	});
+}
+
 exports.checkout = function(req, res, next){
 	var head = req.headers['authorization'];
 	var https = require('https');

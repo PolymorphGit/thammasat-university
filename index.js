@@ -6,6 +6,7 @@ var mail = require('./server/mailing')
 var pay = require('./server/payment')
 var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
+var record = require('./server/recordtype')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -16,9 +17,7 @@ app.get('/', function(request, response) {
 })
 
 app.get('/Test', function(req, res) {
-	var head = req.headers['authorization'];
-	console.log(req.headers);	
-    res.json({ header: head, message: 'hooray! welcome to our api!' });   
+	res.send(record.Case.CareandClean); 
 });
 
 app.get('/room/:id', room.getInfo);
@@ -30,6 +29,7 @@ app.get('/userinfo', account.getInfo);
 app.get('/logout', account.logout);
 app.get('/checkindetail', account.checkinDetail);
 app.get('/checkin', account.checkin);
+app.post('/requestcheckout', account.RequestCheckout);
 app.get('/checkout', account.checkout);
 
 app.get('/announcement', announcement.getDetail);
