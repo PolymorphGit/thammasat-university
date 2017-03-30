@@ -148,7 +148,6 @@ exports.getList = function(req, res, next) {
 
 exports.OpenClean = function(req, res, next) {
 	var body = '';
-	//console.log(req);
 	req.on('data', function(chunk) 
 	{
 		try { body += chunk; }
@@ -156,7 +155,15 @@ exports.OpenClean = function(req, res, next) {
 	});
 	req.on('end', function() 
 	{
-		console.log(body);
-		res.send(body);
+		//console.log(body);
+		body = JSON.parse(body);
+		console.log(body.comment);
+		console.log(body.Approve_Access);
+		console.log(body.Approve_Payment);
+		console.log(body.Schedule[0].Date);
+		console.log(body.Schedule[0].Time);
+		console.log(body.Schedule[1].Date);
+		console.log(body.Schedule[1].Time);
+		res.json(body);
 	});
 }
