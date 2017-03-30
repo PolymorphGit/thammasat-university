@@ -156,14 +156,14 @@ exports.OpenClean = function(req, res, next) {
 	req.on('end', function() 
 	{
 		//console.log(body);
-		body = JSON.parse(body);
-		console.log(body.comment);
-		console.log(body.Approve_Access);
-		console.log(body.Approve_Payment);
-		console.log(body.Schedule[0].Date);
-		console.log(body.Schedule[0].Time);
-		console.log(body.Schedule[1].Date);
-		console.log(body.Schedule[1].Time);
+		body = JSON.parse(body[0]);
+		console.log(body[0].comment);
+		console.log(body[0].Approve_Access);
+		console.log(body[0].Approve_Payment);
+		console.log(body[0].Schedule[0].Date);
+		console.log(body[0].Schedule[0].Time);
+		console.log(body[0].Schedule[1].Date);
+		console.log(body[0].Schedule[1].Time);
 		res.json(body);
 	});
 }
