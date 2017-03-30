@@ -156,7 +156,7 @@ exports.OpenClean = function(req, res, next) {
 	req.on('end', function() 
 	{
 		//console.log(body);
-		body = JSON.parse(body[0]);
+		body = JSON.parse(body);
 		console.log(body[0].comment);
 		console.log(body[0].Approve_Access);
 		console.log(body[0].Approve_Payment);
