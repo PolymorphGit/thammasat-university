@@ -153,7 +153,8 @@ exports.RequestCheckout = function(req, res, next) {
 		//Open Case type checkout
 		
 	});*/
-	console.log(req.body.Date);
+	console.log(req.body);
+	res.send(req.body.Date)
 }
 
 exports.checkout = function(req, res, next){
