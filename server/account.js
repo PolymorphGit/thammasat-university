@@ -140,6 +140,7 @@ exports.checkin = function(req, res, next){
 
 exports.RequestCheckout = function(req, res, next) {
 	var body = '';
+	/*
 	req.on('data', function(chunk) 
 	{
 		try { body += chunk; }
@@ -151,7 +152,8 @@ exports.RequestCheckout = function(req, res, next) {
 		body = JSON.parse(body);
 		//Open Case type checkout
 		
-	});
+	});*/
+	console.log(req.body.Date);
 }
 
 exports.checkout = function(req, res, next){
