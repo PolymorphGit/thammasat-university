@@ -147,7 +147,7 @@ exports.RequestCheckout = function(req, res, next) {
 	});
 	req.on('end', function() 
 	{
-		//console.log(body);
+		console.log(body);
 		body = JSON.parse(body);
 		//Open Case type checkout
 		res.json(body);
