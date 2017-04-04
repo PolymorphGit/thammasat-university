@@ -1,4 +1,5 @@
 var Pusher = require('pusher');
+//var Pusher = require('cloud/modules/node_modules/pusher/parse');
 
 var pusher = new Pusher({
   appId: '321597',
