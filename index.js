@@ -7,6 +7,7 @@ var pay = require('./server/payment')
 var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
+var noti = require('./notification')
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -44,6 +45,8 @@ app.get('/clean', clean.getList);
 app.get('/clean/:id', clean.getDetail);
 app.post('/openclean', clean.OpenClean);
 app.get('/getcleanrate', clean.getCleanRate);
+
+app.get('/notification', noti.push);
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
