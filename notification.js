@@ -12,6 +12,9 @@ exports.push = function(req, res, next)
 {
 	pusher.trigger('1004000012345', 'Billing', {
 	  "Name": "Invoice01",
-	  "Amount": "100"
+	  "Amount": "100",
+	  message: 'hello world'
 	});
+	
+	
 }
