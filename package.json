@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PolymorphGit/thammasat-university"
+    "url": "git+https://github.com/PolymorphGit/thammasat-university.git"
   },
   "keywords": [
     "node",
@@ -27,5 +27,10 @@
   "contributors": [
     "Yingyong Taechayingyongchai <yingyong.t@polymorph.com>"
   ],
-  "license": "Polymorph"
+  "license": "Polymorph",
+  "bugs": {
+    "url": "https://github.com/PolymorphGit/thammasat-university/issues"
+  },
+  "homepage": "https://github.com/PolymorphGit/thammasat-university#readme",
+  "devDependencies": {}
 }
