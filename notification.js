@@ -10,7 +10,8 @@ var pusher = new Pusher({
 
 exports.push = function(req, res, next) 
 {
-	pusher.trigger('1004000012345', 'Billing', {
+	var channels = ['1004000012345', 'my-channel-1', 'my-channel-2', 'my-channel-3' ];
+	pusher.trigger(channels, 'Billing', {
 	  "Name": "Invoice01",
 	  "Amount": "100",
 	  message: 'hello world'
