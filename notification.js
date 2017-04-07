@@ -16,7 +16,7 @@ exports.push = function(req, res, next)
 	var result = true;
 	if(type == 'billing')
 	{
-		result = getBilling(id);
+		result = getBilling(id, next);
 	}
 	else if(type == 'mailing')
 	{
@@ -62,7 +62,7 @@ exports.push = function(req, res, next)
 	res.send("Success");
 }
 
-function getBilling(id)
+function getBilling(id, next)
 {
 	//TODO: get Bill detail
 	var invoiceNo;
