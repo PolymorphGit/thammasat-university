@@ -11,7 +11,7 @@ var pusher = new Pusher({
 
 exports.push = function(req, res, next) 
 {
-	var id = req.headers['SFID'];
+	var id = req.headers['sfid'];
 	var type = req.headers['type'];
 	var result = true;
 	if(type == 'billing')
