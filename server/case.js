@@ -88,12 +88,12 @@ exports.openCase = function(req, res, next) {
 	var body = '';
 	req.on('data', function(chunk) 
 	{
-		try { body += chunk; }
+		try { body += chunk; console.log('**' + chunk); }
 		catch(ex) { res.send("Request is invalid format."); }
 	});
 	req.on('end', function() 
 	{
-		console.log(body);
+		//console.log(body);
 		//body = JSON.parse(body);
 		//Update Case
 		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
