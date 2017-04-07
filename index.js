@@ -20,8 +20,10 @@ app.get('/', function(request, response) {
   response.send('Hello World!')
 })
 
-app.get('/Test', function(req, res) {
-	res.send(record.Case.CareandClean); 
+app.get('/Test', urlencodedParser, function(req, res) {
+	if (!req.body) return res.sendStatus(400);
+	console.log(JSON.stringify(req.body, null, 2));
+	res.send('welcome, ' + JSON.stringify(req.body, null, 2));
 });
 
 app.get('/room/:id', room.getInfo);
