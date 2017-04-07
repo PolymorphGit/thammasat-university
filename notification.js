@@ -91,6 +91,21 @@ function testSend()
 	  channel: "my-channel-2",
 	  name: "Billing",
 	  data: {message: "hello another world"}
+	},
+	{
+	  channel: "my-channel-3",
+	  name: "Billing",
+	  data: {message: "hello another world"}
+	},
+	{
+	  channel: "my-channel-4",
+	  name: "Billing",
+	  data: {message: "hello another world"}
+	},
+	{
+	  channel: "my-channel-5",
+	  name: "Billing",
+	  data: {message: "hello another world"}
 	}];
 
 	pusher.triggerBatch(events);
