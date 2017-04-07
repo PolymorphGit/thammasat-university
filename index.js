@@ -8,7 +8,9 @@ var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
 var noti = require('./notification')
+var bodyParser = require('body-parser')
 var app = express()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
@@ -41,7 +43,7 @@ app.get('/payment', pay.getList);
 app.get('/payment/:id', pay.getDetail);
 app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
-app.post('/opencase', case2.openCase);
+app.post('/opencase', urlencodedParser, case2.openCase);
 app.get('/clean', clean.getList);
 app.get('/clean/:id', clean.getDetail);
 app.post('/openclean', clean.OpenClean);

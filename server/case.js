@@ -86,6 +86,7 @@ exports.getList = function(req, res, next) {
 exports.openCase = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var body = '';
+	/*
 	req.on('data', function(chunk) 
 	{
 		try { body += chunk; console.log('**' + chunk); }
@@ -99,4 +100,7 @@ exports.openCase = function(req, res, next) {
 		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
 		res.json(body);
 	});
+	*/
+	if (!req.body) return res.sendStatus(400)
+	  res.send('welcome, ' + res.body.username)
 }
