@@ -83,7 +83,7 @@ exports.getList = function(req, res, next) {
 	httprequest.end();
 }
 
-exports.OpenCase = function(req, res, next) {
+exports.openCase = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var body = '';
 	req.on('data', function(chunk) 

@@ -41,7 +41,7 @@ app.get('/payment', pay.getList);
 app.get('/payment/:id', pay.getDetail);
 app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
-app.get('/opencase', case2.opneCase);
+app.post('/opencase', case2.opneCase);
 app.get('/clean', clean.getList);
 app.get('/clean/:id', clean.getDetail);
 app.post('/openclean', clean.OpenClean);
