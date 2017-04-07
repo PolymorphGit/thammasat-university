@@ -76,11 +76,27 @@ function getBilling(id, next)
 		amount = results[0].total_amount__c;
 		duedate = results[0].due_date__c;
 		
-		console.log('To:' + to + ' ,No:' + invoiceNo + ' ,Amount:' + amount + ' ,message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate )
+		console.log('To:' + to + ' ,No:' + invoiceNo + ' ,Amount:' + amount + ' ,message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 		pusher.trigger(to, 'Billing', {
 			no: invoiceNo,
 			amount: amount,
 			message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate 
+		});
+		return true;
+	})
+	.catch(next);
+}
+
+function getMailing(id, next)
+{
+	var to;
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].student_name__c
+		console.log('To:' + to + ' ,No:' + results[0].name + ' ,type:' + results[0].mailing_type__c + ' , date:' + results[0].received_date__c);
+		pusher.trigger(to, 'Milling', {
+			no: results[0].name,
+			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c
 		});
 		return true;
 	})
