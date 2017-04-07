@@ -1,4 +1,4 @@
-var db = require('./pghelper');
+var db = require('./server/pghelper');
 var Pusher = require('pusher');
 //var Pusher = require('cloud/modules/node_modules/pusher/parse');
 
