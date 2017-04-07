@@ -22,8 +22,8 @@ app.get('/', function(request, response) {
 
 app.get('/Test', urlencodedParser, function(req, res) {
 	if (!req.body) return res.sendStatus(400);
-	console.log(JSON.stringify(req.body, null, 2));
-	res.send('welcome, ' + JSON.stringify(req.body, null, 2));
+	console.log(req.body);
+	res.send('welcome, ' + req.body);
 });
 
 app.get('/room/:id', room.getInfo);
