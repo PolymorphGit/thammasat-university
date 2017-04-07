@@ -20,7 +20,7 @@ exports.push = function(req, res, next)
 	}
 	else if(type == 'mailing')
 	{
-	
+		result = getMailing(id, next);
 	}
 	else if(type == 'Accept case')
 	{
