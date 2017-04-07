@@ -68,12 +68,18 @@ function getBilling(id)
 	var invoiceNo;
 	var amount;
 	var duedate;
-	db.select("SELECT * FROM salesforce.Payment__c WHERE SFID='" + id + "'")
+	var to;
+	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
-		pusher.trigger(id, 'Billing', {
+		to = results[0].student_name__c;
+		invoiceNo = results[0].name;
+		amount = results[0].total_amount__c;
+		duedate = results[0].due_date__c;
+		
+		pusher.trigger(to, 'Billing', {
 			"Name": invoiceNo,
 			"Amount": amount,
-			message: 'คุณมียอดค่าใช้ ' + amount + " บาท กำหนดชำระวันที่ " + duedate 
+			message: "คุณมียอดค่าใช้ " + amount + " บาท กำหนดชำระวันที่ " + duedate 
 		});
 		return true;
 	})
@@ -82,6 +88,7 @@ function getBilling(id)
 
 function testSend()
 {
+	/*
 	var events = [{
 	  channel: "my-channel-1",
 	  name: "Billing",
@@ -109,4 +116,5 @@ function testSend()
 	}];
 
 	pusher.triggerBatch(events);
+	*/
 }
