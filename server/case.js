@@ -93,8 +93,8 @@ exports.openCase = function(req, res, next) {
 	});
 	req.on('end', function() 
 	{
-		//console.log(body);
-		body = JSON.parse(body);
+		console.log(body);
+		//body = JSON.parse(body);
 		//Update Case
 		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
 		res.json(body);
