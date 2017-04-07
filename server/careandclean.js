@@ -157,7 +157,7 @@ exports.OpenClean = function(req, res, next) {
 	{
 		//console.log(body);
 		body = JSON.parse(body);
-		//Update Case
+		//Update clean
 		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
 		for(var i = 0 ; i < body[0].Schedule.length ; i++)
 		{

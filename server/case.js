@@ -82,3 +82,7 @@ exports.getList = function(req, res, next) {
 	});
 	httprequest.end();
 }
+
+exports.OpenCase = function(req, res, next) {
+	var head = req.headers['authorization'];
+}
