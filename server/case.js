@@ -102,6 +102,6 @@ exports.openCase = function(req, res, next) {
 	});
 	*/
 	if (!req.body) return res.sendStatus(400)
-	console.log(req.body);
-	res.send('welcome, ' + req.body)
+	console.log(JSON.stringify(req.body, null, 2));
+	res.send('welcome, ' + JSON.stringify(req.body, null, 2));
 }
