@@ -52,7 +52,7 @@ exports.push = function(req, res, next)
 	}
 	else
 	{
-	
+		testSend();
 	}
 	
 	if(result == false)
