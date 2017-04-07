@@ -102,5 +102,5 @@ exports.openCase = function(req, res, next) {
 	});
 	*/
 	if (!req.body) return res.sendStatus(400)
-	  res.send('welcome, ' + res.body)
+	  res.send('welcome, ' + req.body)
 }
