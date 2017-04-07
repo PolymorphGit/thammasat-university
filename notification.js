@@ -76,10 +76,11 @@ function getBilling(id)
 		amount = results[0].total_amount__c;
 		duedate = results[0].due_date__c;
 		
+		console.log('To:' + to + ' ,No:' + invoiceNo + ' ,Amount:' + amount + ' ,message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate )
 		pusher.trigger(to, 'Billing', {
-			"Name": invoiceNo,
-			"Amount": amount,
-			message: "คุณมียอดค่าใช้ " + amount + " บาท กำหนดชำระวันที่ " + duedate 
+			no: invoiceNo,
+			amount: amount,
+			message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate 
 		});
 		return true;
 	})
