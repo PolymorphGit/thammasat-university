@@ -85,4 +85,18 @@ exports.getList = function(req, res, next) {
 
 exports.OpenCase = function(req, res, next) {
 	var head = req.headers['authorization'];
+	var body = '';
+	req.on('data', function(chunk) 
+	{
+		try { body += chunk; }
+		catch(ex) { res.send("Request is invalid format."); }
+	});
+	req.on('end', function() 
+	{
+		//console.log(body);
+		body = JSON.parse(body);
+		//Update Case
+		//console.log("Comment: " + body[0].Comment + ", Access:" + body[0].Access + ", Payment:" + body[0].Payment);
+		res.json(body);
+	});
 }
