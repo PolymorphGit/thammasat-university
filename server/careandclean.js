@@ -185,11 +185,13 @@ exports.openClean = function(req, res, next) {
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
-					db.select("SELECT * FROM salesforce.Case WHERE id='" + results2[0].id + "'")
-					.then(function(results3) {
-						console.log(results3);
-					})
-				    .catch(next);
+					setTimeout(function () {
+						db.select("SELECT * FROM salesforce.Case WHERE id='" + results2[0].id + "'")
+						.then(function(results3) {
+							console.log(results3);
+						})
+					    .catch(next);
+					}, 10000) 
 					/*
 					var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
 					for(var i = 0 ; i < req.body[0].schedule.length; i++)
