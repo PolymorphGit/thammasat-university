@@ -180,7 +180,8 @@ exports.openClean = function(req, res, next) {
 				var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, subject, Description";
 				query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
 				query += "VALUES ('0126F000001e1OIQAY', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
-				query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '" + req.body[0].payment + "', 'Medium')";
+				query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '";
+				query += req.body[0].payment + "', 'Medium') RETURNING id";
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
