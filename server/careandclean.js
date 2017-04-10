@@ -192,7 +192,7 @@ exports.openClean = function(req, res, next) {
 							var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
 							for(var i = 0 ; i < req.body[0].schedule.length; i++)
 							{
-								query2 += "('" + results3[0].sfid + "', " + req.body[0].schedule[i].date + ", '" + req.body[0].schedule[i].time + "'), ";
+								query2 += "('" + results3[0].sfid + "', '" + req.body[0].schedule[i].date + "', '" + req.body[0].schedule[i].time + "'), ";
 							}
 							if(req.body[0].schedule.length > 0)
 							{
