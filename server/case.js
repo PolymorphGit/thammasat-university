@@ -119,7 +119,7 @@ exports.openCase = function(req, res, next) {
 				query += "VALUES ('012O0000000DFcWIAW', '" + results[0].sfid + "', '" + req.body.type + "', '";
 				query += req.body.sub_type + "', '" + req.body.topic + "', '" + req.body.other + "', '" + req.body.access + "', '";
 				query += req.body.payment + "', 'Medium')";
-				console.log(query);
+				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
 					
