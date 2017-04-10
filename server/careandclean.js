@@ -179,12 +179,12 @@ exports.openClean = function(req, res, next) {
 			.then(function(results) {
 				var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, subject, Description";
 				query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
-				query += "VALUE ('0126F000001e1OIQAY', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
+				query += "VALUES ('0126F000001e1OIQAY', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
 				query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '" + req.body[0].payment + "', 'Medium')";
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
-					var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUE ";
+					var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
 					for(var i = 0 ; i < req.body[0].schedule.length; i++)
 					{
 						query2 += "(" + results2[0].sfid + ", " + req.body[0].schedule[i].date + ", " + req.body[0].schedule[i].time + "), ";
