@@ -182,7 +182,7 @@ exports.openClean = function(req, res, next) {
 				query += "VALUE ('0126F000001e1OIQAY', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
 				query += req.body.comment + "', '" + req.body.amount + "', '" + req.body.access + "', '" + req.body.payment + "', 'Medium')";
 				console.log(query);
-				db.upsert(query)
+				db.select(query)
 				.then(function(results2) {
 					var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUE ";
 					for(var i = 0 ; i < req.body.schedule.length; i++)
@@ -194,7 +194,7 @@ exports.openClean = function(req, res, next) {
 						query2 = query2.substr(0, query2.length - 2);
 					}
 					console.log(query2);
-					db.upsert(query2)
+					db.select(query2)
 					.then(function(results3) {
 						
 					})

@@ -29,7 +29,3 @@ exports.select = function (sql) {
 		});
 	});
 };
-
-exports.upsert = function (sql) {
-	client.query(sql);
-};

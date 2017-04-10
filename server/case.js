@@ -120,7 +120,7 @@ exports.openCase = function(req, res, next) {
 				query += req.body.sub_type + "', '" + req.body.topic + "', '" + req.body.other + "', '" + req.body.access + "', '";
 				query += req.body.payment + "', 'Medium')";
 				console.log(query);
-				db.upsert(query)
+				db.select(query)
 				.then(function(results2) {
 					
 					res.send('success');
