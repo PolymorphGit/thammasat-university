@@ -181,7 +181,7 @@ exports.openClean = function(req, res, next) {
 				query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
 				query += "VALUES ('0126F000001e1OIQAY', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
 				query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '";
-				query += req.body[0].payment + "', 'Medium') RETURNING id";
+				query += req.body[0].payment + "', 'Medium') RETURNING sfid";
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
