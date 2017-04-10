@@ -184,6 +184,9 @@ exports.openClean = function(req, res, next) {
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
+					console.log(results2);
+					console.log(JSON.stringify(results2));
+					/*
 					var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
 					for(var i = 0 ; i < req.body[0].schedule.length; i++)
 					{
@@ -199,6 +202,7 @@ exports.openClean = function(req, res, next) {
 						
 					})
 				    .catch(next);
+				    */
 					res.send('success');
 				})
 			    .catch(next);
