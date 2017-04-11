@@ -2,10 +2,25 @@ var db = require('./pghelper');
 
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
+	var output = '';
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);	
-		res.json(results);
+		output = JSON.stringify(results);
+		db.select("SELECT * FROM salesforce.Invoice_Line_Item__c WHERE Invoice__c='" + results[0].sfid + "'")
+		.then(function(results2) {	
+			//console.log(results2);
+			if(results2.length > 0)
+			{
+				output = output.substr(0, output.length - 2) + ', "Item":';
+				output += JSON.stringify(results2);
+			}
+			output += '}]';
+			output = JSON.parse(output);
+			//console.log(output);
+			res.json(output);
+		})
+	    .catch(next);
 	})
     .catch(next);
 }
