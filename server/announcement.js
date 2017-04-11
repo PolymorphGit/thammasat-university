@@ -5,10 +5,10 @@ exports.getDetail = function(req, res, next) {
 	var limit = req.headers['limit'];
 	var start = req.headers['start'];
 	
-	res.json(getDetails(header, limit, start));
+	res.json(getDetails(limit, start));
 }
 
-function getDetails(header, limit, start)
+function getDetails(limit, start)
 {
 	var query = "SELECT * FROM salesforce.Announcement__c";
 	if(!isNaN(limit))
