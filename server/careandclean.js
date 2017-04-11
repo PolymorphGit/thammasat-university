@@ -59,7 +59,7 @@ exports.getDetail = function(req, res, next) {
 	var output = '';
 	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
-		console.log(results);	
+		//console.log(results);	
 		//output = JSON.stringify(results);
 		output = '{"Order Id":"' + results[0].sfid;
 		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
@@ -81,14 +81,11 @@ exports.getDetail = function(req, res, next) {
 					output += '", "Period":"' + results2[i].cleaning_period__c;
 					output += '", "Status":"' + results2[i].status + '"},';
 				}
-			}
-			if(results2.length)
-			{
 				output = output.substr(0, output.length - 1);
+				output += '}]';
 			}
-			output += '}]';
-			output = JSON.parse(output);
 			console.log(output);
+			output = JSON.parse(output);
 			res.json(output);
 		})
 	    .catch(next);
