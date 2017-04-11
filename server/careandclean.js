@@ -60,14 +60,24 @@ exports.getDetail = function(req, res, next) {
 	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
 		//console.log(results);	
-		output = JSON.stringify(results);
+		//output = JSON.stringify(results);
+		output = '{"Order Id":"' + results[i].sfid;
+		output += '", "Allow Access":"' + results[i].allow_to_access_room__c;
+		output += '", "Agrre to Payment":"' + results[i].agree_to_pay__c;
+		output += '", "Total Amount":"' + results[i].amount__c;
+		output += '", "Create Date":"' + results[i].createdate + '"}]';
+		
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
 			//console.log(results2);
 			if(results2.length > 0)
 			{
 				output = output.substr(0, output.length - 2) + ', "Clean":';
-				output += JSON.stringify(results2);
+				//output += JSON.stringify(results2);
+				output = '{"Clean Id":"' + results2[i].sfid;
+				output += '", "Working Date":"' + results[i].working_date__c;
+				output += '", "Period":"' + results2[i].cleaning_period__c;
+				output += '", "Status":"' + results2[i].status + '"}]';
 			}
 			output += '}]';
 			output = JSON.parse(output);
@@ -109,7 +119,7 @@ exports.getList = function(req, res, next) {
 		    var obj = JSON.parse(str);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and working_date__c is not null";
+				var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and status='Completed'";
 				if(!isNaN(limit))
 				{
 					query += " limit " + limit;

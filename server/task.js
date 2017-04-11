@@ -33,7 +33,7 @@ exports.getFeed = function(req, res, next) {
 					query += " UNION ALL ";
 					query += "SELECT sfid, name, 'billing' as type, 'Status:'||due_date__c||', Amount:'||coalesce(total_amount__c, 0) as detail, createddate FROM salesforce.Invoice__c WHERE Student_Name__c='" + results[0].sfid + "'";
 					query += " UNION ALL ";
-				    query += "SELECT sfid, caseid as name, 'clean' as type, to_char(working_date__c, 'DD/MM/YYYY') as detail, createddate FROM salesforce.WorkOrder WHERE accountid='" + results[0].sfid + "' and working_date__c is not null";
+				    query += "SELECT sfid, caseid as name, 'clean' as type, to_char(working_date__c, 'DD/MM/YYYY') as detail, createddate FROM salesforce.WorkOrder WHERE accountid='" + results[0].sfid + "' and status='Completed'";
 					query += " Order by createddate"
 					if(!isNaN(limit))
 					{
