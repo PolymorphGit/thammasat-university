@@ -20,7 +20,7 @@ exports.getFeed = function(req, res, next) {
 			try { str += chunk; }
 			catch(ex) { res.send("Invalid access token"); }
 		});
-		results.on('end', gerAllData(obj.identities[0].user_id, start, limit));
+		results.on('end', gerAllData(res, obj.identities[0].user_id, start, limit));
 	}
 	
 	var httprequest = https.request(options, callback);
@@ -31,7 +31,7 @@ exports.getFeed = function(req, res, next) {
 	httprequest.end();
 }
 
-function getAllData(id, start, limit)
+function getAllData(res, id, start, limit)
 {
 	 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 	.then(function(results) {
@@ -46,10 +46,10 @@ function getAllData(id, start, limit)
 			{
 				query += " OFFSET  " + start;
 			}
-			//console.log(query);
+			console.log(query);
 			db.select(query)
 			.then(function(results2) {	
-				
+				res.json(results2)
 			})
 		    .catch(next);
 	})
