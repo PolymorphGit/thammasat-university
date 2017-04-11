@@ -84,7 +84,7 @@ exports.getDetail = function(req, res, next) {
 			}
 			output += '}]';
 			output = JSON.parse(output);
-			//console.log(output);
+			console.log(output);
 			res.json(output);
 		})
 	    .catch(next);
