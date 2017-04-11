@@ -16,7 +16,21 @@ exports.getDetail = function(req, res, next) {
 	}
 	db.select(query)
 	.then(function(results) {
-		res.json(results);
+		var output = '[';
+		for(var i = 0 ; i <results.length ; i++)
+		{
+			output += '{"Id":"' + results[i].sfid;
+			output += '", "Name":"' + results[i].name;
+			output += '", "image":"' + results[i].image_path__c; 
+			output += '", "Create Date":"' + results[i].createdate + '"},';
+		}
+		if(results2.length)
+		{
+			output = output.substr(0, output.length - 1);
+		}
+		output+= ']';
+		res.json(JSON.parse(output));
+		//res.json(results);
 	})
     .catch(next);
 	
