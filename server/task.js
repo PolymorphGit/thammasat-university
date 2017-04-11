@@ -30,8 +30,8 @@ exports.getFeed = function(req, res, next) {
 					query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail, createddate FROM salesforce.Announcement__c";
 					query += " UNION ALL ";
 					query += "SELECT sfid, name, 'mailling' as type, mailing_type__c as detail, createddate FROM salesforce.Mailing__c WHERE Student_Name__c='" + results[0].sfid + "'";
-					//query += " UNION ALL ";
-					//query += "SELECT sfid, name, 'billing' as type, 'Status:'||due_date__c||', Amount:'||coalesce(total_amount__c, 0) as detail, createddate FROM salesforce.Invoice__c WHERE Student_Name__c='" + results[0].sfid + "'";
+					query += " UNION ALL ";
+					query += "SELECT sfid, name, 'billing' as type, 'Status:'||due_date__c||', Amount:'||coalesce(total_amount__c, 0) as detail, createddate FROM salesforce.Invoice__c WHERE Student_Name__c='" + results[0].sfid + "'";
 					//query += " UNION ALL ";
 					//query += "SELECT sfid, caseid, 'clean' as type, working_date__c as detail, createddate FROM salesforce.WorkOrder WHERE accountid='" + results[0].sfid + "' and working_date__c is not null";
 					query += " Order by createddate"
