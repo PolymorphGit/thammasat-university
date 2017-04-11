@@ -28,6 +28,7 @@ exports.getFeed = function(req, res, next) {
 					var query = "SELECT sfid, casenumber as name, 'case' as type, subject||', Status:'||status||', Amount:'||coalesce(amount__c, 0)  as detail FROM salesforce.Case where accountid='" + results[0].sfid + "'";
 					query += " UNION ALL ";
 					query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail FROM salesforce.Announcement__c";
+					query += " Order by createddate"
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
