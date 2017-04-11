@@ -2,6 +2,7 @@ var express = require('express')
 var	account = require('./server/account')
 var room = require('./server/Room')
 var announcement = require('./server/announcement')
+var feed = require('./server/task')
 var mail = require('./server/mailing')
 var pay = require('./server/payment')
 var case2 = require('./server/case')
@@ -34,23 +35,25 @@ app.get('/userinfo', account.getInfo);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 
 app.get('/logout', account.logout);
+
+app.get('/announcement', announcement.getDetail);
+app.get('/feed', feed.getFeed);
+app.get('/mailing', mail.getList);
+app.get('/mailing/:id', mail.getDetail);
+app.get('/billing', pay.getList);
+app.get('/billing/:id', pay.getDetail);
+app.get('/case', case2.getList);
+app.get('/case/:id', case2.getDetail);
+app.post('/opencase', urlencodedParser, case2.openCase);
+app.get('/getcleanrate', clean.getCleanRate);
+app.get('/clean', clean.getList);
+app.get('/clean/:id', clean.getDetail);
+app.post('/openclean', jsonParser, clean.openClean);
+
 app.get('/checkindetail', account.checkinDetail);
 app.get('/checkin', account.checkin);
 app.post('/requestcheckout', account.RequestCheckout);
 app.get('/checkout', account.checkout);
-
-app.get('/announcement', announcement.getDetail);
-app.get('/mailing', mail.getList);
-app.get('/mailing/:id', mail.getDetail);
-app.get('/payment', pay.getList);
-app.get('/payment/:id', pay.getDetail);
-app.get('/case', case2.getList);
-app.get('/case/:id', case2.getDetail);
-app.post('/opencase', urlencodedParser, case2.openCase);
-app.get('/clean', clean.getList);
-app.get('/clean/:id', clean.getDetail);
-app.post('/openclean', jsonParser, clean.openClean);
-app.get('/getcleanrate', clean.getCleanRate);
 
 app.post('/notification', noti.push);
 
