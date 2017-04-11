@@ -59,9 +59,9 @@ exports.getList = function(req, res, next) {
 					{
 						output += '{"Case id":"' + results2[i].sfid;
 						output += '", "Type":"' + results2[i].type;
-						output += '", "Sub Type":"' + results2[i].sub_type__c;
-						output += '", "Room Problem Type":"' + results2[i].room_problem_type__c;
-						output += '", "Priority":"' + results2[i].Priority;
+						output += '", "Sub Type":"' + results2[i].problem_type__c;
+						output += '", "Room Problem Type":"' + results2[i].problem_sub_type__c;
+						output += '", "Priority":"' + results2[i].priority;
 						output += '", "Subject":"' + results2[i].subject;
 						output += '", "Due Date":"' + results2[i].due_date__c;
 						output += '", "Status":"' + results2[i].status + '"},';

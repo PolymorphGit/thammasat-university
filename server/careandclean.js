@@ -109,7 +109,7 @@ exports.getList = function(req, res, next) {
 		    var obj = JSON.parse(str);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "'";
+				var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and working_date__c is not null";
 				if(!isNaN(limit))
 				{
 					query += " limit " + limit;
@@ -123,7 +123,8 @@ exports.getList = function(req, res, next) {
 					{
 						output += '{"Clean Id":"' + results2[i].sfid;
 						output += '", "Order Id":"' + results2[i].caseid;
-						output += '", "Reporter Name":"' + results[0].name + '"},';
+						output += '", "Reporter Name":"' + results[0].name; 
+						output += '", "Create Date":"' + results2[i].createdate+ '"},';
 					}
 					if(results2.length)
 					{
