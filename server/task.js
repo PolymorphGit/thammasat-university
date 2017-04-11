@@ -25,9 +25,9 @@ exports.getFeed = function(req, res, next) {
 			var obj = JSON.parse(str);
 			 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-					var query = "SELECT sfid, name, 'case' as type, 'Due Date:'||due_date__c||', amount:'||total_amount__c FROM salesforce.Case where accountid='" + results[0].sfid + "'";
-					query += " UNION ALL ";
-					query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail FROM salesforce.Announcement__c";
+					var query = "SELECT sfid, subject as name, 'case' as type, 'Due Date:'||due_date__c||', amount:'||total_amount__c as detail FROM salesforce.Case where accountid='" + results[0].sfid + "'";
+					//query += " UNION ALL ";
+					//query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail FROM salesforce.Announcement__c";
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
@@ -36,7 +36,7 @@ exports.getFeed = function(req, res, next) {
 					{
 						query += " OFFSET  " + start;
 					}
-					console.log(query);
+					//console.log(query);
 					db.select(query)
 					.then(function(results2) {	
 						res.json(results2)
