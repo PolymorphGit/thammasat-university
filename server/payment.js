@@ -17,7 +17,7 @@ exports.getDetail = function(req, res, next) {
 			}
 			output += '}]';
 			output = JSON.parse(output);
-			//console.log(output);
+			console.log(output);
 			res.json(output);
 		})
 	    .catch(next);
@@ -72,11 +72,11 @@ exports.getList = function(req, res, next) {
 					var output = '[';
 					for(var i = 0 ; i <results2.length ; i++)
 					{
-						output += '{"Payment id":"' + results2[i].sfid;
-						output += '", "Payment Number":"' + results2[i].name;
+						output += '{"Invoice ID":"' + results2[i].sfid;
+						output += '", "Invoice Number":"' + results2[i].name;
 						output += '", "Student Name":"' + results[0].name;
 						output += '", "Due Date":"' + results2[i].due_date__c;
-						output += '", "Amount":"' + results2[i].total_amount__c + '"},';
+						output += '", "Total Amount":"' + results2[i].total_amount__c + '"},';
 					}
 					if(results2.length)
 					{
