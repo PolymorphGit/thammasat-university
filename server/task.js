@@ -9,6 +9,7 @@ exports.getFeed = function(req, res, next) {
 	var limit = req.headers['limit'];
 	var start = req.headers['start'];
 	
-	var temp = announcement.getDetail(req, res, next);
+	var res2;
+	var temp = announcement.getDetail(req, res2, next);
 	res.json(temp);
 }
