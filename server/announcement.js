@@ -4,8 +4,12 @@ exports.getDetail = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var limit = req.headers['limit'];
 	var start = req.headers['start'];
-	var https = require('https');
 	
+	res.json(getDetails(header, limit, start));
+}
+
+function getDetails(header, limit, start)
+{
 	var query = "SELECT * FROM salesforce.Announcement__c";
 	if(!isNaN(limit))
 	{
@@ -17,9 +21,7 @@ exports.getDetail = function(req, res, next) {
 	}
 	db.select(query)
 	.then(function(results) {
-		//console.log(results);	
-		res.json(results);
+		return results;
 	})
     .catch(next);
-	//res.send(isNaN(limit));
 }
