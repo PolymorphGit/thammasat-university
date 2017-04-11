@@ -57,7 +57,7 @@ exports.getCleanRate = function(req, res, next) {
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
 	var output = '';
-	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "' and type='Care and Clean'")
+	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
