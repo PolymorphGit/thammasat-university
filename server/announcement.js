@@ -5,7 +5,8 @@ exports.getDetail = function(req, res, next) {
 	var limit = req.headers['limit'];
 	var start = req.headers['start'];
 	
-	res.json(getDetails(limit, start));
+	var results = getDetails(limit, start);
+	res.json(results);
 }
 
 function getDetails(limit, start)
