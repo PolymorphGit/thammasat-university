@@ -2,7 +2,7 @@ var db = require('./pghelper');
 
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
-	db.select("SELECT * FROM salesforce.Payment__c WHERE SFID='" + id + "'")
+	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);	
 		res.json(results);
@@ -41,7 +41,7 @@ exports.getList = function(req, res, next) {
 		    var obj = JSON.parse(str);
 		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-				var query = "SELECT * FROM salesforce.Payment__c where Student_Name__c='" + results[0].sfid + "'";
+				var query = "SELECT * FROM salesforce.Invoice__c where Student_Name__c='" + results[0].sfid + "'";
 				if(!isNaN(limit))
 				{
 					query += " limit " + limit;
@@ -59,10 +59,9 @@ exports.getList = function(req, res, next) {
 					{
 						output += '{"Payment id":"' + results2[i].sfid;
 						output += '", "Payment Number":"' + results2[i].name;
-						output += '", "Payment Type":"' + results2[i].payment_type__c;
 						output += '", "Student Name":"' + results[0].name;
 						output += '", "Due Date":"' + results2[i].due_date__c;
-						output += '", "Amount":"' + results2[i].amount__c + '"},';
+						output += '", "Amount":"' + results2[i].total_amount__c + '"},';
 					}
 					if(results2.length)
 					{
