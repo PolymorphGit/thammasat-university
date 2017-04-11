@@ -77,7 +77,7 @@ exports.getDetail = function(req, res, next) {
 				for(var i = 0 ; i <results2.length ; i++)
 				{
 					output = '{"Clean Id":"' + results2[i].sfid;
-					output += '", "Working Date":"' + results[i].working_date__c;
+					output += '", "Working Date":"' + results2[i].working_date__c;
 					output += '", "Period":"' + results2[i].cleaning_period__c;
 					output += '", "Status":"' + results2[i].status + '"}]';
 				}
