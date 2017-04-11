@@ -64,6 +64,7 @@ exports.getDetail = function(req, res, next) {
 		output = '[{"Order Id":"' + results[0].sfid;
 		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
 		output += '", "Agrre to Payment":"' + results[0].agree_to_pay__c;
+		output += '", "Remark":"' + results[0].Description;
 		output += '", "Total Amount":"' + results[0].amount__c;
 		output += '", "Create Date":"' + results[0].createdate + '"}]';
 		

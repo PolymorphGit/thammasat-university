@@ -2,10 +2,26 @@ var db = require('./pghelper');
 
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
+	var output = '';
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
-		//console.log(results);	
-		res.json(results);
+		//console.log(results);
+		output = '[{"Case Id":"' + results[0].sfid;
+		output += '", "casenumber":"' + results[0].name;
+		output += '", "Type":"' + results[0].type;
+		output += '", "Problem Type":"' + results[0].problem_type__c;
+		output += '", "Problem Sub Type":"' + results[0].problem_sub_type__c;
+		output += '", "Priority":"' + results[0].priority;
+		output += '", "Subject":"' + results[0].subject;
+		output += '", "Status":"' + results[0].status;
+		output += '", "Amount":"' + results[0].amount__c;
+		output += '", "Agree to Pay":"' + results[0].agree_to_pay__c;
+		output += '", "Allow to Access":"' + results[0].allow_to_access_room__c;
+		output += '", "Remark":"' + results[0].description;
+		output += '", "Create Date":"' + results[0].createdate + '"}]';
+		output = JSON.parse(output);
+		res.json(output);
+		//res.json(results);
 	})
     .catch(next);
 }
@@ -63,7 +79,6 @@ exports.getList = function(req, res, next) {
 						output += '", "Room Problem Type":"' + results2[i].problem_sub_type__c;
 						output += '", "Priority":"' + results2[i].priority;
 						output += '", "Subject":"' + results2[i].subject;
-						output += '", "Due Date":"' + results2[i].due_date__c;
 						output += '", "Status":"' + results2[i].status + '"},';
 					}
 					if(results2.length > 0)
