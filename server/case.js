@@ -48,7 +48,7 @@ exports.getList = function(req, res, next) {
 				}
 				if(!isNaN(start) && start != 0)
 				{
-					query += " OFFET  " + limit;
+					query += " OFFSET  " + limit;
 				}
 				//console.log(query);
 				db.select(query)
