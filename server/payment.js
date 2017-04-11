@@ -18,7 +18,7 @@ exports.getDetail = function(req, res, next) {
 			//console.log(results2);
 			if(results2.length > 0)
 			{
-				output = output.substr(0, output.length - 2) + ', "Item":';
+				output = output.substr(0, output.length - 2) + ', "Item":[';
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
