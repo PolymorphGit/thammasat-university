@@ -124,7 +124,7 @@ exports.getList = function(req, res, next) {
 						output += '{"Clean Id":"' + results2[i].sfid;
 						output += '", "Order Id":"' + results2[i].caseid;
 						output += '", "Reporter Name":"' + results[0].name; 
-						output += '", "Create Date":"' + results2[i].createdate+ '"},';
+						output += '", "Create Date":"' + results2[i].createdate + '"},';
 					}
 					if(results2.length)
 					{

@@ -77,7 +77,7 @@ exports.getList = function(req, res, next) {
 						output += '", "Student Name":"' + results[0].name;
 						output += '", "Due Date":"' + results2[i].due_date__c;
 						output += '", "Total Amount":"' + results2[i].total_amount__c;
-						output += '", "Create Date":"' + results2[i].createdate;+ '"},';
+						output += '", "Create Date":"' + results2[i].createdate + '"},';
 					}
 					if(results2.length)
 					{
