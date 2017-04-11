@@ -20,7 +20,7 @@ exports.getFeed = function(req, res, next) {
 			try { str += chunk; }
 			catch(ex) { res.send("Invalid access token"); }
 		});
-		results.on('end', getAllData(res, obj.identities[0].user_id, start, limit));
+		results.on('end', getAllData(res, JSON.parse(str).identities[0].user_id, start, limit));
 	}
 	
 	var httprequest = https.request(options, callback);
