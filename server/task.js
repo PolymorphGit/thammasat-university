@@ -25,9 +25,9 @@ exports.getFeed = function(req, res, next) {
 			var obj = JSON.parse(str);
 			 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
-					var query = "SELECT sfid, casenumber as name, 'case' as type, subject||', Status:'||status||', Amount:'||coalesce(amount__c, 0)  as detail FROM salesforce.Case where accountid='" + results[0].sfid + "'";
+					var query = "SELECT sfid, casenumber as name, 'case' as type, subject||', Status:'||status||', Amount:'||coalesce(amount__c, 0)  as detail, createddate FROM salesforce.Case where accountid='" + results[0].sfid + "'";
 					query += " UNION ALL ";
-					query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail FROM salesforce.Announcement__c";
+					query += "SELECT sfid, name, 'announcement' as type, image_path__c as detail, createddate FROM salesforce.Announcement__c";
 					query += " Order by createddate"
 					if(!isNaN(limit))
 					{
