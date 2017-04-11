@@ -120,10 +120,10 @@ exports.openCase = function(req, res, next) {
 			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
 				var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, problem_sub_type__c, problem_type__c"
-				query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority) ";
+				query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority, subject) ";
 				query += "VALUES ('012O0000000DFcWIAW', '" + results[0].sfid + "', '" + req.body.type + "', '";
 				query += req.body.sub_type + "', '" + req.body.topic + "', '" + req.body.other + "', '" + req.body.access + "', '";
-				query += req.body.payment + "', 'Medium')";
+				query += req.body.payment + "', 'Medium', '" + req.body.type + "-" + req.body.sub_type + "-" + req.body.topic + "')";
 				//console.log(query);
 				db.select(query)
 				.then(function(results2) {
