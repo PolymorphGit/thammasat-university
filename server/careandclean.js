@@ -79,8 +79,12 @@ exports.getDetail = function(req, res, next) {
 					output = '{"Clean Id":"' + results2[i].sfid;
 					output += '", "Working Date":"' + results2[i].working_date__c;
 					output += '", "Period":"' + results2[i].cleaning_period__c;
-					output += '", "Status":"' + results2[i].status + '"}]';
+					output += '", "Status":"' + results2[i].status + '"},';
 				}
+			}
+			if(results2.length)
+			{
+				output = output.substr(0, output.length - 1);
 			}
 			output += '}]';
 			output = JSON.parse(output);
