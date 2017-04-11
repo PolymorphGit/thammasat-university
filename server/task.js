@@ -21,6 +21,7 @@ exports.getFeed = function(req, res, next) {
 			catch(ex) { res.send("Invalid access token"); }
 		});
 		results.on('end', function() {
+			console.log(str);
 			var obj = JSON.parse(str);
 			 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
