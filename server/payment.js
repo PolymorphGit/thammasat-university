@@ -6,16 +6,31 @@ exports.getDetail = function(req, res, next) {
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);	
-		output = JSON.stringify(results);
+		//output = JSON.stringify(results);
+		output = '[{"Id":"' + results[0].sfid;
+		output += '", "Invoice Id":"' + results[0].name;
+		output += '", "Due Date":"' + results[0].due_date__c;
+		output += '", "Total Amount":"' + results[0].total_amount__c;
+		output += '", "Create Date":"' + results[0].createdate + '"}]';
+		
 		db.select("SELECT * FROM salesforce.Invoice_Line_Item__c WHERE Invoice__c='" + results[0].sfid + "'")
 		.then(function(results2) {	
 			//console.log(results2);
 			if(results2.length > 0)
 			{
 				output = output.substr(0, output.length - 2) + ', "Item":';
-				output += JSON.stringify(results2);
+				//output += JSON.stringify(results2);
+				for(var i = 0 ; i <results2.length ; i++)
+				{
+					output += '{"Line ID":"' + results2[i].sfid;
+					output += '", "Line Number":"' + results2[i].name;
+					output += '", "Type":"' + results2[i].invoice_line_item_type__c;
+					output += '", "Date":"' + results2[i].due_date__c;
+					output += '", "Amount":"' + results2[i].amount__c + '"},';
+				}
+				output = output.substr(0, output.length - 1);
+				output+= ']}]';
 			}
-			output += '}]';
 			console.log(output);
 			output = JSON.parse(output);
 			res.json(output);
