@@ -61,7 +61,7 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
-		output = '{"Order Id":"' + results[0].sfid;
+		output = '[{"Order Id":"' + results[0].sfid;
 		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
 		output += '", "Agrre to Payment":"' + results[0].agree_to_pay__c;
 		output += '", "Total Amount":"' + results[0].amount__c;
