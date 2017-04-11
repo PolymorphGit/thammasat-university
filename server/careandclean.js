@@ -59,7 +59,7 @@ exports.getDetail = function(req, res, next) {
 	var output = '';
 	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
-		//console.log(results);	
+		console.log(results);	
 		//output = JSON.stringify(results);
 		output = '{"Order Id":"' + results[0].sfid;
 		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
