@@ -20,7 +20,30 @@ exports.getFeed = function(req, res, next) {
 			try { str += chunk; }
 			catch(ex) { res.send("Invalid access token"); }
 		});
-		results.on('end', getAllData(res, str, start, limit));
+		results.on('end', function() {
+			var obj = JSON.parse(str);
+			 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+			.then(function(results) {
+					var query = "SELECT * FROM salesforce.Case where accountid='" + results[0].sfid + "'";
+					query += " UNION ALL ";
+					query += "SELECT * FROM salesforce.Announcement__c";
+					if(!isNaN(limit))
+					{
+						query += " limit " + limit;
+					}
+					if(!isNaN(start) && start != 0)
+					{
+						query += " OFFSET  " + start;
+					}
+					console.log(query);
+					db.select(query)
+					.then(function(results2) {	
+						res.json(results2)
+					})
+				    .catch(next);
+			})
+		    .catch(next);
+		});
 	}
 	
 	var httprequest = https.request(options, callback);
@@ -29,30 +52,4 @@ exports.getFeed = function(req, res, next) {
 		res.send('problem with request: ${e.message}');
 	});
 	httprequest.end();
-}
-
-function getAllData(res, str, start, limit)
-{
-	var obj = JSON.parse(str);
-	 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-	.then(function(results) {
-			var query = "SELECT * FROM salesforce.Case where accountid='" + results[0].sfid + "'";
-			query += " UNION ALL ";
-			query += "SELECT * FROM salesforce.Announcement__c";
-			if(!isNaN(limit))
-			{
-				query += " limit " + limit;
-			}
-			if(!isNaN(start) && start != 0)
-			{
-				query += " OFFSET  " + start;
-			}
-			console.log(query);
-			db.select(query)
-			.then(function(results2) {	
-				res.json(results2)
-			})
-		    .catch(next);
-	})
-    .catch(next);
 }
