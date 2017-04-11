@@ -24,7 +24,7 @@ exports.getDetail = function(req, res, next) {
 			output += '", "image":"' + results[i].image_path__c; 
 			output += '", "Create Date":"' + results[i].createdate + '"},';
 		}
-		if(results2.length)
+		if(results.length)
 		{
 			output = output.substr(0, output.length - 1);
 		}
