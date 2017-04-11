@@ -12,7 +12,7 @@ exports.getDetail = function(req, res, next) {
 	}
 	if(!isNaN(start) && start != 0)
 	{
-		query += " OFFSET  " + limit;
+		query += " OFFSET  " + start;
 	}
 	db.select(query)
 	.then(function(results) {
