@@ -72,7 +72,7 @@ exports.getDetail = function(req, res, next) {
 			//console.log(results2);
 			if(results2.length > 0)
 			{
-				output = output.substr(0, output.length - 2) + ', "Clean":';
+				output = output.substr(0, output.length - 2) + ', "Clean":[';
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
@@ -82,7 +82,7 @@ exports.getDetail = function(req, res, next) {
 					output += '", "Status":"' + results2[i].status + '"},';
 				}
 				output = output.substr(0, output.length - 1);
-				output += '}]';
+				output += ']}]';
 			}
 			console.log(output);
 			output = JSON.parse(output);
