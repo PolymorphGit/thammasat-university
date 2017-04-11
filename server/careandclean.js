@@ -61,11 +61,11 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
-		output = '{"Order Id":"' + results[i].sfid;
-		output += '", "Allow Access":"' + results[i].allow_to_access_room__c;
-		output += '", "Agrre to Payment":"' + results[i].agree_to_pay__c;
-		output += '", "Total Amount":"' + results[i].amount__c;
-		output += '", "Create Date":"' + results[i].createdate + '"}]';
+		output = '{"Order Id":"' + results[0].sfid;
+		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
+		output += '", "Agrre to Payment":"' + results[0].agree_to_pay__c;
+		output += '", "Total Amount":"' + results[0].amount__c;
+		output += '", "Create Date":"' + results[0].createdate + '"}]';
 		
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -74,10 +74,13 @@ exports.getDetail = function(req, res, next) {
 			{
 				output = output.substr(0, output.length - 2) + ', "Clean":';
 				//output += JSON.stringify(results2);
-				output = '{"Clean Id":"' + results2[i].sfid;
-				output += '", "Working Date":"' + results[i].working_date__c;
-				output += '", "Period":"' + results2[i].cleaning_period__c;
-				output += '", "Status":"' + results2[i].status + '"}]';
+				for(var i = 0 ; i <results2.length ; i++)
+				{
+					output = '{"Clean Id":"' + results2[i].sfid;
+					output += '", "Working Date":"' + results[i].working_date__c;
+					output += '", "Period":"' + results2[i].cleaning_period__c;
+					output += '", "Status":"' + results2[i].status + '"}]';
+				}
 			}
 			output += '}]';
 			output = JSON.parse(output);
