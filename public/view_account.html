@@ -8,8 +8,8 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 				
-			alert(id);
-			alert(document.getElementById('main'));
+			//alert(id);
+			//alert(document.getElementById('main'));
 			alert(angular.element(document.getElementById('main')));
 			alert(angular.element(document.getElementById('main')).scope());
 			alert(angular.element(document.getElementById('main')).scope().account);
@@ -28,7 +28,7 @@
 		คำนำหน้าชื่อ <input type="text" id="title"><br>  
 		Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi) <input type="text" id="name"><br>  
 		
-		<button onclick="Save()">Save</button>
+		<button ng-click="getData('001O0000018HJQ3IAO')">Save</button>
 	
 	</body>
 </html>
