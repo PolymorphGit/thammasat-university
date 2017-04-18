@@ -62,7 +62,7 @@ app.post('/notification', noti.push);
 
 app.get('/view_account/:id', function(request, response){
 	var id = request.params.id;
-    response.sendFile(path.join(__dirname + '/view_account.ejs?id='+ id));
+    response.sendFile(path.join(__dirname + '/view_account.html?id='+ id));
 });
 
 app.listen(app.get('port'), function() {
