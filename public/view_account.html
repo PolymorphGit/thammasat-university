@@ -8,6 +8,7 @@
 		var identity = document.getElementById("identity");
 		var passport = document.getElementById("passport");
 		var gender = document.getElementById("gender");
+		var title = document.getElementById("title");
 		
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
@@ -20,6 +21,7 @@
 				identity.innerHTML = results[0].identification_number__c;
 				passport.innerHTML = results[0].passport_number__c;
 				gender.innerHTML = results[0].gender__c;
+				title = "นาย";
 			})	
 		    .catch(next);
 	    }
@@ -35,6 +37,8 @@
 		ID Cards / หมายเลขประชาชน <input type="text" id="identity"><br>
 		Passport No.<input type="text" id="passport"><br>
 		Sex /เพศ <input type="text" id="gender"><br> 
+		คำนำหน้าชื่อ <input type="text" id="title"><br>  
+		Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi) <input type="text" id="name"><br>  
 		
 		<button onclick="Save()">Save</button>
 	
