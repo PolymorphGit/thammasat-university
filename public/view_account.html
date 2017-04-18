@@ -6,10 +6,10 @@
 		var db = require('./pghelper');
 		var id;
 		
-		$(window).bind("load", function() { 
+	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-		)};
+	    }
 		
 		function myFunction() {
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
@@ -18,7 +18,7 @@
 		}	
 		</script> 
 	</header>
-	<body>
+	<body onload="init();">
 		
 		<h1>My First Heading</h1>
 		<p>My first paragraph.</p>
