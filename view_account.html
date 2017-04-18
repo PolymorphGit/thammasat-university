@@ -3,8 +3,13 @@
 	<header>
 		<!--  <script src="view_account.js" /> -->
 		<script type="text/javascript">
+		var db = require('./pghelper');
+		
+		var matches = /id=([^&#=]*)/.exec(window.location.search);
+		var param1 = matches[1];
+		
 		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
+			document.getElementById("demo").innerHTML = param1;
 		}	
 		</script>
 	</header>

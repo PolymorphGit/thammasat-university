@@ -60,9 +60,8 @@ app.get('/checkout', account.checkout);
 app.post('/notification', noti.push);
 
 app.get('/view_account', function(request, response){
-	console.log(path.join(__dirname + '/view_account.html'));
-	//__dirname : It will resolve to your project folder.
-    response.sendFile(path.join(__dirname + '/view_account.html'));
+	var id = request.params.id;
+    response.sendFile(path.join(__dirname + '/view_account.html?id='+ id));
 });
 
 app.listen(app.get('port'), function() {
