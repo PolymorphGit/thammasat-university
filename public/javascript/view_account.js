@@ -1,5 +1,5 @@
 angular.module('accountApp', [])
-.controller('mainController', function ($scope) {
+.controller('mainController', function ($scope, $http) {
   $scope.account = {
 		 
   };
