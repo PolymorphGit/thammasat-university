@@ -14,6 +14,8 @@ var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var jsonParser = bodyParser.json()
 
+var path = require("path");
+
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 //app.use(express.bodyParser());
@@ -58,7 +60,7 @@ app.get('/checkout', account.checkout);
 app.post('/notification', noti.push);
 
 app.get('/view_account', function(request, response){
-    response.sendfile('./view_account.html');
+    response.sendfile(path.join(__dirname + '/view_account.html'));
 });
 
 app.listen(app.get('port'), function() {
