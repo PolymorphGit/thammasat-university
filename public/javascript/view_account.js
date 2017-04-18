@@ -19,4 +19,8 @@ angular.module('accountApp', [])
     });
     */
   };
+  
+  $scope.myfunction = function (data) {
+      alert("---" + data);
+  };
 });
