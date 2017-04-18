@@ -9,8 +9,8 @@ angular.module('accountApp', [])
 	//alert(accountId);
     $http.get('../userinfo/' + accountId)
     .success((data) => {
-      $scope.account = data;
-      console.log(data);
+    	console.log(data);
+    	$scope.account = data[0];
     })
     .error((data) => {
       console.log('Error: ' + data);
