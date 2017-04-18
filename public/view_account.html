@@ -5,18 +5,18 @@
 		<script type="text/javascript">
 		var db = require('./pghelper');
 		var id;
-		var identity = document.getElementById("identity");
-		var passport = document.getElementById("passport");
-		var gender = document.getElementById("gender");
-		var title = document.getElementById("title");
+		var identity;
+		var passport;
+		var gender;
+		var title;
 		
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-			//identity = document.getElementById("identity");
-			//passport = document.getElementById("passport");
-			//gender = document.getElementById("gender");
-			//title = document.getElementById("title");
+			identity = document.getElementById("identity");
+			passport = document.getElementById("passport");
+			gender = document.getElementById("gender");
+			title = document.getElementById("title");
 			title.value = "นาย";
 			
 			db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
