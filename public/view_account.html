@@ -12,11 +12,11 @@
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-	    
+	    	alert(id);
 			db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
 			.then(function(results) {
-				console.log(results);	
-				//res.json(results);
+				alert(results);
+				
 				identity.innerHTML = results[0].identification_number__c;
 				passport.innerHTML = results[0].passport_number__c;
 				gender.innerHTML = results[0].gender__c;
