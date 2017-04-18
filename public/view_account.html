@@ -3,7 +3,8 @@
 	<header>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
-		var db = require('./pghelper');
+		var pg = require('pg');
+		var pgClient;
 		var id;
 		var identity;
 		var passport;
@@ -17,7 +18,24 @@
 			passport = document.getElementById("passport");
 			gender = document.getElementById("gender");
 			title = document.getElementById("title");
-			title.value = "นาย";
+			
+			var connectionString = "postgres://ehuotalmpdqjvs:da48536ca63cdb9f209d7e00695d5e261441f7313b611d670bf104bbb1d24a5a@ec2-54-243-214-198.compute-1.amazonaws.com:5432/df3pgi81qfmoc7";
+			pgClient = new pg.Client(connectionString);
+			pgClient.connect();
+			var query = pgClient.query("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'");
+			
+			query.on("row", function(row,result){
+				result.addRow(row);
+			});
+			query.on("end", function(result){
+				if(result.rows[0] === undefined){
+					return;
+				}
+				else{
+					alert(result.rows[0].id);
+				}
+			pgClient.end();
+			});
 			
 			db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
 			.then(function(results) {
