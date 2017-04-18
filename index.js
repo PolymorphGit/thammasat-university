@@ -58,7 +58,7 @@ app.get('/checkout', account.checkout);
 app.post('/notification', noti.push);
 
 app.get('/view_account', function(request, response){
-    response.render('view_account.html');
+    response.sendfile('./view_account.html');
 });
 
 app.listen(app.get('port'), function() {
