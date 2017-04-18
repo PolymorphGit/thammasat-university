@@ -1,6 +1,9 @@
 angular.module('accountApp', [])
 .controller('mainController', ($scope, $http) => {
-  $scope.account = {};
+  $scope.account = {
+		  identification_number__c : "1234567890123",
+		  
+  };
   
   //Get a account Detail
   $scope.getData = (accountId) => {

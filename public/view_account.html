@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<header>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src = "/javascript/view_account.js"></script>
 		<script type="text/javascript">
 	
@@ -9,6 +8,7 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 				
+			alert(angular.element(document.getElementById('main')).scope().account);
 			angular.element(document.getElementById('main')).scope().getData(id);
 	    }
 		
