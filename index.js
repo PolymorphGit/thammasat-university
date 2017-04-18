@@ -57,6 +57,10 @@ app.get('/checkout', account.checkout);
 
 app.post('/notification', noti.push);
 
+app.get('/view_account', function(request, response){
+    response.sendfile('view_account.html');
+});
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
