@@ -6,8 +6,8 @@ angular.module('accountApp', [])
   
   //Get a account Detail
   $scope.getData = function (accountId) {	
-	alert(accountId);
-    $http.post('/userinfo/' + accountId)
+	//alert(accountId);
+    $http.get('/userinfo/' + accountId)
     .success((data) => {
       $scope.account = data;
       console.log(data);
