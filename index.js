@@ -60,7 +60,7 @@ app.get('/checkout', account.checkout);
 
 app.post('/notification', noti.push);
 
-app.get('/view_account/:id', function(request, response){
+app.get('/view_account', function(request, response){
 	var id = request.params.id;
     response.sendFile(path.join(__dirname + '/view_account.html?id='+ id));
 });
