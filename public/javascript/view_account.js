@@ -1,14 +1,11 @@
 angular.module('accountApp', [])
 .controller('mainController', function ($scope) {
   $scope.account = {
-		  identification_number__c : "1234567890123"
-		  
+		 
   };
   
   //Get a account Detail
-  $scope.getData = (accountId) => {
-	  identification_number__c : "1234567890123"
-	  /*
+  $scope.getData = function (accountId) {	  
     $http.delete('/userinfo/' + accountId)
     .success((data) => {
       $scope.account = data;
@@ -17,7 +14,7 @@ angular.module('accountApp', [])
     .error((data) => {
       console.log('Error: ' + data);
     });
-    */
+    
   };
   
   $scope.myfunction = function (data) {
