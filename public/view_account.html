@@ -4,6 +4,12 @@
 		<!--  <script src="view_account.js" /> -->
 		<script type="text/javascript">
 		var db = require('./pghelper');
+		var id;
+		
+		$(window).bind("load", function() { 
+			var matches = /id=([^&#=]*)/.exec(window.location.search);
+			id = matches[1];
+		)};
 		
 		function myFunction() {
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
