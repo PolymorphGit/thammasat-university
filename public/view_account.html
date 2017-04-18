@@ -9,13 +9,8 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 				
-			//alert(id);
-			//alert(document.getElementById('main'));
-			//alert(angular.element(document.getElementById('main')));
-			//alert(angular.element(document.getElementById('main')).scope());
-			//alert(angular.element(document.getElementById('main')).scope().account);
-			//alert(angular.element(document.getElementById('main')).scope().account.identification_number__c);
 			angular.element(document.getElementById('main')).scope().getData(id);
+			alert(angular.element(document.getElementById('main')).scope().account.identification_number__c);
 	    }
 		
 		
