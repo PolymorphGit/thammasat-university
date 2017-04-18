@@ -6,10 +6,10 @@
 		var db = require('./pghelper');
 		
 		var matches = /id=([^&#=]*)/.exec(window.location.search);
-		var param1 = matches[1];
+		var id = matches[1];
 		
 		function myFunction() {
-			document.getElementById("demo").innerHTML = window.location.search;
+			document.getElementById("demo").innerHTML = id;
 		}	
 		</script> 
 	</header>
