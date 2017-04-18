@@ -18,7 +18,7 @@ var path = require("path");
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 //app.use(express.bodyParser());
 
 app.get('/', function(request, response) {
@@ -60,7 +60,7 @@ app.get('/checkout', account.checkout);
 
 app.post('/notification', noti.push);
 
-app.get('/view_account', function(request, response){
+app.get('/view_account/:id', function(request, response){
 	var id = request.params.id;
     response.sendFile(path.join(__dirname + '/view_account.html?id='+ id));
 });
