@@ -1,5 +1,5 @@
 angular.module('accountApp', [])
-.controller('mainController', ($scope, $http) => {
+.controller('mainController', function ($scope) {
   $scope.account = {
 		  identification_number__c : "1234567890123"
 		  
