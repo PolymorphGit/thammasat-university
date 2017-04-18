@@ -5,25 +5,39 @@
 		<script type="text/javascript">
 		var db = require('./pghelper');
 		var id;
+		var identity = document.getElementById("identity");
+		var passport = document.getElementById("passport");
+		var gender = document.getElementById("gender");
 		
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
+	    
+			var id = req.params.mobileid;
+			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + id + "'")
+			.then(function(results) {
+				console.log(results);	
+				//res.json(results);
+				identity.innerHTML = results[0].identification_number__c;
+				passport.innerHTML = results[0].passport_number__c;
+				gender.innerHTML = results[0].gender__c;
+			})	
+		    .catch(next);
 	    }
 		
-		function myFunction() {
-			var matches = /id=([^&#=]*)/.exec(window.location.search);
-			var id = matches[1];
-			document.getElementById("demo").innerHTML = id;
+		function Save() {
+			
 		}	
+		
 		</script> 
 	</header>
 	<body onload="init();">
 		
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
-		<p id="demo">Click the button to change the text in this paragraph.</p>
-		<button onclick="myFunction()">Try it</button>
+		ID Cards / หมายเลขประชาชน <input type="text" id="identity"><br>
+		Passport No.<input type="text" id="passport"><br>
+		Sex /เพศ <input type="text" id="gender"><br> 
+		
+		<button onclick="Save()">Try it</button>
 	
 	</body>
 </html>
