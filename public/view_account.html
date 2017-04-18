@@ -13,7 +13,11 @@
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-			title = "นาย";
+			//identity = document.getElementById("identity");
+			//passport = document.getElementById("passport");
+			//gender = document.getElementById("gender");
+			//title = document.getElementById("title");
+			title.innerHTML = "นาย";
 			
 			db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
 			.then(function(results) {
