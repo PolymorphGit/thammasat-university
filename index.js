@@ -62,7 +62,6 @@ app.post('/notification', noti.push);
 
 app.get('/view_account/:id', function(request, response){
 	console.log(request.params.id);
-    //response.sendFile(path.join(__dirname + '/view_account.html'), {id: request.params.id});
 	response.redirect('/view_account.html?id=' + request.params.id)
 });
 
