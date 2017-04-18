@@ -67,6 +67,22 @@ exports.UserInfobyMobileId = function(req, res, next) {
     .catch(next);
 };
 
+exports.update = function(req, res, next) {
+	var id = req.params.id;
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var query = "UPDATE salesforce.Account SET identification_number__c='" + req.body.identity + "', "; 
+	query += "passport_number__c='" + req.body.passport + "', ";
+	query += "gender__c='" + req.body.gender + "' ";
+	query += " WHERE SFID='" + id + "'";
+	db.select(query)
+	.then(function(results) {
+		console.log(results);	
+		res.json(results);
+	})	
+    .catch(next);
+};
+
 exports.logout = function(req, res, next) {
 	var head = req.headers['authorization'];
 	res.send("Success");

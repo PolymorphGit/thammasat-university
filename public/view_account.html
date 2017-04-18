@@ -2,64 +2,24 @@
 <html>
 	<header>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src = "/javascript/view_account.js"></script>
 		<script type="text/javascript">
-		var pg = require('pg');
-		var pgClient;
-		var id;
-		var identity;
-		var passport;
-		var gender;
-		var title;
-		
+	
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-			identity = document.getElementById("identity");
-			passport = document.getElementById("passport");
-			gender = document.getElementById("gender");
-			title = document.getElementById("title");
-			
-			var connectionString = "postgres://ehuotalmpdqjvs:da48536ca63cdb9f209d7e00695d5e261441f7313b611d670bf104bbb1d24a5a@ec2-54-243-214-198.compute-1.amazonaws.com:5432/df3pgi81qfmoc7";
-			pgClient = new pg.Client(connectionString);
-			pgClient.connect();
-			var query = pgClient.query("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'");
-			
-			query.on("row", function(row,result){
-				result.addRow(row);
-			});
-			query.on("end", function(result){
-				if(result.rows[0] === undefined){
-					return;
-				}
-				else{
-					alert(result.rows[0].id);
-				}
-			pgClient.end();
-			});
-			
-			db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
-			.then(function(results) {
-				alert(results);
 				
-				identity.value = results[0].identification_number__c;
-				passport.value = results[0].passport_number__c;
-				gender.value = results[0].gender__c;
-				
-			})	
-		    .catch(next);
+			angular.element(document.getElementById('main')).scope().getData(id);
 	    }
 		
-		function Save() {
-			alert("Saved");
-		}	
 		
 		</script> 
 	</header>
-	<body onload="init();">
+	<body id="main" onload="init();" ng-app='accountApp' ng-controller="mainController">
 		
-		ID Cards / หมายเลขประชาชน <input type="text" id="identity"><br>
-		Passport No.<input type="text" id="passport"><br>
-		Sex /เพศ <input type="text" id="gender"><br> 
+		ID Cards / หมายเลขประชาชน <input type="text" id="identity" ng-model = "account.identify"><br>
+		Passport No.<input type="text" id="passport" ng-model = "account.passport"><br>
+		Sex /เพศ <input type="text" id="gender" ng-model = "account.gender"><br> 
 		คำนำหน้าชื่อ <input type="text" id="title"><br>  
 		Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi) <input type="text" id="name"><br>  
 		
