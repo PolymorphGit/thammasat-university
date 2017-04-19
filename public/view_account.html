@@ -17,6 +17,11 @@
 	    	angular.element(document.getElementById('main')).scope().updateData(id);
 	    }
 	    
+	    function changeTitle() {
+	        var x = document.getElementById("myTitle").value;
+	        angular.element(document.getElementById('main')).scope().title_th__c = x;
+	    }
+	    
 		</script> 
 	</header>
 	<body id="main" onload="init();" ng-app="accountApp" ng-controller="mainController">
@@ -24,7 +29,11 @@
 		ID Cards / หมายเลขประชาชน <input type="text" id="identity" ng-model="account.identification_number__c"><br>
 		Passport No.<input type="text" id="passport" ng-model="account.passport_number__c"><br>
 		Sex /เพศ <input type="text" id="gender" ng-model="account.gender__c"><br> 
-		คำนำหน้าชื่อ <input type="text" id="titleTH" ng-model="account.title_th__c"><br>  
+		คำนำหน้าชื่อ 
+		<select id="myTitle" onchange="changeTitle()" ng-repeat="t in title">
+		  <option value="{{t}}">{{t}}
+		</select> 
+		<input type="text" id="titleTH" ng-model="account.title_th__c"><br>  
 		Student Name/ชื่อ (Th) <input type="text" id="nameTH" ng-model="account.first_name_th__c"><br>
 		Student Surname/สกุลนักศึกษา (Th) <input type="text" id="nameTH" ng-model="account.last_name_th__c"><br>  
 		Title <input type="text" id="titleEN" ng-model="account.salutation"><br>  
