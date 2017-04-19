@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	
+	<header>
+	
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src = "/javascript/view_account.js"></script>
+		<script type="text/javascript">
+		var id;
+		
+		function init() { 
+			var matches = /id=([^&#=]*)/.exec(window.location.search);
+			id = matches[1];
+				
+			angular.element(document.getElementById('main')).scope().getData(id);		
+	    }
+		
+		</script>
+	
+	</header>
+	
+	<body id="main" onload="init();" ng-app="select_roommateapp" ng-controller="mainController">
+		
+	</body>
+
+</html>
