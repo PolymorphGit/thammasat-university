@@ -11,6 +11,7 @@
 			id = matches[1];
 				
 			angular.element(document.getElementById('main')).scope().getData(id);
+			alert(angular.element(document.getElementById('main')).scope().account.title_th__c);
 			document.getElementById("myTitle").value = angular.element(document.getElementById('main')).scope().account.title_th__c;
 	    }
 		
