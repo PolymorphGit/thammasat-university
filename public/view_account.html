@@ -30,8 +30,8 @@
 		Passport No.<input type="text" id="passport" ng-model="account.passport_number__c"><br>
 		Sex /เพศ <input type="text" id="gender" ng-model="account.gender__c"><br> 
 		คำนำหน้าชื่อ 
-		<select id="myTitle" onchange="changeTitle()" ng-repeat="t in title">
-		  <option value="{{t}}">{{t}}</option>
+		<select id="myTitle" onchange="changeTitle()" >
+		  <option ng-repeat="t in title" value="{{t}}">{{t}}</option>
 		</select> 
 		<input type="text" id="titleTH" ng-model="account.title_th__c"><br>  
 		Student Name/ชื่อ (Th) <input type="text" id="nameTH" ng-model="account.first_name_th__c"><br>
