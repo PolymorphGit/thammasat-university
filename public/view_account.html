@@ -26,49 +26,7 @@
 	        angular.element(document.getElementById('main')).scope().account.title_th__c = x;
 	    }
 	    
-		</script>
-		
-		<script type="text/javascript">
-    
-	        function checkNum(value) {
-	            
-	            if (isNaN(parseFloat(value))) {
-	                //alert("Please output number again.");
-	                return "";
-	            }
-	            
-	            return value;
-	        }
-	        
-	        function TriggerClick() {
-	        
-	            //fireEvent(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"), "click");
-	            document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1").click();
-	            ////                        console.log(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"));
-	        }
-	        
-	        function redirect() {
-	            document.forms[0].target = "_blank";
-	        }
-	    
-	    </script>
-	    
-	    <style type="text/css">
-	        .myclass {
-	            text-transform:uppercase!important;
-	        }
-	        
-	        .CustomLayout1 {
-	        width : 49%;
-	        }
-	        
-	        .CustomLayout2 {
-	        //background-color: lightblue;  
-	        padding-top:5px; 
-	        }
-	    
-	    </style>
-		
+		</script> 
 	</header>
 	<body id="main" onload="init();" ng-app="accountApp" ng-controller="mainController">
 		
@@ -204,15 +162,130 @@
 				
 			</table>
 			
+			<table style="width:100%">
+                
+                <!-- Address Information -->
+                
+                <tr style="background-color: #C80000">
+                    <td colspan="3" align="left">
+                        <b style="color:white">Address Information / ข้อมูลที่อยู่ (ที่อยู่ตามภูมิลำเนา)</b>
+                    </td>
+                </tr>
+                
+                <tr style="height:5px">
+                    <td colspan="3"></td>
+                </tr>
+                
+                <tr>
+                    <td align="center"><table style="width:100%">
+                
+                        <tr>
+                            <td align="right" class='CustomLayout1'>
+                                No. / Soi / Road (บ้านเลขที่ / ซอย / ถนน)
+                            </td>
+                            <td> : </td>
+                            <td class='CustomLayout1'>
+                                <input type="text" id="street" ng-model="account.billingstreet">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                District (อำเภอ / เขต)
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="city" ng-model="account.billingcity">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Province (จังหวัด)
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="state" ng-model="account.billingstate">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Postal Code (รหัสไปรษณีย์)
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="postcode" ng-model="account.billingpostalcode">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Country (ประเทศ)
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="country" ng-model="account.billingcountry">
+                            </td>
+                        </tr>
+                        
+                    </table></td>
+                    
+                </tr>
+                
+                <!-- Address Information -->
+                
+                <tr style="height:5px">
+                    <td colspan="3"></td>
+                </tr>
+                
+            </table>
+			
+			<table style="width:100%">
+            
+                <!-- Parent Information -->
+                
+                <tr style="background-color: #C80000">
+                    <td colspan="3" align="left">
+                        <b style="color:white">Parent Information / ชื่อผู้ปกครอง</b>
+                    </td>
+                </tr>
+                
+                <tr style="height:5px">
+                    <td colspan="3"></td>
+                </tr>
+                
+                <tr>
+                    <td align="center"><table style="width:100%">
+                
+                        <tr>
+                            <td align="right" class='CustomLayout1'>
+                                Name /ชื่อผู้ปกครอง
+                            </td>
+                            <td> : </td>
+                            <td class='CustomLayout1'>
+                                <input type="text" id="parent" ng-model="account.parent_name__c"><br>	
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                Telephone /เบอร์ติดต่อผู้ปกครอง
+                            </td>
+                            <td> : </td>
+                            <td>
+								<input type="text" id="parentPhone" ng-model="account.parent_phone__c"><br>
+                            </td>
+                        </tr>
+                        
+                    </table></td>
+                
+                </tr>
+                
+                <!-- Parent Information -->
+                
+            </table>
+			
 		</div>
-		No. / Soi / Road (เธ�เน�เธฒเธ�เน€เธฅเธ�เธ—เธตเน� / เธ�เธญเธข / เธ–เธ�เธ�) <input type="text" id="street" ng-model="account.billingstreet"><br>
-		District (เธญเธณเน€เธ เธญ / เน€เธ�เธ•) <input type="text" id="city" ng-model="account.billingcity"><br>
-		Province (เธ�เธฑเธ�เธซเธงเธฑเธ”)	<input type="text" id="state" ng-model="account.billingstate"><br>
-		Postal Code (เธฃเธซเธฑเธชเน�เธ�เธฃเธฉเธ“เธตเธขเน�)	<input type="text" id="postcode" ng-model="account.billingpostalcode"><br>
-		Country (เธ�เธฃเธฐเน€เธ—เธจ)	<input type="text" id="country" ng-model="account.billingcountry"><br>
-		<br/>
-		Name /เธ�เธทเน�เธญเธ�เธนเน�เธ�เธ�เธ�เธฃเธญเธ�	<input type="text" id="parent" ng-model="account.parent_name__c"><br>	
-		Telephone /เน€เธ�เธญเธฃเน�เธ•เธดเธ”เธ•เน�เธญเธ�เธนเน�เธ�เธ�เธ�เธฃเธญเธ�	<input type="text" id="parentPhone" ng-model="account.parent_phone__c"><br>
 		
 		<button onclick="update();">Save</button>
 	
