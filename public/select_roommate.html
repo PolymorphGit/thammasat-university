@@ -16,11 +16,63 @@
 	    }
 		
 		</script>
-	
+		
+		<style type="text/css">
+        
+	        .CustomLayout1{
+	            width : 49%;
+	        }
+	        
+	        .CustomLayout2{
+	          width : 49%;
+	          background-color: lightblue;
+	          margin-bottom:30px;
+	        }
+	        
+	    </style>
+		
 	</header>
 	
 	<body id="main" onload="init();" ng-app="select_roommateapp" ng-controller="mainController">
-		
+		<div>
+            <table style="width:100%">
+                <tr>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                </tr>
+                
+                <tr style="background-color: #C80000">
+                        <td colspan="3">
+                            <b style="color:white">Student Information / ข้อมูลของนักศึกษาผู้จอง</b>
+                        </td>
+                    </tr>
+                    
+                    <tr style="height:5px">
+                        <td colspan="3"></td>
+                    </tr>
+                    
+                    <tr>
+                    
+                        <td><table style="width:100%">
+                        
+                            <tr>
+                                <td align="right" class="CustomLayout1">
+                                    ID Cards / หมายเลขประชาชน
+                                </td>
+                                <td ></td>
+                                <td class="CustomLayout1">
+									<label>{{ account.identification_number__c }}</label>
+                                    <input type="Label" id="identity" ng-model="account.identification_number__c">
+                                </td>
+                            </tr>
+                        </table></td>
+                	
+                	</tr>
+            </table>
+        </div>              
 	</body>
 
 </html>
