@@ -34,7 +34,7 @@ app.get('/Test', urlencodedParser, function(req, res) {
 app.get('/room/:id', room.getInfo);
 
 app.get('/userinfo', account.getInfo);
-app.post('/updateaccount/:id', urlencodedParser, account.update);
+app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 
