@@ -4,6 +4,8 @@ angular.module('accountApp', [])
 		 
   };
   
+  $scope.title = ['นาย', 'นางสาว', 'นาง'];
+  
   //Get a account Detail
   $scope.getData = function (accountId) {	
 	//alert(accountId);
