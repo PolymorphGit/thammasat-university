@@ -26,11 +26,55 @@
 	        angular.element(document.getElementById('main')).scope().account.title_th__c = x;
 	    }
 	    
-		</script> 
+		</script>
+		
+		<script type="text/javascript">
+    
+			function checkNum(value) {
+				
+				if (isNaN(parseFloat(value))) {
+					//alert("Please output number again.");
+					return "";
+				}
+				
+				return value;
+			}
+			
+			function TriggerClick() {
+			
+				//fireEvent(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"), "click");
+				document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1").click();
+				////                        console.log(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"));
+			}
+			
+			function redirect() {
+				document.forms[0].target = "_blank";
+			}
+		
+		</script>
+		
+		<style type="text/css">
+			.myclass {
+				text-transform:uppercase!important;
+			}
+			
+			.CustomLayout1 {
+			width : 49%;
+			}
+			
+			.CustomLayout2 {
+			//background-color: lightblue;  
+			padding-top:5px; 
+			}
+		
+		</style>
+		
 	</header>
 	<body id="main" onload="init();" ng-app="accountApp" ng-controller="mainController">
-		
-		<div>
+        
+        <br/><br/><center><apex:commandButton value="Select Roommate" action="{!goToSelectRoomMate}"/></center><br/>
+        
+        <div>
             <table style="width:100%">
                 <tr>
                     <td colspan ="3" align="center" >
@@ -53,116 +97,185 @@
                 <tr style="height:5px">
                     <td colspan="3"></td>
                 </tr>
-		
-				<tr>
-					<td>ID Cards / หมายเลขประชาชน</td>
-					<td> : </td>
-					<td><input type="text" id="identity" ng-model="account.identification_number__c"></td>
-				</tr>
-				
-				<tr>
-					<td>Passport No.</td>
-					<td> : </td>
-					<td><input type="text" id="passport" ng-model="account.passport_number__c"></td>
-				</tr>
-				
-				<tr>
-					<td>Sex /เพศ</td>
-					<td> : </td>
-					<td><input type="text" id="gender" ng-model="account.gender__c"></td>
-				</tr>
-				
-				<tr>
-					<td>คำนำหน้าชื่อ </td>
-					<td> : </td>
-					<td>
-						<select id="myTitle" onchange="changeTitle()" >
+                
+                <tr>
+                
+                    <td align="center"><table style="width:100%">
+                    
+                        <tr>
+                            <td align="right" class='CustomLayout1' >
+                                ID Cards / หมายเลขประชาชน
+                            </td>
+                            <td> : </td>
+                            <td class='CustomLayout1'>
+                                <input type="text" id="identity" ng-model="account.identification_number__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Passport No.
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="passport" ng-model="account.passport_number__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Sex /เพศ
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="gender" ng-model="account.gender__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                คำนำหน้าชื่อ
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <select id="myTitle" onchange="changeTitle()" >
 							<option ng-repeat="t in title" value="{{t}}">{{t}}</option>
 						</select>
 						<input type="hidden" id="titleTH" ng-model="account.title_th__c" onchange="loadTitle()">
-					</td>
-				</tr>
-				
-				<tr>
-					<td>Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)</td>
-					<td> : </td>
-					<td>
-					<td>
-						<Table style="margin-left:-3px;">
-							<tr>
-								<td>
-									<input type="text" id="nameTH" ng-model="account.first_name_th__c">
-								</td>
-								<td>
-									<input type="text" id="nameTH" ng-model="account.last_name_th__c">
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>Title</td>
-					<td> : </td>
-					<td><input type="text" id="titleEN" ng-model="account.salutation"></td>
-				</tr>
-				
-				<tr>
-					<td>Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)</td>
-					<td> : </td>
-					<td>
-						<Table style="margin-left:-3px;">
-							<tr>
-								<td>
-									<input type="text" id="nameEN" ng-model="account.firstname">
-								</td>
-								<td>
-									<input type="text" id="nameEN" ng-model="account.lastname"><br>
-								</td>
-							</tr>
-						</table>
-						
-					</td>
-				</tr>
-				
-				<tr>
-					<td>Mobile No/เบอร์โทร</td>
-					<td> : </td>
-					<td><input type="text" id="myPhone" ng-model="account.personmobilephone"></td>
-				</tr>
-				
-				<tr>
-					<td>Email /อีเมลล์</td>
-					<td> : </td>
-					<td><input type="text" id="myEmail" ng-model="account.personemail"></td>
-				</tr>
-				
-				<tr>
-					<td>Congenital disease /โรคประจำตัว</td>
-					<td> : </td>
-					<td><input type="text" id="disease" ng-model="account.congenital_disease__c"></td>
-				</tr>
-				
-				<tr>
-					<td>Student ID /รหัสนักศึกษา</td>
-					<td> : </td>
-					<td><input type="text" id="studentId" ng-model="account.student_id__c"></td>
-				</tr>
-				
-				<tr>
-					<td>Faculty /คณะ</td>
-					<td> : </td>
-					<td><input type="text" id="faculty" ng-model="account.faculty__c"></td>
-				</tr>
-				
-				<tr>
-					<td>Request Zone /เลือกโซน</td>
-					<td> : </td>
-					<td><input type="text" id="request" ng-model="account.request_zone__c"></td>
-				
-			</table>
-			
-			<table style="width:100%">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2" >
+                                Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                                <Table style="margin-left:-3px;">
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="nameTH" ng-model="account.first_name_th__c">
+                                        </td>
+                                        <td>
+                                            <input type="text" id="nameTH" ng-model="account.last_name_th__c">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2">
+                                Title
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                                <input type="text" id="titleEN" ng-model="account.salutation">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2">
+                                Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                                <Table style="margin-left:-3px;">
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="nameEN" ng-model="account.firstname">
+                                        </td>
+                                        <td>
+                                            <input type="text" id="nameEN" ng-model="account.lastname">
+                                        </td>
+                                    </tr>
+                                </Table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Mobile No/เบอร์โทร
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="myPhone" ng-model="account.personmobilephone">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Email /อีเมลล์
+                            </td>
+                            <td> : </td>
+                            <td>
+                                 <input type="text" id="myEmail" ng-model="account.personemail">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Congenital disease /โรคประจำตัว
+                            </td>
+                            <td> : </td>
+                            <td>
+                                 <input type="text" id="disease" ng-model="account.congenital_disease__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Student ID /รหัสนักศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="studentId" ng-model="account.student_id__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Faculty /คณะ
+                            </td>
+                            <td> : </td>
+                            <td>
+								<input type="text" id="faculty" ng-model="account.faculty__c">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Request Zone /เลือกโซน
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="request" ng-model="account.request_zone__c">
+                            </td>
+                        </tr>
+                        
+                        <!-- <tr>
+                            <td align="right">
+                                Request Zone Reserve/เลือกโซนสำรอง
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <apex:outputField value="{!theAccount.Request_Zone_Reserve__c}" />
+                            </td>
+                        </tr> -->
+                    
+                    </table></td>
+                    
+                </tr>
+                
+                <!-- Student Information -->
+                
+                <tr style="height:5px">
+                    <td colspan="3"></td>
+                </tr>
+                
+            </table>
+            
+            <table style="width:100%">
                 
                 <!-- Address Information -->
                 
@@ -240,8 +353,8 @@
                 </tr>
                 
             </table>
-			
-			<table style="width:100%">
+            
+            <table style="width:100%">
             
                 <!-- Parent Information -->
                 
@@ -264,7 +377,7 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                                <input type="text" id="parent" ng-model="account.parent_name__c"><br>	
+                                <input type="text" id="parent" ng-model="account.parent_name__c">
                             </td>
                         </tr>
                         <tr>
@@ -273,7 +386,7 @@
                             </td>
                             <td> : </td>
                             <td>
-								<input type="text" id="parentPhone" ng-model="account.parent_phone__c"><br>
+                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c">
                             </td>
                         </tr>
                         
@@ -284,10 +397,12 @@
                 <!-- Parent Information -->
                 
             </table>
-			
-		</div>
-		
-		<button onclick="update();">Save</button>
-	
+            
+                <br/><br/><center>
+                    <button onclick="update();">Save</button>
+                </center><br/><br/>
+                    
+        </div>
+        
 	</body>
 </html>
