@@ -128,7 +128,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="gender" ng-model="account.gender__c">
+                            	<label id="gender">{{ account.gender__c }}</label>
                             </td>
                         </tr>
                         
@@ -141,7 +141,7 @@
                                 <select id="myTitle" onchange="changeTitle()" >
 							<option ng-repeat="t in title" value="{{t}}">{{t}}</option>
 						</select>
-						<input type="hidden" id="titleTH" ng-model="account.title_th__c" onchange="loadTitle()">
+						<label id="titleTH">{{ account.account.title_th__c }}</label>
                             </td>
                         </tr>
                         
