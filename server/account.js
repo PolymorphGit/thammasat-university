@@ -71,9 +71,28 @@ exports.update = function(req, res, next) {
 	var id = req.params.id;
 	if (!req.body) return res.sendStatus(400);
 	console.log(req.body);
-	var query = "UPDATE salesforce.Account SET identification_number__c='" + req.body.identity + "', "; 
-	query += "passport_number__c='" + req.body.passport + "', ";
-	query += "gender__c='" + req.body.gender + "' ";
+	var query = "UPDATE salesforce.Account SET identification_number__c='" + req.body.identification_number__c + "', "; 
+	query += "passport_number__c='" + req.body.passport_number__c + "', ";
+	query += "gender__c='" + req.body.gender__c + "', ";
+	query += "title_th__c='" + req.body.title_th__c + "', ";
+	query += "first_name_th__c='" + req.body.first_name_th__c + "', ";
+	query += "last_name_th__c='" + req.body.last_name_th__c + "', ";
+	query += "salutation='" + req.body.salutation + "', ";
+	query += "firstname='" + req.body.firstname + "', ";
+	query += "lastname='" + req.body.lastname + "', ";
+	query += "personmobilephone='" + req.body.personmobilephone + "', ";
+	query += "personemail='" + req.body.personemail + "', ";
+	query += "congenital_disease__c='" + req.body.congenital_disease__c + "', ";
+	query += "student_id__c='" + req.body.student_id__c + "', ";
+	query += "faculty__c='" + req.body.faculty__c + "', ";
+	query += "request_zone__c='" + req.body.request_zone__c + "', ";
+	query += "billingstreet='" + req.body.billingstreet + "', ";
+	query += "billingcity='" + req.body.billingcity + "', ";
+	query += "billingstate='" + req.body.billingstate + "', ";
+	query += "billingpostalcode='" + req.body.billingpostalcode + "', ";
+	query += "billingcountry='" + req.body.billingcountry + "', ";
+	query += "parent_name__c='" + req.body.parent_name__c + "', ";
+	query += "parent_phone__c='" + req.body.parent_phone__c + "' ";
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
 	.then(function(results) {

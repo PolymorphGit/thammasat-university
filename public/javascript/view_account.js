@@ -18,6 +18,17 @@ angular.module('accountApp', [])
     
   };
   
+  $scope.updateData = function (accountId) {
+	$http.post('../updateaccount/' + accountId, $scope.account)
+	.success((data) => {
+		console.log(data);
+		alert("Updated");
+	})
+	.error((data) => {
+		console.log('Error: ' + data);
+	});
+  };
+  
   $scope.myfunction = function (data) {
       alert("---" + data);
   };
