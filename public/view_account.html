@@ -11,7 +11,7 @@
 			id = matches[1];
 				
 			angular.element(document.getElementById('main')).scope().getData(id);
-			alert(angular.element(document.getElementById('main')).scope().account);
+			alert(angular.element(document.getElementById('main')).scope().account.title_th__c);
 			document.getElementById("myTitle").value = angular.element(document.getElementById('main')).scope().account.title_th__c;
 	    }
 		
@@ -22,6 +22,7 @@
 	    function changeTitle() {
 	        var x = document.getElementById("myTitle").value;
 	        angular.element(document.getElementById('main')).scope().account.title_th__c = x;
+	        alert(angular.element(document.getElementById('main')).scope().account.title_th__c);
 	    }
 	    
 		</script> 
