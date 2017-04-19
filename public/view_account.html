@@ -10,19 +10,20 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 				
-			angular.element(document.getElementById('main')).scope().getData(id);
-			alert(angular.element(document.getElementById('main')).scope().account.title_th__c);
-			document.getElementById("myTitle").value = angular.element(document.getElementById('main')).scope().account.title_th__c;
+			angular.element(document.getElementById('main')).scope().getData(id);		
 	    }
 		
 	    function update(){
 	    	angular.element(document.getElementById('main')).scope().updateData(id);
 	    }
 	    
+	    function loadTitle(){
+	    	document.getElementById("myTitle").value = angular.element(document.getElementById('main')).scope().account.title_th__c;
+	    }
+	    
 	    function changeTitle() {
 	        var x = document.getElementById("myTitle").value;
 	        angular.element(document.getElementById('main')).scope().account.title_th__c = x;
-	        alert(angular.element(document.getElementById('main')).scope().account.title_th__c);
 	    }
 	    
 		</script> 
@@ -36,7 +37,7 @@
 		<select id="myTitle" onchange="changeTitle()" >
 		  <option ng-repeat="t in title" value="{{t}}">{{t}}</option>
 		</select> 
-		<input type="text" id="titleTH" ng-model="account.title_th__c"><br>  
+		<input type="hidden" id="titleTH" ng-model="account.title_th__c" onchange="loadTitle()"><br>
 		Student Name/ชื่อ (Th) <input type="text" id="nameTH" ng-model="account.first_name_th__c"><br>
 		Student Surname/สกุลนักศึกษา (Th) <input type="text" id="nameTH" ng-model="account.last_name_th__c"><br>  
 		Title <input type="text" id="titleEN" ng-model="account.salutation"><br>  
