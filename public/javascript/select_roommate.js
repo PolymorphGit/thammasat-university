@@ -33,6 +33,17 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
+	$scope.upsertRoommate = function (record) {
+		if(record.sfid == null)
+		{
+			$scope.createRoommate(record);
+		}
+		else
+		{
+			$scope.updateRoomate(record);
+		}
+	}
+	
 	$scope.createRoommate = function (record) {
 		var roommate = record.identification_number__c;
 		alert(roommate);
@@ -61,6 +72,10 @@ angular.module('select_roommateApp', [])
 	
 	$scope.updateRoomate = function (record) {
 		var roommate = record.identification_number__c;
+		if(roommate == null)
+		{
+			roommate = record.passport_number__c;
+		}
 		alert(roommate);
 		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
