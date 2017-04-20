@@ -163,8 +163,8 @@
             </table>
             <ul >
             	<li ng-repeat="r in roommate">
-            		<a>{{r.identification_number__c}}</a>
-            		<a>{{r.passport_number__c}}</a>
+            		<input type="text" ng-model="r.identification_number__c" />
+            		<input type="text" ng-model="r.passport_number__c" />
             		<button ng-click="createRoommate(r)">Create</button>
             		<button ng-click="deleteRoommate(r)">Delete</button>
             		<button ng-click="updateRoomate(r)">Update</button>
