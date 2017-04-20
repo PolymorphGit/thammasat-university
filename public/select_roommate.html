@@ -9,9 +9,9 @@
 		var id;
 		
 		function init() {
-			alert('1');
+			//alert('1');
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
-			alert('2');
+			//alert('2');
 			id = matches[1];
 			alert(id);
 			angular.element(document.getElementById('main')).scope().getData(id);		
@@ -35,7 +35,7 @@
 		
 	</header>
 	
-	<body id="main" onload="init();" ng-app="select_roommateapp" ng-controller="mainController">
+	<body id="main" onload="init();" ng-app="select_roommatAapp" ng-controller="mainController">
 		<div>
             <table style="width:100%">
                 <tr>

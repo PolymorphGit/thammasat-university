@@ -1,4 +1,4 @@
-angular.module('accountApp', [])
+angular.module('select_roommatAapp', [])
 .controller('mainController', function ($scope, $http) {
 	
 	$scope.account = {
