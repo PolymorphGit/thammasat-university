@@ -26,7 +26,7 @@ exports.getAccountRoomate = function(req, res, next) {
 exports.createRoomate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
-	db.select("SELECT * FROM salesforce.Account WHERE identification_number__c ='" + c + "')")
+	db.select("SELECT * FROM salesforce.Account WHERE identification_number__c ='" + c + "'")
 	.then(function(results) {
 		if(result.length > 0)
 		{
