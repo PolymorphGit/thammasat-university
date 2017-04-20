@@ -43,8 +43,8 @@ angular.module('select_roommateApp', [])
 	}
 	
 	$scope.deleteRoommate = function (record) {
-		alert(record.id);
-		$http.get('../deleteroommate/' + record.id)
+		alert(record.sfid);
+		$http.get('../deleteroommate/' + record.sfid)
 		.success((data) => {
 			//Remove record from roommate
 			var index = $scope.roommate.indexOf(record);
@@ -57,8 +57,8 @@ angular.module('select_roommateApp', [])
 	
 	$scope.updateRoomate = function (record) {
 		var roommate = record.identification_number__c;
-		alert(record.id);
-		$http.get('../updateroommate/' + record.id, { headers: {'primary': $scope.id, 'co':roommate} })
+		alert(roommate);
+		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
 			record =  data

@@ -47,7 +47,7 @@ exports.createRoomate = function(req, res, next) {
 
 exports.deleteRoomate = function(req, res, next) {
 	var id = req.params.id;
-	db.select("DELETE FROM salesforce.roommate__c WHERE id='" + id + "'" )
+	db.select("DELETE FROM salesforce.roommate__c WHERE primary_roommate__c='" + $scope.id + "' and co_roommate__c='" + id + "'" )
 	.then(function(results) {
 		//console.log(results);	
 		res.json(results);
@@ -66,7 +66,7 @@ exports.updateRoomate = function(req, res, next) {
 		{
 			var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
 			query += "co_roommate__c='" + results[0].sfid + "' ";
-			query += " WHERE id='" + id + "' RETURNING *";
+			query += " WHERE co_roommate__c='" + id + "' RETURNING *";
 			db.select(query)
 			.then(function(results2) {
 				console.log(results);	
