@@ -36,7 +36,7 @@ angular.module('select_roommateApp', [])
 	$scope.upsertRoommate = function (record) {
 		if(record.sfid == null)
 		{
-			alert("Create");
+			//alert("Create");
 			$scope.createRoommate(record);
 		}
 		else
@@ -57,7 +57,7 @@ angular.module('select_roommateApp', [])
 			{
 				var index = $scope.roommate.indexOf(record);
 				delete $scope.roommate.splice(index, 1);
-				$scope.roommate.push(data);
+				$scope.roommate.push(data[0]);
 			}
 		})
 		.error((data) => {
@@ -91,7 +91,7 @@ angular.module('select_roommateApp', [])
 			alert(JSON.stringify(data));
 			if(data != "Not Found Account")
 			{
-				record =  data;
+				record =  data[0];
 			}
 		})
 		.error((data) => {
