@@ -9,6 +9,7 @@ var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
 var noti = require('./notification')
+var roomate = require('./roomate')
 var bodyParser = require('body-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -38,8 +39,12 @@ app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 app.get('/getroomate', account.getRoomate);
-
 app.get('/logout', account.logout);
+
+app.get('/getroomate/:id', roomate.getAccountRoomate);
+app.get('/createroomate', roomate.createRoomate);
+app.get('/deleteroomate', roomate.deleteRoomate);
+app.get('/updateroomate/:id', roomate.updateRoomate);
 
 app.get('/announcement', announcement.getDetail);
 app.get('/feed', feed.getFeed);
