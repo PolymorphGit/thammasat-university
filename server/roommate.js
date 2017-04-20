@@ -20,6 +20,10 @@ exports.getAccountRoommate = function(req, res, next) {
 			})
 			.catch(next);
 		}
+		else
+		{
+			res.send("No Roommate");
+		}
 	})
     .catch(next);
 }

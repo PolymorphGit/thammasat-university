@@ -52,7 +52,8 @@ angular.module('select_roommateApp', [])
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Add record to roommate
-			$scope.roommate = data;
+			alert(JSON.stringify(data));
+			$scope.roommate.push(data);
 		})
 		.error((data) => {
 			console.log('Error: ' + data);
@@ -82,6 +83,7 @@ angular.module('select_roommateApp', [])
 		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
+			alert(JSON.stringify(data));
 			record =  data
 		})
 		.error((data) => {
