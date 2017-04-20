@@ -103,7 +103,7 @@ exports.update = function(req, res, next) {
 };
 
 exports.getRoomate = function(req, res, next) {
-	if (!req.body) return res.sendStatus(400);
+	//if (!req.body) return res.sendStatus(400);
 	db.select("SELECT * FROM salesforce.account WHERE room__c=null and secondary__c=false")
 	.then(function(results) {
 		console.log(results);	
