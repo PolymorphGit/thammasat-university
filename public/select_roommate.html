@@ -8,8 +8,10 @@
 		<script type="text/javascript">
 		var id;
 		
-		function init() { 
+		function init() {
+			alert('1');
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
+			alert('2');
 			id = matches[1];
 			alert(id);
 			angular.element(document.getElementById('main')).scope().getData(id);		
