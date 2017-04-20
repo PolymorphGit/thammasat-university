@@ -3,7 +3,7 @@ angular.module('select_roommateApp', [])
 	$scope.id = "";
 	$scope.account = {};
 	//$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
-	$scope.roommate = [{},{},{}];
+	$scope.roommate = [{"identification_number__c": null},{},{}];
 	
 	//Get a account Detail
 	$scope.getData = function (accountId) {	
@@ -25,7 +25,7 @@ angular.module('select_roommateApp', [])
 			$scope.roommate = data;
 			for(var i = data.length ; i < 3 ; i++)
 			{
-				$scope.roommate.push({});
+				$scope.roommate.push({"identification_number__c": null });
 			}
 		})
 		.error((data) => {
@@ -52,7 +52,7 @@ angular.module('select_roommateApp', [])
 			//Remove record from roommate
 			var index = $scope.roommate.indexOf(record);
 			delete $scope.roommate.splice(index, 1);
-			$scope.roommate.push({});
+			$scope.roommate.push({"identification_number__c": null});
 		}) 	
 		.error((data) => {
 			console.log('Error: ' + data);
