@@ -35,10 +35,11 @@ exports.createRoommate = function(req, res, next) {
 	.then(function(results) {
 		if(results.length > 0)
 		{
+			console.log(results);
 			db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
 			.then(function(results2) {
 				console.log(results2);	
-				res.json(results2);
+				res.json(results);
 			})
 		    .catch(next);
 		}
