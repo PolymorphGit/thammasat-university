@@ -26,7 +26,7 @@ exports.getAccountRoomate = function(req, res, next) {
 exports.createRoomate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
-	db.select("SELECT * FROM salesforce.Account WHERE identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "'")
+	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
 		if(results.length > 0)
 		{
@@ -60,7 +60,7 @@ exports.updateRoomate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
 	
-	db.select("SELECT * FROM salesforce.Account WHERE identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "'")
+	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
 		if(results.length > 0)
 		{
@@ -73,6 +73,10 @@ exports.updateRoomate = function(req, res, next) {
 				res.json(results[0]);
 			})	
 		    .catch(next);
+		}
+		else
+		{
+			res.send("Not Found Account");
 		}
 	})	
     .catch(next);

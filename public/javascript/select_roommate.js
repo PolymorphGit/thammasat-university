@@ -6,7 +6,6 @@ angular.module('select_roommateApp', [])
 	
 	//Get a account Detail
 	$scope.getData = function (accountId) {	
-		alert(accountId);
 		$http.get('../userinfo/' + accountId)
 		.success((data) => {
 			console.log(data);
