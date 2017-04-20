@@ -1,6 +1,6 @@
 var db = require('./pghelper');
 
-exports.getAccountRoomate = function(req, res, next) {
+exports.getAccountRoommate = function(req, res, next) {
 	var id = req.params.id;
 	db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + id + "'")
 	.then(function(results) {
@@ -25,7 +25,7 @@ exports.getAccountRoomate = function(req, res, next) {
     .catch(next);
 }
 
-exports.createRoomate = function(req, res, next) {
+exports.createRoommate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
@@ -47,9 +47,9 @@ exports.createRoomate = function(req, res, next) {
 	.catch(next);
 }
 
-exports.deleteRoomate = function(req, res, next) {
+exports.deleteRoommate = function(req, res, next) {
 	var id = req.params.id;
-	db.select("DELETE FROM salesforce.roommate__c WHERE primary_roommate__c='" + $scope.id + "' and co_roommate__c='" + id + "'" )
+	db.select("DELETE FROM salesforce.roommate__c WHERE co_roommate__c='" + id + "'" )
 	.then(function(results) {
 		//console.log(results);	
 		res.json(results);
@@ -57,7 +57,7 @@ exports.deleteRoomate = function(req, res, next) {
     .catch(next);
 }
 
-exports.updateRoomate = function(req, res, next) {
+exports.updateRoommate = function(req, res, next) {
 	var id = req.params.id;
 	var p = req.headers['primary'];
 	var c = req.headers['co'];

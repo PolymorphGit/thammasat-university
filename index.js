@@ -9,7 +9,7 @@ var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
 var noti = require('./notification')
-var roomate = require('./server/roomate')
+var roommate = require('./server/roommate')
 var bodyParser = require('body-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -38,13 +38,13 @@ app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
-app.get('/getroomate', account.getRoomate);
+app.get('/getroomate', account.getRoommate);
 app.get('/logout', account.logout);
 
-app.get('/getroommate/:id', roomate.getAccountRoomate);
-app.get('/createroommate', roomate.createRoomate);
-app.get('/deleteroommate/:id', roomate.deleteRoomate);
-app.get('/updateroommate/:id', roomate.updateRoomate);
+app.get('/getroommate/:id', roommate.getAccountRoommate);
+app.get('/createroommate', roommate.createRoommate);
+app.get('/deleteroommate/:id', roommate.deleteRoommate);
+app.get('/updateroommate/:id', roommate.updateRoommate);
 
 app.get('/announcement', announcement.getDetail);
 app.get('/feed', feed.getFeed);
