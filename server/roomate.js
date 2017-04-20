@@ -30,7 +30,7 @@ exports.createRoomate = function(req, res, next) {
 	.then(function(results) {
 		if(results.length > 0)
 		{
-			db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUE ('" + p + "', '" + result[0].sfid + "')" )
+			db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUE ('" + p + "', '" + results[0].sfid + "')" )
 			.then(function(results2) {
 				//console.log(results2);	
 				res.json(results2);
@@ -62,10 +62,10 @@ exports.updateRoomate = function(req, res, next) {
 	
 	db.select("SELECT * FROM salesforce.Account WHERE identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "'")
 	.then(function(results) {
-		if(result.length > 0)
+		if(results.length > 0)
 		{
 			var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
-			query += "co_roommate__c='" + result[0].sfid + "' ";
+			query += "co_roommate__c='" + results[0].sfid + "' ";
 			query += " WHERE SFID='" + id + "'";
 			db.select(query)
 			.then(function(results2) {
