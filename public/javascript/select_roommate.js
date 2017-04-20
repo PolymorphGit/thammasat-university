@@ -23,6 +23,10 @@ angular.module('select_roommateApp', [])
 		.success((data) => {
 			//alert(data);
 			$scope.roommate = data;
+			for(var i = data.length ; i < 3 ; i++)
+			{
+				$scope.roommate.push({});
+			}
 		})
 		.error((data) => {
 			console.log('Error: ' + data);
