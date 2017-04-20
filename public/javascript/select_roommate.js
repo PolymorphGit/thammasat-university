@@ -43,12 +43,12 @@ angular.module('select_roommateApp', [])
 	}
 	
 	$scope.deleteRoommate = function (record) {
-		alert(record.sfid);
+		var index = $scope.roommate.indexOf(record);
 		$http.get('../deleteroommate/' + record.sfid)
 		.success((data) => {
 			//Remove record from roommate
-			var index = $scope.roommate.indexOf(record);
 			delete $scope.roommate.splice(index, 1);
+			$scope.getItems.push({});
 		})
 		.error((data) => {
 			console.log('Error: ' + data);

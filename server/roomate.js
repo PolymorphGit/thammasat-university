@@ -5,20 +5,22 @@ exports.getAccountRoomate = function(req, res, next) {
 	db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + id + "'")
 	.then(function(results) {
 		//console.log(results);
-		var listAcc = "";
-		for(var i = 0 ; i < results.length ; i++)
-		{
-			listAcc += "'" + results[i].co_roommate__c + "', ";
-		}
 		if(results.length > 0)
-		{	
-			listAcc = listAcc.substr(0, listAcc.length - 2);
+		{
+			var listAcc = "";
+			for(var i = 0 ; i < results.length ; i++)
+			{
+				listAcc += "'" + results[i].co_roommate__c + "', ";
+			}
+				
+				listAcc = listAcc.substr(0, listAcc.length - 2);
+			
+			db.select("SELECT * FROM salesforce.Account WHERE SFID IN (" + listAcc + ")")
+			.then(function(results2) {
+				res.json(results2);
+			})
+			.catch(next);
 		}
-		db.select("SELECT * FROM salesforce.Account WHERE SFID IN (" + listAcc + ")")
-		.then(function(results2) {
-			res.json(results2);
-		})
-		.catch(next);
 	})
     .catch(next);
 }
