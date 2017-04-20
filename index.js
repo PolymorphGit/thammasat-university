@@ -37,6 +37,7 @@ app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
+app.get('/getroomate', account.getRoomate);
 
 app.get('/logout', account.logout);
 

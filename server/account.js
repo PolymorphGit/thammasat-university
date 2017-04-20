@@ -102,6 +102,16 @@ exports.update = function(req, res, next) {
     .catch(next);
 };
 
+exports.getRoomate = function(req, res, next) {
+	if (!req.body) return res.sendStatus(400);
+	db.select("SELECT * FROM salesforce.account WHERE room__c=null and secondary__c=false")
+	.then(function(results) {
+		console.log(results);	
+		res.json(results);
+	})	
+    .catch(next);
+};
+
 exports.logout = function(req, res, next) {
 	var head = req.headers['authorization'];
 	res.send("Success");
