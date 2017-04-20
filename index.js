@@ -41,10 +41,10 @@ app.get('/userinfo/:id', account.UserInfobyId);
 app.get('/getroomate', account.getRoomate);
 app.get('/logout', account.logout);
 
-app.get('/getroomate/:id', roomate.getAccountRoomate);
-app.get('/createroomate', roomate.createRoomate);
-app.get('/deleteroomate/:id', roomate.deleteRoomate);
-app.get('/updateroomate/:id', roomate.updateRoomate);
+app.get('/getroommate/:id', roomate.getAccountRoomate);
+app.get('/createroommate', roomate.createRoomate);
+app.get('/deleteroommate/:id', roomate.deleteRoomate);
+app.get('/updateroommate/:id', roomate.updateRoomate);
 
 app.get('/announcement', announcement.getDetail);
 app.get('/feed', feed.getFeed);
