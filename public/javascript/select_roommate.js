@@ -20,7 +20,7 @@ angular.module('select_roommateApp', [])
 	$scope.getRoommate = function (accountId) {
 		$http.get('../getroommate/' + accountId)
 		.success((data) => {
-			console.log(data);
+			alert(data);
 			$scope.roomate = data;
 		})
 		.error((data) => {
