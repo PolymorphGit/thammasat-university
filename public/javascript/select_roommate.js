@@ -48,11 +48,11 @@ angular.module('select_roommateApp', [])
 	
 	$scope.createRoommate = function (record) {
 		var roommate = record.passport_number__c;
-		alert(roommate);
+		//alert(roommate);
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Add record to roommate
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 			if(data != "Not Found Account")
 			{
 				var index = $scope.roommate.indexOf(record);
