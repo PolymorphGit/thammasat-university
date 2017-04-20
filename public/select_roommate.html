@@ -17,14 +17,17 @@
 	    }
 		
 		function Create(record){
+			alert(record.identification_number__c);
 	    	angular.element(document.getElementById('main')).scope().createRoommate(id, record);
 	    }
 		
 		function Delete(record){
+			alert(record.identification_number__c);
 			angular.element(document.getElementById('main')).scope().deleteRoommate(record);
 		}
 		
 		function Update(record){
+			alert(record.identification_number__c);
 			angular.element(document.getElementById('main')).scope().deleteRoommate(record, id);
 		}
 		
