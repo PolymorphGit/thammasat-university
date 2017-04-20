@@ -3,7 +3,7 @@ angular.module('select_roommateApp', [])
 	
 	$scope.account = {};
 	//$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
-	$scope.roommate = [];
+	$scope.roommate = [{},{},{}];
 	
 	//Get a account Detail
 	$scope.getData = function (accountId) {	
@@ -29,7 +29,8 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
-	$scope.createRoommate = function (accountId, roommate) {
+	$scope.createRoommate = function (accountId, record) {
+		var roommate = record.identification_number__c;
 		$http.get('../createroommate', { headers: {'primary': accountId, 'co':roommate} })
 		.success((data) => {
 			//Add record to roommate
@@ -52,7 +53,8 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
-	$scope.deleteRoommate = function (record, accountId, roommate) {
+	$scope.updateRoomate = function (record, accountId) {
+		var roommate = record.identification_number__c;
 		$http.get('../updateroommate/' + record.id, { headers: {'primary': accountId, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate

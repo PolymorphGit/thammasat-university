@@ -16,6 +16,18 @@
 			angular.element(document.getElementById('main')).scope().getRoommate(id);	
 	    }
 		
+		function Create(record){
+	    	angular.element(document.getElementById('main')).scope().createRoommate(id, record);
+	    }
+		
+		function Delete(record){
+			angular.element(document.getElementById('main')).scope().deleteRoommate(record);
+		}
+		
+		function Update(record){
+			angular.element(document.getElementById('main')).scope().deleteRoommate(record, id);
+		}
+		
 		</script>
 		
 		<style type="text/css">
@@ -161,13 +173,15 @@
                 	</tr>
             </table>
             <ul >
-            	<li ng-repeat="r in roommate">{{r.identification_number__c}}{{r.passport_number__c}}</li>
+            	<li ng-repeat="r in roommate">
+            		<a>{{r.identification_number__c}}</a>
+            		<a>{{r.passport_number__c}}</a>
+            		<button onclick="Create({{r}});">Save</button>
+            		<button onclick="Delete({{r}});">Save</button>
+            		<button onclick="Update({{r}});">Save</button>
+            	</li>
             </ul>
-            <ul>
-			  <li>Coffee</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
-			</ul>
+            
         </div>              
 	</body>
 
