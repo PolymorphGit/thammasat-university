@@ -11,9 +11,8 @@ exports.getAccountRoommate = function(req, res, next) {
 			for(var i = 0 ; i < results.length ; i++)
 			{
 				listAcc += "'" + results[i].co_roommate__c + "', ";
-			}
-				
-				listAcc = listAcc.substr(0, listAcc.length - 2);
+			}	
+			listAcc = listAcc.substr(0, listAcc.length - 2);
 			
 			db.select("SELECT * FROM salesforce.Account WHERE SFID IN (" + listAcc + ")")
 			.then(function(results2) {

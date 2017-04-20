@@ -36,10 +36,12 @@ angular.module('select_roommateApp', [])
 	$scope.upsertRoommate = function (record) {
 		if(record.sfid == null)
 		{
+			alert("Create");
 			$scope.createRoommate(record);
 		}
 		else
 		{
+			alert("Update");
 			$scope.updateRoomate(record);
 		}
 	}
