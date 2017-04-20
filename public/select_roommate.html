@@ -58,17 +58,105 @@
                     
                     <tr>
                     
-                        <td><table style="width:100%">
+                        <td align="center"><table style="width:100%">
+                    
+                        <tr>
+                            <td align="right" class='CustomLayout1' >
+                                ID Cards / หมายเลขประชาชน
+                            </td>
+                            <td> : </td>
+                            <td class='CustomLayout1'>
+                                <label id="identity">{{ account.identification_number__c }}</label>
+                            </td>                            
+                        </tr>
                         
-                            <tr>
-                                <td align="right" class="CustomLayout1">
-                                    ID Cards / หมายเลขประชาชน
-                                </td>
-                                <td ></td>
-                                <td class="CustomLayout1">
-                                	<label id="identity">{{ account.identification_number__c }}</label>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td align="right">
+                                Passport No.
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="passport">{{ account.passport_number__c }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Sex /เพศ
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="gender">{{ account.gender__c }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                           		  คำนำหน้าชื่อ
+                            </td>
+                            <td> : </td>
+                            <td>
+						<label id="titleTH">{{ account.title_th__c }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2" >
+                                Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                                <Table style="margin-left:-3px;">
+                                    <tr>
+                                        <td>
+                                        	<label id="nameTH">{{ account.first_name_th__c }}</label>
+                                        </td>
+                                        <td>
+                                        	<label id="nameTH">{{ account.last_name_th__c }}</label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2">
+                                Title
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                            	<label id="titleEN">{{ account.salutation }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right" class="CustomLayout2">
+                                Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
+                            </td>
+                            <td class="CustomLayout2"> : </td>
+                            <td>
+                                <Table style="margin-left:-3px;">
+                                    <tr>
+                                        <td>
+                                        	<label id="nameEN">{{ account.firstname }}</label>
+                                        </td>
+                                        <td>
+                                        	<label id="nameEN">{{ account.lastname }}</label>
+                                        </td>
+                                    </tr>
+                                </Table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Student ID /รหัสนักศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="studentId">{{ account.student_id__c }}</label>
+                            </td>
+                        </tr>
                         </table></td>
                 	
                 	</tr>
