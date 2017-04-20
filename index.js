@@ -43,7 +43,7 @@ app.get('/logout', account.logout);
 
 app.get('/getroomate/:id', roomate.getAccountRoomate);
 app.get('/createroomate', roomate.createRoomate);
-app.get('/deleteroomate', roomate.deleteRoomate);
+app.get('/deleteroomate/:id', roomate.deleteRoomate);
 app.get('/updateroomate/:id', roomate.updateRoomate);
 
 app.get('/announcement', announcement.getDetail);
