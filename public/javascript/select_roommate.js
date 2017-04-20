@@ -2,7 +2,7 @@ angular.module('select_roommateApp', [])
 .controller('mainController', function ($scope, $http) {
 	
 	$scope.account = {};
-	$scope.roommate = [];
+	$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
 	
 	//Get a account Detail
 	$scope.getData = function (accountId) {	
