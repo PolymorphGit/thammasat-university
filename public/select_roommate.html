@@ -14,7 +14,8 @@
 			//alert('2');
 			id = matches[1];
 			alert(id);
-			angular.element(document.getElementById('main')).scope().getData(id);		
+			angular.element(document.getElementById('main')).scope().getData(id);	
+			angular.element(document.getElementById('main')).scope().getRoommate(id);	
 	    }
 		
 		</script>
@@ -48,7 +49,7 @@
                 
                 <tr style="background-color: #C80000">
                         <td colspan="3">
-                            <b style="color:white">Student Information / ¢éÍÁÙÅ¢Í§¹Ñ¡ÈÖ¡ÉÒ¼Ùé¨Í§</b>
+                            <b style="color:white">Student Information / ï¿½ï¿½ï¿½ï¿½ï¿½Å¢Í§ï¿½Ñ¡ï¿½Ö¡ï¿½Ò¼ï¿½ï¿½Í§</b>
                         </td>
                     </tr>
                     
@@ -62,7 +63,7 @@
                     
                         <tr>
                             <td align="right" class='CustomLayout1' >
-                                ID Cards / ËÁÒÂàÅ¢»ÃÐªÒª¹
+                                ID Cards / ï¿½ï¿½ï¿½ï¿½ï¿½Å¢ï¿½ï¿½ÐªÒªï¿½
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
@@ -82,7 +83,7 @@
                         
                         <tr>
                             <td align="right">
-                                Sex /à¾È
+                                Sex /ï¿½ï¿½
                             </td>
                             <td> : </td>
                             <td>
@@ -92,7 +93,7 @@
                         
                         <tr>
                             <td align="right">
-                           		  ¤Ó¹ÓË¹éÒª×èÍ
+                           		  ï¿½Ó¹ï¿½Ë¹ï¿½Òªï¿½ï¿½ï¿½
                             </td>
                             <td> : </td>
                             <td>
@@ -102,7 +103,7 @@
                         
                         <tr>
                             <td align="right" class="CustomLayout2" >
-                                Student Name-Surname/ª×èÍ-Ê¡ØÅ¹Ñ¡ÈÖ¡ÉÒ (Thi)
+                                Student Name-Surname/ï¿½ï¿½ï¿½ï¿½-Ê¡ï¿½Å¹Ñ¡ï¿½Ö¡ï¿½ï¿½ (Thi)
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -131,7 +132,7 @@
                         
                         <tr>
                             <td align="right" class="CustomLayout2">
-                                Student Name-surname/ª×èÍ-Ê¡ØÅ¹Ñ¡ÈÖ¡ÉÒ (Eng)
+                                Student Name-surname/ï¿½ï¿½ï¿½ï¿½-Ê¡ï¿½Å¹Ñ¡ï¿½Ö¡ï¿½ï¿½ (Eng)
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -150,7 +151,7 @@
                         
                         <tr>
                             <td align="right">
-                                Student ID /ÃËÑÊ¹Ñ¡ÈÖ¡ÉÒ
+                                Student ID /ï¿½ï¿½ï¿½Ê¹Ñ¡ï¿½Ö¡ï¿½ï¿½
                             </td>
                             <td> : </td>
                             <td>
@@ -161,6 +162,9 @@
                 	
                 	</tr>
             </table>
+            <ul >
+            	<li ng-repeat="r in roommate">{{r.identification_number__c}}{{r.passport_number__c}}</li>
+            </ul>
         </div>              
 	</body>
 
