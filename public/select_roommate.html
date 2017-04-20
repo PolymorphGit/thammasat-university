@@ -12,24 +12,10 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 			
+			angular.element(document.getElementById('main')).scope().id = id;
 			angular.element(document.getElementById('main')).scope().getData(id);	
 			angular.element(document.getElementById('main')).scope().getRoommate(id);	
 	    }
-		
-		function Create(record){
-			alert(record.identification_number__c);
-	    	angular.element(document.getElementById('main')).scope().createRoommate(id, record);
-	    }
-		
-		function Delete(record){
-			alert(record.identification_number__c);
-			angular.element(document.getElementById('main')).scope().deleteRoommate(record);
-		}
-		
-		function Update(record){
-			alert(record.identification_number__c);
-			angular.element(document.getElementById('main')).scope().deleteRoommate(record, id);
-		}
 		
 		</script>
 		
@@ -179,9 +165,9 @@
             	<li ng-repeat="r in roommate">
             		<a>{{r.identification_number__c}}</a>
             		<a>{{r.passport_number__c}}</a>
-            		<button onclick="Create({{r}});">Create</button>
-            		<button onclick="Delete({{r}});">Delete</button>
-            		<button onclick="Update({{r}});">Update</button>
+            		<button ng-click="createRoommate(r)">Create</button>
+            		<button ng-click="deleteRoommate(r)">Delete</button>
+            		<button ng-click="updateRoomate(r)">Update</button>
             	</li>
             </ul>
             

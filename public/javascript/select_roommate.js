@@ -1,6 +1,6 @@
 angular.module('select_roommateApp', [])
 .controller('mainController', function ($scope, $http) {
-	
+	$scope.id = "";
 	$scope.account = {};
 	//$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
 	$scope.roommate = [{},{},{}];
@@ -29,9 +29,10 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
-	$scope.createRoommate = function (accountId, record) {
+	$scope.createRoommate = function (record) {
 		var roommate = record.identification_number__c;
-		$http.get('../createroommate', { headers: {'primary': accountId, 'co':roommate} })
+		alert(roommate);
+		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Add record to roommate
 			$scope.roommate = data;
@@ -42,6 +43,7 @@ angular.module('select_roommateApp', [])
 	}
 	
 	$scope.deleteRoommate = function (record) {
+		alert(record.id);
 		$http.get('../deleteroommate/' + record.id)
 		.success((data) => {
 			//Remove record from roommate
@@ -53,9 +55,10 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
-	$scope.updateRoomate = function (record, accountId) {
+	$scope.updateRoomate = function (record) {
 		var roommate = record.identification_number__c;
-		$http.get('../updateroommate/' + record.id, { headers: {'primary': accountId, 'co':roommate} })
+		alert(record.id);
+		$http.get('../updateroommate/' + record.id, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
 			record =  data
