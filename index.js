@@ -10,6 +10,7 @@ var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
 var noti = require('./notification')
 var roommate = require('./server/roommate')
+var lead = require('./server/lead')
 var bodyParser = require('body-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -33,6 +34,8 @@ app.get('/Test', urlencodedParser, function(req, res) {
 });
 
 app.get('/room/:id', room.getInfo);
+
+app.get('/studentinfo/:id', jsonParser, lead.getInfobyId);
 
 app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
