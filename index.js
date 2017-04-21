@@ -36,9 +36,9 @@ app.get('/Test', urlencodedParser, function(req, res) {
 app.get('/room/:id', room.getInfo);
 
 app.get('/studentinfo/:id', lead.getInfobyId);
-app.get('/createstudent', jsonParser, lead.createLead);
+app.post('/createstudent', jsonParser, lead.createLead);
 app.get('/deletestudent/:id', lead.deleteLead);
-app.get('/updatestudent/:id', jsonParser, lead.updateLead);
+app.post('/updatestudent/:id', jsonParser, lead.updateLead);
 
 app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);

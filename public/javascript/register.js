@@ -46,7 +46,7 @@ angular.module('leadApp', [])
   $scope.createLead = function () {
 	var data = JSON.stringify($scope.lead);
 	alert("Create : " + data);
-	$http.get('../createstudent', data)
+	$http.post('../createstudent', data)
 	.success((data) => {
 		
 	})
@@ -58,7 +58,7 @@ angular.module('leadApp', [])
   $scope.updateLead = function () {
 	var data = JSON.stringify($scope.lead);
 	alert("Update : " + data);
-	$http.get('../updatestudent/' + $scope.id, data)
+	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		
 	})
