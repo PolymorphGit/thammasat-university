@@ -45,7 +45,7 @@ exports.deleteLead = function(req, res, next) {
 exports.updateLead = function(req, res, next) {
 	var id = req.params.id;
 	if (!req.body) return res.sendStatus(400);
-	//console.log(req.body);
+	console.log(req.body);
 	var query = "UPDATE salesforce.Lead SET identification_number__c='" + req.body.identification_number__c + "', "; 
 	query += "passport_number__c='" + req.body.passport_number__c + "', ";
 	query += "gender__c='" + req.body.gender__c + "', ";
