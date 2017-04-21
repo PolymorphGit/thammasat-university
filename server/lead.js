@@ -13,12 +13,12 @@ exports.getInfobyId = function(req, res, next) {
 exports.createLead = function(req, res, next) {
 	if (!req.body) return res.sendStatus(400);
 	//console.log(req.body);
-	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title, ";
+	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title_th__c, ";
 	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
 	query += "country, parent_name__c, parent_phone__c) VALUES ("; 
 	query += req.body.identification_number__c + ", " + req.body.passport_number__c + ", " + req.body.gender__c + ", ";
-	query += req.body.title + ", " + req.body.first_name_th__c + ", " + req.body.last_name_th__c + ", ";
+	query += req.body.title_th__c + ", " + req.body.first_name_th__c + ", " + req.body.last_name_th__c + ", ";
 	query += req.body.salutation + ", " + req.body.firstname + ", " + req.body.lastname + ", " + req.body.mobilephone + ", ";
 	query += req.body.email + ", " + req.body.congenital_disease__c + ", " + req.body.student_id__c + ", " + req.body.faculty__c + ", ";
 	query += req.body.request_zone__c + ", " + req.body.street + ", " + req.body.city + ", ";
@@ -49,7 +49,7 @@ exports.updateLead = function(req, res, next) {
 	var query = "UPDATE salesforce.Lead SET identification_number__c='" + req.body.identification_number__c + "', "; 
 	query += "passport_number__c='" + req.body.passport_number__c + "', ";
 	query += "gender__c='" + req.body.gender__c + "', ";
-	query += "title='" + req.body.title + "', ";
+	query += "title_th__c='" + req.body.title_th__c + "', ";
 	query += "first_name_th__c='" + req.body.first_name_th__c + "', ";
 	query += "last_name_th__c='" + req.body.last_name_th__c + "', ";
 	query += "salutation='" + req.body.salutation + "', ";
