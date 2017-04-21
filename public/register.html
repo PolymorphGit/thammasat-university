@@ -21,33 +21,33 @@
 	<body id="main" onload="init();" ng-app="leadApp" ng-controller="mainController">
 Student Information / ข้อมูลของนักศึกษาผู้จอง
 	
-		ID Cards / หมายเลขประชาชน	<input type="text" ng-model="account.identification_number__c"><br>
-		Passport No.<input type="text" ng-model="account.identification_number__c"><br>
-		Sex /เพศ	*<input type="text" ng-model="account.gender__c"><br>
-		คำนำหน้าชื่อ	*<input type="text" ng-model="account.title_th__c"><br>
-		Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)	* <input type="text" ng-model="account.first_name_th__c"> <input type="text" ng-model="account.last_name_th__c"><br>
-		Title	*<input type="text" ng-model="account.salutation"><br>
-		Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)	*<input type="text" ng-model="account.firstname"> <input type="text" ng-model="account.lastname"><br>
-		Mobile No/เบอร์โทร	*<input type="text" ng-model="account.mobilephone"><br>
-		Email /อีเมลล์	*<input type="text" ng-model="account.email"><br>
-		Congenital disease /โรคประจำตัว	*<input type="text" ng-model="account.congenital_disease__c"><br>
-		Student ID /รหัสนักศึกษา	*<input type="text" ng-model="account.student_id__c"><br>
-		Faculty /คณะ	*<input type="text" ng-model="account.faculty__c"><br>
-		Request Zone /เลือกโซน	*<input type="text" ng-model="account.request_zone__c"><br>
+		ID Cards / หมายเลขประชาชน	<input type="text" ng-model="lead.identification_number__c"><br>
+		Passport No.<input type="text" ng-model="lead.identification_number__c"><br>
+		Sex /เพศ	*<input type="text" ng-model="lead.gender__c"><br>
+		คำนำหน้าชื่อ	*<input type="text" ng-model="lead.title_th__c"><br>
+		Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)	* <input type="text" ng-model="lead.first_name_th__c"> <input type="text" ng-model="lead.last_name_th__c"><br>
+		Title	*<input type="text" ng-model="lead.salutation"><br>
+		Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)	*<input type="text" ng-model="lead.firstname"> <input type="text" ng-model="lead.lastname"><br>
+		Mobile No/เบอร์โทร	*<input type="text" ng-model="lead.mobilephone"><br>
+		Email /อีเมลล์	*<input type="text" ng-model="lead.email"><br>
+		Congenital disease /โรคประจำตัว	*<input type="text" ng-model="lead.congenital_disease__c"><br>
+		Student ID /รหัสนักศึกษา	*<input type="text" ng-model="lead.student_id__c"><br>
+		Faculty /คณะ	*<input type="text" ng-model="lead.faculty__c"><br>
+		Request Zone /เลือกโซน	*<input type="text" ng-model="lead.request_zone__c"><br>
 		
 Address Information / ข้อมูลที่อยู่ (ที่อยู่ตามภูมิลำเนา)
 		
-		No. / Soi / Road (บ้านเลขที่ / ซอย / ถนน)	*<input type="text" ng-model="account.street"><br>
-		District (อำเภอ / เขต)	*<input type="text" ng-model="account.city"><br>
-		Province (จังหวัด)	*<input type="text" ng-model="account.state"><br>
-		Postal Code (รหัสไปรษณีย์)	*<input type="text" ng-model="account.postalcode"><br>
-		Country (ประเทศ)	*<input type="text" ng-model="account.country"><br>
+		No. / Soi / Road (บ้านเลขที่ / ซอย / ถนน)	*<input type="text" ng-model="lead.street"><br>
+		District (อำเภอ / เขต)	*<input type="text" ng-model="lead.city"><br>
+		Province (จังหวัด)	*<input type="text" ng-model="lead.state"><br>
+		Postal Code (รหัสไปรษณีย์)	*<input type="text" ng-model="lead.postalcode"><br>
+		Country (ประเทศ)	*<input type="text" ng-model="lead.country"><br>
 		
 		
 Parent Information / ชื่อผู้ปกครอง
 
-		Name /ชื่อผู้ปกครอง	<input type="text" ng-model="account.parent_name__c"><br>
-		Telephone /เบอร์ติดต่อผู้ปกครอง	<input type="text" ng-model="account.parent_phone__c"><br>
+		Name /ชื่อผู้ปกครอง	<input type="text" ng-model="lead.parent_name__c"><br>
+		Telephone /เบอร์ติดต่อผู้ปกครอง	<input type="text" ng-model="lead.parent_phone__c"><br>
 		
 		<button ng-click="saveData()">Save</button>
 		
