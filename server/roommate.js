@@ -33,13 +33,17 @@ exports.createRoommate = function(req, res, next) {
 	var c = req.headers['co'];
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
-		if(results.length > 0)
+		if(results.length > 0 && p != results[0].sfid)
 		{
 			console.log(results);
 			db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
-			.then(function(results2) {
-				console.log(results2);	
-				res.json(results);
+			.then(function(results2) { 
+				db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+				.then(function(results3) {
+					console.log(results2);	
+					res.json(results);
+				})	
+			    .catch(next);
 			})
 		    .catch(next);
 		}
@@ -55,8 +59,12 @@ exports.deleteRoommate = function(req, res, next) {
 	var id = req.params.id;
 	db.select("DELETE FROM salesforce.roommate__c WHERE co_roommate__c='" + id + "'" )
 	.then(function(results) {
-		//console.log(results);	
-		res.json(results);
+		db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
+		.then(function(results2) {
+			console.log(results2);	
+			res.json(results2);
+		})	
+	    .catch(next);
 	})
     .catch(next);
 }
@@ -68,15 +76,23 @@ exports.updateRoommate = function(req, res, next) {
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
-		if(results.length > 0)
+		if(results.length > 0 && p != results[0].sfid)
 		{
 			var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
 			query += "co_roommate__c='" + results[0].sfid + "' ";
 			query += " WHERE co_roommate__c='" + id + "' RETURNING *";
 			db.select(query)
 			.then(function(results2) {
-				console.log(results);	
-				res.json(results[0]);
+				db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+				.then(function(results3) {
+					db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
+					.then(function(results4) {
+						console.log(results);	
+						res.json(results[0]);
+					})	
+				    .catch(next);
+				})	
+			    .catch(next);
 			})	
 		    .catch(next);
 		}

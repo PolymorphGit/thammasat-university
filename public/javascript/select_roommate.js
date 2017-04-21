@@ -41,7 +41,7 @@ angular.module('select_roommateApp', [])
 		}
 		else
 		{
-			alert("Update");
+			//alert("Update");
 			$scope.updateRoomate(record);
 		}
 	}
@@ -84,11 +84,11 @@ angular.module('select_roommateApp', [])
 		{
 			roommate = record.passport_number__c;
 		}
-		alert(roommate);
+		//alert(roommate);
 		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 			if(data != "Not Found Account")
 			{
 				record =  data[0];
