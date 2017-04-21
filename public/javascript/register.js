@@ -45,6 +45,7 @@ angular.module('leadApp', [])
   
   $scope.createLead = function () {
 	var data = JSON.stringify($scope.lead);
+	alert(data);
 	$http.get('../createstudent', data)
 	.success((data) => {
 		
