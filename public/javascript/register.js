@@ -1,6 +1,6 @@
 angular.module('leadApp', [])
 .controller('mainController', function ($scope, $http) {
-  $scope.id = '';
+  $scope.id = null;
   $scope.lead = { };
   
   $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
@@ -33,7 +33,7 @@ angular.module('leadApp', [])
   }
   
   $scope.saveData = function() {
-	  if(lead.sfid == null)
+	  if($scope.id == null)
 		{
 			$scope.createLead();
 		}
