@@ -48,7 +48,8 @@ angular.module('leadApp', [])
 	//alert("Create : " + data);
 	$http.post('../createstudent', data)
 	.success((data) => {
-		
+		$scope.lead = data[0];
+		$scope.id = data[0].id;
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
