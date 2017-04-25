@@ -38,10 +38,9 @@
 	        }
 	        
 	        function update(){
-		    	if (!validate())
+		    	if (validate())
 		    	{
 		    		angular.element(document.getElementById('main')).scope().saveData();
-		    		alert('success');
 		    	}
 		    }
 	        
@@ -53,8 +52,10 @@
 	        
 	        function ValidationEmail()
 	        {
+	        	
 	        	var result =false;
 	        	//if no error return true
+	        	result=true;
 	        	return result;
 	        }
 	        
@@ -62,6 +63,7 @@
 	        {
 	        	var result =false;
 	        	//if no error return true
+	        	result=true;
 	        	return result;
 	        }
             /*
