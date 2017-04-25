@@ -55,7 +55,9 @@
 				var inputElements = document.getElementsByTagName('input');
 
 				for(var i=0; i<jsonDataKeys.length; i++){
-				    document.getElementsByName(jsonDataKeys[i])[0].value = jsonData[jsonDataKeys[i]];
+					if (document.getElementsByName(jsonDataKeys[i])[0].value == null) {
+				    	document.getElementsByName(jsonDataKeys[i])[0].value = jsonData[jsonDataKeys[i]];
+					}
 				}
 			}
 			
