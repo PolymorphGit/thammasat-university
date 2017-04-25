@@ -38,14 +38,10 @@
 	        }
 	        
 	        function update(){
-	        	alert('1');
-	        	alert('v='+validate().toString());
-	        	alert('2');
-		    	if (!validate())
+		    	if (validate())
 		    	{
-		    		alert('11');
 		    		angular.element(document.getElementById('main')).scope().saveData();
-		    		alert('Save complete');
+		    		alert('Save complere')
 		    	}
 		    }
 	        
@@ -57,13 +53,16 @@
 	        
 	        function ValidationEmail()
 	        {
-	        	
-	        	return false;
+	        	var result =false;
+	        	//if no error return true
+	        	return result;
 	        }
 	        
 	        function ValidateBirthday()
 	        {
-	        	return false;
+	        	var result =false;
+	        	//if no error return true
+	        	return result;
 	        }
             /*
   			function validate5() {

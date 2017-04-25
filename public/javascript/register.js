@@ -50,6 +50,7 @@ angular.module('leadApp', [])
 	.success((data) => {
 		$scope.lead = data[0];
 		$scope.id = data[0].sfid;
+		alert('create success');
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
@@ -61,7 +62,7 @@ angular.module('leadApp', [])
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
-		
+		alert("update success");
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
