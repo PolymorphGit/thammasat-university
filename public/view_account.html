@@ -75,6 +75,14 @@
 			}
 
 			$("#validate").bind("click", validate);
+			
+			function isNumber(field) {
+	            var re = /^[0-9.]*$/;
+	            if (!re.test(field.value)) {
+	                alert("Input number only!!");
+	                field.value = field.value.replace(/[^0-9.]/g, "");
+	            }
+	        }
 		
 		</script>
 		
@@ -219,7 +227,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="myPhone" ng-model="account.personmobilephone">
+                                <input type="text" id="myPhone" ng-model="account.personmobilephone" onkeyup="isNumber(this)">
                             </td>
                         </tr>
                         
@@ -349,7 +357,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="postcode" ng-model="account.billingpostalcode">
+                                <input type="text" id="postcode" ng-model="account.billingpostalcode" onkeyup="isNumber(this)">
                             </td>
                         </tr>
                         
@@ -407,7 +415,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c">
+                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)">
                             </td>
                         </tr>
                         
@@ -431,7 +439,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c">
+                                <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)">
                             </td>
                         </tr>
                         
