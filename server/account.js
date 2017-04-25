@@ -93,6 +93,8 @@ exports.update = function(req, res, next) {
 	query += "billingcountry='" + req.body.billingcountry + "', ";
 	query += "parent_name__c='" + req.body.parent_name__c + "', ";
 	query += "parent_phone__c='" + req.body.parent_phone__c + "' ";
+	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
+	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "' ";
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
 	.then(function(results) {
@@ -166,9 +168,10 @@ exports.checkin = function(req, res, next){
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				console.log(results);	
+		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
+			.then(function(results2) {
+				
+				console.log(results2);	
 				res.send("Success");
 			})
 		    .catch(next);
