@@ -170,9 +170,34 @@ exports.checkin = function(req, res, next){
 		    //res.send(obj.identities[0].user_id);
 		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
 			.then(function(results2) {
-				
-				console.log(results2);	
-				res.send("Success");
+				console.log(results2);
+				//TODO: Query Room__c on account and Create Asset
+				db.select("SELECT * FROM salesforce.Account WHERE SFID='" + results2[0].sfid + "'")
+				.then(function(results3) {
+					console.log(results3);	
+					if(results3.length > 0)
+					{
+						var enddate = '';
+						var today = new Date();
+						var startdate = new Date(today.getFullYear(), 9, 1);
+						var enddate = new Date(today.getFullYear(), 9, 1);
+						if(startDate < today && today < endDate)
+						{
+							enddate = '31.5.' + today.getFullYear();
+						}
+						else
+						{
+							enddate = '31.7.' + today.getFullYear();
+						}
+						db.select("INSERT INTO salesforce.Asset (AccountId, Product2, UsageEndDate) VALUES ('" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "')")
+						.then(function(results4) {
+							console.log(results4);	
+							res.send("Success");
+						})
+					    .catch(next);
+					}
+				})
+			    .catch(next);
 			})
 		    .catch(next);
 		});
@@ -234,6 +259,8 @@ exports.checkout = function(req, res, next){
 		    //res.send(obj.identities[0].user_id);
 		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results) {
+				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
+				
 				console.log(results);	
 				res.send("Success");
 			})

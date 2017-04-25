@@ -36,14 +36,21 @@ exports.createRoommate = function(req, res, next) {
 		if(results.length > 0 && p != results[0].sfid)
 		{
 			console.log(results);
-			db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
+			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
 			.then(function(results2) { 
-				db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
-				.then(function(results3) {
-					console.log(results2);	
-					res.json(results);
-				})	
-			    .catch(next);
+				if(results2.length == 0)
+				{
+					db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
+					.then(function(results3) { 
+						db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+						.then(function(results4) {
+							console.log(results3);	
+							res.json(results);
+						})	
+					    .catch(next);
+					})
+				    .catch(next);
+				}
 			})
 		    .catch(next);
 		}
@@ -78,21 +85,28 @@ exports.updateRoommate = function(req, res, next) {
 	.then(function(results) {
 		if(results.length > 0 && p != results[0].sfid)
 		{
-			var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
-			query += "co_roommate__c='" + results[0].sfid + "' ";
-			query += " WHERE co_roommate__c='" + id + "' RETURNING *";
-			db.select(query)
-			.then(function(results2) {
-				db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
-				.then(function(results3) {
-					db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
-					.then(function(results4) {
-						console.log(results);	
-						res.json(results[0]);
+			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
+			.then(function(results2) { 
+				if(results2.length == 0)
+				{
+					var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
+					query += "co_roommate__c='" + results[0].sfid + "' ";
+					query += " WHERE co_roommate__c='" + id + "' RETURNING *";
+					db.select(query)
+					.then(function(results2) {
+						db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+						.then(function(results3) {
+							db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
+							.then(function(results4) {
+								console.log(results);	
+								res.json(results[0]);
+							})	
+						    .catch(next);
+						})	
+					    .catch(next);
 					})	
 				    .catch(next);
-				})	
-			    .catch(next);
+				}
 			})	
 		    .catch(next);
 		}
