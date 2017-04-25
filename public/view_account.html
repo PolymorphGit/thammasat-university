@@ -52,11 +52,11 @@
 			}
 			
 			function replaceTextboxValue() {
-			    var els = document.getElementsByTagName("INPUT");
-			    for(var i = 0, ceiling = els.length; i < ceiling; i++) {
-			        if(els[i].value == "null")
-			            els[i].value = "";
-			    }
+				var inputElements = document.getElementsByTagName('input');
+
+				for(var i=0; i<jsonDataKeys.length; i++){
+				    document.getElementsByName(jsonDataKeys[i])[0].value = jsonData[jsonDataKeys[i]];
+				}
 			}
 			
 			function redirect() {
