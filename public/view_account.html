@@ -50,6 +50,26 @@
 			function redirect() {
 				document.forms[0].target = "_blank";
 			}
+			
+			function validateEmail(myEmail) {
+			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			  return re.test(myEmail);
+			}
+
+			function validate() {
+			  $("#result").text("");
+			  var myEmail = $("#myEmail").val();
+			  if (validateEmail(myEmail)) {
+			    $("#result").text(myEmail + " is valid :)");
+			    $("#result").css("color", "green");
+			  } else {
+			    $("#result").text(myEmail + " is not valid :(");
+			    $("#result").css("color", "red");
+			  }
+			  return false;
+			}
+
+			$("#validate").bind("click", validate);
 		
 		</script>
 		
@@ -68,7 +88,7 @@
 			}
 		
 		</style>
-		
+				
 	</header>
 	<body id="main" onload="init();" ng-app="accountApp" ng-controller="mainController">
         
@@ -205,6 +225,7 @@
                             <td> : </td>
                             <td>
                                  <input type="text" id="myEmail" ng-model="account.personemail">
+                                 <h2 id='result'></h2>
                             </td>
                         </tr>
                         
