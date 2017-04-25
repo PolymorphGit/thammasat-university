@@ -15,7 +15,10 @@
 	    }
 		
 	    function update(){
-	    	angular.element(document.getElementById('main')).scope().updateData(id);
+	    	if (validate())
+	    	{
+	    		angular.element(document.getElementById('main')).scope().updateData(id);
+	    	}
 	    }
 	    
 	    function loadTitle(){
@@ -441,7 +444,7 @@
             </table>
             
                 <br/><br/><center>
-                    <button onclick="update();">Save</button>
+                    <button onclick="update();" >Save</button>
                 </center><br/><br/>
                     
         </div>
