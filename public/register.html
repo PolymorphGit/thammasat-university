@@ -442,49 +442,6 @@
 				
 				<!-- Parent Information -->
 			   
-				<tr style="height:5px">
-					<td colspan="3"></td>
-				</tr>
-				
-				<!-- Document -->
-				
-				<tr style="background-color: #C80000">
-					<td colspan="3" align="left">
-						<b style="color:white">Document / เอกสาร</b>
-					</td>
-				</tr>
-				
-				<tr style="height:5px">
-					<td colspan="3"></td>
-				</tr>
-				
-				<tr>
-					<td align="center"><table style="width:100%">
-				
-						<tr>
-							<td align="right" class='CustomLayout1'>
-								Copy of identification card  / สำเนาบัตรประชาชน
-							</td>
-							<td>
-							</td>
-							<td class='CustomLayout1'>
-								<apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file"/>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class='CustomLayout1'>
-								Copy of registered address  / สำเนาทะเบียนบ้าน
-							</td>
-							<td>
-							</td>
-							<td class='CustomLayout1'>
-								<apex:inputFile value="{!attachment2.body}" filename="{!attachment2.name}" id="file2"/>
-							</td>
-						</tr>
-						
-					</table></td>
-				<!-- Document -->
-				</tr>
 			</table>
 			
 			<br/><br/><center><button ng-click="saveData()" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
