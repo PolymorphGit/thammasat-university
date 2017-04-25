@@ -2,9 +2,10 @@
 <html>
 	
 	<header>
-	
-		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-		<script src = "/javascript/register.js"></script>
+	    <meta charset="UTF-8" > 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" />
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" />
+		<script src = "/javascript/register.js" />
 		<script type="text/javascript">
 		var id;
 		
@@ -36,6 +37,56 @@
 	            document.forms[0].target = "_blank";
 	        }
 	        
+	        function update(){
+		    	if (validate())
+		    	{
+		    		angular.element(document.getElementById('main')).scope().saveData(id);
+		    	}
+		    }
+	        
+        	
+	        function validation(){
+	        	
+	        	return ValidationEmail() && ValidateBirthday();
+	        }
+	        
+	        function ValidateEmail()
+	        {
+	        	$
+	        	return false;
+	        	
+	        }
+	        
+	        function ValidateBirthday()
+	        {
+	        	return true;
+	        }
+            /*
+  			function validate() {
+  			  $("#result").text("");
+  			  var myEmail = $("#myEmail").val();
+  			  if (validateEmail(myEmail)) {
+  			    $("#result").text(myEmail + " is valid :)");
+  			    $("#result").css("color", "green");
+  			  } else {
+  			    $("#result").text(myEmail + " is not valid :(");
+  			    $("#result").css("color", "red");
+  			  }
+  			  return false;
+  			}
+  			*/
+  			
+  			
+  			function validateEmail(myEmail) {
+    			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    			  alert(re.test(myEmail));
+    			  return re.test(myEmail);
+    			}
+
+  			$("#validate").bind("click", validate);
+  		
+        	
+        	
 	    </script>
 	    <style type="text/css">
 	    	.myclass {
@@ -78,7 +129,7 @@
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
-						<b style="color:white">Student Information / �����Ţͧ�ѡ�֡�Ҽ��ͧ</b>
+						<b style="color:white">Student Information / ข้อมูลของนักศึกษาผู้จอง</b>
 					</td>
 				</tr>
 				
@@ -92,11 +143,12 @@
 					
 						<tr>
 							<td align="right" class='CustomLayout1' >
-								ID Cards / �����Ţ��ЪҪ�
+								ID Cards / หมายเลขประชาชน
 							</td>
 							<td></td>
 							<td class='CustomLayout1'>
 								<input type="text" ng-model="lead.identification_number__c">
+								<label id="lbl_indectification_number__c"/>
 							</td>
 						</tr>
 						
@@ -107,36 +159,39 @@
 							<td></td>
 							<td>
 								<input type="text" ng-model="lead.passport_number__c">
+								<label id="lbl_passport_number__c"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Sex /��
+								Sex /เพศ
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<select ng-model="lead.gender__c" ng-options="x for x in gender"></select>
+								<label id="lbl_gender__c"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								�ӹ�˹�Ҫ���
+								คำนำหน้าชื่อ
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<select ng-model="lead.title_th__c" ng-options="x for x in title"></select>
+								<label id="lbl_title_th__c"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right" class="CustomLayout2" >
-								Student Name-Surname/����-ʡ�Źѡ�֡�� (Thi)
+								Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
 							</td>
 							<td class="CustomLayout2">
 								<b style="color=red">*</b>
@@ -149,6 +204,7 @@
 										</td>
 										<td>
 											<input type="text" ng-model="lead.last_name_th__c">
+											<label id="lbl_name_th__c"/>
 										</td>
 									</tr>
 								</table>
@@ -164,12 +220,13 @@
 							</td>
 							<td>
 								<input type="text" ng-model="lead.salutation">
+								<label id="lbl_salutation"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right" class="CustomLayout2">
-								Student Name-surname/����-ʡ�Źѡ�֡�� (Eng)
+								Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
 							</td>
 							<td class="CustomLayout2">
 								<b style="color=red">*</b>
@@ -182,6 +239,7 @@
 										</td>
 										<td>
 											<input type="text" ng-model="lead.lastname">
+											<label id="lbl_name_en__c"/>
 										</td>
 									</tr>
 								</Table>
@@ -190,85 +248,92 @@
 						
 						<tr>
 							<td align="right">
-								Mobile No/������
+								Mobile No/เบอร์โทร
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.mobilephone">
+								<label id="lbl_mobilephone"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Email /�������
+								Email /อีเมลล์
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								 <input type="text" ng-model="lead.email">
+								 <input type="text" ng-model="lead.email" id="myEmail">
+								 <label id="lbl_email"/>
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Congenital disease /�ä��Шӵ��
+								Congenital disease /โรคประจำตัว
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								 <input type="text" ng-model="lead.congenital_disease__c">
+								 <label id="lbl_congenital_disease__c" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Student ID /���ʹѡ�֡��
+								Student ID /รหัสนักศึกษา
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.student_id__c">
+								<label id="lbl_student_id__c" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Faculty /���
+								Faculty /คณะ
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.faculty__c">
+								<label id="lbl_faculty__c" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Request Zone /���͡⫹
+								Request Zone /เลือกโซน
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.request_zone__c">
+								<label id="lbl_request_zone__c" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Request Zone Reserve/���͡⫹���ͧ
+								Request Zone Reserve/เลือกโซนสำรอง
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.request_zone_reserve__c">
+								<label id="lbl_request_zone_reserve__c" />
 							</td>
 						</tr>
 					
@@ -290,7 +355,7 @@
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
-						<b style="color:white">Address Information / �����ŷ������ (�����������������)</b>
+						<b style="color:white">Address Information / ข้อมูลที่อยู่ (ที่อยู่ตามภูมิลำเนา)</b>
 					</td>
 				</tr>
 				
@@ -303,7 +368,7 @@
 				
 						<tr>
 							<td align="right" class='CustomLayout1'>
-								No. / Soi / Road (��ҹ�Ţ��� / ��� / ���)
+								No. / Soi / Road (บ้านเลขที่ / ซอย / ถนน)
 							</td>
 							<td>
 								<b style="color=red">*</b>
@@ -315,49 +380,53 @@
 						
 						<tr>
 							<td align="right">
-								District (����� / ࢵ)
+								District (อำเภอ / เขต)
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.city">
+								<label id="lbl_city" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Province (�ѧ��Ѵ)
+								Province (จังหวัด)
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.state">
+								<label id="lbl_lead" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Postal Code (������ɳ���)
+								Postal Code (รหัสไปรษณีย์)
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.postalcode">
+								<label id="lbl_postalcode" />
 							</td>
 						</tr>
 						
 						<tr>
 							<td align="right">
-								Country (�����)
+								Country (ประเทศ)
 							</td>
 							<td>
 								<b style="color=red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.country">
+								<label id="lbl_country" />
 							</td>
 						</tr>
 						
@@ -379,7 +448,7 @@
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
-						<b style="color:white">Parent Information / ���ͼ�黡��ͧ</b>
+						<b style="color:white">Parent Information / ชื่อผู้ปกครอง</b>
 					</td>
 				</tr>
 				
@@ -392,7 +461,7 @@
 				
 						<tr>
 							<td align="right" class='CustomLayout1'>
-								Name /���ͼ�黡��ͧ
+								Name /ชื่อผู้ปกครอง
 							</td>
 							<td>
 							</td>
@@ -402,7 +471,7 @@
 						</tr>
 						<tr>
 							<td align="right">
-								Telephone /����Դ��ͼ�黡��ͧ
+								Telephone /เบอร์ติดต่อผู้ปกครอง
 							</td>
 							<td>
 							</td>
@@ -417,7 +486,7 @@
 						
 						<tr>
 							<td align="right" class='CustomLayout1'>
-								Name /���ͼ�黡��ͧ (2)
+								Name /ชื่อผู้ปกครอง (2)
 							</td>
 							<td>
 							</td>
@@ -427,7 +496,7 @@
 						</tr>
 						<tr>
 							<td align="right">
-								Telephone /����Դ��ͼ�黡��ͧ (2)
+								Telephone /เบอร์ติดต่อผู้ปกครอง (2)
 							</td>
 							<td>
 							</td>
@@ -444,7 +513,7 @@
 			   
 			</table>
 			
-			<br/><br/><center><button ng-click="saveData()" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
+			<br/><br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
 			
 		</div>
 	
