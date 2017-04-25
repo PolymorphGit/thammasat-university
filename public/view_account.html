@@ -10,7 +10,7 @@
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-				
+			replaceTextboxValue();
 			angular.element(document.getElementById('main')).scope().getData(id);		
 	    }
 		
@@ -49,6 +49,14 @@
 				//fireEvent(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"), "click");
 				document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1").click();
 				////                        console.log(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"));
+			}
+			
+			function replaceTextboxValue() {
+			    var els = document.getElementsByTagName("INPUT");
+			    for(var i = 0, ceiling = els.length; i < ceiling; i++) {
+			        if(els[i].value == "null")
+			            els[i].value = "";
+			    }
 			}
 			
 			function redirect() {
