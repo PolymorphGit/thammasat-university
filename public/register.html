@@ -38,8 +38,10 @@
 	        }
 	        
 	        function update(){
+	        	alert('1');
 		    	if (validate())
 		    	{
+		    		alert('11');
 		    		angular.element(document.getElementById('main')).scope().saveData(id);
 		    		alert('Save complete');
 		    	}
