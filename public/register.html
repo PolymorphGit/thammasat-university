@@ -39,8 +39,9 @@
 	        
 	        function update(){
 	        	alert('1');
-	        	alert('validate = '+validate());
-		    	if (validate())
+	        	alert('v='+validate().toString());
+	        	alert('2');
+		    	if (!validate())
 		    	{
 		    		alert('11');
 		    		angular.element(document.getElementById('main')).scope().saveData();
@@ -54,7 +55,7 @@
 	        	return ValidationEmail() && ValidateBirthday();
 	        }
 	        
-	        function ValidateEmail()
+	        function ValidationEmail()
 	        {
 	        	
 	        	return false;
@@ -65,7 +66,7 @@
 	        	return false;
 	        }
             /*
-  			function validate() {
+  			function validate5() {
   			  $("#result").text("");
   			  var myEmail = $("#myEmail").val();
   			  if (validateEmail(myEmail)) {
