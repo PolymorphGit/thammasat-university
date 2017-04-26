@@ -22,12 +22,12 @@
 	    function update(){
 	    	/*if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{*/
-   			//if (validateMobile()) {
+   			if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
    			//}
-	    	//}
+	    	}
 	    }
-	    W
+	    
 	    function loadTitle(){
 	    	document.getElementById("myTitle").value = angular.element(document.getElementById('main')).scope().account.title_th__c;
 	    }
@@ -88,9 +88,9 @@
 	            }
 	        }
 			
-			/*function validateMobile() {
+			function validateMobile() {
 				
-				if(document.frm.fnametxt.myPhone=="")
+				if(document.frm.myPhone=="")
 				{
 					alert("You must enter a Mobile No");
 					document.getElementById('mobileResult').innerHTML = "You must enter a Mobile No";
@@ -105,151 +105,129 @@
 					return false;
 				} else {
 					return true;
-				}
+				}*/
 			
-			}*/
+			}
 			
 			function validateCongenital() {
 				
-				var disease = document.forms["frm"]["disease"].value;
-				
-				if (disease == "") {
-					document.getElementById("diseaseResult").innerHTML = "You must enter a Congenital disease";
-					return false;
-				} else {
-					return true;
+				if(document.frm.disease=="")
+				{
+					document.getElementById('diseaseResult').innerHTML = "You must enter a Congenital disease";
+					frm.disease.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateStreet() {
 				
-				var street = document.forms["frm"]["street"].value;
-				
-				if (disease == "") {
-					document.getElementById("streetResult").innerHTML = "You must enter a No. / Soi / Road";
-					return false;
-				} else {
-					return true;
+				if(document.frm.street=="")
+				{
+					document.getElementById('streetResult').innerHTML = "You must enter a No. / Soi / Road";
+					frm.street.focus();
+				  	return(false);
 				}
-			
+							
 			}
 			
 			function validateDistrict() {
 				
-				var city = document.forms["frm"]["city"].value;
-				
-				if (disease == "") {
-					document.getElementById("cityResult").innerHTML = "You must enter a District";
-					return false;
-				} else {
-					return true;
+				if(document.frm.city=="")
+				{
+					document.getElementById('cityResult').innerHTML = "You must enter a District";
+					frm.city.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateState() {
 				
-				var state = document.forms["frm"]["state"].value;
-				
-				if (state == "") {
-					document.getElementById("stateResult").innerHTML = "You must enter a Province";
-					return false;
-				} else {
-					return true;
+				if(document.frm.state=="")
+				{
+					document.getElementById('stateResult').innerHTML = "You must enter a Province";
+					frm.state.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validatePostcode() {
 				
-				var postcode = document.forms["frm"]["postcode"].value;
-				
-				if (postcode == "") {
-					document.getElementById("postcodeResult").innerHTML = "You must enter a Post Code";
-					return false;
-				} else {
-					return true;
+				if(document.frm.postcode=="")
+				{
+					document.getElementById('postcodeResult').innerHTML = "You must enter a Post Code";
+					frm.postcode.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateCountry() {
 				
-				var country = document.forms["frm"]["country"].value;
-				
-				if (country == "") {
-					document.getElementById("countryResult").innerHTML = "You must enter a Country";
-					return false;
-				} else {
-					return true;
+				if(document.frm.country=="")
+				{
+					document.getElementById('countryResult').innerHTML = "You must enter a Country";
+					frm.country.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateParent() {
 				
-				var parent = document.forms["frm"]["parent"].value;
-				
-				if (parent == "") {
-					document.getElementById("parentResult").innerHTML = "You must enter a Parent Name";
-					return false;
-				} else {
-					return true;
+				if(document.frm.parent=="")
+				{
+					document.getElementById('parentResult').innerHTML = "You must enter a Parent Name";
+					frm.parent.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateParentPhone() {
 				
-				var parentPhone = document.forms["frm"]["parentPhone"].value;
-				
-				if (parentPhone == "") {
-					document.getElementById("parentPhoneResult").innerHTML = "You must enter a Parent Phone";
-					return false;
-				} else {
-					return true;
+				if(document.frm.parentPhone=="")
+				{
+					document.getElementById('parentPhoneResult').innerHTML = "You must enter a Parent Phone";
+					frm.parentPhone.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateParentIncome() {
 				
-				var parentIncome = document.forms["frm"]["parentIncome"].value;
-				
-				if (parentIncome == "") {
-					document.getElementById("parentIncomeResult").innerHTML = "You must enter a Parent Income";
-					return false;
-				} else {
-					return true;
+				if(document.frm.parentIncome=="")
+				{
+					document.getElementById('parentIncomeResult').innerHTML = "You must enter a Parent Income";
+					frm.parentIncome.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateParent2() {
 				
-				var parent2 = document.forms["frm"]["parent2"].value;
-				
-				if (parent2 == "") {
-					document.getElementById("parent2Result").innerHTML = "You must enter a Parent Name(2)";
-					return false;
-				} else {
-					return true;
+				if(document.frm.parent2=="")
+				{
+					document.getElementById('parent2Result').innerHTML = "You must enter a Parent Name(2)";
+					frm.parent2.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 			function validateParentPhone2() {
 				
-				var parentPhone2 = document.forms["frm"]["parentPhone2"].value;
-				
-				if (parentPhone2 == "") {
-					document.getElementById("parentPhone2Result").innerHTML = "You must enter a Parent Phone(2)";
-					return false;
-				} else {
-					return true;
+				if(document.frm.parentPhone2=="")
+				{
+					document.getElementById('parentPhone2Result').innerHTML = "You must enter a Parent Phone(2)";
+					frm.parentPhone2.focus();
+				  	return(false);
 				}
-			
+				
 			}
 			
 		</script>
@@ -427,7 +405,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                 <input type="text" id="disease" ng-model="account.congenital_disease__c">
+                                 <input type="text" id="disease" ng-model="account.congenital_disease__c" required>
                                  <label id='diseaseResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -527,7 +505,7 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                                <input type="text" id="street" ng-model="account.billingstreet">
+                                <input type="text" id="street" ng-model="account.billingstreet" required>
                                 <label id='streetResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -538,7 +516,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="city" ng-model="account.billingcity">
+                                <input type="text" id="city" ng-model="account.billingcity" required>
                                 <label id='cityResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -549,7 +527,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="state" ng-model="account.billingstate">
+                                <input type="text" id="state" ng-model="account.billingstate" required>
                                 <label id='stateResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -560,7 +538,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="postcode" ng-model="account.billingpostalcode" onkeyup="isNumber(this)">
+                                <input type="text" id="postcode" ng-model="account.billingpostalcode" onkeyup="isNumber(this)" required>
                                 <label id='postcodeResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -571,7 +549,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="country" ng-model="account.billingcountry">
+                                <input type="text" id="country" ng-model="account.billingcountry" required>
                                 <label id='countryResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -611,7 +589,7 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                            	<input type="text" id="parent" ng-model="account.parent_name__c"/>
+                            	<input type="text" id="parent" ng-model="account.parent_name__c" required/>
                             	<label id='parentResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -621,7 +599,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)">
+                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)" required>
                                 <label id='parentPhoneResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -632,7 +610,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)">
+                                <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)" required>
                                 <label id='parentIncomeResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -648,7 +626,7 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                            	<input type="text" id="parent2" ng-model="account.parent_name_2__c" />
+                            	<input type="text" id="parent2" ng-model="account.parent_name_2__c" required/>
                             	<label id='parent2Result' style="color:red"></label>
                             </td>
                         </tr>
@@ -658,7 +636,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)">
+                                <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)" required>
                                 <label id='parentPhone2Result' style="color:red"></label>
                             </td>
                         </tr>
