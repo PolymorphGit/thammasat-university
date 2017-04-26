@@ -24,31 +24,31 @@ exports.push = function(req, res, next)
 	}
 	else if(type == 'Accept case')
 	{
-	
+		result = acceptCase(id, next);
 	}
 	else if(type == 'Close case')
 	{
-	
+		result = closeCase(id, next);
 	}
 	else if(type == 'Accept clean')
 	{
-	
+		result = acceptClean(id, next);
 	}
 	else if(type == 'Reject clean')
 	{
-	
+		result = rejectClean(id, next);
 	}
 	else if(type == 'Complete clean')
 	{
-	
+		result = completeClean(id, next);
 	}
 	else if(type == 'Allow checkout')
 	{
-	
+		result = allowCheckout(id, next);
 	}
 	else if(type == 'Deny checkout')
 	{
-	
+		result = denyCheckout(id, next);
 	}
 	else
 	{
@@ -103,6 +103,63 @@ function getMailing(id, next)
 	.catch(next);
 }
 
+function acceptCase(id, next)
+{
+	var to;
+	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].accountid
+		console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject);
+		pusher.trigger(to, 'acceptcase', {
+			No: results[0].casenumber,
+			message: results[0].subject + ' ได้รับการ รับเรื่องแล้ว'
+		});
+		return true;
+	})
+	.catch(next);
+}
+
+function closeCase(id, next)
+{
+	var to;
+	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].accountid
+		console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject);
+		pusher.trigger(to, 'closecase', {
+			No: results[0].casenumber,
+			message: results[0].subject + ' ได้ทำการแก้ไขแล้ว'
+		});
+		return true;
+	})
+	.catch(next);
+}
+
+function acceptClean(id, next)
+{
+	
+}
+
+function rejectClean(id, next)
+{
+	
+}
+
+function completeClean(id, next)
+{
+	
+}
+
+function alllowCheckout(id, next)
+{
+	
+}
+
+function denyCheckout(id, next)
+{
+	
+}
+
 function testSend()
 {
 	/*
@@ -134,4 +191,5 @@ function testSend()
 
 	pusher.triggerBatch(events);
 	*/
+	return false;
 }
