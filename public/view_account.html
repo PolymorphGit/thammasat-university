@@ -240,6 +240,16 @@
                         
                         <tr>
                             <td align="right">
+                                Birthdate /วันเกิด
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <label id="request"> {{ account.Birthdate__c }} </label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
                                 Mobile No/เบอร์โทร
                             </td>
                             <td> : </td>
@@ -288,7 +298,27 @@
                             	<label id="faculty">{{ account.faculty__c }}</label>
                             </td>
                         </tr>
+                        <!--
+                        <tr>
+                            <td align="right">
+                                Year /ปีการศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <label id="request"> {{ account.Year__c }} </label>
+                            </td>
+                        </tr>
                         
+                        <tr>
+                            <td align="right">
+                                Term /ภาคการศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <label id="request"> {{ account.Term__c }} </label>
+                            </td>
+                        </tr>
+                         -->
                         <tr>
                             <td align="right">
                                 Request Zone /เลือกโซน
@@ -429,6 +459,16 @@
                         <tr>
                             <td align="right">
                                 Telephone /เบอร์ติดต่อผู้ปกครอง
+                            </td>
+                            <td> : </td>
+                            <td>
+                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Income (per year) /รายได้ผู้ปกครอง (ต่อปี)
                             </td>
                             <td> : </td>
                             <td>
