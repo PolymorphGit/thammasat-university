@@ -191,7 +191,7 @@ exports.checkin = function(req, res, next){
 						{
 							enddate = today.getFullYear() + '-7-31';
 						}
-						db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "')")
+						db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "', true)")
 						.then(function(results4) {
 							console.log(results4);	
 							res.send("Success");
@@ -263,7 +263,7 @@ exports.checkout = function(req, res, next){
 			.then(function(results2) {
 				console.log(results2);
 				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
-				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' ")
+				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
 				.then(function(results3) {
 					console.log(results3);	
 					var today = new Date();
