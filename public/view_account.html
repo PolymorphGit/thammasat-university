@@ -11,7 +11,8 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
-			replaceTextboxValue();
+			//replaceTextboxValue();
+			clear();
 	    }
 		
 	    function update(){
@@ -33,7 +34,14 @@
 		</script>
 		
 		<script type="text/javascript">
-    
+    		
+			function clear()
+			{
+				if (document.getElementById("parent").setTextValue() == null) {
+					document.getElementById("parent").setTextValue() == null
+				}
+			}
+		
 			function checkNum(value) {
 				
 				if (isNaN(parseFloat(value))) {
