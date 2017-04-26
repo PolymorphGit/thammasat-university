@@ -165,7 +165,30 @@ function acceptClean(id, next)
 
 function rejectClean(id, next)
 {
-	
+	var to;
+	var message = 'ยกเลิกทำความสะอาด  วันที่ ';
+	var date;
+	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		console.log(results);
+		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
+		.then(function(results2) {
+			to = results[0].accountid
+			for(var i = 0 ; i < results2.length ; i++)
+			{
+				date = new Date(results2[i].working_date__c)
+				message +=  date.toDateString() + ', ';
+			}
+			console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
+			pusher.trigger(to, 'Reject Clean', {
+				No: results[0].casenumber,
+				message: message
+			});
+			return true;
+		})
+		.catch(next);
+	})
+	.catch(next);
 }
 
 function completeClean(id, next)
