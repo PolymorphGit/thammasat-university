@@ -266,7 +266,8 @@ exports.checkout = function(req, res, next){
 				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
 				.then(function(results3) {
 					console.log(results3);	
-					db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + new Date() + "' WHERE SFID='" + results3[0].sfid + "' RETURNING *")
+					var today = new Date();
+					db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + today + "' WHERE SFID='" + results3[0].sfid + "' RETURNING *")
 					.then(function(results4) {
 						console.log(results4);	
 						//res.json(results);
