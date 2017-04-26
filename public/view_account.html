@@ -86,7 +86,7 @@
 	            }
 	        }
 			
-			function validateMobile() {
+			/*function validateMobile() {
 			
 				var mobile = document.forms["frm"]["myPhone"].value;
 				
@@ -97,7 +97,7 @@
 					return true;
 				}
 			
-			}
+			}*/
 			
 			function validateCongenital() {
 				
@@ -395,7 +395,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="myPhone" ng-model="account.personmobilephone" onkeyup="isNumber(this)">
+                                <input type="text" id="myPhone" ng-model="account.personmobilephone" onkeyup="isNumber(this)" required>
                                 <label id='mobileResult' style="color:red"></label>
                             </td>
                         </tr>
