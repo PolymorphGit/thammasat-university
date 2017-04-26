@@ -74,7 +74,14 @@
 	        	var result =false;
 	        	var temp= document.getElementById("myEmail");
 	        	alert('temp'+ temp.value);
-	        	result=true;
+	        	 if (validateEmail(temp.value)) {
+	        	 	result=true;
+	        	 }else{
+	        	 	var result = document.getElementById("lbl_email");
+	        	 	result.innerHTML = 'Email not correct format.'
+	        	 	result.style.color = 'red';
+	        	 }
+	        	
 	        	return result;
 	        }
 	        
