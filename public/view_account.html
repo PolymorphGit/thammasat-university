@@ -16,7 +16,7 @@
 	    }
 		
 	    function update(){
-	    	if (validate() || validateMobile() || validateCongenital() || validateStreet() || validateDistrict() || validateState() || validatePostcode() || validateCountry() || validateParent() || validateParentPhone() || validateParentIncome() ||  validateParent2() || validateParentPhone2())
+	    	if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
