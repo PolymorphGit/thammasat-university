@@ -139,6 +139,7 @@ function acceptClean(id, next)
 {
 	var to;
 	var message = 'ยืนยันทำความสะอาด  วันที่ ';
+	var date;
 	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		console.log(results);
@@ -147,7 +148,8 @@ function acceptClean(id, next)
 			to = results[0].accountid
 			for(var i = 0 ; i < results2.length ; i++)
 			{
-				message +=  results2[i].working_date__c + ', ';
+				date = new Date(results2[i].working_date__c)
+				message +=  date.getDate() + ', ';
 			}
 			console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
 			pusher.trigger(to, 'Accept Clean', {
