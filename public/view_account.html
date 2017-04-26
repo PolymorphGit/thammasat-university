@@ -175,7 +175,7 @@
 			
 			function validateParent() {
 				
-				var parent = document.getElementById("parent");
+				var parent = document.forms["frm"]["parent"].value;
 				alert(parent);
 				if (parent.val().length > 0) {
 					document.getElementById("parentResult").innerHTML = "You must enter a Parent Name";
@@ -258,7 +258,7 @@
 				
 	</header>
 	<body id="main" onload="init();" ng-app="accountApp" ng-controller="mainController">
-        
+        <form id="frm">
         <div>
             <table style="width:100%">
                 <tr>
@@ -662,6 +662,7 @@
                 </center><br/><br/>
                     
         </div>
+        </form>
         
 	</body>
 </html>
