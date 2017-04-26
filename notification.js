@@ -137,7 +137,27 @@ function closeCase(id, next)
 
 function acceptClean(id, next)
 {
-	
+	var to;
+	var message = 'ยืนยันทำความสะอาด  วันที่ ';
+	db.select("SELECT * FROM salesforce.WorkOrder WHERE SFID='" + id + "'")
+	.then(function(results) {
+		for(var i = 0 ; i < results.length ; i++)
+		{
+			message +=  results[i].working_date__c + ', ';
+		}
+		db.select("SELECT * FROM salesforce.case WHERE SFID='" + results[0].caseid + "'")
+		.then(function(results2) {
+			to = results2[0].accountid
+			console.log('To:' + to + ' ,No:' + results2[0].casenumber + ' ,Subject:' + results2[0].subject + ', message:' + message);
+			pusher.trigger(to, 'closecase', {
+				No: results2[0].casenumber,
+				message: message
+			});
+			return true;
+		})
+		.catch(next);
+	})
+	.catch(next);
 }
 
 function rejectClean(id, next)
