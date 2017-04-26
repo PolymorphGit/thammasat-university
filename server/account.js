@@ -179,8 +179,8 @@ exports.checkin = function(req, res, next){
 					{
 						var enddate = '';
 						var today = new Date();
-						var startDate = new Date(today.getFullYear(), 9, 1);
-						var endDate = new Date(today.getFullYear(), 9, 1);
+						var startDate = new Date(today.getFullYear(), 8, 1);
+						var endDate = new Date(today.getFullYear(), 5, 31);
 						if(startDate < today && today < endDate)
 						{
 							enddate = today.getFullYear() + '-5-31';
