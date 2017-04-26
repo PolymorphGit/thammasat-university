@@ -263,7 +263,7 @@ exports.checkout = function(req, res, next){
 			.then(function(results2) {
 				console.log(results2);
 				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
-				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
+				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' ")
 				.then(function(results3) {
 					console.log(results3);	
 					var today = new Date();
