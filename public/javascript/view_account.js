@@ -67,11 +67,11 @@ angular.module('accountApp', [])
   
   $scope.updateData = function (accountId) {
 	var data = JSON.stringify($scope.account);
-	//alert(data);
+	alert(data);
 	$http.post('../updateaccount/' + accountId, data)
 	.success((data) => {
 		console.log(data);
-		//alert("Updated");
+		alert("Updated");
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
