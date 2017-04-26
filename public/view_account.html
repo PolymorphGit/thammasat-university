@@ -86,8 +86,15 @@
 	            }
 	        }
 			
-			/*function validateMobile() {
-			
+			function validateMobile() {
+				
+				if(document.frm.fnametxt.myPhone=="")
+				{
+					document.getElementById('mobileResult').innerHTML = "You must enter a Mobile No";
+					frm.myPhone.focus();
+				  	return(false);
+				}
+				/*
 				var mobile = document.forms["frm"]["myPhone"].value;
 				
 				if (mobile == "") {
@@ -95,9 +102,9 @@
 					return false;
 				} else {
 					return true;
-				}
+				}*/
 			
-			}*/
+			}
 			
 			function validateCongenital() {
 				
