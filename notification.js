@@ -149,7 +149,7 @@ function acceptClean(id, next)
 		.then(function(results2) {
 			to = results2[0].accountid
 			console.log('To:' + to + ' ,No:' + results2[0].casenumber + ' ,Subject:' + results2[0].subject + ', message:' + message);
-			pusher.trigger(to, 'closecase', {
+			pusher.trigger(to, 'Accept Clean', {
 				No: results2[0].casenumber,
 				message: message
 			});
