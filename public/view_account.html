@@ -84,8 +84,8 @@
 			
 			function validateMobile() {
 			
-				var mobile = document.getElementById("myPhone");
-				alert(mobile);
+				var mobile = document.forms["frm"]["myPhone"].value;
+				
 				if (mobile == "") {
 					document.getElementById("mobileResult").innerHTML = "You must enter a Mobile No";
 					return false;
@@ -97,7 +97,7 @@
 			
 			function validateCongenital() {
 				
-				var disease = document.getElementById("disease");
+				var disease = document.forms["frm"]["disease"].value;
 				
 				if (disease == "") {
 					document.getElementById("diseaseResult").innerHTML = "You must enter a Congenital disease";
@@ -110,7 +110,7 @@
 			
 			function validateStreet() {
 				
-				var street = document.getElementById("street");
+				var street = document.forms["frm"]["street"].value;
 				
 				if (disease == "") {
 					document.getElementById("streetResult").innerHTML = "You must enter a No. / Soi / Road";
@@ -123,7 +123,7 @@
 			
 			function validateDistrict() {
 				
-				var city = document.getElementById("city");
+				var city = document.forms["frm"]["city"].value;
 				
 				if (disease == "") {
 					document.getElementById("cityResult").innerHTML = "You must enter a District";
@@ -136,7 +136,7 @@
 			
 			function validateState() {
 				
-				var state = document.getElementById("state");
+				var state = document.forms["frm"]["state"].value;
 				
 				if (state == "") {
 					document.getElementById("stateResult").innerHTML = "You must enter a Province";
@@ -149,7 +149,7 @@
 			
 			function validatePostcode() {
 				
-				var postcode = document.getElementById("postcode");
+				var postcode = document.forms["frm"]["postcode"].value;
 				
 				if (postcode == "") {
 					document.getElementById("postcodeResult").innerHTML = "You must enter a Post Code";
@@ -162,7 +162,7 @@
 			
 			function validateCountry() {
 				
-				var country = document.getElementById("country");
+				var country = document.forms["frm"]["country"].value;
 				
 				if (country == "") {
 					document.getElementById("countryResult").innerHTML = "You must enter a Country";
@@ -176,7 +176,7 @@
 			function validateParent() {
 				
 				var parent = document.forms["frm"]["parent"].value;
-				alert(parent);
+				
 				if (parent == "") {
 					document.getElementById("parentResult").innerHTML = "You must enter a Parent Name";
 					return false;
@@ -188,9 +188,9 @@
 			
 			function validateParentPhone() {
 				
-				var parentPhone = document.getElementById("parentPhone");
-				alert(parentPhone);
-				if (parentPhone == '') {
+				var parentPhone = document.forms["frm"]["parentPhone"].value;
+				
+				if (parentPhone == "") {
 					document.getElementById("parentPhoneResult").innerHTML = "You must enter a Parent Phone";
 					return false;
 				} else {
@@ -201,7 +201,7 @@
 			
 			function validateParentIncome() {
 				
-				var parentIncome = document.getElementById("parentIncome");
+				var parentIncome = document.forms["frm"]["parentIncome"].value;
 				
 				if (parentIncome == "") {
 					document.getElementById("parentIncomeResult").innerHTML = "You must enter a Parent Income";
@@ -214,7 +214,7 @@
 			
 			function validateParent2() {
 				
-				var parent2 = document.getElementById("parent2");
+				var parent2 = document.forms["frm"]["parent2"].value;
 				
 				if (parent2 == "") {
 					document.getElementById("parent2Result").innerHTML = "You must enter a Parent Name(2)";
@@ -227,7 +227,7 @@
 			
 			function validateParentPhone2() {
 				
-				var parentPhone2 = document.getElementById("parentPhone2");
+				var parentPhone2 = document.forms["frm"]["parentPhone2"].value;
 				
 				if (parentPhone2 == "") {
 					document.getElementById("parentPhone2Result").innerHTML = "You must enter a Parent Phone(2)";
