@@ -47,7 +47,25 @@
         	
 	        function validate(){
 	        	
-	        	return ValidationEmail() && ValidateBirthday();
+	        	return ValidationEmail() && ValidateBirthday() && ValidateStudentId() && ValidateCongenital();
+	        }
+	        
+	        function ValidateCongenital()
+	        {
+	        	
+	        	var result =false;
+	        	//if no error return true
+	        	result=true;
+	        	return result;
+	        }
+	        
+	        function ValidationStudentId()
+	        {
+	        	
+	        	var result =false;
+	        	//if no error return true
+	        	result=true;
+	        	return result;
 	        }
 	        
 	        function ValidationEmail()
