@@ -16,7 +16,7 @@
 	    }
 		
 	    function update(){
-	    	if (validate())
+	    	if (validate() || validateMobile() || validateCongenital() || validateStreet() || validateDistrict() || validateState() || validatePostcode() || validateCountry() || validateParent() || validateParentPhone() || validateParentIncome() ||  validateParent2() || validateParentPhone2())
 	    	{
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
@@ -34,14 +34,7 @@
 		</script>
 		
 		<script type="text/javascript">
-    		
-			function clear()
-			{
-				if (document.getElementById("parent").setTextValue() == "null") {
-					document.getElementById("parent").value = "";
-				}
-			}
-		
+    				
 			function checkNum(value) {
 				
 				if (isNaN(parseFloat(value))) {
@@ -51,38 +44,14 @@
 				
 				return value;
 			}
-			
-			function TriggerClick() {
-			
-				//fireEvent(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"), "click");
-				document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1").click();
-				////                        console.log(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"));
-			}
-			
-			function replaceTextboxValue() {
-				
-				var els = document.getElementsByTagName("input");
-			    for(var i = 0, ceiling = els.length; i < ceiling; i++) {
-			        if(els[i].value == null)
-			            els[i].value = "";
-			    }
-				
-				/*var inputElements = document.getElementsByTagName('input');
-
-				for(var i=0; i<jsonDataKeys.length; i++){
-					if (document.getElementsByName(jsonDataKeys[i])[0].value == null) {
-				    	document.getElementsByName(jsonDataKeys[i])[0].value = jsonData[jsonDataKeys[i]];
-					}
-				}*/
-			}
-			
+						
 			function redirect() {
 				document.forms[0].target = "_blank";
 			}
 			
 			function validateEmail(myEmail) {
 			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-			  alert(re.test(myEmail));
+			  //alert(re.test(myEmail));
 			  return re.test(myEmail);
 			}
 
@@ -104,11 +73,167 @@
 			function isNumber(field) {
 	            var re = /^[0-9.]*$/;
 	            if (!re.test(field.value)) {
-	                alert("Input number only!!");
+	                //alert("Input number only!!");
 	                field.value = field.value.replace(/[^0-9.]/g, "");
 	            }
 	        }
-		
+			
+			function validateMobile() {
+			
+				var mobile = document.getElementById("myPhone");
+				
+				if (mobile == "") {
+					document.getElementById("mobileResult").innerHTML = "You must enter a Mobile No";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateCongenital() {
+				
+				var disease = document.getElementById("disease");
+				
+				if (disease == "") {
+					document.getElementById("diseaseResult").innerHTML = "You must enter a Congenital disease";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateStreet() {
+				
+				var street = document.getElementById("street");
+				
+				if (disease == "") {
+					document.getElementById("streetResult").innerHTML = "You must enter a No. / Soi / Road";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateDistrict() {
+				
+				var city = document.getElementById("city");
+				
+				if (disease == "") {
+					document.getElementById("cityResult").innerHTML = "You must enter a District";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateState() {
+				
+				var state = document.getElementById("state");
+				
+				if (state == "") {
+					document.getElementById("stateResult").innerHTML = "You must enter a Province";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validatePostcode() {
+				
+				var postcode = document.getElementById("postcode");
+				
+				if (postcode == "") {
+					document.getElementById("postcodeResult").innerHTML = "You must enter a Post Code";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateCountry() {
+				
+				var country = document.getElementById("country");
+				
+				if (country == "") {
+					document.getElementById("countryResult").innerHTML = "You must enter a Country";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateParent() {
+				
+				var parent = document.getElementById("parent");
+				
+				if (parent == "") {
+					document.getElementById("parentResult").innerHTML = "You must enter a Parent Name";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateParentPhone() {
+				
+				var parentPhone = document.getElementById("parentPhone");
+				
+				if (parentPhone == "") {
+					document.getElementById("parentPhoneResult").innerHTML = "You must enter a Parent Phone";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateParentIncome() {
+				
+				var parentIncome = document.getElementById("parentIncome");
+				
+				if (parentIncome == "") {
+					document.getElementById("parentIncomeResult").innerHTML = "You must enter a Parent Income";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateParent2() {
+				
+				var parent2 = document.getElementById("parent2");
+				
+				if (parent2 == "") {
+					document.getElementById("parent2Result").innerHTML = "You must enter a Parent Name(2)";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
+			function validateParentPhone2() {
+				
+				var parentPhone2 = document.getElementById("parentPhone2");
+				
+				if (parentPhone2 == "") {
+					document.getElementById("parentPhone2Result").innerHTML = "You must enter a Parent Phone(2)";
+					return false;
+				} else {
+					return true;
+				}
+			
+			}
+			
 		</script>
 		
 		<style type="Text/css">
@@ -263,6 +388,7 @@
                             <td> : </td>
                             <td>
                                 <input type="text" id="myPhone" ng-model="account.personmobilephone" onkeyup="isNumber(this)">
+                                <label id='mobileResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -284,6 +410,7 @@
                             <td> : </td>
                             <td>
                                  <input type="text" id="disease" ng-model="account.congenital_disease__c">
+                                 <label id='diseaseResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -383,6 +510,7 @@
                             <td> : </td>
                             <td class='CustomLayout1'>
                                 <input type="text" id="street" ng-model="account.billingstreet">
+                                <label id='streetResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -393,6 +521,7 @@
                             <td> : </td>
                             <td>
                                 <input type="text" id="city" ng-model="account.billingcity">
+                                <label id='cityResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -403,6 +532,7 @@
                             <td> : </td>
                             <td>
                                 <input type="text" id="state" ng-model="account.billingstate">
+                                <label id='stateResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -413,6 +543,7 @@
                             <td> : </td>
                             <td>
                                 <input type="text" id="postcode" ng-model="account.billingpostalcode" onkeyup="isNumber(this)">
+                                <label id='postcodeResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -423,6 +554,7 @@
                             <td> : </td>
                             <td>
                                 <input type="text" id="country" ng-model="account.billingcountry">
+                                <label id='countryResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -457,30 +589,33 @@
                 
                         <tr>
                             <td align="right" class='CustomLayout1'>
-                                Name /ชื่อผู้ปกครอง
+                                Parent Name /ชื่อผู้ปกครอง
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
                             	<input type="text" id="parent" ng-model="account.parent_name__c"/>
+                            	<label id='parentResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
-                                Telephone /เบอร์ติดต่อผู้ปกครอง
+                                Parent Telephone /เบอร์ติดต่อผู้ปกครอง
                             </td>
                             <td> : </td>
                             <td>
                                 <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)">
+                                <label id='parentPhoneResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
                         <tr>
                             <td align="right">
-                                Income (per year) /รายได้ผู้ปกครอง (ต่อปี)
+                                Parent Income (per year) /รายได้ผู้ปกครอง (ต่อปี)
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone" ng-model="account.parent_income__c" onkeyup="isNumber(this)">
+                                <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)">
+                                <label id='parentIncomeResult' style="font-color:red"></label>
                             </td>
                         </tr>
                         
@@ -491,20 +626,22 @@
                         
                         <tr>
                             <td align="right" class='CustomLayout1'>
-                                Name /ชื่อผู้ปกครอง (2)
+                                Parent Name(2) /ชื่อผู้ปกครอง (2)
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
                             	<input type="text" id="parent2" ng-model="account.parent_name_2__c" />
+                            	<label id='parent2Result' style="font-color:red"></label>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
-                                Telephone /เบอร์ติดต่อผู้ปกครอง (2)
+                                Parent Telephone(2) /เบอร์ติดต่อผู้ปกครอง (2)
                             </td>
                             <td> : </td>
                             <td>
                                 <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)">
+                                <label id='parentPhone2Result' style="font-color:red"></label>
                             </td>
                         </tr>
                         
