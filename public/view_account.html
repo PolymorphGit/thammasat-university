@@ -61,11 +61,15 @@
 			  if (validateEmail(myEmail)) {
 			    $("#result").text(myEmail + " is valid :)");
 			    $("#result").css("color", "green");
+			    
+			    return true;
 			  } else {
 			    $("#result").text(myEmail + " is not valid :(");
 			    $("#result").css("color", "red");
+			    
+			    return false;
 			  }
-			  return false;
+			  
 			}
 
 			$("#validate").bind("click", validate);
