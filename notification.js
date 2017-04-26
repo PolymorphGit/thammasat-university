@@ -139,18 +139,19 @@ function acceptClean(id, next)
 {
 	var to;
 	var message = 'ยืนยันทำความสะอาด  วันที่ ';
-	db.select("SELECT * FROM salesforce.WorkOrder WHERE SFID='" + id + "'")
+	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "'")
 	.then(function(results) {
-		for(var i = 0 ; i < results.length ; i++)
-		{
-			message +=  results[i].working_date__c + ', ';
-		}
-		db.select("SELECT * FROM salesforce.case WHERE SFID='" + results[0].caseid + "'")
+		console.log(results);
+		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {
-			to = results2[0].accountid
-			console.log('To:' + to + ' ,No:' + results2[0].casenumber + ' ,Subject:' + results2[0].subject + ', message:' + message);
+			to = results[0].accountid
+			for(var i = 0 ; i < results2.length ; i++)
+			{
+				message +=  results2[i].working_date__c + ', ';
+			}
+			console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
 			pusher.trigger(to, 'Accept Clean', {
-				No: results2[0].casenumber,
+				No: results[0].casenumber,
 				message: message
 			});
 			return true;
