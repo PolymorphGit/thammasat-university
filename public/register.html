@@ -14,7 +14,7 @@
 			id = matches[1];
 			
 			angular.element(document.getElementById('main')).scope().id = id;
-			angular.element(document.getElementById('main')).scope().getData(id);	
+			angular.element(document.getElementById('main')).scope().getData(id);
 	    }
 		</script>
 		
@@ -98,6 +98,10 @@
 
   			$(window).on('load', function () {
   			     alert('Alert after page load');
+  			     if($("#txt_parent_name__c").text=="null"){
+  			    	$("#txt_parent_name__c").text("")
+  			     }
+  			     
   			});
 
 
@@ -219,7 +223,7 @@
 											<input type="text" ng-model="lead.first_name_th__c">
 										</td>
 										<td>
-											<input type="text" ng-model="lead.last_name_th__c">
+											<input type="text" ng-model="lead.last_name_th__c" >
 											<label id="lbl_name_th__c"/>
 										</td>
 									</tr>
@@ -482,7 +486,7 @@
 							<td>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.parent_name__c">
+								<input type="text" ng-model="lead.parent_name__c"  id="txt_parent_name__c">
 							</td>
 						</tr>
 						<tr>
