@@ -12,7 +12,7 @@
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
 			//replaceTextboxValue();
-			clear();
+			//clear();
 	    }
 		
 	    function update(){
@@ -461,7 +461,7 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                            	<input type="text" id="parent" ng-model="account.parent_name__c" />
+                            	<input type="text" id="parent" ng-model="account.parent_name__c" onfocus="if(this.value=='null') this.value='';"/>
                             </td>
                         </tr>
                         <tr>
