@@ -214,7 +214,7 @@ function completeClean(id, next)
 	.catch(next);
 }
 
-function alllowCheckout(id, next)
+function allowCheckout(id, next)
 {
 	var to;
 	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
