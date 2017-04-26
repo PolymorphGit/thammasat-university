@@ -22,8 +22,10 @@
 	    function update(){
 	    	/*if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{*/
+   			if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
-	    	/*}*/
+   			}
+	    	//}
 	    }
 	    
 	    function loadTitle(){
@@ -90,6 +92,7 @@
 				
 				if(document.frm.fnametxt.myPhone=="")
 				{
+					alert("You must enter a Mobile No");
 					document.getElementById('mobileResult').innerHTML = "You must enter a Mobile No";
 					frm.myPhone.focus();
 				  	return(false);
