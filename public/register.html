@@ -63,22 +63,36 @@
 	        {
 	        	
 	        	var result =false;
-	        	//if no error return true
-	        	result=true;
+	        	var temp= document.getElementById("txtstudent");
+	        	var result = document.getElementById("lbl_student_id__c");
+	        	document.getElementById("lbl_student_id__c").innerHTML='';
+	        	
+	 			//alert('temp'+ temp.value);
+	 			if ((temp.value !='') && (temp.value.length == 10)) {
+	 				result=true;
+	 			}else{
+	 				result.innerHTML = 'Student Id cannot be null.';
+	 				result.style.color = 'red';
+	 			}
+	        	
 	        	return result;
+	        	
 	        }
 	        
 	        function ValidationEmail()
 	        {
 	        	
 	        	var result =false;
-	        	var temp= document.getElementById("myEmail");
-	        	alert('temp'+ temp.value);
+	        	var temp= document.getElementById("txtEmail");
+	        	var result = document.getElementById("lbl_email");
+	        	document.getElementById("lbl_email").innerHTML='';
+	        	
+	        	//alert('temp'+ temp.value);
 	        	 if (validateEmail(temp.value)) {
 	        	 	result=true;
 	        	 }else{
-	        	 	var result = document.getElementById("lbl_email");
-	        	 	result.innerHTML = 'Email not correct format.'
+	        	 	
+	        	 	result.innerHTML = 'Email not correct format.';
 	        	 	result.style.color = 'red';
 	        	 }
 	        	
@@ -121,7 +135,7 @@
   			}
         	
 
-
+		/*
   			$(window).on('load', function () {
   			     alert('Alert after page load');
   			     
@@ -134,7 +148,7 @@
   			     }
   			     
   			     
-  			});
+  			});*/
 
 
   			
@@ -333,7 +347,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								 <input type="text" ng-model="lead.email" id="myEmail">
+								 <input type="text" ng-model="lead.email" id="txtEmail">
 								 <label id="lbl_email"/>
 							</td>
 						</tr>
@@ -359,7 +373,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.student_id__c">
+								<input type="text" ng-model="lead.student_id__c" id="txtstudent" maxlenght="10">
 								<label id="lbl_student_id__c" />
 							</td>
 						</tr>
