@@ -190,7 +190,7 @@
 				
 				var parentPhone = document.getElementById("parentPhone");
 				alert(parentPhone);
-				if (parentPhone.val().length > 0) {
+				if (parentPhone == '') {
 					document.getElementById("parentPhoneResult").innerHTML = "You must enter a Parent Phone";
 					return false;
 				} else {
