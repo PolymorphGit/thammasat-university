@@ -191,7 +191,7 @@ exports.checkin = function(req, res, next){
 						{
 							enddate = today.getFullYear() + '-7-31';
 						}
-						db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "')")
+						db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "')")
 						.then(function(results4) {
 							console.log(results4);	
 							res.send("Success");
@@ -266,7 +266,7 @@ exports.checkout = function(req, res, next){
 				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
 				.then(function(results3) {
 					console.log(results3);	
-					db.select("UPDATE salesforce.Asset SET active__c=false WHERE SFID='" + results3[0].sfid + "' RETURNING *")
+					db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + new Date() + "' WHERE SFID='" + results3[0].sfid + "' RETURNING *")
 					.then(function(results4) {
 						console.log(results4);	
 						//res.json(results);
