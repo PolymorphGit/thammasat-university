@@ -223,7 +223,6 @@ function allowCheckout(id, next)
 		to = results[0].sfid;
 		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
 		pusher.trigger(to, 'Allow Checkout', {
-			No: results2[0].casenumber,
 			message: 'First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname + ' อนุญาติให้ทำการ Check-out ออกจากห้องพัก'
 		});
 		return true;
@@ -240,7 +239,6 @@ function rejectCheckout(id, next)
 		to = results[0].sfid;
 		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
 		pusher.trigger(to, 'Reject Checkout', {
-			No: results2[0].casenumber,
 			message: 'First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname + ' ไม่อนุญาติให้ทำการ Check-out ออกจากห้องพัก เนื่องจากค้างค่าใช้จ่าย'
 		});
 		return true;
