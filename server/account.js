@@ -183,11 +183,11 @@ exports.checkin = function(req, res, next){
 						var endDate = new Date(today.getFullYear(), 9, 1);
 						if(startDate < today && today < endDate)
 						{
-							enddate = '31.5.' + today.getFullYear();
+							enddate = today.getFullYear() + '-5-31';
 						}
 						else
 						{
-							enddate = '31.7.' + today.getFullYear();
+							enddate = today.getFullYear() + '-7-31';
 						}
 						db.select("INSERT INTO salesforce.Asset (accountId, product2id, UsageEndDate) VALUES ('" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "')")
 						.then(function(results4) {
