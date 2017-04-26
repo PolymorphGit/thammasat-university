@@ -189,7 +189,7 @@ exports.checkin = function(req, res, next){
 						{
 							enddate = '31.7.' + today.getFullYear();
 						}
-						db.select("INSERT INTO salesforce.Asset (AccountId, Product2, UsageEndDate) VALUES ('" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "')")
+						db.select("INSERT INTO salesforce.Asset (accountId, product2id, UsageEndDate) VALUES ('" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "')")
 						.then(function(results4) {
 							console.log(results4);	
 							res.send("Success");
