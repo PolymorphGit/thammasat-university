@@ -177,7 +177,7 @@
 				
 				var parent = document.forms["frm"]["parent"].value;
 				alert(parent);
-				if (parent.val().length > 0) {
+				if (parent == "") {
 					document.getElementById("parentResult").innerHTML = "You must enter a Parent Name";
 					return false;
 				} else {
