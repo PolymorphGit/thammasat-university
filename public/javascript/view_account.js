@@ -27,7 +27,10 @@ angular.module('accountApp', [])
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
+    	data[0].parent_name__c = data[0].parent_name__c == null || data[0].parent_name__c =='null' ? '' : data[0].parent_name__c;
+    	
     	$scope.account = data[0];
+    	
     })
     .error((data) => {
       console.log('Error: ' + data);
