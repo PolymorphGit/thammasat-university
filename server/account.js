@@ -260,11 +260,21 @@ exports.checkout = function(req, res, next){
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
 		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
+			.then(function(results2) {
+				console.log(results2);
 				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
-				
-				console.log(results);	
-				res.send("Success");
+				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
+				.then(function(results3) {
+					console.log(results3);	
+					db.select("UPDATE salesforce.Asset SET active__c=false WHERE SFID='" + results3[0].sfid + "' RETURNING *")
+					.then(function(results4) {
+						console.log(results4);	
+						//res.json(results);
+						res.send("Success");
+					})
+				    .catch(next);
+				})
+			    .catch(next);
 			})
 		    .catch(next);
 		});
