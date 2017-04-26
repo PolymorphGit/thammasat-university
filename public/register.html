@@ -98,9 +98,15 @@
 
   			$(window).on('load', function () {
   			     alert('Alert after page load');
-  			     if($("#txt_parent_name__c").text=="null"){
-  			    	$("#txt_parent_name__c").text("")
+  			     
+  			   alert('val = '+$("#txt_parent_name__c").val() );
+  			     
+  			     if($("#txt_parent_name__c").val()=="null"){
+  			    	alert('1' );
+  			    	$("#txt_parent_name__c").text("");
+  			    	alert('2' );
   			     }
+  			     
   			     
   			});
 
