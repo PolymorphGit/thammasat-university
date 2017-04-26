@@ -149,7 +149,7 @@ function acceptClean(id, next)
 			for(var i = 0 ; i < results2.length ; i++)
 			{
 				date = new Date(results2[i].working_date__c)
-				message +=  date.getDate() + ', ';
+				message +=  date.toDateString() + ', ';
 			}
 			console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
 			pusher.trigger(to, 'Accept Clean', {
