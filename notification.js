@@ -220,7 +220,7 @@ function allowCheckout(id, next)
 	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
 	.then(function(results) {
 		console.log(results);
-		to = results[0].accountid;
+		to = results[0].sfid;
 		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
 		pusher.trigger(to, 'Allow Checkout', {
 			No: results2[0].casenumber,
@@ -237,7 +237,7 @@ function rejectCheckout(id, next)
 	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
 	.then(function(results) {
 		console.log(results);
-		to = results[0].accountid;
+		to = results[0].sfid;
 		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
 		pusher.trigger(to, 'Reject Checkout', {
 			No: results2[0].casenumber,
