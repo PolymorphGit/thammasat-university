@@ -176,7 +176,7 @@ function rejectClean(id, next)
 			to = results[0].accountid
 			for(var i = 0 ; i < results2.length ; i++)
 			{
-				date = new Date(results2[i].working_date__c)
+				date = new Date(results2[i].working_date__c);
 				message +=  date.toDateString() + ', ';
 			}
 			console.log('To:' + to + ' ,No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
@@ -193,7 +193,25 @@ function rejectClean(id, next)
 
 function completeClean(id, next)
 {
-	
+	var to;
+	var date;
+	db.select("SELECT * FROM salesforce.WorkOrder WHERE SFID='" + id + "'")
+	.then(function(results) {
+		console.log(results);
+		db.select("SELECT * FROM salesforce.Case WHERE SFID='" + results[0].caseid + "'")
+		.then(function(results2) {
+			to = results2[0].accountid;
+			date = new Date(results[0].working_date__c);
+			console.log('To:' + to + ' ,No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
+			pusher.trigger(to, 'Complete Clean', {
+				No: results2[0].casenumber,
+				message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c
+			});
+			return true;
+		})
+		.catch(next);
+	})
+	.catch(next);
 }
 
 function alllowCheckout(id, next)
