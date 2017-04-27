@@ -20,20 +20,20 @@
 	    }
 		
 	    function update(){
-    		alert("validate() : " + validate());
+    		/*alert("validate() : " + validate());
     		alert("validateMobile() : " + validateMobile());
     		alert("validateCongenital() : " + validateCongenital());
     		alert("validateStreet() : " + validateStreet());
     		alert("validateDistrict() : " + validateDistrict());
     		alert("validateState() : " + validateState());
     		alert("validatePostcode() : " + validatePostcode());
-    		alert("validateCountry() : " + validateCountry());
+    		alert("validateCountry() : " + validateCountry());*/
     		alert("validateParent() : " + validateParent());
     		alert("validateParentPhone() : " + validateParentPhone());
     		alert("validateParentIncome() : " + validateParentIncome());
     		alert("validateParent2() : " + validateParent2());
     		alert("validateParentPhone2() : " + validateParentPhone2());
-	    	if (validate() && validateMobile())// && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
+	    	if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
