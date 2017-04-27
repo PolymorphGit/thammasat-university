@@ -20,14 +20,14 @@
 	    }
 		
 	    function update(){
-    		/*alert("validate() : " + validate());
+    		alert("validate() : " + validate());
     		alert("validateMobile() : " + validateMobile());
     		alert("validateCongenital() : " + validateCongenital());
     		alert("validateStreet() : " + validateStreet());
     		alert("validateDistrict() : " + validateDistrict());
     		alert("validateState() : " + validateState());
     		alert("validatePostcode() : " + validatePostcode());
-    		alert("validateCountry() : " + validateCountry());*/
+    		alert("validateCountry() : " + validateCountry());
     		alert("validateParent() : " + validateParent());
     		alert("validateParentPhone() : " + validateParentPhone());
     		alert("validateParentIncome() : " + validateParentIncome());
@@ -98,7 +98,7 @@
 					*/
 					return true;
 				} else {
-					$("#mobileResult").text(myPhone + " is not valid :(");
+					$("#mobileResult").text("Mobile No. is required");
 					$("#mobileResult").css("color", "red");
 					    
 					return false;
@@ -117,7 +117,7 @@
 					*/
 					return true;
 				} else {
-					$("#diseaseResult").text(disease + " is not valid :(");
+					$("#diseaseResult").text("Congenital disease is required");
 					$("#diseaseResult").css("color", "red");
 					    
 					return false;
@@ -136,7 +136,7 @@
 					*/
 					return true;
 				} else {
-					$("#streetResult").text(street + " is not valid :(");
+					$("#streetResult").text("No. / Soi / Road is required");
 					$("#streetResult").css("color", "red");
 					    
 					return false;
@@ -155,7 +155,7 @@
 					*/
 					return true;
 				} else {
-					$("#cityResult").text(city + " is not valid :(");
+					$("#cityResult").text("District is required");
 					$("#cityResult").css("color", "red");
 					    
 					return false;
@@ -174,7 +174,7 @@
 					*/
 					return true;
 				} else {
-					$("#stateResult").text(state + " is not valid :(");
+					$("#stateResult").text("Province is required");
 					$("#stateResult").css("color", "red");
 					    
 					return false;
@@ -193,7 +193,7 @@
 					*/
 					return true;
 				} else {
-					$("#postcodeResult").text(postcode + " is not valid :(");
+					$("#postcodeResult").text("Postal Code is required");
 					$("#postcodeResult").css("color", "red");
 					    
 					return false;
@@ -212,7 +212,7 @@
 					*/
 					return true;
 				} else {
-					$("#countryResult").text(country + " is not valid :(");
+					$("#countryResult").text("Country is required");
 					$("#countryResult").css("color", "red");
 					    
 					return false;
@@ -231,7 +231,7 @@
 					*/
 					return true;
 				} else {
-					$("#parentResult").text(parent + " is not valid :(");
+					$("#parentResult").text("Parent Name is required");
 					$("#parentResult").css("color", "red");
 					    
 					return false;
@@ -250,7 +250,7 @@
 					*/
 					return true;
 				} else {
-					$("#parentPhoneResult").text(parentPhone + " is not valid :(");
+					$("#parentPhoneResult").text("Parent Phone is required");
 					$("#parentPhoneResult").css("color", "red");
 					    
 					return false;
@@ -269,7 +269,7 @@
 					*/
 					return true;
 				} else {
-					$("#parentIncomeResult").text(parentIncome + " is not valid :(");
+					$("#parentIncomeResult").text("Parent Income is required");
 					$("#parentIncomeResult").css("color", "red");
 					    
 					return false;
@@ -288,7 +288,7 @@
 					*/
 					return true;
 				} else {
-					$("#parent2Result").text(parent2 + " is not valid :(");
+					$("#parent2Result").text("Parent Name(2) is required");
 					$("#parent2Result").css("color", "red");
 					    
 					return false;
@@ -307,7 +307,7 @@
 					*/
 					return true;
 				} else {
-					$("#parentPhone2Result").text(parentPhone2 + " is not valid :(");
+					$("#parentPhone2Result").text("Parent Phone(2) is required");
 					$("#parentPhone2Result").css("color", "red");
 					    
 					return false;
