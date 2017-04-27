@@ -33,7 +33,7 @@
     		alert("validateParentIncome() : " + validateParentIncome());
     		alert("validateParent2() : " + validateParent2());
     		alert("validateParentPhone2() : " + validateParentPhone2());
-	    	if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
+	    	if (validate()// && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
@@ -87,7 +87,7 @@
 	            }
 	        }
 			
-			function validateMobile() {
+			/*function validateMobile() {
 				alert("document.frm.myPhone : " + document.frm.myPhone);
 				if(document.frm.myPhone=="")
 				{
@@ -108,9 +108,9 @@
 					return true;
 				}*/
 			
-			}
+			//}
 			
-			function validateCongenital() {
+			/*function validateCongenital() {
 				
 				if(document.frm.disease=="")
 				{
@@ -251,7 +251,7 @@
 					return (true);
 				}
 				
-			}
+			}*/
 			
 		</script>
 		
