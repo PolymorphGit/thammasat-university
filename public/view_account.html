@@ -88,188 +88,232 @@
 	        }
 			
 			function validateMobile() {
-				  $("#mobileResult").text("");
-				  var myPhone = $("#myPhone").val();
-				  if ($.trim($('#myPhone').val()) != '') {
-				    /*$("#result").text(myEmail + " is valid :)");
-				    $("#result").css("color", "green");
-				    */
-				    return true;
-				  } else {
-				  
-				    $("#mobileResult").text(myPhone + " is not valid :(");
-				    $("#mobileResult").css("color", "red");
-				    
-				    return false;
-				  }
-				  
-				}
-			
-			/*function validateMobile() {
-				alert("document.frm.myPhone : " + document.frm.myPhone);
-				if(document.frm.myPhone=="")
-				{
-					alert("You must enter a Mobile No");
-					document.getElementById('mobileResult').innerHTML = "You must enter a Mobile No";
-					frm.myPhone.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
-				/*
-				var mobile = document.forms["frm"]["myPhone"].value;
 				
-				if (mobile == "") {
-					document.getElementById("mobileResult").innerHTML = "You must enter a Mobile No";
-					return false;
-				} else {
+				$("#mobileResult").text("");
+				var myPhone = $("#myPhone").val();
+				
+				if ($.trim($('#myPhone').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
 					return true;
-				}*/
-			
-			//}
-			
-			/*function validateCongenital() {
-				
-				if(document.frm.disease=="")
-				{
-					document.getElementById('diseaseResult').innerHTML = "You must enter a Congenital disease";
-					frm.disease.focus();
-				  	return(false);
 				} else {
-					return (true);
+					$("#mobileResult").text(myPhone + " is not valid :(");
+					$("#mobileResult").css("color", "red");
+					    
+					return false;
 				}
+				  
+			}
+			
+			function validateCongenital() {
 				
+				$("#diseaseResult").text("");
+				var myPhone = $("#disease").val();
+				
+				if ($.trim($('#disease').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#diseaseResult").text(disease + " is not valid :(");
+					$("#diseaseResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateStreet() {
 				
-				if(document.frm.street=="")
-				{
-					document.getElementById('streetResult').innerHTML = "You must enter a No. / Soi / Road";
-					frm.street.focus();
-				  	return(false);
+				$("#streetResult").text("");
+				var myPhone = $("#street").val();
+				
+				if ($.trim($('#street').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
 				} else {
-					return (true);
+					$("#streetResult").text(street + " is not valid :(");
+					$("#streetResult").css("color", "red");
+					    
+					return false;
 				}
-							
+				  
 			}
 			
 			function validateDistrict() {
 				
-				if(document.frm.city=="")
-				{
-					document.getElementById('cityResult').innerHTML = "You must enter a District";
-					frm.city.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#cityResult").text("");
+				var myPhone = $("#city").val();
 				
+				if ($.trim($('#city').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#cityResult").text(city + " is not valid :(");
+					$("#cityResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateState() {
 				
-				if(document.frm.state=="")
-				{
-					document.getElementById('stateResult').innerHTML = "You must enter a Province";
-					frm.state.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#stateResult").text("");
+				var myPhone = $("#state").val();
 				
+				if ($.trim($('#state').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#stateResult").text(state + " is not valid :(");
+					$("#stateResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validatePostcode() {
 				
-				if(document.frm.postcode=="")
-				{
-					document.getElementById('postcodeResult').innerHTML = "You must enter a Post Code";
-					frm.postcode.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#postcodeResult").text("");
+				var myPhone = $("#postcode").val();
 				
+				if ($.trim($('#postcode').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#postcodeResult").text(postcode + " is not valid :(");
+					$("#postcodeResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateCountry() {
 				
-				if(document.frm.country=="")
-				{
-					document.getElementById('countryResult').innerHTML = "You must enter a Country";
-					frm.country.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#countryResult").text("");
+				var myPhone = $("#country").val();
 				
+				if ($.trim($('#country').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#countryResult").text(country + " is not valid :(");
+					$("#countryResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateParent() {
 				
-				if(document.frm.parent=="")
-				{
-					document.getElementById('parentResult').innerHTML = "You must enter a Parent Name";
-					frm.parent.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#parentResult").text("");
+				var myPhone = $("#parent").val();
 				
+				if ($.trim($('#parent').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentResult").text(parent + " is not valid :(");
+					$("#parentResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateParentPhone() {
 				
-				if(document.frm.parentPhone=="")
-				{
-					document.getElementById('parentPhoneResult').innerHTML = "You must enter a Parent Phone";
-					frm.parentPhone.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#parentPhoneResult").text("");
+				var myPhone = $("#parentPhone").val();
 				
+				if ($.trim($('#parentPhone').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentPhoneResult").text(parentPhone + " is not valid :(");
+					$("#parentPhoneResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateParentIncome() {
 				
-				if(document.frm.parentIncome=="")
-				{
-					document.getElementById('parentIncomeResult').innerHTML = "You must enter a Parent Income";
-					frm.parentIncome.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#parentIncomeResult").text("");
+				var myPhone = $("#parentIncome").val();
 				
+				if ($.trim($('#parentIncome').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentIncomeResult").text(parentIncome + " is not valid :(");
+					$("#parentIncomeResult").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateParent2() {
 				
-				if(document.frm.parent2=="")
-				{
-					document.getElementById('parent2Result').innerHTML = "You must enter a Parent Name(2)";
-					frm.parent2.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#parent2Result").text("");
+				var myPhone = $("#parent2").val();
 				
+				if ($.trim($('#parent2').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parent2Result").text(parent2 + " is not valid :(");
+					$("#parent2Result").css("color", "red");
+					    
+					return false;
+				}
+				  
 			}
 			
 			function validateParentPhone2() {
 				
-				if(document.frm.parentPhone2=="")
-				{
-					document.getElementById('parentPhone2Result').innerHTML = "You must enter a Parent Phone(2)";
-					frm.parentPhone2.focus();
-				  	return(false);
-				} else {
-					return (true);
-				}
+				$("#parentPhone2Result").text("");
+				var myPhone = $("#parentPhone2").val();
 				
-			}*/
+				if ($.trim($('#parentPhone2').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentPhone2Result").text(parentPhone2 + " is not valid :(");
+					$("#parentPhone2Result").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
 			
 		</script>
 		
@@ -424,7 +468,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="myPhone" ng-model="account.personmobilephone" onkeyup="isNumber(this)" required>
+                                <input type="text" id="myPhone" maxlength="10" ng-model="account.personmobilephone" onkeyup="isNumber(this)" required>
                                 <label id='mobileResult' style="color:red"></label>
                             </td>
                         </tr>
