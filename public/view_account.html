@@ -20,6 +20,19 @@
 	    }
 		
 	    function update(){
+    		alert(validate());
+    		alert(validateMobile());
+    		alert(validateCongenital());
+    		alert(validateStreet());
+    		alert(validateDistrict());
+    		alert(validateState());
+    		alert(validatePostcode());
+    		alert(validateCountry());
+    		alert(validateParent());
+    		alert(validateParentPhone());
+    		alert(validateParentIncome());
+    		alert(validateParent2());
+    		alert(validateParentPhone2());
 	    	if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
@@ -40,21 +53,7 @@
 		</script>
 		
 		<script type="text/javascript">
-    				
-			function checkNum(value) {
-				
-				if (isNaN(parseFloat(value))) {
-					//alert("Please output number again.");
-					return "";
-				}
-				
-				return value;
-			}
-						
-			function redirect() {
-				document.forms[0].target = "_blank";
-			}
-			
+    		
 			function validateEmail(myEmail) {
 			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			  //alert(re.test(myEmail));
