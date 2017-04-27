@@ -94,7 +94,15 @@ exports.update = function(req, res, next) {
 	query += "parent_name__c='" + req.body.parent_name__c + "', ";
 	query += "parent_phone__c='" + req.body.parent_phone__c + "', ";
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
-	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "' ";
+	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "', ";
+	//New Field
+	query += "Scholarship__c='" + req.body.Scholarship__c + "', ";
+	query += "Scholarship_Name__c='" + req.body.Scholarship_Name__c + "', ";
+	query += "Disabled__c='" + req.body.Disabled__c + "', ";
+	query += "Birthdate__c='" + req.body.Birthdate__c + "', ";
+	query += "Parent_Income__c='" + req.body.Parent_Income__c + "', ";
+	query += "Year__c='" + req.body.Year__c + "', ";
+	query += "Term__c='" + req.body.Term__c + "' ";
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
 	.then(function(results) {

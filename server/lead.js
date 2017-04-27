@@ -16,14 +16,17 @@ exports.createLead = function(req, res, next) {
 	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title_th__c, ";
 	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
-	query += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c) VALUES ('"; 
+	query += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c, Scholarship__c,";
+	query += " Scholarship_Name__c, Disabled__c, Birthdate__c, Parent_Income__c, Year__c, Term__c) VALUES ('"; 
 	query += req.body.identification_number__c + "', '" + req.body.passport_number__c + "', '" + req.body.gender__c + "', '";
 	query += req.body.title_th__c + "', '" + req.body.first_name_th__c + "', '" + req.body.last_name_th__c + "', '";
 	query += req.body.salutation + "', '" + req.body.firstname + "', '" + req.body.lastname + "', '" + req.body.mobilephone + "', '";
 	query += req.body.email + "', '" + req.body.congenital_disease__c + "', '" + req.body.student_id__c + "', '" + req.body.faculty__c + "', '";
 	query += req.body.request_zone__c + "', '" + req.body.street + "', '" + req.body.city + "', '";
 	query += req.body.state + "', '" + req.body.postalcode + "', '" + req.body.country + "', '" + req.body.parent_name__c + "', '";
-	query += req.body.parent_phone__c + "') RETURNING *";
+	query += req.body.parent_phone__c + "', '" + req.body.Scholarship__c + "', '" + req.body.Scholarship_Name__c + "', '";
+	query += req.body.Disabled__c + "', '" + req.body.Birthdate__c + "', '" + req.body.Parent_Income__c + "', '";
+	query += req.body.Year__c + "', '" + req.body.Term__c + "') RETURNING *";
 	db.select(query)
 	.then(function(results) {
 		setTimeout(function () {
@@ -75,7 +78,15 @@ exports.updateLead = function(req, res, next) {
 	query += "parent_name__c='" + req.body.parent_name__c + "', ";
 	query += "parent_phone__c='" + req.body.parent_phone__c + "', ";
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
-	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "' ";
+	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "', ";
+	//New Field
+	query += "Scholarship__c='" + req.body.Scholarship__c + "', ";
+	query += "Scholarship_Name__c='" + req.body.Scholarship_Name__c + "', ";
+	query += "Disabled__c='" + req.body.Disabled__c + "', ";
+	query += "Birthdate__c='" + req.body.Birthdate__c + "', ";
+	query += "Parent_Income__c='" + req.body.Parent_Income__c + "', ";
+	query += "Year__c='" + req.body.Year__c + "', ";
+	query += "Term__c='" + req.body.Term__c + "' ";
 	query += " WHERE SFID='" + id + "' RETURNING *";
 	db.select(query)
 	.then(function(results) {
