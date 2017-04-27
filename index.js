@@ -69,7 +69,7 @@ app.post('/openclean', jsonParser, clean.openClean);
 app.get('/checkindetail', account.checkinDetail);
 app.get('/checkin', account.checkin);
 app.post('/requestcheckout', account.RequestCheckout);
-app.get('/checkout', account.checkout);
+app.get('/checkout', urlencodedParser, account.checkout);
 
 app.post('/notification', noti.push);
 

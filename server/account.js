@@ -222,19 +222,59 @@ exports.checkin = function(req, res, next){
 };
 
 exports.RequestCheckout = function(req, res, next) {
-	var body = '';
-	req.on('data', function(chunk) 
-	{
-		try { body += chunk; }
-		catch(ex) { res.send("Request is invalid format."); }
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	//console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			try
+			{
+				//console.log(JSON.parse(chunk));	
+			    str += chunk;
+			}
+			catch(ex)
+			{
+				res.send("Invalid access token");
+			}
+		});
+		results.on('end', function() {
+			//TODO: Open Case
+			var obj = JSON.parse(str);
+			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+			.then(function(results) {
+				db.select("SELECT * FROM salesforce.RecordType WHERE name='Checkout'")
+				.then(function(results2) {
+					var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, Checkout_Date__c) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + req.body.checkout_date + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('success');
+						})
+					    .catch(next);
+				})
+			    .catch(next);
+			})
+		    .catch(next);
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
 	});
-	req.on('end', function() 
-	{
-		console.log(body);
-		body = JSON.parse(body);
-		//Open Case type checkout
-		res.json(body);
-	});
+	httprequest.end();
 }
 
 exports.checkout = function(req, res, next){
