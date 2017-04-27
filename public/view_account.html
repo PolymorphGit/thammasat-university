@@ -33,7 +33,7 @@
     		alert("validateParentIncome() : " + validateParentIncome());
     		alert("validateParent2() : " + validateParent2());
     		alert("validateParentPhone2() : " + validateParentPhone2());
-	    	if (validate())// && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
+	    	if (validate() && validateMobile())// && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
@@ -86,6 +86,24 @@
 	                field.value = field.value.replace(/[^0-9.]/g, "");
 	            }
 	        }
+			
+			function validateMobile() {
+				  $("#mobileResult").text("");
+				  var myPhone = $("#myPhone").val();
+				  if ($.trim($('#myPhone').val()) != '') {
+				    /*$("#result").text(myEmail + " is valid :)");
+				    $("#result").css("color", "green");
+				    */
+				    return true;
+				  } else {
+				  
+				    $("#result").text(myPhone + " is not valid :(");
+				    $("#result").css("color", "red");
+				    
+				    return false;
+				  }
+				  
+				}
 			
 			/*function validateMobile() {
 				alert("document.frm.myPhone : " + document.frm.myPhone);
