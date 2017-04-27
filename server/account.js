@@ -92,7 +92,7 @@ exports.update = function(req, res, next) {
 	query += "billingpostalcode='" + req.body.billingpostalcode + "', ";
 	query += "billingcountry='" + req.body.billingcountry + "', ";
 	query += "parent_name__c='" + req.body.parent_name__c + "', ";
-	query += "parent_phone__c='" + req.body.parent_phone__c + "' ";
+	query += "parent_phone__c='" + req.body.parent_phone__c + "', ";
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
 	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "' ";
 	query += " WHERE SFID='" + id + "'";
