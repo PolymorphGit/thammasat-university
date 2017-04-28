@@ -237,7 +237,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<select ng-model="lead.gender__c" ng-options="gender for (gender, zone) in zone"></select>
+								<select ng-model="lead.gender__c" ng-options="g for g in gender"></select>
 								<label id="lbl_gender__c"/>
 							</td>
 						</tr>
@@ -429,7 +429,7 @@
 								<select id="state"
 							    ng-model="lead.request_zone__c"
 							    ng-disabled="!lead.gender__c"
-							    ng-options="z for z in lead.gender__c" />
+							    ng-options="z for z in zones" />
 							    <label id="lbl_request_zone__c" />
 							</td>
 						</tr>
