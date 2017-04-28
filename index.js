@@ -46,6 +46,7 @@ app.get('/userinfo/:id', account.UserInfobyId);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 app.get('/getroomate', account.getRoommate);
 app.get('/logout', account.logout);
+app.post('/renew', urlencodedParser, account.renew);
 
 app.get('/getroommate/:id', roommate.getAccountRoommate);
 app.get('/createroommate', roommate.createRoommate);
