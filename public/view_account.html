@@ -20,6 +20,7 @@
 	    }
 		
 	    function update(){
+	    	alert("Before Update : ");
     		alert("validate() : " + validate());
     		alert("validateMobile() : " + validateMobile());
     		alert("validateCongenital() : " + validateCongenital());
@@ -31,9 +32,21 @@
     		alert("validateParent() : " + validateParent());
     		alert("validateParentPhone() : " + validateParentPhone());
     		alert("validateParentIncome() : " + validateParentIncome());
-    		alert("validateParent2() : " + validateParent2());//&& validateCongenital() 
+    		alert("validateParent2() : " + validateParent2());
     		alert("validateParentPhone2() : " + validateParentPhone2());
-	    	if (validate() && validateMobile() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
+    		
+	    	if (validate() 
+	    		&& validateMobile() 
+	    		&& validateStreet() 
+	    		&& validateDistrict() 
+	    		&& validateState() 
+	    		&& validatePostcode() 
+	    		&& validateCountry() 
+	    		&& validateParent() 
+	    		&& validateParentPhone() 
+	    		&& validateParentIncome() 
+	    		&&  validateParent2() 
+	    		&& validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
