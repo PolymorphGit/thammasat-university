@@ -182,34 +182,41 @@ exports.checkin = function(req, res, next){
 			.then(function(results2) {
 				console.log(results2);
 				//TODO: Query Room__c on account and Create Asset
-				db.select("SELECT * FROM salesforce.Account WHERE SFID='" + results2[0].sfid + "'")
-				.then(function(results3) {
-					console.log(results3);	
-					if(results3.length > 0)
-					{
-						var enddate = '';
-						var today = new Date();
-						var startDate = new Date(today.getFullYear(), 1, 1);
-						var endDate = new Date(today.getFullYear(), 5, 31);
-						var startDate2 = new Date(today.getFullYear(), 8, 1);
-						var endDate2 = new Date(today.getFullYear(), 12, 31);
-						if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+				if(results2.length > 0)
+				{
+					db.select("SELECT * FROM salesforce.Account WHERE SFID='" + results2[0].sfid + "'")
+					.then(function(results3) {
+						console.log(results3);	
+						if(results3.length > 0)
 						{
-							enddate = today.getFullYear() + '-5-31';
+							var enddate = '';
+							var today = new Date();
+							var startDate = new Date(today.getFullYear(), 1, 1);
+							var endDate = new Date(today.getFullYear(), 5, 31);
+							var startDate2 = new Date(today.getFullYear(), 8, 1);
+							var endDate2 = new Date(today.getFullYear(), 12, 31);
+							if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+							{
+								enddate = today.getFullYear() + '-5-31';
+							}
+							else
+							{
+								enddate = today.getFullYear() + '-7-31';
+							}
+							db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "', true)")
+							.then(function(results4) {
+								console.log(results4);	
+								res.send("Success");
+							})
+						    .catch(next);
 						}
-						else
-						{
-							enddate = today.getFullYear() + '-7-31';
-						}
-						db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "', true)")
-						.then(function(results4) {
-							console.log(results4);	
-							res.send("Success");
-						})
-					    .catch(next);
-					}
-				})
-			    .catch(next);
+					})
+				    .catch(next);
+				}
+				else
+				{
+					res.send("User can't Login. Please contact staff.");
+				}
 			})
 		    .catch(next);
 		});
