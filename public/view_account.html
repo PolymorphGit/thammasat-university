@@ -15,6 +15,7 @@
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
+			GetFormattedDate();
 			//replaceTextboxValue();
 			//clear();
 	    }
