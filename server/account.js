@@ -100,7 +100,10 @@ exports.update = function(req, res, next) {
 	console.log(Scholarship);
 	console.log(req.body.scholarship__c);
 	query += "Scholarship__c=" + Scholarship + ", ";
-	query += "Scholarship_Name__c='" + req.body.scholarship_name__c + "', ";
+	if(req.body.scholarship_name__c)
+	{
+		query += "Scholarship_Name__c='" + req.body.scholarship_name__c + "', ";
+	}
 	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
 	query += "Disabled__c=" + Disable + ", ";
 	var Birthday = '1990-7-2';
