@@ -10,8 +10,12 @@ angular.module('select_roommateApp', [])
 		$http.get('../userinfo/' + accountId)
 		.success((data) => {
 			console.log(data);
+			alert(data[0].secondary__c);
 			if(data[0].secondary__c)
-			$scope.account = data[0];
+			{
+				alert("Pass");
+				$scope.account = data[0];
+			}
 		})
 		.error((data) => {
 			console.log('Error: ' + data);
