@@ -31,9 +31,9 @@
     		alert("validateParent() : " + validateParent());
     		alert("validateParentPhone() : " + validateParentPhone());
     		alert("validateParentIncome() : " + validateParentIncome());
-    		alert("validateParent2() : " + validateParent2());
+    		alert("validateParent2() : " + validateParent2());&& validateCongenital() 
     		alert("validateParentPhone2() : " + validateParentPhone2());*/
-	    	if (validate() && validateMobile() && validateCongenital() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
+	    	if (validate() && validateMobile() && validateStreet() && validateDistrict() && validateState() && validatePostcode() && validateCountry() && validateParent() && validateParentPhone() && validateParentIncome() &&  validateParent2() && validateParentPhone2())
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
@@ -106,7 +106,7 @@
 				  
 			}
 			
-			function validateCongenital() {
+			/*function validateCongenital() {
 				
 				$("#diseaseResult").text("");
 				var myPhone = $("#disease").val();
@@ -123,7 +123,7 @@
 					return false;
 				}
 				  
-			}
+			}*/
 			
 			function validateStreet() {
 				
@@ -481,6 +481,36 @@
                             <td>
                                  <input type="text" id="myEmail" ng-model="account.personemail">
                                  <label id='result'></label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Scholarship /นักศึกษาทุน
+                            </td>
+                            <td> : </td>
+                            <td>
+                                 <label id="scholarship">{{ account.scholarship__c }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Scholarship Name /ชื่อทุนการศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                                 <label id="scholarship name">{{ account.scholarship_name__c }}</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="right">
+                                Disabled /ทุพพลภาพ
+                            </td>
+                            <td> : </td>
+                            <td>
+                                 <label id="disabled">{{ account.disabled__c }}</label>
                             </td>
                         </tr>
                         
