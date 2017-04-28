@@ -16,10 +16,13 @@ angular.module('leadApp', [])
   $scope.$watch('lead.gender__c', function(newVal) {
       if (newVal)
       {
+    	  alert($scope.lead.gender__c);
     	  for(var z in $scope.zone)
     	  {
+    		  alert(z.Gender);
     		  if(z.Gender == $scope.lead.gender__c)
     		  {
+    			alert(z.zone);
     	  		$scope.zones = z.zones;
     		  }
     	  }
