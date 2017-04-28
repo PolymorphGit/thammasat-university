@@ -96,12 +96,12 @@ exports.update = function(req, res, next) {
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
 	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "', ";
 	//New Field
-	var Scholarship = (req.body.Scholarship__c == 'undefined' ? 'false' : req.body.Scholarship__c);
+	var Scholarship = (req.body.Scholarship__c == 'undefined' || req.body.Scholarship__c != null ? 'false' : req.body.Scholarship__c);
 	console.log(Scholarship);
 	console.log(req.body.Scholarship__c);
 	query += "Scholarship__c=" + Scholarship + ", ";
 	query += "Scholarship_Name__c='" + req.body.Scholarship_Name__c + "', ";
-	var Disable = req.body.Disabled__c == 'undefined' ? 'false' : req.body.Disabled__c;
+	var Disable = req.body.Disabled__c == 'undefined' || req.body.Disabled__c != null ? 'false' : req.body.Disabled__c;
 	query += "Disabled__c='" + Disable + "', ";
 	query += "Birthdate__c='" + req.body.Birthdate__c + "', ";
 	query += "Parent_Income__c='" + req.body.Parent_Income__c + "', ";
