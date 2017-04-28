@@ -3,7 +3,6 @@ angular.module('accountApp', [])
   $scope.account = {
 		 
   };
-  
   $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
