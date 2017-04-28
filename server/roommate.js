@@ -52,6 +52,10 @@ exports.createRoommate = function(req, res, next) {
 					})
 				    .catch(next);
 				}
+				else
+				{
+					res.json("This Student already have roommate.");
+				}
 			})
 		    .catch(next);
 		}
@@ -107,6 +111,10 @@ exports.updateRoommate = function(req, res, next) {
 					    .catch(next);
 					})	
 				    .catch(next);
+				}
+				else
+				{
+					res.json("This Student already have roommate.");
 				}
 			})	
 		    .catch(next);

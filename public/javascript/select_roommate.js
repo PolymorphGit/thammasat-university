@@ -69,6 +69,10 @@ angular.module('select_roommateApp', [])
 				delete $scope.roommate.splice(index, 1);
 				$scope.roommate.push(data[0]);
 			}
+			else if(data != "")
+			{
+				$scope.message = data;
+			}
 		})
 		.error((data) => {
 			console.log('Error: ' + data);
@@ -102,6 +106,10 @@ angular.module('select_roommateApp', [])
 			if(data != "Not Found Account")
 			{
 				record =  data[0];
+			}
+			else if(data != "")
+			{
+				$scope.message = data;
 			}
 		})
 		.error((data) => {
