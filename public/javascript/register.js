@@ -17,15 +17,16 @@ angular.module('leadApp', [])
       if (newVal)
       {
     	  alert($scope.lead.gender__c);
-    	  for(var i = 1 ; i < $scope.zone.length ; i++)
-    	  {
-    		  alert($scope.lead[i].Gender);
-    		  if($scope.lead[i].Gender == $scope.lead.gender__c)
+    	  angular.forEach($scope.zone , function(value)
+	      {
+    		  alert(value.Gender);
+    		  
+    		  if(value.Gender == $scope.lead.gender__c)
     		  {
-    			alert($scope.lead[i].zones);
-    	  		$scope.zones = $scope.lead[i].zones;
+    			alert(value.zones);
+    	  		$scope.zones = value.zones;
     		  }
-    	  }
+	      });
       }
   });
   
