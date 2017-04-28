@@ -17,13 +17,13 @@ angular.module('leadApp', [])
       if (newVal)
       {
     	  alert($scope.lead.gender__c);
-    	  for(var z in $scope.zone)
+    	  for(var i = 1 ; i < $scope.zone.length ; i++)
     	  {
-    		  alert(z.Gender);
-    		  if(z.Gender == $scope.lead.gender__c)
+    		  alert($scope.lead[i].Gender);
+    		  if($scope.lead[i].Gender == $scope.lead.gender__c)
     		  {
-    			alert(z.zone);
-    	  		$scope.zones = z.zones;
+    			alert($scope.lead[i].zones);
+    	  		$scope.zones = $scope.lead[i].zones;
     		  }
     	  }
       }
