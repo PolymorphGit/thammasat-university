@@ -178,7 +178,7 @@ exports.checkin = function(req, res, next){
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
+		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' and renew__c=true RETURNING *")
 			.then(function(results2) {
 				console.log(results2);
 				//TODO: Query Room__c on account and Create Asset
