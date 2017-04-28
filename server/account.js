@@ -96,17 +96,18 @@ exports.update = function(req, res, next) {
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
 	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "', ";
 	//New Field
-	var Scholarship = (req.body.Scholarship__c ? req.body.Scholarship__c : 'false');
+	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
 	console.log(Scholarship);
-	console.log(req.body.Scholarship__c);
+	console.log(req.body.scholarship__c);
 	query += "Scholarship__c=" + Scholarship + ", ";
-	query += "Scholarship_Name__c='" + req.body.Scholarship_Name__c + "', ";
-	var Disable = (req.body.Disabled__c ? req.body.Disabled__c : 'false');
+	query += "Scholarship_Name__c='" + req.body.scholarship_name__c + "', ";
+	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
 	query += "Disabled__c=" + Disable + ", ";
-	query += "Birthdate__c='" + req.body.Birthdate__c + "', ";
-	query += "Parent_Income__c='" + req.body.Parent_Income__c + "', ";
-	query += "Year__c='" + req.body.Year__c + "', ";
-	query += "Term__c='" + req.body.Term__c + "' ";
+	var Birthday = '1990-7-2';
+	query += "Birthdate__c='" + req.body.birthdate__c + "', ";
+	query += "Parent_Income__c='" + req.body.parent_income__c + "', ";
+	query += "Year__c='" + req.body.year__c + "', ";
+	query += "Term__c='" + req.body.term__c + "' ";
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
 	.then(function(results) {
