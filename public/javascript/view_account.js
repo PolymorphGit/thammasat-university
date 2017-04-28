@@ -69,6 +69,8 @@ angular.module('accountApp', [])
 	alert(data);
 	$http.post('../updateaccount/' + accountId, data)
 	.success((data) => {
+		alert(data.scholarship__c);
+		alert(data.disabled__c);
 		console.log(data);
 		alert("Updated");
 	})
