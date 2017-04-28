@@ -108,10 +108,15 @@ exports.update = function(req, res, next) {
 	query += "Disabled__c=" + Disable + ", ";
 	var Birthday = '1990-7-2';
 	query += "Birthdate__c='" + req.body.birthdate__c + "', ";
-	query += "Parent_Income__c='" + req.body.parent_income__c + "', ";
-	var Year = 0;
-	query += "Year__c=" + req.body.year__c + ", ";
-	query += "Term__c='" + req.body.term__c + "' ";
+	query += "Parent_Income__c='" + req.body.parent_income__c + "' ";
+	if(req.body.year__c)
+	{
+		query += ", Year__c=" + req.body.year__c + ", ";
+	}
+	if(req.body.term__c)
+	{
+		query += "Term__c='" + req.body.term__c + "' ";
+	}
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
 	.then(function(results) {

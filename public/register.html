@@ -429,7 +429,7 @@
 								<select id="state"
 							    ng-model="lead.request_zone__c"
 							    ng-disabled="!lead.gender__c"
-							    ng-options="z for z in ((zone | filter:{'Gender':lead.gender__c})[0].zone)" />
+							    ng-options="z for z in lead.gender__c" />
 							    <label id="lbl_request_zone__c" />
 							</td>
 						</tr>
