@@ -1,6 +1,7 @@
 angular.module('select_roommateApp', [])
 .controller('mainController', function ($scope, $http) {
 	$scope.id = "";
+	$scope.message = "";
 	$scope.account = {};
 	//$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
 	$scope.roommate = [{"identification_number__c": null},{},{}];
@@ -11,10 +12,14 @@ angular.module('select_roommateApp', [])
 		.success((data) => {
 			console.log(data);
 			alert(data[0].secondary__c);
-			if(data[0].secondary__c)
+			if(!data[0].secondary__c)
 			{
 				alert("Pass");
 				$scope.account = data[0];
+			}
+			else
+			{
+				$scope.message = "This Student is Secondary.";
 			}
 		})
 		.error((data) => {
