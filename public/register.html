@@ -425,23 +425,17 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.request_zone__c">
+								<!--  <input type="text" ng-model="lead.request_zone__c"> -->
+								<select id="state"
+							    ng-model="lead.request_zone__c"
+							    ng-disabled="!lead.gender__c"
+							    ng-options="z for z in ((zone | filter:{'Gender':lead.gender__c})[0].zone)">
+							        <option value="">Choose</option>
+							    </select>
 								<label id="lbl_request_zone__c" />
 							</td>
 						</tr>
 						
-						<tr>
-							<td align="right">
-								Request Zone Reserve/เลือกโซนสำรอง
-							</td>
-							<td>
-								<b style="color=red">*</b>
-							</td>
-							<td>
-								<input type="text" ng-model="lead.request_zone_reserve__c">
-								<label id="lbl_request_zone_reserve__c" />
-							</td>
-						</tr>
 					
 					</table></td>
 					
