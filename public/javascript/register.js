@@ -24,14 +24,14 @@ angular.module('leadApp', [])
   $scope.$watch('lead.gender__c', function(newVal) {
       if (newVal)
       {
-    	  alert($scope.lead.gender__c);
+    	  //alert($scope.lead.gender__c);
     	  angular.forEach($scope.zone , function(value)
 	      {
-    		  alert(value.Gender);
+    		  //alert(value.Gender);
     		  
     		  if(value.Gender == $scope.lead.gender__c)
     		  {
-    			alert(value.zones);
+    			//alert(value.zones);
     	  		$scope.zones = value.zones;
     		  }
 	      });
