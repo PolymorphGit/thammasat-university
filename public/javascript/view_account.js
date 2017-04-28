@@ -37,7 +37,6 @@ angular.module('accountApp', [])
     	data[0].salutation = data[0].salutation == null || data[0].salutation =='null' ? '' : data[0].salutation;
     	data[0].firstname = data[0].firstname == null || data[0].firstname =='null' ? '' : data[0].firstname;
     	data[0].lastname = data[0].lastname == null || data[0].lastname =='null' ? '' : data[0].lastname;
-    	data[0].Birthdate__c = data[0].Birthdate__c == null || data[0].Birthdate__c =='null' ? '' : data[0].Birthdate__c;
     	data[0].personmobilephone = data[0].personmobilephone == null || data[0].personmobilephone =='null' ? '' : data[0].personmobilephone;
     	data[0].personemail = data[0].personemail == null || data[0].personemail =='null' ? '' : data[0].personemail;
     	data[0].congenital_disease__c = data[0].congenital_disease__c == null || data[0].congenital_disease__c =='null' ? '' : data[0].congenital_disease__c;
@@ -55,6 +54,21 @@ angular.module('accountApp', [])
     	data[0].parent_name_2__c = data[0].parent_name_2__c == null || data[0].parent_name_2__c =='null' ? '' : data[0].parent_name_2__c;
     	data[0].parent_phone_2__c = data[0].parent_phone_2__c == null || data[0].parent_phone_2__c =='null' ? '' : data[0].parent_phone_2__c;
     	data[0].disabled__c = data[0].disabled__c == null || data[0].disabled__c =='null' ? '' : data[0].disabled__c;
+    	
+    	data[0].birthdate__c = data[0].birthdate__c == null || data[0].birthdate__c =='null' ? '' : data[0].birthdate__c;
+    	
+    	if (data[0].birthdate__c) {
+    		var str = data[0].birthdate__c;
+    		var res = str.substring(0, 10);
+		    var dd = res.substring(8,10);
+		    var mm = res.substring(5,7);
+		    var yyyy = res.substring(0,4);
+		    
+		    res = dd + "/" + mm + "/" + yyyy;
+		    
+		    data[0].birthdate__c = res;
+		    
+    	}
     	
     	$scope.account = data[0];
     	
