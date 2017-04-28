@@ -484,7 +484,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                 <input type="checkbox" value="{{ account.scholarship__c }}" onclick="return false;" disabled="disabled"/>
+                                 <input type="checkbox" ng-model="{{ account.scholarship__c }}" onclick="return false;" disabled="disabled"/>
                             </td>
                         </tr>
                         
@@ -494,7 +494,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                 <label id="scholarship name">{{ account.scholarship_name__c }}</label>
+                                 <label id="scholarshipname">{{ account.scholarship_name__c }}</label>
                             </td>
                         </tr>
                         
@@ -504,7 +504,7 @@
                             </td>
                             <td> : </td>
                             <td>
-                                 <input type="checkbox" value="{{ account.disabled__c }}" onclick="return false;" disabled="disabled"/>
+                                 <input type="checkbox" ng-model="{{ account.disabled__c }}" onclick="return false;" disabled="disabled"/>
                             </td>
                         </tr>
                         
