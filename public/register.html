@@ -22,21 +22,20 @@
 		
 		function update(){
 			
-	     
-	        validate_sex();
-	        validate_title_th();
-	        validate_name_th();
-	        validate_title_en();
+	        alert('1');
+	        //validate_sex();
+	        //validate_title_th();
+	        //validate_name_th();
+	        //validate_title_en();
 	        //validateBirthday();
-	        validateMobile();
-	        validateDate();
-	        validateMobile();
-	        validateEmail();
+	        //validateMobile();
+	        //validateDate();
+	        //validateMobile();
+	        //validateEmail();
 
 	        if ( 
-	        		validate()
-		    		&& validateMobile() 
-		    		&& validateStreet() 
+	        		
+		    		validateStreet() 
 		    		&& validateDistrict() 
 		    		&& validateState() 
 		    		&& validatePostcode() 
@@ -45,7 +44,8 @@
 		    		&& validateParentPhone() 
 		    		&& validateParentIncome() 
 		    		&&  validateParent2() 
-		    		&& validateParentPhone2())
+		    		&& validateParentPhone2()
+		      )
 		    	{
 		    		alert('test');
 		    		//angular.element(document.getElementById('main')).scope().updateData(id);
@@ -108,7 +108,6 @@
 			$("#lbl_title_en__c").text("");
 			$("#lbl_title_en__c").css("color", "red");
 			
-
 			var value = $("#pick_title_en__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
@@ -149,6 +148,7 @@
 		  return re.test(myEmail);
 		}
 	
+
 		function validateEmail() {
 		  $("#lbl_email").css("color", "red");
 		  $("#lbl_email").text("");
