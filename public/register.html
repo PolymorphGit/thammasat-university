@@ -19,140 +19,249 @@
 		</script>
 		
 		<script type="text/javascript">
-		
-	        function checkNum(value) {
-	            if (isNaN(parseFloat(value))) {
-	                //alert("Please input number again.");
-	                return "";
-	            }
-	            return value;
-	        }
-	        function TriggerClick() {
+			
+			function validateEmail(myEmail) {
+			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			  //alert(re.test(myEmail));
+			  return re.test(myEmail);
+			}
 	
-	            //fireEvent(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"), "click");
-	            document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1").click();
-	            ////                        console.log(document.getElementById("ctl00_ContentPlaceHolder1_ImageButton1"));
+			function validate() {
+			  $("#result").text("");
+			  var myEmail = $("#myEmail").val();
+			  if (validateEmail(myEmail)) {
+			    /*$("#result").text(myEmail + " is valid :)");
+			    $("#result").css("color", "green");
+			    */
+			    return true;
+			  } else {
+			    $("#result").text(myEmail + " is not valid :(");
+			    $("#result").css("color", "red");
+			    
+			    return false;
+			  }
+			  
+			}
+	
+			$("#validate").bind("click", validate);
+			
+			function isNumber(field) {
+	            var re = /^[0-9.]*$/;
+	            if (!re.test(field.value)) {
+	                //alert("Input number only!!");
+	                field.value = field.value.replace(/[^0-9.]/g, "");
+	            }
 	        }
-	        function redirect() {
-	            document.forms[0].target = "_blank";
-	        }
-	        
-	        function update(){
-		    	if (validate())
-		    	{
-		    		angular.element(document.getElementById('main')).scope().saveData();
-		    	}
-		    }
-	        
-        	
-	        function validate(){
-	        	
-	        	return ValidationEmail() && ValidateBirthday() && ValidateStudentId() && ValidateCongenital();
-	        }
-	        
-	        function ValidateCongenital()
-	        {
-	        	
-	        	var result =false;
-	        	//if no error return true
-	        	result=true;
-	        	return result;
-	        }
-	        
-	        function ValidationStudentId()
-	        {
-	        	
-	        	var result =false;
-	        	var temp= document.getElementById("txtstudent");
-	        	var result = document.getElementById("lbl_student_id__c");
-	        	document.getElementById("lbl_student_id__c").innerHTML='';
-	        	
-	 			//alert('temp'+ temp.value);
-	 			if ((temp.value !='') && (temp.value.length == 10)) {
-	 				result=true;
-	 			}else{
-	 				result.innerHTML = 'Student Id cannot be null.';
-	 				result.style.color = 'red';
-	 			}
-	        	
-	        	return result;
-	        	
-	        }
-	        
-	        function ValidationEmail()
-	        {
-	        	
-	        	var result =false;
-	        	var temp= document.getElementById("txtEmail");
-	        	var result = document.getElementById("lbl_email");
-	        	document.getElementById("lbl_email").innerHTML='';
-	        	
-	        	//alert('temp'+ temp.value);
-	        	 if (validateEmail(temp.value)) {
-	        	 	result=true;
-	        	 }else{
-	        	 	
-	        	 	result.innerHTML = 'Email not correct format.';
-	        	 	result.style.color = 'red';
-	        	 }
-	        	
-	        	return result;
-	        }
-	        
-	        function ValidateBirthday()
-	        {
-	        	var result =false;
-	        	//if no error return true
-	        	result=true;
-	        	return result;
-	        }
-            /*
-  			function validate5() {
-  			  $("#result").text("");
-  			  var myEmail = $("#myEmail").val();
-  			  if (validateEmail(myEmail)) {
-  			    $("#result").text(myEmail + " is valid :)");
-  			    $("#result").css("color", "green");
-  			  } else {
-  			    $("#result").text(myEmail + " is not valid :(");
-  			    $("#result").css("color", "red");
-  			  }
-  			  return false;
-  			}
-  			*/
-  			
-  			
-  			function validateEmail(myEmail) {
-    			  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    			  alert(re.test(myEmail));
-    			  return re.test(myEmail);
-    			}
-
-  			$("#validate").bind("click", validate);
-  		
-  			function testfunction(){
-  				alert('1');
-  			}
-        	
-
-		/*
-  			$(window).on('load', function () {
-  			     alert('Alert after page load');
-  			     
-  			   alert('val = '+$("#txt_parent_name__c").val() );
-  			     
-  			     if($("#txt_parent_name__c").val()=="null"){
-  			    	alert('1' );
-  			    	$("#txt_parent_name__c").text("");
-  			    	alert('2' );
-  			     }
-  			     
-  			     
-  			});*/
-
-
-  			
-  			
+			
+			function validateMobile() {
+				
+				$("#mobileResult").text("");
+				var myPhone = $("#myPhone").val();
+				
+				if ($.trim($('#myPhone').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#mobileResult").text("Mobile No. is required");
+					$("#mobileResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateStreet() {
+				
+				$("#streetResult").text("");
+				var myPhone = $("#street").val();
+				
+				if ($.trim($('#street').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#streetResult").text("No. / Soi / Road is required");
+					$("#streetResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateDistrict() {
+				
+				$("#cityResult").text("");
+				var myPhone = $("#city").val();
+				
+				if ($.trim($('#city').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#cityResult").text("District is required");
+					$("#cityResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateState() {
+				
+				$("#stateResult").text("");
+				var myPhone = $("#state").val();
+				
+				if ($.trim($('#state').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#stateResult").text("Province is required");
+					$("#stateResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validatePostcode() {
+				
+				$("#postcodeResult").text("");
+				var myPhone = $("#postcode").val();
+				
+				if ($.trim($('#postcode').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#postcodeResult").text("Postal Code is required");
+					$("#postcodeResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateCountry() {
+				
+				$("#countryResult").text("");
+				var myPhone = $("#country").val();
+				
+				if ($.trim($('#country').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#countryResult").text("Country is required");
+					$("#countryResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateParent() {
+				
+				$("#parentResult").text("");
+				var myPhone = $("#parent").val();
+				
+				if ($.trim($('#parent').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentResult").text("Parent Name is required");
+					$("#parentResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateParentPhone() {
+				
+				$("#parentPhoneResult").text("");
+				var myPhone = $("#parentPhone").val();
+				
+				if ($.trim($('#parentPhone').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentPhoneResult").text("Parent Phone is required");
+					$("#parentPhoneResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateParentIncome() {
+				
+				$("#parentIncomeResult").text("");
+				var myPhone = $("#parentIncome").val();
+				
+				if ($.trim($('#parentIncome').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentIncomeResult").text("Parent Income is required");
+					$("#parentIncomeResult").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateParent2() {
+				
+				$("#parent2Result").text("");
+				var myPhone = $("#parent2").val();
+				
+				if ($.trim($('#parent2').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parent2Result").text("Parent Name(2) is required");
+					$("#parent2Result").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+			
+			function validateParentPhone2() {
+				
+				$("#parentPhone2Result").text("");
+				var myPhone = $("#parentPhone2").val();
+				
+				if ($.trim($('#parentPhone2').val()) != '') {
+					/*$("#result").text(myEmail + " is valid :)");
+					$("#result").css("color", "green");
+					*/
+					return true;
+				} else {
+					$("#parentPhone2Result").text("Parent Phone(2) is required");
+					$("#parentPhone2Result").css("color", "red");
+					    
+					return false;
+				}
+				  
+			}
+		
 	    </script>
 	    <style type="text/css">
 	    	.myclass {
