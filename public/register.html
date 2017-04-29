@@ -37,12 +37,12 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        var sss = validate_sex() 
-	        && validate_title_th()
-	        && validate_name_th()
-	        && validate_title_en();
-	        if ( sss
-	        		&& validate()
+	        var sss = validate_sex(); 
+	        validate_title_th();
+	        validate_name_th();
+	        validate_title_en();
+	        if ( 
+	        		validate()
 		    		&& validateMobile() 
 		    		&& validateStreet() 
 		    		&& validateDistrict() 
@@ -92,18 +92,18 @@
 			
 		
 		function validate_name_th(){
-			alert('1');
+			
 			$("#lbl_name_th__c").text("");
 			$("#lbl_name_th__c").css("color", "red");
-			alert('2');
+			
 			var fname_th = $("#first_name_th__c").val();
 			var lname_th = $("#last_name_th__c").val();
-			alert('3  fname='+fname_th+'__ lname='+lname_th);
+			
 			
 			
 			if ((fname_th=="")&&(lname_th=="")) {
-				alert('1');
-				$("#lbl_name_th__c").text("Please insert name.");
+				
+				$("#lbl_name_th__c").text("Please insert first name and last name.");
 				return false;
 			}else if(fname_th==""){
 				$("#lbl_name_th__c").text("Please insert first name.");
@@ -138,11 +138,11 @@
 			$("#lbl_name_en__c").text("");
 			$("#lbl_name_en__c").css("color", "red");
 			
-			var fname_th = $("#first_name_en__c").text();
-			var lname_th = $("#last_name_en__c").text();
+			var fname_th = $("#first_name_en__c").val();
+			var lname_th = $("#last_name_en__c").val();
 
 			if ((fname_th=="")&&(lname_th=="")) {
-				$("#lbl_name_en__c").text("Please insert name.");
+				$("#lbl_name_en__c").text("Please insert first name and last name.");
 				return false;
 			}else if(fname_th==""){
 				$("#lbl_name_en__c").text("Please insert first name.");
