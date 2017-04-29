@@ -23,15 +23,7 @@
 		function update(){
 			
 	        alert('1');
-	        //validate_sex();
-	        //validate_title_th();
-	        //validate_name_th();
-	        //validate_title_en();
-	        //validateBirthday();
-	        //validateMobile();
-	        //validateDate();
-	        //validateMobile();
-	        //validateEmail();
+	        
 
 	        if ( 
 	        		
@@ -140,34 +132,10 @@
 		}
 		
 		
-		
-		
-		function validateEmailFormat(myEmail) {
-		  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		  
-		  return re.test(myEmail);
-		}
+	
 	
 
-		function validateEmail() {
-		  $("#lbl_email").css("color", "red");
-		  $("#lbl_email").text("");
-		  var myEmail = $("#txtEmail").val();
-		  
-		  
-		  if (validateEmailFormat(myEmail)) {
-		    return true;
-		  }
-		  else if((myEmail=="")||(myEmail=="?")) {
-			  $("#lbl_email").text("Please insert email");
-			  return false;
-		  }
-		  else {
-		    $("#lbl_email").text(myEmail + " is not valid.");
-		    return false;
-		  }
-		  
-		}
+		
 		
 		
 		
