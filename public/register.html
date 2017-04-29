@@ -37,8 +37,11 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        alert('1 st validate');
-	        if (validatesex() 
+	        
+	        if (validate_sex()
+	        		&& validate_title_th()
+	        		&& validate_name_th()
+	        		&& validate_title_en()
 	        		&& validate()
 		    		&& validateMobile() 
 		    		&& validateStreet() 
@@ -60,7 +63,7 @@
 		
 		
 		
-		function validatesex(){
+		function validate_sex(){
 			$("#lbl_gender__c").text("");
 
 			var value = $("#pick_gender__c :selected").val();
@@ -72,7 +75,84 @@
 			}
 			return true;
 		}
+		
+		
+		function validate_title_th(){
+			$("#lbl_title_th__c").text("");
+			$("#lbl_title_th__c").css("color", "red");
+
+			var value = $("#pick_title_th__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
+				$("#lbl_title_th__c").text("Please select title.");
+				return false;
+			}
+			return true;
+		}
 			
+		
+		function validate_name_th(){
+			$("#lbl_name_th__c").text("");
+			$("#lbl_name_th__c").css("color", "red");
+			
+			var fname_th = $("#first_name_th__c").text();
+			var lname_th = $("#last_name_th__c").text();
+
+			if ((fname_th=="")&&(lname_th=="")) {
+				$("#lbl_name_th__c").text("Please insert name.");
+				return false;
+			}else if(fname_th==""){
+				$("#lbl_name_th__c").text("Please insert first name.");
+				return false;
+			}else if(lname_th==""){
+				$("#lbl_name_th__c").text("Please insert last name.");
+				return false;
+			}
+			
+			return true;
+		}
+			
+
+		function validate_title_en(){
+			$("#lbl_title_en__c").text("");
+			$("#lbl_title_en__c").css("color", "red");
+			
+
+			var value = $("#pick_title_en__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
+				$("#lbl_title_en__c").text("Please select title.");
+				
+				return false;
+			}
+			return true;
+		}
+		
+		
+		function validate_name_en(){
+			$("#lbl_name_en__c").text("");
+			$("#lbl_name_en__c").css("color", "red");
+			
+			var fname_th = $("#first_name_en__c").text();
+			var lname_th = $("#last_name_en__c").text();
+
+			if ((fname_th=="")&&(lname_th=="")) {
+				$("#lbl_name_en__c").text("Please insert name.");
+				return false;
+			}else if(fname_th==""){
+				$("#lbl_name_en__c").text("Please insert first name.");
+				return false;
+			}else if(lname_th==""){
+				$("#lbl_name_en__c").text("Please insert last name.");
+				return false;
+			}
+			
+			return true;
+		}
+		
+		
+		
+		
 		function validateEmail(myEmail) {
 		  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  
@@ -409,7 +489,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<select ng-model="lead.title_th__c" ng-options="x for x in title"></select>
+								<select ng-model="lead.title_th__c" ng-options="x for x in title" id="pick_title_th__c"></select>
 								<label id="lbl_title_th__c"/>
 							</td>
 						</tr>
@@ -425,10 +505,10 @@
 								<Table style="margin-left:-3px;">
 									<tr>
 										<td>
-											<input type="text" ng-model="lead.first_name_th__c">
+											<input type="text" ng-model="lead.first_name_th__c" id="first_name_th__c" maxlength="40">
 										</td>
 										<td>
-											<input type="text" ng-model="lead.last_name_th__c" >
+											<input type="text" ng-model="lead.last_name_th__c" id="last_name_th__c" maxlength="80">
 											<label id="lbl_name_th__c"/>
 										</td>
 									</tr>
@@ -444,8 +524,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.salutation">
-								<label id="lbl_salutation"/>
+								<select ng-model="lead.salutation" ng-options="x for x in title" id="pick_title_en__c"></select>
+								<label id="lbl_title_en__c"/>
 							</td>
 						</tr>
 						
@@ -460,10 +540,10 @@
 								<Table style="margin-left:-3px;">
 									<tr>
 										<td>
-											<input type="text" ng-model="lead.firstname">
+											<input type="text" ng-model="lead.firstname" id="first_name_en__c">
 										</td>
 										<td>
-											<input type="text" ng-model="lead.lastname">
+											<input type="text" ng-model="lead.lastname" id="last_name_en__c">
 											<label id="lbl_name_en__c"/>
 										</td>
 									</tr>
