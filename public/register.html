@@ -31,6 +31,8 @@
 	        //validateBirthday();
 	        validateMobile();
 	        validateEmail();
+	        validateStudenID();
+	        validateFaculty();
 	        
 	        
 	        if ( 
@@ -92,13 +94,13 @@
 
 			
 			if ((fname_th=="")&&(lname_th=="")) {
-				$("#lbl_name_th__c").text("Please insert first name and last name.");
+				$("#lbl_name_th__c").text("First name and last name is require.");
 				return false;
 			}else if(fname_th==""){
-				$("#lbl_name_th__c").text("Please insert first name.");
+				$("#lbl_name_th__c").text("First name is require.");
 				return false;
 			}else if(lname_th==""){
-				$("#lbl_name_th__c").text("Please insert last name.");
+				$("#lbl_name_th__c").text("Last name is require.");
 				return false;
 			}
 			return true;
@@ -127,13 +129,13 @@
 			var lname_th = $("#last_name_en__c").val();
 
 			if ((fname_th=="")&&(lname_th=="")) {
-				$("#lbl_name_en__c").text("Please insert first name and last name.");
+				$("#lbl_name_en__c").text("First name and last name is require.");
 				return false;
 			}else if(fname_th==""){
-				$("#lbl_name_en__c").text("Please insert first name.");
+				$("#lbl_name_en__c").text("First name is require.");
 				return false;
 			}else if(lname_th==""){
-				$("#lbl_name_en__c").text("Please insert last name.");
+				$("#lbl_name_en__c").text("Last name is require.");
 				return false;
 			}
 			
@@ -148,13 +150,13 @@
 		
 		function validateMobile() {
 			$("#lbl_mobilephone").text("");
-			$("#mobileResult").css("color", "red");
+			$("#lbl_mobilephone").css("color", "red");
 			var myPhone = $("#mobilephone").val();
 			
 			if ($.trim($('#mobilephone').val()) != '') {
 				return true;
 			} else {
-				$("#lbl_mobilephone").text("Mobile No. is required");
+				$("#lbl_mobilephone").text("Mobile is required");
 				return false;
 			}
 		}
@@ -169,7 +171,7 @@
 			    return true;
 			  }
 			  else if((myEmail=="")||(myEmail=="?")) {
-				  $("#lbl_email").text("Please insert email");
+				  $("#lbl_email").text("Email is require");
 				  return false;
 			  }
 			  else {
@@ -180,7 +182,36 @@
 	    }
 
 		
+		function validateStudenID() {
+			  $("#lbl_student_id__c").css("color", "red");
+			  $("#lbl_student_id__c").text("");
+			  var txtStudentID = $("#txt_student_id__c").val();
+			  
+			  //check is digit ?
+			  
+			  if((txtStudentID=="")||(txtStudentID=="?")) {
+				  $("#lbl_student_id__c").text("Student ID is require");
+				  return false;
+			  }
+			  
+			  return true;
+	    }
 		
+		
+		function validateFaculty() {
+			  $("#lbl_faculty__c").css("color", "red");
+			  $("#lbl_faculty__c").text("");
+			  var txtFaculty = $("#txt_faculty__c").val();
+			  
+			  //check is digit ?
+			  
+			  if((txtFaculty=="")||(txtFaculty=="?")) {
+				  $("#lbl_faculty__c").text("Faculty ID is require");
+				  return false;
+			  }
+			  
+			  return true;
+	    }
 		
 		
 	
@@ -552,7 +583,7 @@
 							</td>
 							<td>
 								<input type="text" ng-model="">
-								<label id="lbl_mobilephone"/>
+								<label id="lbl_birthdate"/>
 							</td>
 						</tr>
 						
@@ -587,9 +618,7 @@
 							<td align="right">
 								Congenital disease /โรคประจำตัว
 							</td>
-							<td>
-								<b style="color=red">*</b>
-							</td>
+							<td></td>
 							<td>
 								 <input type="text" ng-model="lead.congenital_disease__c">
 								 <label id="lbl_congenital_disease__c" />
@@ -604,7 +633,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.student_id__c" id="txtstudent" maxlenght="10">
+								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlenght="10">
 								<label id="lbl_student_id__c" />
 							</td>
 						</tr>
@@ -617,7 +646,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.faculty__c">
+								<input type="text" ng-model="lead.faculty__c" id="txt_faculty__c">
 								<label id="lbl_faculty__c" />
 							</td>
 						</tr>
