@@ -222,9 +222,11 @@
 			var objDisabled = $("#state").prop("disabled");
 			
 			
-			if (((value=="")||(value=="?"))&&(validate_sex())) {
-				$("#lbl_request_zone__c").text("Please select zone.");
-				return false;
+			if ((value=="")||(value=="?")) {
+				if(validate_sex()){ 
+					$("#lbl_request_zone__c").text("Please select zone.");
+					return false;
+				}
 			}
 			return true;
 		}
