@@ -21,23 +21,7 @@
 		<script type="text/javascript">
 		
 		function update(){
-	    	/*
-	    	if (validate() 
-	    		&& validateMobile() 
-	    		&& validateStreet() 
-	    		&& validateDistrict() 
-	    		&& validateState() 
-	    		&& validatePostcode() 
-	    		&& validateCountry() 
-	    		&& validateParent() 
-	    		&& validateParentPhone() 
-	    		&& validateParentIncome() 
-	    		&&  validateParent2() 
-	    		&& validateParentPhone2())
-	    	{
-	    		angular.element(document.getElementById('main')).scope().updateData(id);
-	    	}
-	        */
+			
 	        alert('0');
 	        var val0 = validate_sex();
 	        alert('1');
@@ -60,10 +44,10 @@
 	        	&& val2
 	        	&& val3
 	        	&& val4
-	        	
 	        	&& val6
 	        	&& val7
-	        	){
+	        	)
+	        {
 	        	alert('pass');
 	        }
 	        /*
@@ -191,13 +175,15 @@
 		  $("#lbl_email").text("");
 		  var myEmail = $("#txtEmail").val();
 		  
-		  if (myEmail==""){
+		  
+		  if (validateEmailFormat(myEmail)) {
+		    return true;
+		  }
+		  else if((myEmail=="")||(myEmail=="?")) {
 			  $("#lbl_email").text("Please insert email");
 			  return false;
 		  }
-		  else if (validateEmailFormat(myEmail)) {
-		    return true;
-		  } else {
+		  else {
 		    $("#lbl_email").text(myEmail + " is not valid.");
 		    return false;
 		  }
@@ -227,10 +213,6 @@
                 field.value = field.value.replace(/[^0-9.]/g, "");
             }
         }
-		
-
-			
-		
 		
 			
 		function validateStreet() {
