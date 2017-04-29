@@ -211,6 +211,26 @@
 			return true;
 		}
 		
+
+		function validateZone(){
+			$("#lbl_request_zone__c").text("");
+			$("#lbl_request_zone__c").css("color", "red");
+			
+			var value = $("#state :selected").val();
+			var objDisable = $("#state").prop("disabled");
+			
+			alert('objDisable='+objDisable);
+			
+			
+			
+			if ((value=="")||(value=="?")) {
+				$("#lbl_request_zone__c").text("Please select zone.");
+				return false;
+			}
+			return true;
+		}
+		
+		
 		
 	
 		$("#validate").bind("click", validate);
@@ -644,9 +664,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-							
 							    <select ng-model="lead.faculty__c" ng-options="x for x in faculty" id="pick_faculty__c"></select>
-								<input type="text" ng-model="lead.faculty__c" id="txt_faculty__c">
 								<label id="lbl_faculty__c" />
 							</td>
 						</tr>
@@ -691,6 +709,7 @@
 							    ng-disabled="!lead.gender__c"
 							    ng-options="z for z in zones" />
 							    <label id="lbl_request_zone__c" />
+							    
 							</td>
 						</tr>
 						
