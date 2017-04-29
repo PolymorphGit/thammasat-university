@@ -219,13 +219,11 @@
 			$("#lbl_request_zone__c").css("color", "red");
 			
 			var value = $("#state :selected").val();
-			var objEnable = $("#state").prop("disabled");
+			var objEnabled = $("#state").prop("disabled");
 			
-			alert('objEnable='+objEnable);
-			alert('value='+value);
+			alert('objEnable='+objEnabled);
 			
-			
-			if (((value=="")||(value=="?"))&&(objEnable==true)) {
+			if (((value=="")||(value=="?"))&&(objEnabled==true)) {
 				$("#lbl_request_zone__c").text("Please select zone.");
 				return false;
 			}
