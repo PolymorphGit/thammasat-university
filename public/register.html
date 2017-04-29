@@ -62,14 +62,10 @@
 		
 		function validatesex(){
 			$("#lbl_gender__c").text("");
-			alert('1');
-			alert('1.1');
-			var value = $("#pick_gender__c :selected").val();
-            alert('2 value='+value);
 
-            var value2 = $("#pick_gender__c").children(":selected").val();
-            alert('value2='+value2);
-			if (value=="") {
+			var value = $("#pick_gender__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
 				$("#lbl_gender__c").text("Please select sex.");
 				$("#lbl_gender__c").css("color", "red");
 				return false;
