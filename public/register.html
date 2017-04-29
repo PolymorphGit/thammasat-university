@@ -221,9 +221,11 @@
 			var value = $("#state :selected").val();
 			var objDisabled = $("#state").prop("disabled");
 			
-			
+			alert('1 value='+value);
 			if ((value=="")||(value=="?")) {
-				if(validate_sex()){ 
+				alert('2 validate_sex()=' + validate_sex());
+				if(validate_sex()){
+					alert('3');
 					$("#lbl_request_zone__c").text("Please select zone.");
 					return false;
 				}
