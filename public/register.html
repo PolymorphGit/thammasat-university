@@ -53,6 +53,7 @@
 	        */
 	        validate_sex();
 	        
+<<<<<<< HEAD
 	        validate_title_th());
 	        
 	        validate_name_th());
@@ -66,6 +67,8 @@
 	        validateMobile());
 	        
 	        validateEmail());
+=======
+>>>>>>> parent of 26d5c11... submit page
 	        if ( 
 	        		validate()
 		    		&& validateMobile() 
@@ -83,7 +86,10 @@
 		    		alert('test');
 		    		//angular.element(document.getElementById('main')).scope().updateData(id);
 		    	}
+<<<<<<< HEAD
 	        
+=======
+>>>>>>> parent of 26d5c11... submit page
 	        
 	    }
 		
@@ -207,7 +213,7 @@
 		
 		function validateMobile() {
 			$("#lbl_mobilephone").text("");
-			$("#lbl_mobilephone").css("color", "red");
+			$("#mobileResult").css("color", "red");
 			var myPhone = $("#mobilephone").val();
 			
 			if ($.trim($('#mobilephone').val()) != '') {
@@ -587,7 +593,7 @@
 							</td>
 							<td>
 								<input type="text" ng-model="">
-								<label id="lbl_birthdate"/>
+								<label id="lbl_mobilephone"/>
 							</td>
 						</tr>
 						
