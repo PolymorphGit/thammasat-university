@@ -19,7 +19,7 @@
 		</script>
 		
 		<script type="text/javascript">
-		var valid=0;
+		
 		function update(){
 	    	/*
 	    	if (validate() 
@@ -38,17 +38,25 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        valid=0;
-	        validate_sex(); 
-	        validate_title_th());
-	        validate_name_th());
-	        validate_title_en());
-	        validateMobile());
-	        //validateDate());
-	        validateMobile());
-	        validateEmail());
 	        
-	        if (valid==0){
+	        var val0 = validate_sex(); 
+	        var val1 = validate_title_th());
+	        var val2 = validate_name_th());
+	        var val3 = validate_title_en());
+	        var val4 = validateMobile());
+	        //var val5 = validateDate());
+	        var val6 = validateMobile());
+	        var val7 = validateEmail());
+	        
+	        if (val0 
+	        	&& val1
+	        	&& val2
+	        	&& val3
+	        	&& val4
+	        	
+	        	&& val6
+	        	&& val7
+	        	){
 	        	alert('pass');
 	        }
 	        /*
@@ -77,15 +85,15 @@
 		
 		function validate_sex(){
 			$("#lbl_gender__c").text("");
+			$("#lbl_gender__c").css("color", "red");
 
 			var value = $("#pick_gender__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
 				$("#lbl_gender__c").text("Please select sex.");
-				$("#lbl_gender__c").css("color", "red");
-				valid=1;
+			    return false;
 			}
-			
+			return true;
 		}
 		
 		
@@ -97,9 +105,10 @@
 
 			if ((value=="")||(value=="?")) {
 				$("#lbl_title_th__c").text("Please select title.");
-				valid=1;
+				return false;
 				
 			}
+			return true;
 		}
 			
 		
@@ -111,20 +120,17 @@
 			var fname_th = $("#first_name_th__c").val();
 			var lname_th = $("#last_name_th__c").val();
 			
-			
-			
 			if ((fname_th=="")&&(lname_th=="")) {
-				
 				$("#lbl_name_th__c").text("Please insert first name and last name.");
-				valid=1;
+				return false;
 			}else if(fname_th==""){
 				$("#lbl_name_th__c").text("Please insert first name.");
-				valid=1;
+				return false;
 			}else if(lname_th==""){
 				$("#lbl_name_th__c").text("Please insert last name.");
-				valid=1;
+				return false;
 			}
-			
+			return true;
 		}
 			
 		
@@ -137,9 +143,9 @@
 
 			if ((value=="")||(value=="?")) {
 				$("#lbl_title_en__c").text("Please select title.");
-				valid=1;
+				return false;
 			}
-			
+			return true;
 		}
 		
 		
@@ -152,13 +158,13 @@
 
 			if ((fname_th=="")&&(lname_th=="")) {
 				$("#lbl_name_en__c").text("Please insert first name and last name.");
-				vallid=1;
+				return false;
 			}else if(fname_th==""){
 				$("#lbl_name_en__c").text("Please insert first name.");
-				valid=1;
+				return false;
 			}else if(lname_th==""){
 				$("#lbl_name_en__c").text("Please insert last name.");
-				valid=1;
+				return false;
 			}
 			
 			return true;
@@ -180,12 +186,13 @@
 		  
 		  if (myEmail==""){
 			  $("#lbl_email").text("Please insert email");
+			  return false;
 		  }
 		  else if (validateEmailFormat(myEmail)) {
-		    
+		    return true;
 		  } else {
 		    $("#lbl_email").text(myEmail + " is not valid.");
-		    vaid=1;
+		    return false;
 		  }
 		  
 		}
