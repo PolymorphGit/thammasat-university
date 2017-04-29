@@ -37,10 +37,15 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        var sss = validate_sex(); 
-	        validate_title_th();
-	        validate_name_th();
-	        validate_title_en();
+	        var valid = validate_sex(); 
+	        valid= (valid && validate_title_th());
+	        valid= (valid && validate_name_th());
+	        valid= (valid && validate_title_en());
+	        valid= (valid && validateMobile());
+	        //valid= (valid && validateDate());
+	        valid= (valid && validateMobile());
+	        valid= (valid && validateEmail());
+	        
 	        if ( 
 	        		validate()
 		    		&& validateMobile() 
@@ -112,12 +117,12 @@
 				$("#lbl_name_th__c").text("Please insert last name.");
 				return false;
 			}
-			alert('e1');
+			
 			
 			return true;
 		}
 			
-
+		
 		function validate_title_en(){
 			$("#lbl_title_en__c").text("");
 			$("#lbl_title_en__c").css("color", "red");
@@ -158,22 +163,22 @@
 		
 		
 		
-		function validateEmail(myEmail) {
+		function validateEmailFormat(myEmail) {
 		  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  
 		  return re.test(myEmail);
 		}
-	
-		function validate() {
-		  $("#result").text("");
-		  var myEmail = $("#myEmail").val();
-		  if (validateEmail(myEmail)) {
-		   
+		<input type="text" ng-model="lead.email" id="txtEmail">
+		 <label id="lbl_email"/>
+		function validateEmail() {
+		  $("#lbl_email").css("color", "red");
+		  $("#lbl_email").text("");
+		  var myEmail = $("#txtEmail").val();
+		  
+		  if (validateEmailFormat(myEmail)) {
 		    return true;
 		  } else {
-		    $("#result").text(myEmail + " is not valid :(");
-		    $("#result").css("color", "red");
-		    
+		    $("#lbl_email").text(myEmail + " is not valid.");
 		    return false;
 		  }
 		  
@@ -188,25 +193,22 @@
                 field.value = field.value.replace(/[^0-9.]/g, "");
             }
         }
+		
+
 			
 		function validateMobile() {
+			$("#lbl_mobilephone").text("");
+			$("#mobileResult").css("color", "red");
+			var myPhone = $("#mobilephone").val();
 			
-			$("#mobileResult").text("");
-			var myPhone = $("#myPhone").val();
-			
-			if ($.trim($('#myPhone').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
+			if ($.trim($('#mobilephone').val()) != '') {
 				return true;
 			} else {
-				$("#mobileResult").text("Mobile No. is required");
-				$("#mobileResult").css("color", "red");
-				    
+				$("#lbl_mobilephone").text("Mobile No. is required");
 				return false;
 			}
-			  
 		}
+		
 			
 		function validateStreet() {
 			
@@ -578,7 +580,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.mobilephone">
+								<input type="text" ng-model="lead.mobilephone" id="mobilephone">
 								<label id="lbl_mobilephone"/>
 							</td>
 						</tr>
