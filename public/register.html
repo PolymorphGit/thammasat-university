@@ -64,8 +64,13 @@
 			$("#lbl_gender__c").text("");
 			alert('1');
 			var value = $("#pick_gender__c").value;
-			alert('2');
-			
+			alert('2 value='+value);
+			if (value="") {
+				$("#lbl_gender__c").text("Please select sex.");
+				$("#lbl_gender__c").css("color", "red");
+				return true;
+			}
+			return false;
 		}
 			
 		function validateEmail(myEmail) {
