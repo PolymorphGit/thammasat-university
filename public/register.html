@@ -37,11 +37,11 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        
-	        if (validate_sex()
-	        		&& validate_title_th()
-	        		&& validate_name_th()
-	        		&& validate_title_en()
+	        var sss = validate_sex() 
+	        && validate_title_th()
+	        && validate_name_th()
+	        && validate_title_en();
+	        if ( sss
 	        		&& validate()
 		    		&& validateMobile() 
 		    		&& validateStreet() 
@@ -92,13 +92,17 @@
 			
 		
 		function validate_name_th(){
+			alert('1');
 			$("#lbl_name_th__c").text("");
 			$("#lbl_name_th__c").css("color", "red");
-			
+			alert('2');
 			var fname_th = $("#first_name_th__c").text();
 			var lname_th = $("#last_name_th__c").text();
-
+			alert('3  fname='+fname_th+'__ lname='+lname_th);
+			
+			
 			if ((fname_th=="")&&(lname_th=="")) {
+				alert('1');
 				$("#lbl_name_th__c").text("Please insert name.");
 				return false;
 			}else if(fname_th==""){
@@ -108,6 +112,7 @@
 				$("#lbl_name_th__c").text("Please insert last name.");
 				return false;
 			}
+			alert('e1');
 			
 			return true;
 		}
