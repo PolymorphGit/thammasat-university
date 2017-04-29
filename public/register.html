@@ -46,6 +46,10 @@
 	        valid= (valid && validateMobile());
 	        valid= (valid && validateEmail());
 	        
+	        if (valid){
+	        	alert('pass');
+	        }
+	        /*
 	        if ( 
 	        		validate()
 		    		&& validateMobile() 
@@ -63,6 +67,7 @@
 		    		alert('test');
 		    		//angular.element(document.getElementById('main')).scope().updateData(id);
 		    	}
+	        */
 	        
 	    }
 		
@@ -197,7 +202,7 @@
 			
 		function validateMobile() {
 			$("#lbl_mobilephone").text("");
-			$("#mobileResult").css("color", "red");
+			$("#lbl_mobilephone").css("color", "red");
 			var myPhone = $("#mobilephone").val();
 			
 			if ($.trim($('#mobilephone').val()) != '') {
@@ -566,7 +571,7 @@
 							</td>
 							<td>
 								<input type="text" ng-model="">
-								<label id="lbl_mobilephone"/>
+								<label id="lbl_birthdate"/>
 							</td>
 						</tr>
 						
