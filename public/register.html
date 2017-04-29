@@ -198,20 +198,18 @@
 	    }
 		
 		
-		function validateFaculty() {
-			  $("#lbl_faculty__c").css("color", "red");
-			  $("#lbl_faculty__c").text("");
-			  var txtFaculty = $("#txt_faculty__c").val();
-			  
-			  //check is digit ?
-			  
-			  if((txtFaculty=="")||(txtFaculty=="?")) {
-				  $("#lbl_faculty__c").text("Faculty ID is require");
-				  return false;
-			  }
-			  
-			  return true;
-	    }
+		function validateFaculty(){
+			$("#lbl_faculty__c").text("");
+			$("#lbl_faculty__c").css("color", "red");
+			
+			var value = $("#pick_faculty__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
+				$("#lbl_faculty__c").text("Please select faculty.");
+				return false;
+			}
+			return true;
+		}
 		
 		
 	
@@ -646,6 +644,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
+							
+							    <select ng-model="lead.faculty__c" ng-options="x for x in faculty" id="pick_faculty__c"></select>
 								<input type="text" ng-model="lead.faculty__c" id="txt_faculty__c">
 								<label id="lbl_faculty__c" />
 							</td>
