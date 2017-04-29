@@ -19,6 +19,7 @@
 		</script>
 		
 		<script type="text/javascript">
+		var valid=0;
 		function update(){
 	    	/*
 	    	if (validate() 
@@ -37,16 +38,17 @@
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
 	    	}
 	        */
-	        var valid = validate_sex(); 
-	        valid= (valid && validate_title_th());
-	        valid= (valid && validate_name_th());
-	        valid= (valid && validate_title_en());
-	        valid= (valid && validateMobile());
-	        //valid= (valid && validateDate());
-	        valid= (valid && validateMobile());
-	        valid= (valid && validateEmail());
+	        valid=0;
+	        validate_sex(); 
+	        validate_title_th());
+	        validate_name_th());
+	        validate_title_en());
+	        validateMobile());
+	        //validateDate());
+	        validateMobile());
+	        validateEmail());
 	        
-	        if (valid){
+	        if (valid==0){
 	        	alert('pass');
 	        }
 	        /*
@@ -81,9 +83,9 @@
 			if ((value=="")||(value=="?")) {
 				$("#lbl_gender__c").text("Please select sex.");
 				$("#lbl_gender__c").css("color", "red");
-				return false;
+				valid=1;
 			}
-			return true;
+			
 		}
 		
 		
@@ -95,9 +97,9 @@
 
 			if ((value=="")||(value=="?")) {
 				$("#lbl_title_th__c").text("Please select title.");
-				return false;
+				valid=1;
+				
 			}
-			return true;
 		}
 			
 		
@@ -114,17 +116,15 @@
 			if ((fname_th=="")&&(lname_th=="")) {
 				
 				$("#lbl_name_th__c").text("Please insert first name and last name.");
-				return false;
+				valid=1;
 			}else if(fname_th==""){
 				$("#lbl_name_th__c").text("Please insert first name.");
-				return false;
+				valid=1;
 			}else if(lname_th==""){
 				$("#lbl_name_th__c").text("Please insert last name.");
-				return false;
+				valid=1;
 			}
 			
-			
-			return true;
 		}
 			
 		
@@ -137,10 +137,9 @@
 
 			if ((value=="")||(value=="?")) {
 				$("#lbl_title_en__c").text("Please select title.");
-				
-				return false;
+				valid=1;
 			}
-			return true;
+			
 		}
 		
 		
@@ -153,13 +152,13 @@
 
 			if ((fname_th=="")&&(lname_th=="")) {
 				$("#lbl_name_en__c").text("Please insert first name and last name.");
-				return false;
+				vallid=1;
 			}else if(fname_th==""){
 				$("#lbl_name_en__c").text("Please insert first name.");
-				return false;
+				valid=1;
 			}else if(lname_th==""){
 				$("#lbl_name_en__c").text("Please insert last name.");
-				return false;
+				valid=1;
 			}
 			
 			return true;
@@ -179,14 +178,31 @@
 		  $("#lbl_email").text("");
 		  var myEmail = $("#txtEmail").val();
 		  
-		  if (validateEmailFormat(myEmail)) {
-		    return true;
+		  if (myEmail==""){
+			  $("#lbl_email").text("Please insert email");
+		  }
+		  else if (validateEmailFormat(myEmail)) {
+		    
 		  } else {
 		    $("#lbl_email").text(myEmail + " is not valid.");
-		    return false;
+		    vaid=1;
 		  }
 		  
 		}
+		
+		function validateMobile() {
+			$("#lbl_mobilephone").text("");
+			$("#lbl_mobilephone").css("color", "red");
+			var myPhone = $("#mobilephone").val();
+			
+			if ($.trim($('#mobilephone').val()) != '') {
+				return true;
+			} else {
+				$("#lbl_mobilephone").text("Mobile No. is required");
+				return false;
+			}
+		}
+		
 	
 		$("#validate").bind("click", validate);
 			
@@ -200,18 +216,7 @@
 		
 
 			
-		function validateMobile() {
-			$("#lbl_mobilephone").text("");
-			$("#lbl_mobilephone").css("color", "red");
-			var myPhone = $("#mobilephone").val();
-			
-			if ($.trim($('#mobilephone').val()) != '') {
-				return true;
-			} else {
-				$("#lbl_mobilephone").text("Mobile No. is required");
-				return false;
-			}
-		}
+		
 		
 			
 		function validateStreet() {
