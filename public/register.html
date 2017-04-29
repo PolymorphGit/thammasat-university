@@ -222,6 +222,9 @@
 			var objDisabled = $("#state").prop("disabled");
 			
 			alert('objDisabled='+objDisabled);
+			alert('result='+(objDisabled==false));
+			alert('(value=="")||(value=="?")='+((value=="")||(value=="?")))
+			
 			
 			if (((value=="")||(value=="?"))&&(objDisabled==false)) {
 				$("#lbl_request_zone__c").text("Please select zone.");
