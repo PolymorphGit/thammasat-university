@@ -169,18 +169,7 @@
 		  
 		}
 		
-		function validateMobile() {
-			$("#lbl_mobilephone").text("");
-			$("#mobileResult").css("color", "red");
-			var myPhone = $("#mobilephone").val();
-			
-			if ($.trim($('#mobilephone').val()) != '') {
-				return true;
-			} else {
-				$("#lbl_mobilephone").text("Mobile No. is required");
-				return false;
-			}
-		}
+		
 		
 	
 		$("#validate").bind("click", validate);
