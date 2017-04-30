@@ -79,7 +79,7 @@ angular.module('leadApp', [])
     	data[0].salutation = data[0].salutation == null || data[0].salutation =='null' ? '' : data[0].salutation;
     	data[0].firstname = data[0].firstname == null || data[0].firstname =='null' ? '' : data[0].firstname;
     	data[0].lastname = data[0].lastname == null || data[0].lastname =='null' ? '' : data[0].lastname;
-    	data[0].Birthdate__c = data[0].Birthdate__c == null || data[0].Birthdate__c =='null' ? '' : data[0].Birthdate__c;
+    	data[0].birthdate__c = data[0].birthdate__c == null || data[0].birthdate__c =='null' ? '' : data[0].birthdate__c;
     	data[0].personmobilephone = data[0].personmobilephone == null || data[0].personmobilephone =='null' ? '' : data[0].personmobilephone;
     	data[0].personemail = data[0].personemail == null || data[0].personemail =='null' ? '' : data[0].personemail;
     	data[0].congenital_disease__c = data[0].congenital_disease__c == null || data[0].congenital_disease__c =='null' ? '' : data[0].congenital_disease__c;

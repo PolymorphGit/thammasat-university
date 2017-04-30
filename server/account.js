@@ -99,23 +99,23 @@ exports.update = function(req, res, next) {
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
 	console.log(Scholarship);
 	console.log(req.body.scholarship__c);
-	query += "Scholarship__c=" + Scholarship + ", ";
+	query += "scholarship__c=" + Scholarship + ", ";
 	if(req.body.scholarship_name__c)
 	{
-		query += "Scholarship_Name__c='" + req.body.scholarship_name__c + "', ";
+		query += "scholarship_name__c='" + req.body.scholarship_name__c + "', ";
 	}
 	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
-	query += "Disabled__c=" + Disable + ", ";
+	query += "disabled__c=" + Disable + ", ";
 	var Birthday = '1990-7-2';
-	query += "Birthdate__c='" + req.body.birthdate__c + "', ";
-	query += "Parent_Income__c='" + req.body.parent_income__c + "' ";
+	query += "birthdate__c='" + req.body.birthdate__c + "', ";
+	query += "parent_income__c='" + req.body.parent_income__c + "' ";
 	if(req.body.year__c)
 	{
-		query += ", Year__c=" + req.body.year__c + ", ";
+		query += ", year__c=" + req.body.year__c + ", ";
 	}
 	if(req.body.term__c)
 	{
-		query += "Term__c='" + req.body.term__c + "' ";
+		query += "term__c='" + req.body.term__c + "' ";
 	}
 	query += " WHERE SFID='" + id + "'";
 	db.select(query)
