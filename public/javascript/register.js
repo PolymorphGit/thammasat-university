@@ -59,6 +59,7 @@ angular.module('leadApp', [])
 	      {
     		  alert('3 0='+value.Scholarship__c);
     		  alert('3 1='+$scope.lead.scholarship__c);
+    		  alert('3 2='+( value.Scholarship__c==$scope.lead.scholarship__c) );
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
     			alert('4');
