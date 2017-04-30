@@ -6,6 +6,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" ></script>
 		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
 		<script src = "/javascript/register.js" > </script>
+		<script src = "/javascript/date-time-picker.min.js" > </script>
 		<script type="text/javascript">
 		var id;
 		
@@ -16,6 +17,9 @@
 			angular.element(document.getElementById('main')).scope().id = id;
 			angular.element(document.getElementById('main')).scope().getData(id);
 	    }
+		</script>
+		<script>
+		
 		</script>
 		
 		<script type="text/javascript">
@@ -607,8 +611,11 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="" />
-								<label id="lbl_birthdate"/>
+								<input type="text" ng-model="lead.Birthdate__c" id="birthdate"/>
+								<label id="lbl_birthdate__c"/>
+								<script type="text/javascript">
+            						$('#birthdate').dateTimePicker();
+        						</script>
 							</td>
 						</tr>
 						
