@@ -28,8 +28,11 @@
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
 			GetFormattedDate();
-			alert('document.getElementById(\'second\').value: ' + document.getElementById('second').value)
-			if (document.getElementById('second').value) {
+			
+			
+			var second = document.getElementById('second').value;
+			alert('second : ' + second);
+			if (second == true) {
 				document.getElementById('selectRoommate').disable = true;
 			} else {
 				document.getElementById('selectRoommate').disable = true;
