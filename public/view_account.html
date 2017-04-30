@@ -11,11 +11,12 @@
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
-			alert("id : " + id);
+			//alert("id : " + id);
 			angular.element(document.getElementById('main')).scope().getData(id);
 			//GetFormattedDate();
 			
-			
+			var second2 = document.getElementById("second");
+			alert('second2 : ' + second2);
 			var second = $("#second").val();
 			alert('second : ' + second);
 			if (second == true) {
