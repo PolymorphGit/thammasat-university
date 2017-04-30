@@ -51,10 +51,12 @@ angular.module('leadApp', [])
   $scope.scholarshipName1 =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'] ;
   $scope.scholarshipName =[{'Scholarship__c':'true', 'scholarshipname':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
   $scope.$watch('lead.scholarship__c', function(newVal) {
-	  //alert('start');
+	  alert('start');
       if (newVal)
       {
-    	  alert('2  scholarship__c= ' +$scope.lead.scholarship__c +' ___scope.scholarship_name__c =' + scope.scholarship_name__c );
+    	  alert('2');
+    	  alert('2 scope.scholarship_name__c =' + scope.scholarship_name__c );
+    	  alert('2 scholarship__c= ' +$scope.lead.scholarship__c );
     	  angular.forEach($scope.scholarshipName , function(value)
 	      {
     		  alert('3 ='+value.Scholarship__c);
