@@ -21,11 +21,11 @@
 		<script type="text/javascript">
 		
 		function update(){
-			validate_sex();
-			validate_title_th();
-			validate_title_en();
+			//validate_sex();
+			//validate_title_th();
+			//validate_title_en();
 	        alert('1');
-	        /*
+	        
 	        //var v1 = validate_sex();
 	        var v2 = validate_title_th();
 	        var v3  = validate_name_th();
@@ -54,7 +54,7 @@
 	        //var v304= validateParent2()
 	        //var v305= validateParentPhone2();
 	        alert('4');
-	        */
+	        
 	        if ( 
 		    		validateStreet() 
 		    		&& validateDistrict() 
@@ -446,59 +446,6 @@
             }
         }
 		
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		function validateParent2() {
-			
-			$("#parent2Result").text("");
-			var myPhone = $("#parent2").val();
-			
-			if ($.trim($('#parent2').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#parent2Result").text("Parent Name(2) is required");
-				$("#parent2Result").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
-		
-		function validateParentPhone2() {
-			
-			$("#parentPhone2Result").text("");
-			var myPhone = $("#parentPhone2").val();
-			
-			if ($.trim($('#parentPhone2').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#parentPhone2Result").text("Parent Phone(2) is required");
-				$("#parentPhone2Result").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
 		
 	    </script>
 	    <style type="text/css">
