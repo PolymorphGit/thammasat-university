@@ -65,9 +65,10 @@ angular.module('leadApp', [])
     			alert('4');
     			//not correct
     			//alert('4'+value.scholarshipName);
-    			alert('4  0=' +scope.scholarship_name__c);
-    			alert('4  1=' +scope.value.scholarshipName);
-    	  		$scope.scholarship_name__c = value.scholarshipName;
+    			
+    			alert('4  0=' +$scope.scholarship_name__c);
+    			alert('4  1=' +$scope.value.scholarshipName);
+    	  		$scope.scholarshipName = value.scholarshipName;
     		  }
 	      });
       }
