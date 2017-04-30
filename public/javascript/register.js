@@ -24,7 +24,7 @@ angular.module('leadApp', [])
   $scope.$watch('lead.gender__c', function(newVal) {
       if (newVal)
       {
-    	  //alert($scope.lead.gender__c);
+    	  alert($scope.lead.gender__c);
     	  angular.forEach($scope.zone , function(value)
 	      {
     		  //alert(value.Gender);
@@ -47,8 +47,8 @@ angular.module('leadApp', [])
   $scope.country = ['Thailand'];
   $scope.state = ['Bangkok'];
   
-  
-  $scope.ScholarshipName =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'];
+ 
+  $scope.scholarshipName =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'];
   
   
   $scope.getData = function () {	
@@ -74,6 +74,8 @@ angular.module('leadApp', [])
     	data[0].student_id__c = data[0].student_id__c == null || data[0].student_id__c =='null' ? '' : data[0].student_id__c;
     	data[0].faculty__c = data[0].faculty__c == null || data[0].faculty__c =='null' ? '' : data[0].faculty__c;
     	data[0].request_zone__c = data[0].request_zone__c == null || data[0].request_zone__c =='null' ? '' : data[0].request_zone__c;
+    	data[0].scholarship__c = data[0].scholarship__c == null || data[0].Scholarship__c =='null' ? '' : data[0].scholarship__c;
+    	data[0].scholarship_Name__c = data[0].scholarship_Name__c == null || data[0].scholarship__c =='null' ? '' : data[0].scholarship__c;
     	data[0].billingstreet = data[0].billingstreet == null || data[0].billingstreet =='null' ? '' : data[0].billingstreet;
     	data[0].billingcity = data[0].billingcity == null || data[0].billingcity =='null' ? '' : data[0].billingcity;
     	data[0].billingstate = data[0].billingstate == null || data[0].billingstate =='null' ? '' : data[0].billingstate;
