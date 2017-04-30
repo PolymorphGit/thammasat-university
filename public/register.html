@@ -191,15 +191,15 @@
 			  //17/01/2016
 			  if (validateDateFormat(myBirthdate)) {
 				 
-				alert('1');
+				//alert('1');
 				var dd = myBirthdate.substring(0, 2);
-				alert('2  dd='+dd);
+				//alert('2  dd='+dd);
 				var mm = myBirthdate.substring(3, 5);
-				alert('3 mm-'+mm);
+				//alert('3 mm-'+mm);
 				var yyyy = myBirthdate.substring(6, 10);
-				alert('4 yyyy='+yyyy);
-				var temp = mm+"/"+dd+"/"+yyyy;
-				alert('temp='+temp);
+				//alert('4 yyyy='+yyyy);
+				myBirthdate = mm+"/"+dd+"/"+yyyy;
+				alert('myBirthdate='+myBirthdate);
 				  
 				angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
 				
