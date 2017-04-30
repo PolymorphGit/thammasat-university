@@ -17,8 +17,13 @@
 			
 			var second2 = document.getElementById("second");
 			alert('second2 : ' + second2);
+			
 			var second = $("#second").val();
 			alert('second : ' + second);
+			
+			var second3 = $("#second").is(":checked");
+			alert('second3 : ' + second);
+			
 			if (second == true) {
 				document.getElementById('selectRoommate').disable = true;
 			} else {
