@@ -34,7 +34,20 @@
 		
 	    function update(){
 	    	
-	    	/*alert("Before Update : ");
+	    	var val101 = validate(); 
+	    	val val102 = validateMobile(); 
+    		val val103 = validateStreet(); 
+    		val val104 = validateDistrict(); 
+    		val val105 = validateState();
+    		val val106 = validatePostcode(); 
+    		val val107 = validateCountry(); 
+    		val val108 = validateParent(); 
+    		val val109 = validateParentPhone(); 
+    		val val110 = validateParentIncome(); 
+    		val val111 = validateParent2(); 
+    		val val112 = validateParentPhone2();
+	    	
+    		/*alert("Before Update : ");
     		alert("validate() : " + validate());
     		alert("validateMobile() : " + validateMobile());
     		alert("validateStreet() : " + validateStreet());
@@ -48,18 +61,18 @@
     		alert("validateParent2() : " + validateParent2());
     		alert("validateParentPhone2() : " + validateParentPhone2());*/
     		//alert("account.scholarship__c : " +  angular.element(document.getElementById('main')).scope().account.scholarship__c );
-	    	if (validate() 
-	    		&& validateMobile() 
-	    		&& validateStreet() 
-	    		&& validateDistrict() 
-	    		&& validateState() 
-	    		&& validatePostcode() 
-	    		&& validateCountry() 
-	    		&& validateParent() 
-	    		&& validateParentPhone() 
-	    		&& validateParentIncome() 
-	    		&&  validateParent2() 
-	    		&& validateParentPhone2())
+	    	if (val101
+	    		&& val102
+	    		&& val103
+	    		&& val104
+	    		&& val105
+	    		&& val106
+	    		&& val107
+	    		&& val108
+	    		&& val109
+	    		&& val110
+	    		&& val111
+	    		&& val112
 	    	{
    			//if (validateMobile()) {
 	    		angular.element(document.getElementById('main')).scope().updateData(id);
