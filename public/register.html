@@ -22,25 +22,25 @@
 		
 		function update(){
 				
-	        var Vresult =true;
-	        Vresult = (Vresult && validate_sex());
-	        Vresult = (Vresult && validate_title_th());
-	        Vresult = (Vresult && validate_name_th());
-	        Vresult = (Vresult && validate_title_en());
-	        Vresult = (Vresult && validate_name_en());
+	        
+	        var v1 = validate_sex();
+	        var v2 = validate_title_th();
+	        var v3  = validate_name_th();
+	        var v4 = validate_title_en();
+	        var v5 = validate_name_en();
 	        //validateBirthday();
-	        Vresult = (Vresult && validateMobile());
-	        Vresult = (Vresult && validateEmail());
-	        Vresult = (Vresult && validateStudenID());
-	        Vresult = (Vresult && validateFaculty());
+	        var v7 = validateMobile();
+	        var v8 = validateEmail();
+	        var v9 = validateStudenID();
+	        var v10 = validateFaculty();
 	        //validateYear();
 	        //validateTerm();
-	        Vresult = (Vresult && validateZone());
-	        Vresult = (Vresult && validateStreet());
-	        Vresult = (Vresult && validateDistrict());
-	        Vresult = (Vresult && validateState());
-	        Vresult = (Vresult && validatePostcode());
-	        alert('Vresult='+Vresult);
+	        var v11 = validateZone();
+	        var v12 = validateStreet();
+	        var v13 = validateDistrict();
+	        var v14 = validateState();
+	        var v15 = validatePostcode();
+	        
 	        if ( 
 		    		validateStreet() 
 		    		&& validateDistrict() 
