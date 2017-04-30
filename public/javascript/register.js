@@ -152,19 +152,9 @@ angular.module('leadApp', [])
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		
-		if (data[0].birthdate__c) {
-    		var str = data[0].birthdate__c;
-    		var res = str.substring(0, 10);
-		    var dd = res.substring(2,2);
-		    var mm = res.substring(4,2);
-		    var yyyy = res.substring(7,4);
-		    
-		    res = dd + "/" + mm + "/" + yyyy+"T00:00:00Z";
-		    
-		    data[0].birthdate__c = res;
-    	}
-		
-		
+		alert('1');
+		var sss = data[0].birthdate__c;
+		alert('sss='+sss);
 		
 		alert('update success');
 	})
