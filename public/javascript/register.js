@@ -48,7 +48,7 @@ angular.module('leadApp', [])
   $scope.state = ['Bangkok'];
   
  
-  $scope.scholarshipName1 =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'] ;
+  
   $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
   $scope.$watch('lead.scholarship__c', function(newVal) {
 	  //alert('start');
@@ -63,8 +63,8 @@ angular.module('leadApp', [])
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
     			alert('4');
-    			//alert('4  0=' +$scope.scholarshipName);
-    			//alert('4  1=' +value.scholarshipName);
+    			alert('4  0=' +$scope.scholarshipnames);
+    			alert('4  1=' +value.scholarshipnames);
     	  		$scope.scholarshipnames = value.scholarshipnames;
     	  		alert('5');
     		  }
