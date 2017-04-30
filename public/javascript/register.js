@@ -100,6 +100,20 @@ angular.module('leadApp', [])
     	data[0].parent_name_2__c = data[0].parent_name_2__c == null || data[0].parent_name_2__c =='null' ? '' : data[0].parent_name_2__c;
     	data[0].parent_phone_2__c = data[0].parent_phone_2__c == null || data[0].parent_phone_2__c =='null' ? '' : data[0].parent_phone_2__c;
     	
+    	
+    	if (data[0].birthdate__c) {
+    		var str = data[0].birthdate__c;
+    		var res = str.substring(0, 10);
+		    var dd = res.substring(8,10);
+		    var mm = res.substring(5,7);
+		    var yyyy = res.substring(0,4);
+		    
+		    res = dd + "/" + mm + "/" + yyyy;
+		    
+		    data[0].birthdate__c = res;
+		    
+    	}
+    	
     	$scope.lead = data[0];
     })
     .error((data) => {
