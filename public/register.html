@@ -232,22 +232,7 @@
 		}
 		
 		
-		//------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------
-	
-		$("#validate").bind("click", validate);
-			
-		function isNumber(field) {
-            var re = /^[0-9.]*$/;
-            if (!re.test(field.value)) {
-                //alert("Input number only!!");
-                field.value = field.value.replace(/[^0-9.]/g, "");
-            }
-        }
-		
-			
-		function validateStreet() {
+        function validateStreet() {
 			
 			$("#streetResult").text("");
 			var myPhone = $("#street").val();
@@ -265,7 +250,8 @@
 			}
 			  
 		}
-		
+        
+
 		function validateDistrict() {
 			
 			$("#cityResult").text("");
@@ -284,6 +270,24 @@
 			}
 			  
 		}
+		
+		//------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------
+	
+		$("#validate").bind("click", validate);
+			
+		function isNumber(field) {
+            var re = /^[0-9.]*$/;
+            if (!re.test(field.value)) {
+                //alert("Input number only!!");
+                field.value = field.value.replace(/[^0-9.]/g, "");
+            }
+        }
+		
+			
+		
+		
 		
 		function validateState() {
 			
@@ -756,7 +760,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.street">
+								<input type="text" ng-model="lead.street" id="street" ></input>
+								<label id="streetResult" />
 							</td>
 						</tr>
 						
@@ -768,8 +773,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.city">
-								<label id="lbl_city" />
+								<input type="text" ng-model="lead.city" id="city" />
+								<label id="cityResult" />
 							</td>
 						</tr>
 						
