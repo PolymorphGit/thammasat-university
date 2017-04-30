@@ -185,11 +185,11 @@
 			  $("#birthdateResult").css("color", "red");
 			  $("#birthdateResult").text("");
 			  var myBirthdate = $("#birthdate").val();
-			  
+			  alert('aaaa='+myBirthdate);
 			  //2017/09/20
 			  if (validateDateFormat(myBirthdate)) {
 				angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
-				alert('myBirthdate='+myBirthdate);
+				
 			    return true;
 			  }
 			  else if((myBirthdate=="")||(myBirthdate=="?")) {
