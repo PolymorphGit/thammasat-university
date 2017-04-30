@@ -23,7 +23,7 @@ angular.module('accountApp', [])
   //Get a account Detail
   $scope.getData = function (accountId) {	
 	//alert(accountId);
-	  var temp=false;
+	var temp=false;
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
@@ -72,9 +72,7 @@ angular.module('accountApp', [])
     	}
     	
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	data[0].secondary__c=true;
     	
-    	temp=data[0].secondary__c;
     	
     	$scope.account = data[0];
     	
@@ -82,21 +80,6 @@ angular.module('accountApp', [])
     .error((data) => {
       console.log('Error: ' + data);
     });
-    
-    alert('1');
-    var outside = angular.element(document.getElementById('selectRoom')).scope();
-    alert('2');
-    alert('2_ temp='+temp);
-    alert('2_ outside='+outside);
-    if (temp){
-    	alert('3');
-    	outside.css("visibility","hidden");
-    	
-    }else{
-    	alert('4');
-    	outside.css("visibility","visible");
-    }
-    alert('1');
     
   };
   
