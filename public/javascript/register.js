@@ -62,11 +62,11 @@ angular.module('leadApp', [])
     		  //alert('3 2='+( value.Scholarship__c==$scope.lead.scholarship__c) );
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
-    			alert('4');
-    			alert('4  0=' +$scope.scholarshipnames);
-    			alert('4  1=' +value.scholarshipnames);
+    			//alert('4');
+    			//alert('4  0=' +$scope.scholarshipnames);
+    			//alert('4  1=' +value.scholarshipnames);
     	  		$scope.scholarshipnames = value.scholarshipnames;
-    	  		alert('5');
+    	  		//alert('5');
     		  }
 	      });
       }
