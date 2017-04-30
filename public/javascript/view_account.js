@@ -23,6 +23,7 @@ angular.module('accountApp', [])
   //Get a account Detail
   $scope.getData = function (accountId) {	
 	//alert(accountId);
+	  var temp=false;
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
@@ -56,8 +57,7 @@ angular.module('accountApp', [])
     	data[0].disabled__c = data[0].disabled__c == null || data[0].disabled__c =='null' ? '' : data[0].disabled__c;
     	
     	data[0].birthdate__c = data[0].birthdate__c == null || data[0].birthdate__c =='null' ? '' : data[0].birthdate__c;
-    	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	data[0].secondary__c=true;
+    	
     	if (data[0].birthdate__c) {
     		var str = data[0].birthdate__c;
     		var res = str.substring(0, 10);
@@ -71,12 +71,24 @@ angular.module('accountApp', [])
 		    
     	}
     	
+    	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
+    	data[0].secondary__c=true;
+    	
+    	temp=data[0].secondary__c;
+    	
     	$scope.account = data[0];
     	
     })
     .error((data) => {
       console.log('Error: ' + data);
     });
+    
+    var outside = angular.element(document.getElementById('selectRoom')).scope();
+    if (temp){
+    	outside.css("visibility","hidden");
+    }else{
+    	outside.css("visibility","visible");
+    }
     
   };
   
