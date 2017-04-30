@@ -28,6 +28,13 @@
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
 			GetFormattedDate();
+			
+			if (document.getElementById('second').value) {
+				document.getElementById('selectRoommate').disable = true;
+			} else {
+				document.getElementById('selectRoommate').disable = true;
+			}
+			
 			//replaceTextboxValue();
 			//clear();
 	    }
@@ -369,7 +376,7 @@
                 </tr>
                 
                 <!-- Student Information -->
-                
+                <input type="hidden" id="second" ng-model="account.secondary__c"/>
                 <tr style="background-color: #C80000">
                     <td colspan="3" align="left">
                         <b style="color:white">Student Information / ข้อมูลของนักศึกษาผู้จอง</b>
@@ -788,6 +795,7 @@
             
                 <br/><br/><center>
                     <button onclick="update();" >Save</button>
+                    <button id="selectRoom">Selet Room</button>
                 </center><br/><br/>
                     
         </div>
