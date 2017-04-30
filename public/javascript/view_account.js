@@ -23,7 +23,7 @@ angular.module('accountApp', [])
   //Get a account Detail
   $scope.getData = function (accountId) {	
 	//alert(accountId);
-	var temp=false;
+	
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
@@ -78,13 +78,19 @@ angular.module('accountApp', [])
     	
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
     	alert('angular get data secondary__c:'+data[0].secondary__c);
-    	
+    	var temp =data[0].secondary__c;
     	alert('s1');
         var outside = angular.element(document.getElementById('selectRoom')).scope();
         alert('s2');
         alert('s2_ temp='+temp);
-        alert('s2_ outside='+outside);
+        
+        if (temp){
+        	alert('p1');
+        	outside.css("visibility","hidden");
+        	alert('p2');
+        }
     	
+        alert('99');
     	
     	$scope.account = data[0];
     	
