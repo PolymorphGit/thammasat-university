@@ -133,14 +133,12 @@ angular.module('leadApp', [])
   
   $scope.updateLead = function () {
 	var data = JSON.stringify($scope.lead);
-	alert("11");
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		alert('update success');
 	})
 	.error((data) => {
-		alert('Error: ' + data);
 		console.log('Error: ' + data);
 	});
   }
