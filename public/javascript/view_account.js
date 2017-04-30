@@ -57,7 +57,7 @@ angular.module('accountApp', [])
     	
     	data[0].birthdate__c = data[0].birthdate__c == null || data[0].birthdate__c =='null' ? '' : data[0].birthdate__c;
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	
+    	alert('data[0].secondary__c='+data[0].secondary__c);
     	if (data[0].birthdate__c) {
     		var str = data[0].birthdate__c;
     		var res = str.substring(0, 10);
