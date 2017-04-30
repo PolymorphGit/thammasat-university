@@ -58,11 +58,11 @@ angular.module('leadApp', [])
     	  alert($scope.lead.scholarship__c);
     	  angular.forEach($scope.scholarship_name__c , function(value)
 	      {
-    		  //alert(value.Gender);
+    		  alert('3 ='+value.Scholarship__c);
     		  
-    		  if(value.scholarship__c == $scope.lead.scholarship__c)
+    		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
-    			//alert(value.zones);
+    			alert('4'+value.scholarshipName);
     	  		$scope.scholarship_name__c = value.scholarshipName;
     		  }
 	      });
