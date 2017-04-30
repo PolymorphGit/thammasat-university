@@ -32,8 +32,6 @@
 	        var v8 = validateEmail();
 	        var v9 = validateStudenID();
 	        var v10 = validateFaculty();
-	        //validateYear();
-	        //validateTerm();
 	        var v11 = validateZone();
 	        
 	        
@@ -909,7 +907,7 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.parent_income__c" id="parentIncome" />
+								<input type="text" ng-model="lead.parent_income__c" id="parentIncome" onkeyup="isNumber(this)" maxlength="18"/>
 								<label id="parentIncomeResult" />
 								
 							</td>
