@@ -28,7 +28,7 @@
 			id = matches[1];
 			angular.element(document.getElementById('main')).scope().getData(id);
 			GetFormattedDate();
-			
+			alert('document.getElementById(\'second\').value: ' + document.getElementById('second').value)
 			if (document.getElementById('second').value) {
 				document.getElementById('selectRoommate').disable = true;
 			} else {
