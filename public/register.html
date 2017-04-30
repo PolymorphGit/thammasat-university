@@ -26,17 +26,17 @@
 		
 		function update(){
 			
-	        var v1 = validate_sex();
-	        var v2 = validate_title_th();
-	        var v3  = validate_name_th();
-	        var v4 = validate_title_en();
-	        var v5 = validate_name_en();
-	        //validateBirthday();
-	        var v7 = validateMobile();
-	        var v8 = validateEmail();
-	        var v9 = validateStudenID();
-	        var v10 = validateFaculty();
-	        var v11 = validateZone();
+	        var v101 = validate_sex();
+	        var v102 = validate_title_th();
+	        var v103  = validate_name_th();
+	        var v104 = validate_title_en();
+	        var v105 = validate_name_en();
+	        //var v106 = validateBirthday();
+	        var v107 = validateMobile();
+	        var v108 = validateEmail();
+	        var v109 = validateStudenID();
+	        var v110 = validateFaculty();
+	        var v111 = validateZone();
 	        
 	        
 	        var v202 = validateStreet();
@@ -54,16 +54,30 @@
 	        
 	        
 	        if ( 
-		    		validateStreet() 
-		    		&& validateDistrict() 
-		    		&& validateState() 
-		    		&& validatePostcode() 
-		    		&& validateCountry() 
-		    		&& validateParent() 
-		    		&& validateParentPhone() 
-		    		&& validateParentIncome() 
-		    		&& validateParent2() 
-		    		&& validateParentPhone2()
+	        		v101 
+	        		&& v102 
+	        		&& v103 
+	        		&& v104 
+	        		&& v105 
+	        		
+	        		&& v107 
+	        		&& v108 
+	        		&& v109 
+	        		&& v110 
+	        		&& v111 
+	        		
+	        		&& v202 
+	        		&& v203 
+	        		&& v204 
+	        		&& v205 
+	        		&& v206 
+	        		
+	        		&& v300 
+	        		&& v301 
+	        		&& v303 
+	        		&& v304 
+	        		&& v305
+
 		      )
 		    	{
 		    		alert('test');
@@ -430,9 +444,7 @@
 				return false;
 			}
 		}
-		//------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------
+		
 	
 		$("#validate").bind("click", validate);
 			
