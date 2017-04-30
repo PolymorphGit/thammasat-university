@@ -21,22 +21,26 @@
 		<script type="text/javascript">
 		
 		function update(){
-			
-	       
-	        validate_sex();
-	        validate_title_th();
-	        validate_name_th();
-	        validate_title_en();
-	        validate_name_en();
+				
+	        var Vresult =true;
+	        Vresult = (Vresult && validate_sex());
+	        Vresult = (Vresult && validate_title_th());
+	        Vresult = (Vresult && validate_name_th());
+	        Vresult = (Vresult && validate_title_en());
+	        Vresult = (Vresult && validate_name_en());
 	        //validateBirthday();
-	        validateMobile();
-	        validateEmail();
-	        validateStudenID();
-	        validateFaculty();
+	        Vresult = (Vresult && validateMobile());
+	        Vresult = (Vresult && validateEmail());
+	        Vresult = (Vresult && validateStudenID());
+	        Vresult = (Vresult && validateFaculty());
 	        //validateYear();
 	        //validateTerm();
-	        validateZone();
-	        
+	        Vresult = (Vresult && validateZone());
+	        Vresult = (Vresult && validateStreet());
+	        Vresult = (Vresult && validateDistrict());
+	        Vresult = (Vresult && validateState());
+	        Vresult = (Vresult && validatePostcode());
+	        alert('Vresult='+Vresult);
 	        if ( 
 		    		validateStreet() 
 		    		&& validateDistrict() 
@@ -271,6 +275,63 @@
 			  
 		}
 		
+		
+        function validateState() {
+			
+			$("#stateResult").text("");
+			var myPhone = $("#state").val();
+			
+			if ($.trim($('#state').val()) != '') {
+				/*$("#result").text(myEmail + " is valid :)");
+				$("#result").css("color", "green");
+				*/
+				return true;
+			} else {
+				$("#stateResult").text("Province is required");
+				$("#stateResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+        
+        
+        function validatePostcode() {
+        	$("#postcodeResult").text("");
+        	
+			if ($.trim($('#postcode').val()) != '') {
+				/*$("#result").text(myEmail + " is valid :)");
+				$("#result").css("color", "green");
+				*/
+				return true;
+			} else {
+				$("#postcodeResult").text("Postal Code is required");
+				$("#postcodeResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+        
+        function validateCountry() {
+			
+			$("#countryResult").text("");
+			var myPhone = $("#country").val();
+			
+			if ($.trim($('#country').val()) != '') {
+				/*$("#result").text(myEmail + " is valid :)");
+				$("#result").css("color", "green");
+				*/
+				return true;
+			} else {
+				$("#countryResult").text("Country is required");
+				$("#countryResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+		
 		//------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------
@@ -289,62 +350,11 @@
 		
 		
 		
-		function validateState() {
-			
-			$("#stateResult").text("");
-			var myPhone = $("#state").val();
-			
-			if ($.trim($('#state').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#stateResult").text("Province is required");
-				$("#stateResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
 		
-		function validatePostcode() {
-			
-			$("#postcodeResult").text("");
-			var myPhone = $("#postcode").val();
-			
-			if ($.trim($('#postcode').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#postcodeResult").text("Postal Code is required");
-				$("#postcodeResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
 		
-		function validateCountry() {
-			
-			$("#countryResult").text("");
-			var myPhone = $("#country").val();
-			
-			if ($.trim($('#country').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#countryResult").text("Country is required");
-				$("#countryResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
+		
+		
+		
 		
 		function validateParent() {
 			
@@ -777,7 +787,7 @@
 								<label id="cityResult" />
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td align="right">
 								Province (จังหวัด)
@@ -786,8 +796,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.state">
-								<label id="lbl_lead" />
+								<input type="text" ng-model="lead.state" id="state" />
+								<label id="stateResult" />
 							</td>
 						</tr>
 						
@@ -799,11 +809,11 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.postalcode">
-								<label id="lbl_postalcode" />
+								<input type="text" ng-model="lead.postalcode" id="postcode" />
+								<label id="postcodeResult" />
 							</td>
 						</tr>
-						
+			
 						<tr>
 							<td align="right">
 								Country (ประเทศ)
@@ -812,8 +822,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.country">
-								<label id="lbl_country" />
+								<input type="text" ng-model="lead.country" id="country">
+								<label id="countryResult" />
 							</td>
 						</tr>
 						
