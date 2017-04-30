@@ -186,8 +186,18 @@
 			  $("#birthdateResult").text("");
 			  var myBirthdate = $("#birthdate").val();
 			  alert('aaaa='+myBirthdate);
+			  
 			  //2017/09/20
 			  if (validateDateFormat(myBirthdate)) {
+				alert('1');
+				var dd = myBirthdate.substring(0, 2);
+				alert('2  dd='+dd);
+				var mm = myBirthdate.substring(4, 6);
+				alert('3 mm-'+mm);
+				var yyyy = myBirthdate.substring(8, 12);
+				alert('4 yyyy='+yyyy);
+				var temp = mm+"/"+dd+"/"+yyyy;
+				  
 				angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
 				
 			    return true;
