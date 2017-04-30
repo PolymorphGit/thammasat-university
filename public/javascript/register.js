@@ -151,11 +151,6 @@ angular.module('leadApp', [])
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
-		
-		alert('1');
-		var sss = data[0].birthdate__c;
-		alert('sss='+sss);
-		
 		alert('update success');
 	})
 	.error((data) => {
