@@ -86,8 +86,10 @@ angular.module('accountApp', [])
         
         if (temp){
         	alert('p1');
-        	outside.css("visibility","hidden");
-        	alert('p2');
+        	angular.element('#selectRoom').css('visibility', 'hidden');
+        	alert('p3');
+        	outside.css('visibility','hidden');
+        	alert('p4');
         }
     	
         alert('99');
