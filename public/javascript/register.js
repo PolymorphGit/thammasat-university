@@ -153,23 +153,9 @@ angular.module('leadApp', [])
 	.success((data) => {
 		alert('q');
 
-		if (data[0].birthdate__c!="") {
-			alert('1');
-    		var str = data[0].birthdate__c;
-    		alert('2');
-    		var res = str.substring(0, 10);
-    		alert('3');
-		    var dd = res.substring(0,2);
-		    alert('4');
-		    var mm = res.substring(4,6);
-		    alert('5');
-		    var yyyy = res.substring(8,10);
-		    alert('6');
-		    res = yyyy +"/" + mm + "/" + dd + "T00:00:00Z";
-		    alert('7');
-		    data[0].birthdate__c = res;
-		    alert('8');
-    	}
+		alert('data='+data);
+		alert('data='+data[0]);
+		alert('data='+data[0].birthdate__c);
 
 		alert('update success');
 	})
