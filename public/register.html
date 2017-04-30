@@ -39,7 +39,10 @@
 	        var v12 = validateStreet();
 	        var v13 = validateDistrict();
 	        var v14 = validateState();
+	        
 	        var v15 = validatePostcode();
+	        
+	        vat v16 = validateCountry(); 
 	        
 	        if ( 
 		    		validateStreet() 
@@ -222,8 +225,8 @@
 			$("#lbl_request_zone__c").text("");
 			$("#lbl_request_zone__c").css("color", "red");
 			
-			//var value = $("#state :selected").val();
-			var value = $("#state option:selected").text();
+			//var value = $("#request_Zone__c :selected").val();
+			var value = $("#request_Zone__c option:selected").text();
 			//var objDisabled = $("#state").prop("disabled");
 			
 			if ((value=="")||(value=="?")) {
@@ -722,7 +725,7 @@
 							<td>
 							   
 								<!--  <input type="text" ng-model="lead.request_zone__c"> -->
-								<select id="state"
+								<select id="request_Zone__c"
 							    ng-model="lead.request_zone__c"
 							    ng-disabled="!lead.gender__c"
 							    ng-options="z for z in zones" ></select>
