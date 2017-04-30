@@ -24,7 +24,7 @@ angular.module('leadApp', [])
   $scope.$watch('lead.gender__c', function(newVal) {
       if (newVal)
       {
-    	  alert($scope.lead.gender__c);
+    	  //alert($scope.lead.gender__c);
     	  angular.forEach($scope.zone , function(value)
 	      {
     		  //alert(value.Gender);
@@ -49,7 +49,22 @@ angular.module('leadApp', [])
   
  
   $scope.scholarshipName =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'];
-  
+  $scope.$watch('lead.scholarship__c', function(newVal) {
+      if (newVal)
+      {
+    	  alert($scope.lead.scholarship__c);
+    	  angular.forEach($scope.scholarship_name__c , function(value)
+	      {
+    		  //alert(value.Gender);
+    		  
+    		  if(value.Gender == $scope.lead.gender__c)
+    		  {
+    			//alert(value.zones);
+    	  		$scope.zones = value.zones;
+    		  }
+	      });
+      }
+  });
   
   $scope.getData = function () {	
 	//alert(accountId);
