@@ -87,7 +87,7 @@ angular.module('accountApp', [])
         if (temp){
         	alert('p1');
         	//outside.css('visibility','hidden');
-        	angular.element(document.getElementById('selectRoom')).scope().css('visibility','hidden');
+        	angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
         	alert('p4');
         }
     	
