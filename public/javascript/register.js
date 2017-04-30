@@ -49,7 +49,7 @@ angular.module('leadApp', [])
   
  
   
-  $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
+  $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipname':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
   $scope.$watch('lead.scholarship__c', function(newVal) {
 	  //alert('start');
       if (newVal)
@@ -65,7 +65,7 @@ angular.module('leadApp', [])
     			alert('4');
     			alert('4  0=' +$scope.scholarshipnames);
     			alert('4  1=' +value.scholarshipnames);
-    	  		$scope.scholarshipnames = value.scholarshipnames;
+    	  		$scope.scholarshipname = value.scholarshipname;
     	  		alert('5');
     		  }
 	      });
