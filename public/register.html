@@ -37,11 +37,17 @@
 	        //validateTerm();
 	        var v11 = validateZone();
 	        
-	        var v12 = validateStreet();
-	        var v13 = validateDistrict();
-	        var v14 = validateState();
-	        var v15 = validatePostcode();
-	        var v16 = validateCountry(); 
+	        var v202 = validateStreet();
+	        var v203 = validateDistrict();
+	        var v204 = validateState();
+	        var v205 = validatePostcode();
+	        var v206 = validateCountry(); 
+	        
+	        var v300= validateParent();
+	        var v301= validateParentPhone();
+	        var v303= validateParentIncome();
+	        var v304= validateParent2()
+	        var v305= validateParentPhone2();
 	        
 	        if ( 
 		    		validateStreet() 
@@ -52,7 +58,7 @@
 		    		&& validateParent() 
 		    		&& validateParentPhone() 
 		    		&& validateParentIncome() 
-		    		&&  validateParent2() 
+		    		&& validateParent2() 
 		    		&& validateParentPhone2()
 		      )
 		    	{
@@ -333,6 +339,92 @@
 			}
 			  
 		}
+        
+        function validateParent() {
+			
+			$("#parentResult").text("");
+			var myPhone = $("#parent").val();
+			
+			if ($.trim($('#parent').val()) != '') {
+				return true;
+			} else {
+				$("#parentResult").text("Parent Name is required");
+				$("#parentResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+        
+        function validateParentPhone() {
+			
+			$("#parentPhoneResult").text("");
+			var myPhone = $("#parentPhone").val();
+			
+			if ($.trim($('#parentPhone').val()) != '') {
+				/*$("#result").text(myEmail + " is valid :)");
+				$("#result").css("color", "green");
+				*/
+				return true;
+			} else {
+				$("#parentPhoneResult").text("Parent Phone is required");
+				$("#parentPhoneResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+		
+        
+        function validateParentIncome() {
+			
+			$("#parentIncomeResult").text("");
+			var myPhone = $("#parentIncome").val();
+			
+			if ($.trim($('#parentIncome').val()) != '') {
+				return true;
+			} else {
+				$("#parentIncomeResult").text("Parent Income is required");
+				$("#parentIncomeResult").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+        
+		
+        
+		function validateParent2() {
+			
+			$("#parent2Result").text("");
+			var myPhone = $("#parent2").val();
+			
+			if ($.trim($('#parent2').val()) != '') {
+				
+				return true;
+			} else {
+				$("#parent2Result").text("Parent Name(2) is required");
+				$("#parent2Result").css("color", "red");
+				    
+				return false;
+			}
+			  
+		}
+		
+		function validateParentPhone2() {
+			
+			$("#parentPhone2Result").text("");
+			var myPhone = $("#parentPhone2").val();
+			
+			if ($.trim($('#parentPhone2').val()) != '') {
+				
+				return true;
+			} else {
+				$("#parentPhone2Result").text("Parent Phone(2) is required");
+				$("#parentPhone2Result").css("color", "red");
+				    
+				return false;
+			}
 		
 		//------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------
@@ -358,62 +450,11 @@
 		
 		
 		
-		function validateParent() {
-			
-			$("#parentResult").text("");
-			var myPhone = $("#parent").val();
-			
-			if ($.trim($('#parent').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#parentResult").text("Parent Name is required");
-				$("#parentResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
 		
-		function validateParentPhone() {
-			
-			$("#parentPhoneResult").text("");
-			var myPhone = $("#parentPhone").val();
-			
-			if ($.trim($('#parentPhone').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#parentPhoneResult").text("Parent Phone is required");
-				$("#parentPhoneResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
 		
-		function validateParentIncome() {
-			
-			$("#parentIncomeResult").text("");
-			var myPhone = $("#parentIncome").val();
-			
-			if ($.trim($('#parentIncome').val()) != '') {
-				/*$("#result").text(myEmail + " is valid :)");
-				$("#result").css("color", "green");
-				*/
-				return true;
-			} else {
-				$("#parentIncomeResult").text("Parent Income is required");
-				$("#parentIncomeResult").css("color", "red");
-				    
-				return false;
-			}
-			  
-		}
+		
+		
+		
 		
 		function validateParent2() {
 			
@@ -889,7 +930,8 @@
 							<td>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.parent_name__c"  postrender-action="alert('last posted');">
+								<input type="text" ng-model="lead.parent_name__c"  postrender-action="alert('last posted');" id="parent" />
+								<label id="parentResult" />
 							</td>
 						</tr>
 						<tr>
@@ -899,7 +941,8 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.parent_phone__c">
+								<input type="text" ng-model="lead.parent_phone__c" id="parentPhone"/>
+								<label id="parentPhoneResult" />
 							</td>
 						</tr>
 						
@@ -910,11 +953,13 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="">
+								<input type="text" ng-model="lead.parent_income__c" id="parentIncome">
+								<label id="parentIncome" />
+								
 							</td>
 						</tr>
-						
-						
+
+
 						<tr style="height:5px">
 							<td colspan="3"></td>
 						</tr>
@@ -926,7 +971,8 @@
 							<td>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.parent_name_2__c">
+								<input type="text" ng-model="lead.parent_name_2__c" id="parent2">
+								<label id="parent2Result" />
 							</td>
 						</tr>
 						<tr>
@@ -936,7 +982,8 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.parent_phone_2__c">
+								<input type="text" ng-model="lead.parent_phone_2__c" id="parentPhone2" />
+								<label id="parentPhone2Result" />
 							</td>
 						</tr>
 						
