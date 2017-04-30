@@ -72,7 +72,7 @@ angular.module('accountApp', [])
     	}
     	
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	
+    	alert('s='+data[0].secondary__c);
     	
     	$scope.account = data[0];
     	
