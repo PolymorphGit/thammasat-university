@@ -21,9 +21,12 @@
 		<script type="text/javascript">
 		
 		function update(){
-				
+			validate_sex();
+			validate_title_th();
+			validate_title_en();
 	        alert('1');
-	        var v1 = validate_sex();
+	        /*
+	        //var v1 = validate_sex();
 	        var v2 = validate_title_th();
 	        var v3  = validate_name_th();
 	        var v4 = validate_title_en();
@@ -51,7 +54,7 @@
 	        //var v304= validateParent2()
 	        //var v305= validateParentPhone2();
 	        alert('4');
-	        
+	        */
 	        if ( 
 		    		validateStreet() 
 		    		&& validateDistrict() 
