@@ -54,14 +54,11 @@ angular.module('leadApp', [])
 	  alert('start');
       if (newVal)
       {
-    	  alert('2');
-    	  //this not found
-    	  //alert('2 scope.scholarship_name__c =' + scope.scholarship_name__c );
     	  alert('2 scholarship__c= ' +$scope.lead.scholarship__c );
     	  angular.forEach($scope.scholarshipName , function(value)
 	      {
-    		  alert('3 ='+value.Scholarship__c);
-    		  
+    		  alert('3 0='+value.Scholarship__c);
+    		  alert('3 1='+$scope.lead.scholarship__c);
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
     			alert('4'+value.scholarshipName);
