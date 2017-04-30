@@ -186,7 +186,7 @@
 			  $("#birthdateResult").text("");
 			  var myBirthdate = $("#birthdate").val();
 			  
-			  
+			  2017/09/20
 			  if (validateDateFormat(myBirthdate)) {
 			    return true;
 			  }
@@ -194,7 +194,13 @@
 				  $("#birthdateResult").text("Birthdate is require");
 				  return false;
 			  }
-			  else {
+			  else if(myBirthdate.length!=10) 
+			  {
+			    $("#birthdateResult").text("Birthdate is not valid format dd/MM/yyyy.");
+			    return false;
+			  }
+			  else  
+			  {
 			    $("#birthdateResult").text("Birthdate is not valid format dd/MM/yyyy.");
 			    return false;
 			  }
