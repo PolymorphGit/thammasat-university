@@ -111,8 +111,8 @@ angular.module('leadApp', [])
 		    res = dd + "/" + mm + "/" + yyyy;
 		    
 		    data[0].birthdate__c = res;
-		    
     	}
+    	
     	
     	$scope.lead = data[0];
     })
@@ -151,6 +151,9 @@ angular.module('leadApp', [])
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
+		$alert(' $("#birthdate").val()='+ $("#birthdate").val());
+		alert('data[0].birthdate__c='+data[0].birthdate__c);
+		
 		alert('update success');
 	})
 	.error((data) => {
