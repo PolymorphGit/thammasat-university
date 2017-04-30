@@ -15,6 +15,7 @@
 	    function init() { 
 			var matches = /id=([^&#=]*)/.exec(window.location.search);
 			id = matches[1];
+			alert("id : " + id);
 			angular.element(document.getElementById('main')).scope().getData(id);
 			//GetFormattedDate();
 			
