@@ -218,10 +218,13 @@
 			$("#lbl_request_zone__c").text("");
 			$("#lbl_request_zone__c").css("color", "red");
 			
-			var value = $("#state :selected").val();
+			//var value = $("#state :selected").val();
+			var value = $("#state option:selected").text();
 			var objDisabled = $("#state").prop("disabled");
 			
-			alert('1 value='+value);
+			
+			alert('1 value='+value+"___value.length"+value.length);
+			
 			if ((value=="")||(value=="?")) {
 				alert('2 validate_sex()=' + validate_sex());
 				if(validate_sex()){
@@ -234,7 +237,9 @@
 		}
 		
 		
-		
+		//------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------
 	
 		$("#validate").bind("click", validate);
 			
