@@ -220,15 +220,10 @@
 			
 			//var value = $("#state :selected").val();
 			var value = $("#state option:selected").text();
-			var objDisabled = $("#state").prop("disabled");
-			
-			
-			alert('1 value='+value+"___value.length"+value.length);
+			//var objDisabled = $("#state").prop("disabled");
 			
 			if ((value=="")||(value=="?")) {
-				alert('2 validate_sex()=' + validate_sex());
 				if(validate_sex()){
-					alert('3');
 					$("#lbl_request_zone__c").text("Please select zone.");
 					return false;
 				}
@@ -716,7 +711,7 @@
 							    ng-model="lead.request_zone__c"
 							    ng-disabled="!lead.gender__c"
 							    ng-options="z for z in zones" />
-							    <label id="lbl_request_zone__c" />
+							    <label id="lbl_request_zone__c" value="testtttttttt"/>
 							    
 							</td>
 						</tr>
