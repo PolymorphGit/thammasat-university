@@ -195,10 +195,10 @@
 				var mm = myBirthdate.substring(3, 5);
 				var yyyy = myBirthdate.substring(6, 10);
 				
-				myBirthdate = mm+"/"+dd+"/"+yyyy;
-				alert('myBirthdate='+myBirthdate);
+				vat anularBirthdate = mm+"/"+dd+"/"+yyyy;
+				
 				  
-				angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
+				angular.element(document.getElementById('main')).scope().lead.birthdate__c = anularBirthdate;
 				
 			    return true;
 			  }
