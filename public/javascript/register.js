@@ -139,6 +139,7 @@ angular.module('leadApp', [])
 		alert('update success');
 	})
 	.error((data) => {
+		alert('Error: ' + data);
 		console.log('Error: ' + data);
 	});
   }
