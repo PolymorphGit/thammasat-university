@@ -68,11 +68,23 @@ angular.module('accountApp', [])
 		    res = dd + "/" + mm + "/" + yyyy;
 		    
 		    data[0].birthdate__c = res;
+		    alert('s1');
+		    var outside = angular.element(document.getElementById('selectRoom')).scope();
+		    alert('s2');
+		    alert('s2_ temp='+temp);
+		    alert('s2_ outside='+outside);
 		    
     	}
     	
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	alert('s='+data[0].secondary__c);
+    	alert('angular get data secondary__c:'+data[0].secondary__c);
+    	
+    	alert('s1');
+        var outside = angular.element(document.getElementById('selectRoom')).scope();
+        alert('s2');
+        alert('s2_ temp='+temp);
+        alert('s2_ outside='+outside);
+    	
     	
     	$scope.account = data[0];
     	
@@ -80,6 +92,8 @@ angular.module('accountApp', [])
     .error((data) => {
       console.log('Error: ' + data);
     });
+    
+    
     
   };
   
