@@ -34,9 +34,10 @@
 	        //var v106 = validateBirthday();
 	        var v107 = validateMobile();
 	        var v108 = validateEmail();
-	        var v109 = validateStudenID();
-	        var v110 = validateFaculty();
-	        var v111 = validateZone();
+	        var v109 = validateScholarshipName();
+	        var v110 = validateStudenID();
+	        var v111 = validateFaculty();
+	        var v112 = validateZone();
 	        
 	        
 	        var v202 = validateStreet();
@@ -64,7 +65,8 @@
 	        		&& v108 
 	        		&& v109 
 	        		&& v110 
-	        		&& v111 
+	        		&& v111
+	        		&& v112
 	        		
 	        		&& v202 
 	        		&& v203 
@@ -80,7 +82,7 @@
 
 		      )
 		    	{
-		    		alert('test');
+		    		alert('test complete');
 		    		//angular.element(document.getElementById('main')).scope().updateData(id);
 		    	}
 		}
@@ -212,6 +214,27 @@
 			  }
 			  
 	    }
+		
+		
+		
+		function validateScholarshipName(){
+			$("#ScholarshipResult").text("");
+			$("#ScholarshipResult").css("color", "red");
+			
+			//var value = $("#pick_Scholarshipn__c :selected").val();
+			var value = $("#pick_Scholarshipn__c option:selected").text();
+			//var objDisabled = $("#pick_Scholarshipn__c").prop("disabled");
+			var ScholarChecked =  $("#chkScholarship").prop('checked');
+			alert('sss'+ScholarChecked==true);
+			if ((value=="")||(value=="?")) {
+				if(ScholarChecked){
+					alert('1');
+					$("#ScholarshipResult").text("Please select scholarship name.");
+					return false;
+				}
+			}
+			return true;
+		}
 
 		
 		function validateStudenID() {
@@ -626,7 +649,9 @@
 								<input type="text" ng-model="lead.Birthdate__c" id="birthdate"/>
 								<label id="lbl_birthdate__c"/>
 								<script type="text/javascript">
-            						$('#birthdate').dateTimePicker();
+            						$('#birthdate').dateTimePicker({
+            							format: 'dd/MM/yyyy'
+            			            });
         						</script>
 							</td>
 						</tr>
