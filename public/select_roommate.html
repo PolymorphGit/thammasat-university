@@ -49,7 +49,7 @@
                 
                 <tr style="background-color: #C80000">
                         <td colspan="3">
-                            <b style="color:white">Student Information / ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลของ๏ฟฝัก๏ฟฝึก๏ฟฝาผ๏ฟฝ๏ฟฝอง</b>
+                            <b style="color:white">Student Information / ข้อมูลของนักศึกษา</b>
                         </td>
                     </tr>
                     
@@ -63,7 +63,7 @@
                     
                         <tr>
                             <td align="right" class='CustomLayout1' >
-                                ID Cards / ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลข๏ฟฝ๏ฟฝะชาช๏ฟฝ
+                                ID Cards / หมายเลขประชาชน
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
@@ -83,7 +83,7 @@
                         
                         <tr>
                             <td align="right">
-                                Sex /๏ฟฝ๏ฟฝ
+                                Sex /เพศ
                             </td>
                             <td> : </td>
                             <td>
@@ -93,7 +93,7 @@
                         
                         <tr>
                             <td align="right">
-                           		  ๏ฟฝำน๏ฟฝหน๏ฟฝาช๏ฟฝ๏ฟฝ๏ฟฝ
+                           		  คำนำหน้าชื่อ
                             </td>
                             <td> : </td>
                             <td>
@@ -103,7 +103,7 @@
                         
                         <tr>
                             <td align="right" class="CustomLayout2" >
-                                Student Name-Surname/๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ-สก๏ฟฝลนัก๏ฟฝึก๏ฟฝ๏ฟฝ (Thi)
+                                Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -132,7 +132,7 @@
                         
                         <tr>
                             <td align="right" class="CustomLayout2">
-                                Student Name-surname/๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ-สก๏ฟฝลนัก๏ฟฝึก๏ฟฝ๏ฟฝ (Eng)
+                                Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -151,7 +151,7 @@
                         
                         <tr>
                             <td align="right">
-                                Student ID /๏ฟฝ๏ฟฝ๏ฟฝสนัก๏ฟฝึก๏ฟฝ๏ฟฝ
+                                Student ID /รหัสนักศึกษา
                             </td>
                             <td> : </td>
                             <td>
@@ -162,7 +162,8 @@
                 	
                 	</tr>
             </table>
-            <ul >
+            <Center>
+            <ul>
             	<li ng-repeat="r in roommate">
             		<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
             		<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
@@ -170,6 +171,7 @@
             		<button ng-click="deleteRoommate(r)">Delete</button>
             	</li>
             </ul>
+            </Center>
             {{roommate}}
         </div>              
 	</body>
