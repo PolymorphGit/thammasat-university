@@ -151,25 +151,9 @@ angular.module('leadApp', [])
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
-<<<<<<< HEAD
-		alert('w');
-=======
+		alert('q');
 		
-		if (data[0].birthdate__c) {
-    		var str = data[0].birthdate__c;
-    		var res = str.substring(0, 10);
-		    var dd = res.substring(2,2);
-		    var mm = res.substring(4,2);
-		    var yyyy = res.substring(7,4);
-		    
-		    res = dd + "/" + mm + "/" + yyyy+"T00:00:00Z";
-		    
-		    data[0].birthdate__c = res;
-    	}
-		
-		
-		
->>>>>>> parent of 6472ba0... register.js
+
 		alert('update success');
 	})
 	.error((data) => {
