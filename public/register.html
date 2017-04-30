@@ -512,7 +512,7 @@
 							</td>
 							<td></td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.identification_number__c" >
+								<input type="text" ng-model="lead.identification_number__c" />
 								<label id="lbl_indectification_number__c"/>
 							</td>
 						</tr>
@@ -523,7 +523,7 @@
 							</td>
 							<td></td>
 							<td>
-								<input type="text" ng-model="lead.passport_number__c">
+								<input type="text" ng-model="lead.passport_number__c" />
 								<label id="lbl_passport_number__c"/>
 							</td>
 						</tr>
@@ -565,10 +565,10 @@
 								<Table style="margin-left:-3px;">
 									<tr>
 										<td>
-											<input type="text" ng-model="lead.first_name_th__c" id="first_name_th__c" maxlength="40">
+											<input type="text" ng-model="lead.first_name_th__c" id="first_name_th__c" maxlength="40" />
 										</td>
 										<td>
-											<input type="text" ng-model="lead.last_name_th__c" id="last_name_th__c" maxlength="80">
+											<input type="text" ng-model="lead.last_name_th__c" id="last_name_th__c" maxlength="80" />
 											<label id="lbl_name_th__c"/>
 										</td>
 									</tr>
@@ -600,10 +600,10 @@
 								<Table style="margin-left:-3px;">
 									<tr>
 										<td>
-											<input type="text" ng-model="lead.firstname" id="first_name_en__c">
+											<input type="text" ng-model="lead.firstname" id="first_name_en__c" />
 										</td>
 										<td>
-											<input type="text" ng-model="lead.lastname" id="last_name_en__c">
+											<input type="text" ng-model="lead.lastname" id="last_name_en__c" />
 											<label id="lbl_name_en__c"/>
 										</td>
 									</tr>
@@ -619,7 +619,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="">
+								<input type="text" ng-model="" />
 								<label id="lbl_birthdate"/>
 							</td>
 						</tr>
@@ -633,7 +633,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.mobilephone" id="mobilephone">
+								<input type="text" ng-model="lead.mobilephone" id="mobilephone" />
 								<label id="lbl_mobilephone"/>
 							</td>
 						</tr>
@@ -646,10 +646,34 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								 <input type="text" ng-model="lead.email" id="txtEmail">
+								 <input type="text" ng-model="lead.email" id="txtEmail" />
 								 <label id="lbl_email"/>
 							</td>
 						</tr>
+						
+						
+						<tr>
+							<td align="right">
+								Scholarship /นักศึกษาทุน
+							</td>
+							<td></td>
+							<td>
+								 <input type="text" ng-model="lead.Scholarship__c" id="chkScholarship"/>
+							</td>
+						</tr>
+						
+						<tr>
+							<td align="right">
+								Scholarship Name /ชื่อทุนการศึกษา
+							</td>
+							<td><b style="color=red">*</b></td>
+							<td>
+								 <select ng-model="lead.Scholarship_Name__c" ng-options="x for x in ScholarshipName" id="pick_Scholarshipn__c"></select>
+								 <label id="ScholarshipResult"/>
+							</td>
+						</tr>
+						
+						
 						
 						<tr>
 							<td align="right">

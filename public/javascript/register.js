@@ -47,6 +47,10 @@ angular.module('leadApp', [])
   $scope.country = ['Thailand'];
   $scope.state = ['Bangkok'];
   
+  
+  $scope.ScholarshipName =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'];
+  
+  
   $scope.getData = function () {	
 	//alert(accountId);
     $http.get('../studentinfo/' + $scope.id)
