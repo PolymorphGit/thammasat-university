@@ -83,12 +83,20 @@ angular.module('accountApp', [])
       console.log('Error: ' + data);
     });
     
+    alert('1');
     var outside = angular.element(document.getElementById('selectRoom')).scope();
+    alert('2');
+    alert('2_ temp='+temp);
+    alert('2_ outside='+outside);
     if (temp){
+    	alert('3');
     	outside.css("visibility","hidden");
+    	
     }else{
+    	alert('4');
     	outside.css("visibility","visible");
     }
+    alert('1');
     
   };
   
