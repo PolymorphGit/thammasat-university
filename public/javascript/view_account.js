@@ -74,13 +74,12 @@ angular.module('accountApp', [])
     	alert('angular get data secondary__c:'+data[0].secondary__c);
     	var temp =data[0].secondary__c;
     	
-        var outside = angular.element(document.getElementById('selectRoom')).scope();
+
         alert('s2_ temp='+temp);
         
-        if (temp){
+        if (data[0].secondary__c){
         	alert('p1');
-        	outside.style.display='none';
-        	//angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
+        	angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
         	alert('p4');
         }else{
         	alert('p9');
