@@ -48,10 +48,13 @@ angular.module('leadApp', [])
   $scope.state = ['Bangkok'];
   
  
-  $scope.scholarshipName =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'];
+  $scope.scholarshipName1 =['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ'] ;
+  $scope.scholarshipName =[{'scholarship__c':'checked', 'scholarshipname':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']},
   $scope.$watch('lead.scholarship__c', function(newVal) {
+	  alert('1');
       if (newVal)
       {
+    	  alert('2');
     	  alert($scope.lead.scholarship__c);
     	  angular.forEach($scope.scholarship_name__c , function(value)
 	      {
