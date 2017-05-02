@@ -107,7 +107,7 @@ exports.update = function(req, res, next) {
 	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
 	query += "disabled__c=" + Disable + ", ";
 	var Birthday = '1990-7-2';
-	query += "birthdate__c='" + req.body.birthdate__c + "', ";
+	//query += "birthdate__c='" + req.body.birthdate__c + "', ";
 	query += "parent_income__c='" + req.body.parent_income__c + "' ";
 	if(req.body.year__c)
 	{
