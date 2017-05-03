@@ -64,7 +64,7 @@ angular.module('select_roommateApp', [])
 			//Add record to roommate
 			//alert(JSON.stringify(data));
 			alert(data[0] !== null);
-			if(data !== null)
+			if(data[0] !== null)
 			{
 				var index = $scope.roommate.indexOf(record);
 				delete $scope.roommate.splice(index, 1);
