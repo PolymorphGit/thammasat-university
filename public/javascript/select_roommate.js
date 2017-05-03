@@ -63,6 +63,7 @@ angular.module('select_roommateApp', [])
 		.success((data) => {
 			//Add record to roommate
 			//alert(JSON.stringify(data));
+			alert(data[0] != null);
 			if(data != "Not Found Account")
 			{
 				var index = $scope.roommate.indexOf(record);
