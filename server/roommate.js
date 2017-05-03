@@ -41,7 +41,7 @@ exports.createRoommate = function(req, res, next) {
 			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
 			.then(function(results2) { 
 				console.log(results2);
-				if(zone === results[0].request_zone__c)
+				if(zone != results[0].request_zone__c)
 				{
 					res.json("This student zone is not match.");
 				}
