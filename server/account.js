@@ -85,7 +85,7 @@ exports.update = function(req, res, next) {
 	query += "congenital_disease__c='" + req.body.congenital_disease__c + "', ";
 	query += "student_id__c='" + req.body.student_id__c + "', ";
 	query += "faculty__c='" + req.body.faculty__c + "', ";
-	query += "request_zone__c='" + req.body.request_zone__c + "', ";
+	query += "zone__c='" + req.body.zone__c + "', ";
 	query += "billingstreet='" + req.body.billingstreet + "', ";
 	query += "billingcity='" + req.body.billingcity + "', ";
 	query += "billingstate='" + req.body.billingstate + "', ";
