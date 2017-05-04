@@ -129,6 +129,7 @@ angular.module('leadApp', [])
   }
   
   $scope.saveData = function() {
+	  alert('11');
 	  
 	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
 	  
