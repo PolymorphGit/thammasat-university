@@ -23,28 +23,46 @@ exports.createLead = function(req, res, next) {
 	var salutation = (req.body.salutation=='undefined' || req.body.salutation==null ||req.body.salutation=='null'? '' :req.body.salutation);
 	var firstname = (req.body.firstname=='undefined' || req.body.firstname==null ||req.body.firstname=='null'? '' :req.body.firstname);
 	var lastname = (req.body.lastname=='undefined' || req.body.lastname==null ||req.body.lastname=='null'? '' :req.body.lastname);
+	var birthdate__c =(req.body.birthdate__c=='undefined' || req.body.birthdate__c==null ||req.body.birthdate__c=='null'? '' : req.body.birthdate__c);
 	var mobilephone = (req.body.mobilephone=='undefined' || req.body.mobilephone==null ||req.body.mobilephone=='null'? '' :req.body.mobilephone);
 	var email = (req.body.email=='undefined' || req.body.email==null ||req.body.email=='null'? '' : req.body.email);
+	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
+	var Scholarship_Name = (req.body.scholarship_name__c=='undefined' || req.body.scholarship_name__c==null || req.body.scholarship_name__c=='null'  ? '' : req.body.scholarship_name__c);
+	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
 	var congenital_disease__c = (req.body.congenital_disease__c=='undefined' || req.body.congenital_disease__c==null || req.body.congenital_disease__c=='null'? '' : req.body.congenital_disease__c);
 	var student_id__c = (req.body.student_id__c=='undefined' || req.body.student_id__c==null ||req.body.student_id__c=='null'? '' : req.body.student_id__c);
 	var faculty__c = (req.body.faculty__c=='undefined' || req.body.faculty__c==null ||req.body.faculty__c=='null'? '' : req.body.faculty__c);
 	var request_zone__c = (req.body.request_zone__c=='undefined' || req.body.request_zone__c==null ||req.body.request_zone__c=='null'? '' : req.body.request_zone__c);
+	
 	var street = (req.body.street=='undefined' || req.body.street==null ||req.body.street=='null'? '' : req.body.street);
 	var city = (req.body.city=='undefined' || req.body.city==null ||req.body.city=='null'? '' : req.body.city);
 	var state = (req.body.state=='undefined' || req.body.state==null ||req.body.state=='null'? '' : req.body.state);
 	var postalcode = (req.body.postalcode=='undefined' || req.body.postalcode==null ||req.body.postalcode=='null'? '' : req.body.postalcode);
 	var country = (req.body.country=='undefined' || req.body.country==null ||req.body.country=='null'? '' : req.body.country);
+	
 	var parent_name__c = (req.body.parent_name__c=='undefined' || req.body.parent_name__c==null ||req.body.parent_name__c=='null'? '' : req.body.parent_name__c);
 	var parent_phone__c = (req.body.parent_phone__c=='undefined' || req.body.parent_phone__c==null ||req.body.parent_phone__c=='null'? '' : req.body.parent_phone__c);
 	var parent_income__c = (req.body.parent_income__c=='undefined' || req.body.parent_income__c==null ||req.body.parent_income__c=='null'? '' : req.body.parent_income__c);
+	var parent_name_2__c = (req.body.parent_name_2__c=='undefined' || req.body.parent_name_2__c==null ||req.body.parent_name_2__c=='null'? '' : req.body.parent_income__c);
+	var parent_phone_2__c = (req.body.parent_phone_2__c=='undefined' || req.body.parent_phone_2__c==null ||req.body.parent_phone_2__c=='null'? '' : req.body.parent_phone_2__c);
+	var parent_phone_2__c = (req.body.parent_phone_2__c=='undefined' || req.body.parent_phone_2__c==null ||req.body.parent_phone_2__c=='null'? '' : req.body.parent_phone_2__c);
 	
+	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title_th__c, ";
+	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
+	query += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
+	query += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c, Scholarship__c,";
+	query += " Scholarship_Name__c, Disabled__c, Birthdate__c, Parent_Income__c) VALUES ('"; 
+	query += identification_number__c + "', '" + passport_number__c + "', '" + gender__c + "', '";
+	query += title_th__c + "', '" + first_name_th__c + "', '" + last_name_th__c + "', '";
+	query += salutation + "', '" + firstname + "', '" + lastname + "', '" + mobilephone + "', '";
+	query += email + "', '" + congenital_disease__c + "', '" + student_id__c + "', '" + faculty__c + "', '";
+	query += request_zone__c + "', '" + street + "', '" + city + "', '";
+	query += state + "', '" + postalcode + "', '" + country + "', '" + parent_name__c + "', '";
+	query += parent_phone__c + "', '" + parent_name_2__c + "', '" + parent_phone_2__c + "', '";
+	query += Scholarship + "', '" + Scholarship_Name + "', '";
+	query += Disable + "', '" + birthdate__c + "', '" + parent_income__c + "') RETURNING *";
 	
-	
-	
-	
-	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
-	var Scholarship_Name = (req.body.scholarship_name__c=='undefined' || req.body.scholarship_name__c==null || req.body.scholarship_name__c=='null'  ? '' : req.body.scholarship_name__c);
-	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
+	/*
 	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title_th__c, ";
 	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
@@ -56,9 +74,11 @@ exports.createLead = function(req, res, next) {
 	query += req.body.email + "', '" + req.body.congenital_disease__c + "', '" + req.body.student_id__c + "', '" + req.body.faculty__c + "', '";
 	query += req.body.request_zone__c + "', '" + req.body.street + "', '" + req.body.city + "', '";
 	query += req.body.state + "', '" + req.body.postalcode + "', '" + req.body.country + "', '" + req.body.parent_name__c + "', '";
-	query += req.body.parent_phone__c + "', '" + req.body.parent_name_2__c + "', '" + req.body.parent_name_2__c + "', '";
+	query += req.body.parent_phone__c + "', '" + req.body.parent_name_2__c + "', '" + req.body.parent_phone_2__c + "', '";
 	query += Scholarship + "', '" + Scholarship_Name + "', '";
 	query += Disable + "', '" + req.body.birthdate__c + "', '" + req.body.parent_income__c + "') RETURNING *";
+	*/
+	
 	db.select(query)
 	.then(function(results) {
 		setTimeout(function () {
