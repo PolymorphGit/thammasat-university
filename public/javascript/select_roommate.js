@@ -72,6 +72,7 @@ angular.module('select_roommateApp', [])
 			else if(data != "")
 			{
 				$scope.message = data;
+				record.passport_number__c = "";
 			}
 		})
 		.error((data) => {
