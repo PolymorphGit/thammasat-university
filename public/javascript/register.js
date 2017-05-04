@@ -133,7 +133,6 @@ angular.module('leadApp', [])
 	  
 	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
 	  
-	 
 	  
 	  if($scope.id == null)
 		{
@@ -187,6 +186,7 @@ angular.module('leadApp', [])
 		console.log('Error: ' + data);
 	});
 	
+	$scope.lead.birthdate__c=BeforeChange;
 	
   }
   
