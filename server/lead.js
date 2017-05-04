@@ -26,9 +26,9 @@ exports.createLead = function(req, res, next) {
 	var birthdate__c =(req.body.birthdate__c=='undefined' || req.body.birthdate__c==null ||req.body.birthdate__c=='null'? '' : req.body.birthdate__c);
 	var mobilephone = (req.body.mobilephone=='undefined' || req.body.mobilephone==null ||req.body.mobilephone=='null'? '' :req.body.mobilephone);
 	var email = (req.body.email=='undefined' || req.body.email==null ||req.body.email=='null'? '' : req.body.email);
-	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
-	var Scholarship_Name = (req.body.scholarship_name__c=='undefined' || req.body.scholarship_name__c==null || req.body.scholarship_name__c=='null'  ? '' : req.body.scholarship_name__c);
-	var Disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
+	var scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
+	var scholarship_name = (req.body.scholarship_name__c=='undefined' || req.body.scholarship_name__c==null || req.body.scholarship_name__c=='null'  ? '' : req.body.scholarship_name__c);
+	var disable = (req.body.disabled__c ? req.body.disabled__c : 'false');
 	var congenital_disease__c = (req.body.congenital_disease__c=='undefined' || req.body.congenital_disease__c==null || req.body.congenital_disease__c=='null'? '' : req.body.congenital_disease__c);
 	var student_id__c = (req.body.student_id__c=='undefined' || req.body.student_id__c==null ||req.body.student_id__c=='null'? '' : req.body.student_id__c);
 	var faculty__c = (req.body.faculty__c=='undefined' || req.body.faculty__c==null ||req.body.faculty__c=='null'? '' : req.body.faculty__c);
@@ -59,8 +59,8 @@ exports.createLead = function(req, res, next) {
 	query2 += request_zone__c + "', '" + street + "', '" + city + "', '";
 	query2 += state + "', '" + postalcode + "', '" + country + "', '" + parent_name__c + "', '";
 	query2 += parent_phone__c + "', '" + parent_name_2__c + "', '" + parent_phone_2__c + "', '";
-	query2 += Scholarship + "', '" + Scholarship_Name + "', '";
-	query2 += Disable + "', '" + birthdate__c + "', '" + parent_income__c + "') RETURNING *";
+	query2 += scholarship + "', '" + scholarship_name + "', '";
+	query2 += disable + "', '" + birthdate__c + "', '" + parent_income__c + "') RETURNING *";
 	
 	
 	
