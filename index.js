@@ -10,7 +10,7 @@ var	clean = require('./server/careandclean')
 var record = require('./server/recordtype')
 var noti = require('./notification')
 var roommate = require('./server/roommate')
-//var lead = require('./server/lead')
+var lead = require('./server/lead')
 var bodyParser = require('body-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -34,12 +34,12 @@ app.get('/Test', urlencodedParser, function(req, res) {
 });
 
 app.get('/room/:id', room.getInfo);
-/*
+
 app.get('/studentinfo/:id', lead.getInfobyId);
 app.post('/createstudent', jsonParser, lead.createLead);
 app.get('/deletestudent/:id', lead.deleteLead);
 app.post('/updatestudent/:id', jsonParser, lead.updateLead);
-*/
+
 app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
