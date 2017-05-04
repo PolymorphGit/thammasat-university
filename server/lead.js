@@ -14,29 +14,29 @@ exports.createLead = function(req, res, next) {
 	if (!req.body) return res.sendStatus(400);
 	//console.log(req.body);
 	
-	var identification_number__c = (req.body.identification_number__c=='undefined' || req.body.identification_number__c=null ||req.body.identification_number__c='null'? '' ,req.body.identification_number__c);
-	var passport_number__c  = (req.body.req.body.passport_number__c =='undefined' || req.body.req.body.passport_number__c =null ||req.body.req.body.passport_number__c='null'? '' ,req.body.passport_number__c);
-	var gender__c = (req.body.gender__c=='undefined' || req.body.gender__c=null ||req.body.gender__c='null'? '' ,req.body.gender__c);
-	var title_th__c = (req.body.title_th__c=='undefined' || req.body.title_th__c=null ||req.body.title_th__c='null'? '' ,req.body.title_th__c);
-	var first_name_th__c = (req.body.first_name_th__c=='undefined' || req.body.first_name_th__c=null ||req.body.first_name_th__c='null'? '' ,req.body.first_name_th__c);
-	var last_name_th__c = (req.body.last_name_th__c=='undefined' || req.body.last_name_th__c=null ||req.body.last_name_th__c='null'? '' ,req.body.last_name_th__c);
-	var salutation = (req.body.salutation=='undefined' || req.body.salutation=null ||req.body.salutation='null'? '' ,req.body.salutation);
-	var firstname = (req.body.firstname=='undefined' || req.body.firstname=null ||req.body.firstname='null'? '' ,req.body.firstname);
-	var lastname = (req.body.lastname=='undefined' || req.body.lastname=null ||req.body.lastname='null'? '' ,req.body.lastname);
-	var mobilephone = (req.body.mobilephone=='undefined' || req.body.mobilephone=null ||req.body.mobilephone='null'? '' ,req.body.mobilephone);
-	var email = (req.body.email=='undefined' || req.body.email=null ||req.body.email='null'? '' ,req.body.email);
-	var congenital_disease__c = (req.body.congenital_disease__c=='undefined' || req.body.congenital_disease__c=null ||req.body.congenital_disease__c='null'? '' ,req.body.congenital_disease__c);
-	var student_id__c = (req.body.student_id__c=='undefined' || req.body.student_id__c=null ||req.body.student_id__c='null'? '' ,req.body.student_id__c);
-	var faculty__c = (req.body.faculty__c=='undefined' || req.body.faculty__c=null ||req.body.faculty__c='null'? '' ,req.body.faculty__c);
-	var request_zone__c = (req.body.request_zone__c=='undefined' || req.body.request_zone__c=null ||req.body.request_zone__c='null'? '' ,req.body.request_zone__c);
-	var street = (req.body.street=='undefined' || req.body.street=null ||req.body.street='null'? '' ,req.body.street);
-	var city = (req.body.city=='undefined' || req.body.city=null ||req.body.city='null'? '' ,req.body.city);
-	var state = (req.body.state=='undefined' || req.body.state=null ||req.body.state='null'? '' ,req.body.state);
-	var postalcode = (req.body.postalcode=='undefined' || req.body.postalcode=null ||req.body.postalcode='null'? '' ,req.body.postalcode);
-	var country = (req.body.country=='undefined' || req.body.country=null ||req.body.country='null'? '' ,req.body.country);
-	var parent_name__c = (req.body.parent_name__c=='undefined' || req.body.parent_name__c=null ||req.body.parent_name__c='null'? '' ,req.body.parent_name__c);
-	var parent_phone__c = (req.body.parent_phone__c=='undefined' || req.body.parent_phone__c=null ||req.body.parent_phone__c='null'? '' ,req.body.parent_phone__c);
-	var parent_income__c = (req.body.parent_income__c=='undefined' || req.body.parent_income__c=null ||req.body.parent_income__c='null'? '' ,req.body.parent_income__c);
+	var identification_number__c = (req.body.identification_number__c=='undefined' || req.body.identification_number__c==null ||req.body.identification_number__c=='null'? '' : req.body.identification_number__c);
+	var passport_number__c  = (req.body.req.body.passport_number__c =='undefined' || req.body.req.body.passport_number__c ==null ||req.body.req.body.passport_number__c=='null'? '' :req.body.passport_number__c);
+	var gender__c = (req.body.gender__c=='undefined' || req.body.gender__c==null ||req.body.gender__c=='null'? '' : req.body.gender__c);
+	var title_th__c = (req.body.title_th__c=='undefined' || req.body.title_th__c==null ||req.body.title_th__c=='null'? '' : req.body.title_th__c);
+	var first_name_th__c = (req.body.first_name_th__c=='undefined' || req.body.first_name_th__c==null ||req.body.first_name_th__c=='null'? '' : req.body.first_name_th__c);
+	var last_name_th__c = (req.body.last_name_th__c=='undefined' || req.body.last_name_th__c==null ||req.body.last_name_th__c=='null'? '' : req.body.last_name_th__c);
+	var salutation = (req.body.salutation=='undefined' || req.body.salutation==null ||req.body.salutation=='null'? '' :req.body.salutation);
+	var firstname = (req.body.firstname=='undefined' || req.body.firstname==null ||req.body.firstname=='null'? '' :req.body.firstname);
+	var lastname = (req.body.lastname=='undefined' || req.body.lastname==null ||req.body.lastname=='null'? '' :req.body.lastname);
+	var mobilephone = (req.body.mobilephone=='undefined' || req.body.mobilephone==null ||req.body.mobilephone=='null'? '' :req.body.mobilephone);
+	var email = (req.body.email=='undefined' || req.body.email==null ||req.body.email=='null'? '' : req.body.email);
+	var congenital_disease__c = (req.body.congenital_disease__c=='undefined' || req.body.congenital_disease__c==null || req.body.congenital_disease__c=='null'? '' : req.body.congenital_disease__c);
+	var student_id__c = (req.body.student_id__c=='undefined' || req.body.student_id__c==null ||req.body.student_id__c=='null'? '' : req.body.student_id__c);
+	var faculty__c = (req.body.faculty__c=='undefined' || req.body.faculty__c==null ||req.body.faculty__c=='null'? '' : req.body.faculty__c);
+	var request_zone__c = (req.body.request_zone__c=='undefined' || req.body.request_zone__c==null ||req.body.request_zone__c=='null'? '' : req.body.request_zone__c);
+	var street = (req.body.street=='undefined' || req.body.street==null ||req.body.street=='null'? '' : req.body.street);
+	var city = (req.body.city=='undefined' || req.body.city==null ||req.body.city=='null'? '' : req.body.city);
+	var state = (req.body.state=='undefined' || req.body.state==null ||req.body.state=='null'? '' : req.body.state);
+	var postalcode = (req.body.postalcode=='undefined' || req.body.postalcode==null ||req.body.postalcode=='null'? '' : req.body.postalcode);
+	var country = (req.body.country=='undefined' || req.body.country==null ||req.body.country=='null'? '' : req.body.country);
+	var parent_name__c = (req.body.parent_name__c=='undefined' || req.body.parent_name__c==null ||req.body.parent_name__c=='null'? '' : req.body.parent_name__c);
+	var parent_phone__c = (req.body.parent_phone__c=='undefined' || req.body.parent_phone__c==null ||req.body.parent_phone__c=='null'? '' : req.body.parent_phone__c);
+	var parent_income__c = (req.body.parent_income__c=='undefined' || req.body.parent_income__c==null ||req.body.parent_income__c=='null'? '' : req.body.parent_income__c);
 	
 	
 	
