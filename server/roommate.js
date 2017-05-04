@@ -31,14 +31,11 @@ exports.getAccountRoommate = function(req, res, next) {
 exports.createRoommate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
-	var zone = req.header['zone'];
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
 		console.log(results);
 		console.log(p);
-		console.log("zone:" + zone + ", account zone:" + results[0].zone__c);
-		//if(results.length > 0 && p != results[0].sfid && zone != results[0].zone__c)
 		if(results.length > 0 && p != results[0].sfid)
 		{
 			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
@@ -46,16 +43,27 @@ exports.createRoommate = function(req, res, next) {
 				console.log(results2);
 				if(results2.length == 0)
 				{
-					db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
-					.then(function(results3) { 
-						db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
-						.then(function(results4) {
-							console.log(results3);	
-							res.json(results);
-						})	
-					    .catch(next);
+					db.select("SELECT * FROM salesforce.Account WHERE sfid='" + p + "'")
+					.then(function(results3) {
+						if(results3[0].zone__c == results[0].zone__c)
+						{
+							db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
+							.then(function(results4) { 
+								console.log(results4);
+								db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+								.then(function(results5) {
+									res.json(results);
+								})	
+							    .catch(next);
+							})
+						    .catch(next);
+						}
+						else
+						{
+							res.json("This student zone is not match.");
+						}
 					})
-				    .catch(next);
+				    .catch(next);	
 				}
 				else 
 				{
@@ -64,10 +72,6 @@ exports.createRoommate = function(req, res, next) {
 			})
 		    .catch(next);
 		}
-		/*else if (zone != results[0].zone__c)
-		{
-			res.json("This student zone is not match.");
-		}*/
 		else
 		{
 			res.send("Not Found Account");
@@ -94,7 +98,6 @@ exports.updateRoommate = function(req, res, next) {
 	var id = req.params.id;
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
-	var zone = req.headers['zone'];
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
