@@ -60,11 +60,11 @@ angular.module('select_roommateApp', [])
 		var roommate = record.passport_number__c;
 		var zone = $scope.account.zone__c;
 		//alert($scope.account.zone__c);
-		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co': roommate, 'z': 'โซนฺ B'} })
+		$http.get('../createroommate', { headers: {'primary': $scope.sfid, 'co': roommate} })
 		.success((data) => {
 			//Add record to roommate
 			alert(JSON.stringify(data));
-			alert(data[0] !== null);
+			//alert(data[0] !== null);
 			if(data[0] !== null)
 			{
 				var index = $scope.roommate.indexOf(record);
@@ -101,7 +101,7 @@ angular.module('select_roommateApp', [])
 			roommate = record.passport_number__c;
 		}
 		//alert(roommate);
-		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate, 'zone':$scope.account.zone__c} })
+		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.sfid, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
 			//alert(JSON.stringify(data));
