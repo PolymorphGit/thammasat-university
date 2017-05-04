@@ -387,7 +387,8 @@
         <form id="frm">
         <!-- {{account}} -->
         {{primary}}
-        Primatry Roommate : {{primaryroommate}}
+        
+        Primatry Roommate :
         <div>
             <table style="width:100%">
                 <tr>
@@ -414,7 +415,8 @@
                 
                 <tr>
                 
-                    <td align="center"><table style="width:100%">
+                    <td align="center">
+                    <table style="width:100%">
                     
                         <tr>
                             <td align="right" class='CustomLayout1' >
@@ -641,6 +643,16 @@
                                 <apex:outputField value="{!theAccount.Request_Zone_Reserve__c}" />
                             </td>
                         </tr> -->
+                        
+                        <tr>
+                            <td align="right">
+                                Primary Roommate  Name /ชื่อ เจ้าของห้อง
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="PrimaryRoommateName"> {{primaryroommate}} </label>
+                            </td>
+                        </tr>
                     
                     </table></td>
                     
@@ -653,6 +665,7 @@
                 </tr>
                 
             </table>
+            
             
             <table style="width:100%">
                 

@@ -92,7 +92,7 @@ angular.module('accountApp', [])
     	
     	$scope.account = data[0];
     	
-    	$scope.primaryroommate = 'ssdad';
+
     })
     .error((data) => {
       console.log('Error: ' + data);
@@ -104,10 +104,21 @@ angular.module('accountApp', [])
     	if(data[0].id != null)
     	{
     		$scope.primary = data[0];
+    		
+    		var title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
+        	var first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
+        	var last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;
+        	
+        	var primary_roomamate_name =title_th__c;
+        	primary_roomamate_name =title_th__c;
+        	primary_roomamate_name =(primary_roomamate_name==''?'':' '+first_name_th__c).trim();
+        	primary_roomamate_name =(primary_roomamate_name==''?'':' '+last_name_th__c).trim();
+        	
+        	$scope.primaryroommate = primary_roomamate_name;
     	}
     	else
 		{
-		
+    		$scope.primaryroommate = '';
 		}
     })
     .error((data) => {
