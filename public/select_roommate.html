@@ -168,7 +168,7 @@
             	<li ng-repeat="r in roommate">
             		<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
             		<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
-            		<button ng-click="upsertRoommate(r)">OK</button>
+            		<button ng-click="upsertRoommate(r, account)">OK</button>
             		<button ng-click="deleteRoommate(r)">Delete</button>
             	</li>
             </ul>
