@@ -161,7 +161,7 @@ angular.module('leadApp', [])
 	
 	var data = JSON.stringify($scope.lead);
 	alert('1');
-	alert('data='+data);
+	alert('data='+$scope.lead.birthdate__c);
 	a;ert('end')
 	
 	//alert("Update : " + data);
