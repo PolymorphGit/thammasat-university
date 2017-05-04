@@ -44,7 +44,7 @@ angular.module('select_roommateApp', [])
 	}
 	
 	$scope.upsertRoommate = function (record, account) {
-		alert(account);
+		alert(account.id);
 		if(record.sfid == null)
 		{
 			//alert("Create");

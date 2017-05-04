@@ -64,10 +64,10 @@ exports.createRoommate = function(req, res, next) {
 			})
 		    .catch(next);
 		}
-		else if (zone != results[0].zone__c)
+		/*else if (zone != results[0].zone__c)
 		{
 			res.json("This student zone is not match.");
-		}
+		}*/
 		else
 		{
 			res.send("Not Found Account");
