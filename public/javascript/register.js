@@ -132,6 +132,16 @@ angular.module('leadApp', [])
 	  
 	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
 	  
+	  alert('1');
+	  var BeforeChange=$scope.lead.birthdate__c;
+	  alert('2');
+	  var dd=BeforeChange.substring(0, 2);
+	  var mm = BeforeChange.substring(3, 5);
+      var yyyy = BeforeChange.substring(6, 10);
+      $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
+      alert('after ='+$scope.lead.birthdate__c);
+      alert('end');
+	  
 	  if($scope.id == null)
 		{
 			$scope.createLead();
@@ -140,6 +150,8 @@ angular.module('leadApp', [])
 		{
 			$scope.updateLead();
 		}
+	  
+	  $scope.lead.birthdate__c =BeforeChange;
   }
   
   $scope.createLead = function () {
@@ -160,9 +172,7 @@ angular.module('leadApp', [])
 	
 	
 	var data = JSON.stringify($scope.lead);
-	alert('1');
-	alert('data='+$scope.lead.birthdate__c);
-	a;ert('end')
+	
 	
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
