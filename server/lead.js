@@ -33,7 +33,10 @@ exports.createLead = function(req, res, next) {
 	var city = (req.body.city=='undefined' || req.body.city=null ||req.body.city='null'? '' ,req.body.city);
 	var state = (req.body.state=='undefined' || req.body.state=null ||req.body.state='null'? '' ,req.body.state);
 	var postalcode = (req.body.postalcode=='undefined' || req.body.postalcode=null ||req.body.postalcode='null'? '' ,req.body.postalcode);
-	var postalcode = (req.body.postalcode=='undefined' || req.body.postalcode=null ||req.body.postalcode='null'? '' ,req.body.postalcode);
+	var country = (req.body.country=='undefined' || req.body.country=null ||req.body.country='null'? '' ,req.body.country);
+	var parent_name__c = (req.body.parent_name__c=='undefined' || req.body.parent_name__c=null ||req.body.parent_name__c='null'? '' ,req.body.parent_name__c);
+	var parent_phone__c = (req.body.parent_phone__c=='undefined' || req.body.parent_phone__c=null ||req.body.parent_phone__c='null'? '' ,req.body.parent_phone__c);
+	var parent_income__c = (req.body.parent_income__c=='undefined' || req.body.parent_income__c=null ||req.body.parent_income__c='null'? '' ,req.body.parent_income__c);
 	
 	
 	
