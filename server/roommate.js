@@ -31,7 +31,7 @@ exports.getAccountRoommate = function(req, res, next) {
 exports.createRoommate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
-	var zone = req.headers['zone'];
+	var zone = req.headers['z'];
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
