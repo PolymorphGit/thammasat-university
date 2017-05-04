@@ -408,7 +408,7 @@ exports.getprimary = function(req, res, next) {
 		console.log(results);	
 		if(results.length > 0)
 		{
-			db.select("SELECT * FROM salesforce.Account WHERE sfid='" + results[0].sfid + "'")
+			db.select("SELECT * FROM salesforce.Account WHERE sfid='" + results[0].primary_roommate__c + "'")
 			.then(function(results2) {
 				res.json(results2);
 			})
