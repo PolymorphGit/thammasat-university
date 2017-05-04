@@ -15,7 +15,7 @@ exports.createLead = function(req, res, next) {
 	//console.log(req.body);
 	
 	var identification_number__c = (req.body.identification_number__c=='undefined' || req.body.identification_number__c==null ||req.body.identification_number__c=='null'? '' : req.body.identification_number__c);
-	var passport_number__c  = (req.body.req.body.passport_number__c =='undefined' || req.body.req.body.passport_number__c ==null ||req.body.req.body.passport_number__c=='null'? '' :req.body.passport_number__c);
+	var passport_number__c  = (req.body.passport_number__c =='undefined' || req.body.passport_number__c ==null || req.body.passport_number__c=='null'? '' :req.body.passport_number__c);
 	var gender__c = (req.body.gender__c=='undefined' || req.body.gender__c==null ||req.body.gender__c=='null'? '' : req.body.gender__c);
 	var title_th__c = (req.body.title_th__c=='undefined' || req.body.title_th__c==null ||req.body.title_th__c=='null'? '' : req.body.title_th__c);
 	var first_name_th__c = (req.body.first_name_th__c=='undefined' || req.body.first_name_th__c==null ||req.body.first_name_th__c=='null'? '' : req.body.first_name_th__c);
