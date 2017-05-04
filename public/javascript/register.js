@@ -77,8 +77,8 @@ angular.module('leadApp', [])
     .success((data) => {
     	console.log(data);
     	
-    	data[0].Name = data[0].Name == null || data[0].Name =='null' || data[0].Name =='undefined'  ? '' : data[0].Name;
-    	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' || data[0].identification_number__c =='undefined' ? '' : data[0].identification_number__c;
+    	data[0].Name = data[0].Name == null || data[0].Name =='null' ? '' : data[0].Name;
+    	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' ? '' : data[0].identification_number__c;
     	data[0].passport_number__c = data[0].passport_number__c == null || data[0].passport_number__c =='null' ? '' : data[0].passport_number__c;
     	data[0].gender__c = data[0].gender__c == null || data[0].gender__c =='null' ? '' : data[0].gender__c;
     	data[0].title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
@@ -137,6 +137,7 @@ angular.module('leadApp', [])
 	  var mm = BeforeChange.substring(3, 5);
 	  var yyyy = BeforeChange.substring(6, 10);
 	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
+
 	  
 	 
 	  if($scope.id == null)
@@ -166,8 +167,10 @@ angular.module('leadApp', [])
 	});
   }
   
-  $scope.updateLead = function () {		  
+  $scope.updateLead = function () {
+		  
 	var data = JSON.stringify($scope.lead);
+	
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
@@ -177,6 +180,8 @@ angular.module('leadApp', [])
 		alert('Error: ' + data);
 		console.log('Error: ' + data);
 	});
+	
+	
 	
   }
   
