@@ -92,6 +92,7 @@ angular.module('accountApp', [])
     	
     	$scope.account = data[0];
     	
+    	$scope.primaryroommate = 'ssdad';
     })
     .error((data) => {
       console.log('Error: ' + data);
