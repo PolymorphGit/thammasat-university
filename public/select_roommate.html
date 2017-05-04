@@ -91,7 +91,7 @@
                             	<label id="gender">{{ account.gender__c }}</label>
                             </td>
                         </tr>
-                        
+                        <!-- 
                         <tr>
                             <td align="right" class="CustomLayout1">
                            		  คำนำหน้าชื่อ
@@ -101,6 +101,17 @@
 								<label id="titleTH">{{ account.title_th__c }}</label>
                             </td>
                         </tr>
+                         -->
+                        <tr>
+                            <td align="right" class="CustomLayout1">
+                                Title / คำนำหน้าชื่อ
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="titleEN">{{ account.salutation }}</label>
+                            </td>
+                        </tr>
+                        
                         
                         <tr>
                             <td align="right" >
@@ -121,16 +132,7 @@
                             </td>
                         </tr>
                         
-                        <tr>
-                            <td align="right" class="CustomLayout1">
-                                Title
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="titleEN">{{ account.salutation }}</label>
-                            </td>
-                        </tr>
-                        
+                       
                         <tr>
                             <td align="right" class="CustomLayout2">
                                 Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
