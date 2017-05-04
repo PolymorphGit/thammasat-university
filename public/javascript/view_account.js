@@ -111,8 +111,8 @@ angular.module('accountApp', [])
         	
         	var primary_roomamate_name ='';
         	primary_roomamate_name =title_th__c;
-        	primary_roomamate_name +=(primary_roomamate_name==''?'':'&nbsp;'+first_name_th__c).trim();
-        	primary_roomamate_name +=(primary_roomamate_name==''?'':' '+last_name_th__c).trim();
+        	primary_roomamate_name +=(primary_roomamate_name==''? first_name_th__c :' '+first_name_th__c);
+        	primary_roomamate_name +=(primary_roomamate_name==''? last_name_th__c :' '+last_name_th__c);
         	
         	$scope.primaryroommate = primary_roomamate_name;
     	}
