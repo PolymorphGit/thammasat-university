@@ -130,13 +130,13 @@ angular.module('leadApp', [])
   
   $scope.saveData = function() {
 	
-	  
 	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
 	  
-	  alert('1');
-	  alert('date='+$scope.lead.birthdate__c);
-	  alert('2');
+	  alert('start');
+	  var sss =$scope.lead.birthdate__c;
+	  alert('end');
 	  
+	 
 	  if($scope.id == null)
 		{
 			$scope.createLead();
@@ -146,7 +146,6 @@ angular.module('leadApp', [])
 			$scope.updateLead();
 		}
 	  
-	  $scope.lead.birthdate__c =BeforeChange;
   }
   
   $scope.createLead = function () {
@@ -172,7 +171,6 @@ angular.module('leadApp', [])
     var yyyy = BeforeChange.substring(6, 10);
     $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
       
-	  
 	
 	var data = JSON.stringify($scope.lead);
 	
