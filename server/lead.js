@@ -19,7 +19,7 @@ exports.createLead = function(req, res, next) {
 	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
 	query += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c, Scholarship__c,";
-	query += " Scholarship_Name__c, Disabled__c, Birthdate__c, Parent_Income__c, Year__c, Term__c) VALUES ('"; 
+	query += " Scholarship_Name__c, Disabled__c, Birthdate__c, Parent_Income__c) VALUES ('"; 
 	query += req.body.identification_number__c + "', '" + req.body.passport_number__c + "', '" + req.body.gender__c + "', '";
 	query += req.body.title_th__c + "', '" + req.body.first_name_th__c + "', '" + req.body.last_name_th__c + "', '";
 	query += req.body.salutation + "', '" + req.body.firstname + "', '" + req.body.lastname + "', '" + req.body.mobilephone + "', '";
@@ -28,8 +28,7 @@ exports.createLead = function(req, res, next) {
 	query += req.body.state + "', '" + req.body.postalcode + "', '" + req.body.country + "', '" + req.body.parent_name__c + "', '";
 	query += req.body.parent_phone__c + "', '" + req.body.parent_name_2__c + "', '" + req.body.parent_name_2__c + "', '";
 	query += Scholarship + "', '" + req.body.Scholarship_Name__c + "', '";
-	query += Disable + "', '" + req.body.birthdate__c + "', '" + req.body.barent_income__c + "', '";
-	query += req.body.year__c + "', '" + req.body.term__c + "') RETURNING *";
+	query += Disable + "', '" + req.body.birthdate__c + "', '" + req.body.barent_income__c + "') RETURNING *";
 	db.select(query)
 	.then(function(results) {
 		setTimeout(function () {
