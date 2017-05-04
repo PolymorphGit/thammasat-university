@@ -157,11 +157,13 @@ angular.module('leadApp', [])
   }
   
   $scope.updateLead = function () {
-	alert('1');
-	var sss= $scope.birthdate__c.val(); 
-	alert('sss='+sss);
-	  
+	
+	
 	var data = JSON.stringify($scope.lead);
+	alert('1');
+	alert('data='+data);
+	a;ert('end')
+	
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
