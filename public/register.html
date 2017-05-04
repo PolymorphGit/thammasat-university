@@ -42,7 +42,7 @@
 	        
 	        var v202 = ( v100 ? validateStreet() : true );
 	        var v203 = ( v100 ? validateDistrict() : true);
-	        var v204 = ( v100 ? validateState() : true);
+	        var v204 = ( v100 ? validateState2() : true);
 	        var v205 = ( v100 ? validatePostcode() : true);
 	        var v206 = ( v100 ? validateCountry() : true); 
 	        
@@ -384,6 +384,20 @@
 			}
 			  
 		}
+        
+        function validateState2(){
+			$("#stateResult").text("");
+			$("#stateResult").css("color", "red");
+
+			var value = $("#pick_state__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
+				$("#stateResult").text("Please select state.");
+			    return false;
+			}
+			return true;
+		}
+        
         
         
         function validatePostcode() {
