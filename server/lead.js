@@ -59,8 +59,8 @@ exports.createLead = function(req, res, next) {
 	query2 += request_zone__c + "', '" + street + "', '" + city + "', '";
 	query2 += state + "', '" + postalcode + "', '" + country + "', '" + parent_name__c + "', '";
 	query2 += parent_phone__c + "', '" + parent_name_2__c + "', '" + parent_phone_2__c + "', '";
-	//query2 += Scholarship + "', '" + Scholarship_Name + "', '";
-	//query2 += Disable + "', '" + birthdate__c + "', '" + parent_income__c + "') RETURNING *";
+	query2 += Scholarship + "', '" + Scholarship_Name + "', '";
+	query2 += Disable + "', '" + birthdate__c + "', '" + parent_income__c + "') RETURNING *";
 	
 	
 	
