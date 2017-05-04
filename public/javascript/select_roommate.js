@@ -60,7 +60,7 @@ angular.module('select_roommateApp', [])
 	$scope.createRoommate = function (record) {
 		var roommate = record.passport_number__c;
 		var zone = account.zone__c;
-		var data = { headers: {'primary': $scope.id, 'co': roommate, 'zone': zone} };
+		var data = { headers: {'primary': $scope.id, 'co': roommate} };
 		alert(data);
 		$http.get('../createroommate', data)
 		.success((data) => {
