@@ -109,9 +109,9 @@ angular.module('accountApp', [])
         	var first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
         	var last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;
         	
-        	var primary_roomamate_name =title_th__c;
+        	var primary_roomamate_name ='';
         	primary_roomamate_name =title_th__c;
-        	primary_roomamate_name +=(primary_roomamate_name==''?'':' '+first_name_th__c).trim();
+        	primary_roomamate_name +=(primary_roomamate_name==''?'':'&nbsp;'+first_name_th__c).trim();
         	primary_roomamate_name +=(primary_roomamate_name==''?'':' '+last_name_th__c).trim();
         	
         	$scope.primaryroommate = primary_roomamate_name;
