@@ -129,6 +129,9 @@ angular.module('leadApp', [])
   }
   
   $scope.saveData = function() {
+	  
+	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
+	  
 	  if($scope.id == null)
 		{
 			$scope.createLead();
@@ -154,6 +157,10 @@ angular.module('leadApp', [])
   }
   
   $scope.updateLead = function () {
+	alert('1');
+	var sss= $scope.birthdate__c.val(); 
+	alert('sss='+sss);
+	  
 	var data = JSON.stringify($scope.lead);
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
