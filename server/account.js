@@ -328,7 +328,7 @@ exports.checkout = function(req, res, next){
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
+		    db.select("UPDATE salesforce.Account SET Status__c='Checkout', room__c='' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
 			.then(function(results2) {
 				console.log(results2);
 				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
@@ -400,3 +400,24 @@ exports.renew = function(req, res, next) {
 	});
 	httprequest.end();
 };
+
+exports.getprimary = function(req, res, next) {
+	var id = req.params.id;
+	db.select("SELECT * FROM salesforce.roommate__c WHERE co_roommate__c='" + id + "'")
+	.then(function(results) {
+		console.log(results);	
+		if(results.length > 0)
+		{
+			db.select("SELECT * FROM salesforce.Account WHERE sfid='" + results[0].sfid + "'")
+			.then(function(results2) {
+				res.json(results2);
+			})
+		    .catch(next);
+		}
+		else
+		{
+			res.send("This student didn't have primary roommate.");
+		}
+	})
+    .catch(next);
+}
