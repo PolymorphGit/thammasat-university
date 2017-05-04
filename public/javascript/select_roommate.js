@@ -61,8 +61,8 @@ angular.module('select_roommateApp', [])
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co': roommate} })
 		.success((data) => {
 			//Add record to roommate
-			alert(data[0] !== null);
-			if(data[0] !== null)
+			alert('data:' + data[0] + ' (' + (data[0] != null) +')');
+			if(data[0] != null)
 			{
 				var index = $scope.roommate.indexOf(record);
 				delete $scope.roommate.splice(index, 1);
