@@ -130,10 +130,11 @@ angular.module('leadApp', [])
   
   $scope.saveData = function() {
 	
-	  angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
+	  
 	  
 	  alert('start');
 	  var sss =$scope.lead.birthdate__c;
+	  alert('sss='+sss);
 	  alert('end');
 	  
 	 
