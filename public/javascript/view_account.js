@@ -3,6 +3,7 @@ angular.module('accountApp', [])
   $scope.account = {
 		 
   };
+  $scope.primary = {};
   $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
@@ -96,8 +97,14 @@ angular.module('accountApp', [])
       console.log('Error: ' + data);
     });
     
-    
-    
+    $http.get('../getprimary/' + accountId)
+    .success((data) => {
+    	console.log(data);
+    	$scope.primary = data[0];
+    })
+    .error((data) => {
+      console.log('Error: ' + data);
+    });
   };
   
   $scope.updateData = function (accountId) {
@@ -116,4 +123,6 @@ angular.module('accountApp', [])
   $scope.myfunction = function (data) {
       alert("---" + data);
   };
+  
+  
 });
