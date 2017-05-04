@@ -43,9 +43,9 @@ exports.createLead = function(req, res, next) {
 	var parent_name__c = (req.body.parent_name__c=='undefined' || req.body.parent_name__c==null ||req.body.parent_name__c=='null'? '' : req.body.parent_name__c);
 	var parent_phone__c = (req.body.parent_phone__c=='undefined' || req.body.parent_phone__c==null ||req.body.parent_phone__c=='null'? '' : req.body.parent_phone__c);
 	var parent_income__c = (req.body.parent_income__c=='undefined' || req.body.parent_income__c==null ||req.body.parent_income__c=='null'? '' : req.body.parent_income__c);
-	var parent_name_2__c = (req.body.parent_name_2__c=='undefined' || req.body.parent_name_2__c==null ||req.body.parent_name_2__c=='null'? '' : req.body.parent_income__c);
+	var parent_name_2__c = (req.body.parent_name_2__c=='undefined' || req.body.parent_name_2__c==null ||req.body.parent_name_2__c=='null'? '' : req.body.parent_name_2__c);
 	var parent_phone_2__c = (req.body.parent_phone_2__c=='undefined' || req.body.parent_phone_2__c==null ||req.body.parent_phone_2__c=='null'? '' : req.body.parent_phone_2__c);
-	var parent_phone_2__c = (req.body.parent_phone_2__c=='undefined' || req.body.parent_phone_2__c==null ||req.body.parent_phone_2__c=='null'? '' : req.body.parent_phone_2__c);
+	
 	
 	var query = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c, title_th__c, ";
 	query += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
