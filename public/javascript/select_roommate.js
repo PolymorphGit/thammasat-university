@@ -69,9 +69,10 @@ angular.module('select_roommateApp', [])
 				delete $scope.roommate.splice(index, 1);
 				$scope.roommate.push(data[0]);
 			}
-			else if(data != "")
+			else
 			{
 				$scope.message = data;
+				//TODO: Remove data in input field
 				record.passport_number__c = "";
 			}
 		})
