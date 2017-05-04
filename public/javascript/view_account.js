@@ -100,7 +100,14 @@ angular.module('accountApp', [])
     $http.get('../getprimary/' + accountId)
     .success((data) => {
     	console.log(data);
-    	$scope.primary = data[0];
+    	if(data[0].id != null)
+    	{
+    		$scope.primary = data[0];
+    	}
+    	else
+		{
+		
+		}
     })
     .error((data) => {
       console.log('Error: ' + data);
