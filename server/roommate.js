@@ -107,21 +107,32 @@ exports.updateRoommate = function(req, res, next) {
 			.then(function(results2) { 
 				if(results2.length == 0)
 				{
-					var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
-					query += "co_roommate__c='" + results[0].sfid + "' ";
-					query += " WHERE co_roommate__c='" + id + "' RETURNING *";
-					db.select(query)
-					.then(function(results2) {
-						db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
-						.then(function(results3) {
-							db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
+					b.select("SELECT * FROM salesforce.Account WHERE sfid='" + p + "'")
+					.then(function(results3) {
+						if(results3[0].zone__c == results[0].zone__c)
+						{
+							var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
+							query += "co_roommate__c='" + results[0].sfid + "' ";
+							query += " WHERE co_roommate__c='" + id + "' RETURNING *";
+							db.select(query)
 							.then(function(results4) {
-								console.log(results);	
-								res.json(results[0]);
+								db.select("UPDATE salesforce.Account SET secondary__c=true WHERE SFID='" + results[0].sfid + "' RETURNING *")
+								.then(function(results5) {
+									db.select("UPDATE salesforce.Account SET secondary__c=false WHERE SFID='" + id + "' RETURNING *")
+									.then(function(results6) {
+										console.log(results);	
+										res.json(results[0]);
+									})	
+								    .catch(next);
+								})	
+							    .catch(next);
 							})	
 						    .catch(next);
-						})	
-					    .catch(next);
+						}
+						else
+						{
+							res.json("This student zone is not match.");
+						}
 					})	
 				    .catch(next);
 				}

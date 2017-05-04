@@ -44,6 +44,7 @@ angular.module('select_roommateApp', [])
 	}
 	
 	$scope.upsertRoommate = function (record) {
+		$scope.message = "";
 		if(record.sfid == null)
 		{
 			//alert("Create");
@@ -61,7 +62,7 @@ angular.module('select_roommateApp', [])
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co': roommate} })
 		.success((data) => {
 			//Add record to roommate
-			alert('data:' + data[0].id + ' (' + (data[0].id != null) +')');
+			//alert('data:' + data[0].id + ' (' + (data[0].id != null) +')');
 			if(data[0].id != null)
 			{
 				var index = $scope.roommate.indexOf(record);
@@ -70,7 +71,7 @@ angular.module('select_roommateApp', [])
 			}
 			else
 			{
-				alert(JSON.stringify(data));
+				//alert(JSON.stringify(data));
 				$scope.message = JSON.stringify(data);
 				//TODO: Remove data in input field
 				record.passport_number__c = "";
@@ -104,14 +105,15 @@ angular.module('select_roommateApp', [])
 		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
-			//alert(JSON.stringify(data));
 			if(data != "Not Found Account")
 			{
 				record =  data[0];
 			}
 			else if(data != "")
 			{
-				$scope.message = data;
+				$scope.message = JSON.stringify(data);
+				//TODO: Remove data in input field
+				record.passport_number__c = "";
 			}
 		})
 		.error((data) => {
