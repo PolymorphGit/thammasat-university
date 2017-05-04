@@ -26,6 +26,7 @@
 		
 		function update(){
 			
+			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        var v102 = validate_title_th();
 	        var v103  = validate_name_th();
@@ -39,11 +40,11 @@
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
 	        
-	        var v202 = validateStreet();
-	        var v203 = validateDistrict();
-	        var v204 = validateState();
-	        var v205 = validatePostcode();
-	        var v206 = validateCountry(); 
+	        var v202 = ( v100 ? validateStreet() : true );
+	        var v203 = ( v100 ? validateDistrict() : true);
+	        var v204 = ( v100 ? validateState() : true);
+	        var v205 = ( v100 ? validatePostcode() : true);
+	        var v206 = ( v100 ? validateCountry() : true); 
 	        
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
@@ -65,11 +66,7 @@
 	        		&& v111
 	        		&& v112
 	        		
-	        		&& v202 
-	        		&& v203 
-	        		&& v204 
-	        		&& v205 
-	        		&& v206 
+	        		&& (!v100 || (v202 && v203 && v204 && v205 && v206 ) )
 	        		
 	        		&& v300 
 	        		&& v301 
@@ -92,7 +89,13 @@
 		    	}
 		}
 
-		
+		function validate_Thai() {
+			if(angular.element(document.getElementById('main')).scope().lead.identification_number__c != '')
+			{
+				return true;
+			}
+			return false;
+		}
 		
 		function validate_sex(){
 			$("#lbl_gender__c").text("");
