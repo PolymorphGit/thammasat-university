@@ -74,7 +74,7 @@ angular.module('select_roommateApp', [])
 				//alert(JSON.stringify(data));
 				$scope.message = JSON.stringify(data);
 				//TODO: Remove data in input field
-				record = "";
+				record = {"identification_number__c": null };
 			}
 		})
 		.error((data) => {
@@ -105,7 +105,7 @@ angular.module('select_roommateApp', [])
 		$http.get('../updateroommate/' + record.sfid, { headers: {'primary': $scope.id, 'co':roommate} })
 		.success((data) => {
 			//Change data in roommate
-			if(data != "Not Found Account")
+			if(data[0].id != null)
 			{
 				record =  data[0];
 			}
@@ -113,7 +113,7 @@ angular.module('select_roommateApp', [])
 			{
 				$scope.message = JSON.stringify(data);
 				//TODO: Remove data in input field
-				record = "";
+				record = {"identification_number__c": null };
 			}
 		})
 		.error((data) => {
