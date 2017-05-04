@@ -166,10 +166,12 @@
             <Center>
             <ul>
             	<li ng-repeat="r in roommate">
-            		<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
+            		ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
             		<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
+            		{{r.firstname}} {{r.lastname}}
             		<button ng-click="upsertRoommate(r)">OK</button>
             		<button ng-click="deleteRoommate(r)">Delete</button>
+            		หมายเลขบัตรประจำตัว (Identification No.)/พาสสปอร์ส (Passport No.)/รหัสนักศึกษา(Student ID)
             	</li>
             </ul>
             </Center>

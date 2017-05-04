@@ -74,7 +74,7 @@ angular.module('select_roommateApp', [])
 				//alert(JSON.stringify(data));
 				$scope.message = JSON.stringify(data);
 				//TODO: Remove data in input field
-				record.passport_number__c = "";
+				record = "";
 			}
 		})
 		.error((data) => {
@@ -113,7 +113,7 @@ angular.module('select_roommateApp', [])
 			{
 				$scope.message = JSON.stringify(data);
 				//TODO: Remove data in input field
-				record.passport_number__c = "";
+				record = "";
 			}
 		})
 		.error((data) => {
