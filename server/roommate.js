@@ -31,19 +31,19 @@ exports.getAccountRoommate = function(req, res, next) {
 exports.createRoommate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
+	var zone = req.header['zone'];
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false")
 	.then(function(results) {
 		console.log(results);
 		console.log(p);
-		//console.log("zone:" + zone + ", account zone:" + results[0].zone__c);
+		console.log("zone:" + zone + ", account zone:" + results[0].zone__c);
 		//if(results.length > 0 && p != results[0].sfid && zone != results[0].zone__c)
 		if(results.length > 0 && p != results[0].sfid)
 		{
 			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
 			.then(function(results2) { 
 				console.log(results2);
-				//console.log(zone);
 				if(results2.length == 0)
 				{
 					db.select("INSERT INTO salesforce.roommate__c (primary_roommate__c, co_roommate__c) VALUES ('" + p + "', '" + results[0].sfid + "') RETURNING *" )
