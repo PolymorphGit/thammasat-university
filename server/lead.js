@@ -28,8 +28,8 @@ exports.createLead = function(req, res, next) {
 	query += req.body.state + "', '" + req.body.postalcode + "', '" + req.body.country + "', '" + req.body.parent_name__c + "', '";
 	query += req.body.parent_phone__c + "', '" + req.body.parent_name_2__c + "', '" + req.body.parent_name_2__c + "', '";
 	query += Scholarship + "', '" + req.body.Scholarship_Name__c + "', '";
-	query += Disable + "', '" + req.body.Birthdate__c + "', '" + req.body.Parent_Income__c + "', '";
-	query += req.body.Year__c + "', '" + req.body.Term__c + "') RETURNING *";
+	query += Disable + "', '" + req.body.birthdate__c + "', '" + req.body.barent_income__c + "', '";
+	query += req.body.year__c + "', '" + req.body.term__c + "') RETURNING *";
 	db.select(query)
 	.then(function(results) {
 		setTimeout(function () {
