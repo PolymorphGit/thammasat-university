@@ -80,7 +80,7 @@ exports.createLead = function(req, res, next) {
 	query += Disable + "', '" + req.body.birthdate__c + "', '" + req.body.parent_income__c + "') RETURNING *";
 	
 	
-	db.select(query)
+	db.select(query2)
 	.then(function(results) {
 		setTimeout(function () {
 			db.select("SELECT * FROM salesforce.lead WHERE id='" + results[0].id + "'")
