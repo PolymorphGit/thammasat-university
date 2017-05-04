@@ -130,9 +130,6 @@ angular.module('leadApp', [])
   
   $scope.saveData = function() {
 	
-	  
-	  
-	  alert('start');
 	  var sss =$scope.lead.birthdate__c;
 	  var BeforeChange=$scope.lead.birthdate__c;
 	  
@@ -140,8 +137,6 @@ angular.module('leadApp', [])
 	  var mm = BeforeChange.substring(3, 5);
 	  var yyyy = BeforeChange.substring(6, 10);
 	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
-	  alert('sss='+$scope.lead.birthdate__c);
-	  alert('end');
 	  
 	 
 	  if($scope.id == null)
@@ -161,19 +156,18 @@ angular.module('leadApp', [])
 	//alert("Create : " + data);
 	$http.post('../createstudent', data)
 	.success((data) => {
-		$scope.lead = data[0];
+		//$scope.lead = data[0];
 		$scope.id = data[0].sfid;
 		alert('create success');
+		
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
 	});
   }
   
-  $scope.updateLead = function () {
-		  
+  $scope.updateLead = function () {		  
 	var data = JSON.stringify($scope.lead);
-	
 	//alert("Update : " + data);
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
@@ -183,8 +177,6 @@ angular.module('leadApp', [])
 		alert('Error: ' + data);
 		console.log('Error: ' + data);
 	});
-	
-	
 	
   }
   
