@@ -43,12 +43,11 @@ angular.module('select_roommateApp', [])
 		});
 	}
 	
-	$scope.upsertRoommate = function (record, account) {
-		//alert(account.id);
+	$scope.upsertRoommate = function (record) {
 		if(record.sfid == null)
 		{
 			//alert("Create");
-			$scope.createRoommate(record, account);
+			$scope.createRoommate(record);
 		}
 		else
 		{
@@ -59,12 +58,10 @@ angular.module('select_roommateApp', [])
 	
 	$scope.createRoommate = function (record) {
 		var roommate = record.passport_number__c;
-		//var zone = account.zone__c;
-		//var data = { headers: {'primary': $scope.id, 'co': roommate} };
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co': roommate} })
 		.success((data) => {
 			//Add record to roommate
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 			//alert(data[0] !== null);
 			if(data[0] !== null)
 			{
