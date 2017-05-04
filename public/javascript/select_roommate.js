@@ -61,7 +61,7 @@ angular.module('select_roommateApp', [])
 		$http.get('../createroommate', { headers: {'primary': $scope.id, 'co': roommate} })
 		.success((data) => {
 			//Add record to roommate
-			//alert(JSON.stringify(data));
+			alert(JSON.stringify(data));
 			//alert(data[0] !== null);
 			if(data[0] !== null)
 			{
