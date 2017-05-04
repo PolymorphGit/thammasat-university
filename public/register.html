@@ -898,7 +898,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.state" id="state" />
+								<!--<input type="text" ng-model="lead.state" id="state" />-->
+								<select ng-model="lead.state" ng-options="x for x in state" id="pick_state__c"></select>
 								<label id="stateResult" />
 							</td>
 						</tr>
