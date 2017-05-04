@@ -764,7 +764,8 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                            	<input type="text" id="parent" ng-model="account.parent_name__c" />
+                            	<!--  <input type="text" id="parent" ng-model="account.parent_name__c" /> -->
+                            	<label>{{account.parent_name__c}}</label>
                             	<label id='parentResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -774,7 +775,8 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)" >
+                                <!--  <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)" >-->
+                                <label>{{account.parent_phone__c}}</label>
                                 <label id='parentPhoneResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -785,7 +787,8 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)" >
+                                <!--  <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)" > -->
+                                <label>{{account.parent_income__c}}</label>
                                 <label id='parentIncomeResult' style="color:red"></label>
                             </td>
                         </tr>
@@ -801,7 +804,8 @@
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
-                            	<input type="text" id="parent2" ng-model="account.parent_name_2__c" />
+                            	<!--  <input type="text" id="parent2" ng-model="account.parent_name_2__c" />-->
+                            	<label>{{account.parent_name_2__c}}</label>
                             	<label id='parent2Result' style="color:red"></label>
                             </td>
                         </tr>
@@ -811,7 +815,8 @@
                             </td>
                             <td> : </td>
                             <td>
-                                <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)">
+                                <!-- <input type="text" id="parentPhone2" ng-model="account.parent_phone_2__c" onkeyup="isNumber(this)"> -->
+                                <label>{{account.parent_phone_2__c}}</label>
                                 <label id='parentPhone2Result' style="color:red"></label>
                             </td>
                         </tr>
