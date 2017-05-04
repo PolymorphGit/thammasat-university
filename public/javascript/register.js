@@ -166,11 +166,11 @@ angular.module('leadApp', [])
 	  alert('1');
 	  var BeforeChange=$scope.lead.birthdate__c;
 	  alert('2');
-	  var dd=BeforeChange.substring(0, 2);
-	  var mm = BeforeChange.substring(3, 5);
-      var yyyy = BeforeChange.substring(6, 10);
-      $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
-      alert('after ='+$scope.lead.birthdate__c);
+	  //var dd=BeforeChange.substring(0, 2);
+	  //var mm = BeforeChange.substring(3, 5);
+      //var yyyy = BeforeChange.substring(6, 10);
+      //$scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
+      //alert('after ='+$scope.lead.birthdate__c);
       alert('end');
 	  
 	
