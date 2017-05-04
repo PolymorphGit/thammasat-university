@@ -51,6 +51,8 @@ angular.module('accountApp', [])
     	data[0].student_id__c = data[0].student_id__c == null || data[0].student_id__c =='null' ? '' : data[0].student_id__c;
     	data[0].faculty__c = data[0].faculty__c == null || data[0].faculty__c =='null' ? '' : data[0].faculty__c;
     	data[0].request_zone__c = data[0].request_zone__c == null || data[0].request_zone__c =='null' ? '' : data[0].request_zone__c;
+    	data[0].scholarship__c = data[0].scholarship__c == null || data[0].Scholarship__c =='null' ? '' : data[0].scholarship__c;
+    	data[0].scholarship_Name__c = data[0].scholarship_Name__c == null || data[0].scholarship__c =='null' ? '' : data[0].scholarship__c;
     	data[0].billingstreet = data[0].billingstreet == null || data[0].billingstreet =='null' ? '' : data[0].billingstreet;
     	data[0].billingcity = data[0].billingcity == null || data[0].billingcity =='null' ? '' : data[0].billingcity;
     	data[0].billingstate = data[0].billingstate == null || data[0].billingstate =='null' ? '' : data[0].billingstate;
