@@ -897,7 +897,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.street" id="street" ></input>
+								<!-- <input type="text" ng-model="lead.street" id="street" ></input> -->
+								<label>{{lead.street}}</label>
 								<label id="streetResult" />
 							</td>
 						</tr>
@@ -910,7 +911,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.city" id="city" />
+								<!-- <input type="text" ng-model="lead.city" id="city" /> -->
+								<label>{{lead.city}}</label>
 								<label id="cityResult" />
 							</td>
 						</tr>
@@ -924,7 +926,8 @@
 							</td>
 							<td>
 								<!--<input type="text" ng-model="lead.state" id="state" />-->
-								<select ng-model="lead.state" ng-options="x for x in state" id="pick_state__c"></select>
+								<!--<select ng-model="lead.state" ng-options="x for x in state" id="pick_state__c"></select> -->
+								<label>{{lead.state}}</label>
 								<label id="stateResult" />
 							</td>
 						</tr>
@@ -937,7 +940,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.postalcode" id="postcode" />
+								<!-- <input type="text" ng-model="lead.postalcode" id="postcode" />-->
+								<label>{{lead.postalcode}}</label>
 								<label id="postcodeResult" />
 							</td>
 						</tr>
@@ -950,7 +954,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.country" id="country">
+								<!-- <input type="text" ng-model="lead.country" id="country">-->
+								<label>{{lead.postalcode}}</label>
 								<label id="countryResult" />
 							</td>
 						</tr>
