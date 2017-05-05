@@ -47,134 +47,142 @@
                     <td></td>
                 </tr>
                 
-                <tr style="background-color: #C80000">
-                        <td colspan="3">
-                            <b style="color:white">Student Information / ข้อมูลของนักศึกษา</b>
-                        </td>
-                    </tr>
-                    
-                    <tr style="height:5px">
-                        <td colspan="3"></td>
-                    </tr>
-                    
-                    <tr>
-                    
-                        <td align="center">
-                        <table style="width:100%">
+                <tr>
+                      <td colspan="3">
+                          <b style="color:white">Student Information / ข้อมูลของนักศึกษา</b>
+                      </td>
+                </tr>
+                
+                <tr style="height:5px">
+                    <td colspan="3"></td>
+                </tr>
+                
+                <tr>
+                  
+                      <td align="center">
+                      <table style="width:100%">
 
-                        <tr>
-                            <td align="right" class="CustomLayout1" >
-                                ID Cards / หมายเลขประชาชน
-                            </td>
-                            <td> : </td>
-                            <td class="CustomLayout1">
-                                <label id="identity">{{ account.identification_number__c }}</label>
-                            </td>                            
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Passport No.
-                            </td>
-                            <td> : </td>
-                            <td >
-                            	<label id="passport">{{ account.passport_number__c }}</label>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Sex /เพศ
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="gender">{{ account.gender__c }}</label>
-                            </td>
-                        </tr>
-                        <!-- 
-                        <tr>
-                            <td align="right" class="CustomLayout1">
-                           		  คำนำหน้าชื่อ
-                            </td>
-                            <td> : </td>
-                            <td >
-								<label id="titleTH">{{ account.title_th__c }}</label>
-                            </td>
-                        </tr>
-                         -->
-                        <tr>
-                            <td align="right" class="CustomLayout1">
-                                Title / คำนำหน้าชื่อ
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="titleEN">{{ account.salutation }}</label>
-                            </td>
-                        </tr>
-                        
-                        
-                        <tr>
-                            <td align="right" >
-                                Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
-                            </td>
-                            <td> : </td>
-                            <td>
-                                <Table style="margin-left:-3px;">
-                                    <tr>
-                                        <td>
-                                        	<label id="nameTH">{{ account.first_name_th__c }}</label>
-                                        </td>
-                                        <td>
-                                        	<label id="nameTH">{{ account.last_name_th__c }}</label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        
-                       
-                        <tr>
-                            <td align="right" class="CustomLayout2">
-                                Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
-                            </td>
-                            <td> : </td>
-                            <td>
-                                <Table style="margin-left:-3px;">
-                                    <tr>
-                                        <td>
-                                        	<label id="nameEN">{{ account.firstname }}</label>
-                                        </td>
-                                        <td>
-                                        	<label id="nameEN">{{ account.lastname }}</label>
-                                        </td>
-                                    </tr>
-                                </Table>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Student ID /รหัสนักศึกษา
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="studentId">{{ account.student_id__c }}</label>
-                            </td>
-                        </tr>
-                        </table></td>
-                	
-                	</tr>
-            </table>
+	                      <tr>
+	                          <td align="right" class="CustomLayout1" >
+	                              ID Cards / หมายเลขประชาชน
+	                          </td>
+	                          <td> : </td>
+	                          <td class="CustomLayout1">
+	                              <label id="identity">{{ account.identification_number__c }}</label>
+	                          </td>                            
+	                      </tr>
+	                      
+	                      <tr>
+	                          <td align="right">
+	                              Passport No.
+	                          </td>
+	                          <td> : </td>
+	                          <td >
+	                          	<label id="passport">{{ account.passport_number__c }}</label>
+	                          </td>
+	                      </tr>
+	                      
+	                      <tr>
+	                          <td align="right">
+	                              Sex /เพศ
+	                          </td>
+	                          <td> : </td>
+	                          <td>
+	                          	<label id="gender">{{ account.gender__c }}</label>
+	                          </td>
+	                      </tr>
+	                      <!-- 
+	                      <tr>
+	                          <td align="right" class="CustomLayout1">
+	                         		  คำนำหน้าชื่อ
+	                          </td>
+	                          <td> : </td>
+	                          <td >
+							<label id="titleTH">{{ account.title_th__c }}</label>
+	                          </td>
+	                      </tr>
+	                       -->
+	                      <tr>
+	                          <td align="right" class="CustomLayout1">
+	                              Title / คำนำหน้าชื่อ
+	                          </td>
+	                          <td> : </td>
+	                          <td>
+	                          	<label id="titleEN">{{ account.salutation }}</label>
+	                          </td>
+	                      </tr>
+	                      
+	                      
+	                      <tr>
+	                          <td align="right" >
+	                              Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
+	                          </td>
+	                          <td> : </td>
+	                          <td>
+	                              <Table style="margin-left:-3px;">
+	                                  <tr>
+	                                      <td>
+	                                      	<label id="nameTH">{{ account.first_name_th__c }}</label>
+	                                      </td>
+	                                      <td>
+	                                      	<label id="nameTH">{{ account.last_name_th__c }}</label>
+	                                      </td>
+	                                  </tr>
+	                              </table>
+	                          </td>
+	                      </tr>
+	                      
+	                     
+	                      <tr>
+	                          <td align="right" class="CustomLayout2">
+	                              Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
+	                          </td>
+	                          <td> : </td>
+	                          <td>
+	                              <Table style="margin-left:-3px;">
+	                                  <tr>
+	                                      <td>
+	                                      	<label id="nameEN">{{ account.firstname }}</label>
+	                                      </td>
+	                                      <td>
+	                                      	<label id="nameEN">{{ account.lastname }}</label>
+	                                      </td>
+	                                  </tr>
+	                              </Table>
+	                          </td>
+	                      </tr>
+	                      
+	                      <tr>
+	                          <td align="right">
+	                              Student ID /รหัสนักศึกษา
+	                          </td>
+	                          <td> : </td>
+	                          <td>
+	                          	<label id="studentId">{{ account.student_id__c }}</label>
+	                          </td>
+	                      </tr>
+                      </table>
+             		</td>
+              	</tr>
+           </table>
             <Center>
-            <ul>
-            	<li ng-repeat="r in roommate">
-            		ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
-            		<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
-            		{{r.firstname}} {{r.lastname}}
-            		<button ng-click="upsertRoommate(r)">OK</button>
-            		<button ng-click="deleteRoommate(r)">Delete</button>
-            	</li>
-            </ul>
+            <table>
+            	<tr ng-repeat="r in roommate">
+            		<td>
+            			ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
+            			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
+            		</td>
+            		<td>
+            			{{r.firstname}} {{r.lastname}}
+            		</td>
+            		<td>
+            			<button ng-click="upsertRoommate(r)">OK</button>
+            		</td>
+            		<td>
+            			<button ng-click="deleteRoommate(r)">Delete</button>
+            		</td>
+            	</tr>
+            </table>
             </Center>
             หมายเหตุ - กรอกข้อมูล <b>หมายเลขบัตรประจำตัว</b> หรือ <b>พาสสปอร์ส</b> หรือ <b>รหัสนักศึกษา</b><br/>
    Note - Please Fill <b>Identification No.</b> or <b>Passport No.</b> or <b>Student ID</b>
