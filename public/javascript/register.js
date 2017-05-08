@@ -140,6 +140,8 @@ angular.module('leadApp', [])
 	  var yyyy = BeforeChange.substring(6, 10);
 	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
 
+	  alert('dd='+dd+'  , mm='+mm+'  , yyyy='+yyyy );
+	  alert('temp='+$scope.lead.birthdate__c );
 	  
 	 
 	  if($scope.id == null)
