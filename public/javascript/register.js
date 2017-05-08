@@ -132,29 +132,28 @@ angular.module('leadApp', [])
   
   $scope.saveData = function() {
 	
-	  alert('1');
+	  
 	  var sss =$scope.lead.birthdate__c;
 	  var BeforeChange=$scope.lead.birthdate__c;
-	  alert('2');
+	  
 	  var dd=BeforeChange.substring(0, 2);
 	  var mm = BeforeChange.substring(3, 5);
 	  var yyyy = BeforeChange.substring(6, 10);
 	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
 
-	  alert('dd='+dd+'  , mm='+mm+'  , yyyy='+yyyy );
-	  alert('temp='+$scope.lead.birthdate__c );
+	  
 	  
 	 
 	  if($scope.id == null)
 		{
-			$scope.createLead();
+			//$scope.createLead();
 		}
 		else
 		{
 			$scope.updateLead();
 		}
 	  
-	  //$scope.lead.birthdate__c=BeforeChange;
+	  $scope.lead.birthdate__c=BeforeChange;
   }
   
   $scope.createLead = function () {
