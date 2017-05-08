@@ -146,7 +146,7 @@ angular.module('leadApp', [])
 	 
 	  if($scope.id == null)
 		{
-			//$scope.createLead();
+			$scope.createLead();
 		}
 		else
 		{
