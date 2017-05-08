@@ -190,40 +190,50 @@ exports.checkin = function(req, res, next){
 		results.on('end', function() {
 		    var obj = JSON.parse(str);
 		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' and renew__c=true RETURNING *")
+		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results2) {
 				console.log(results2);
-				//TODO: Query Room__c on account and Create Asset
+				//TODO: Update account and Create Asset
 				if(results2.length > 0)
 				{
-					db.select("SELECT * FROM salesforce.Account WHERE SFID='" + results2[0].sfid + "'")
-					.then(function(results3) {
-						console.log(results3);	
-						if(results3.length > 0)
-						{
-							var enddate = '';
-							var today = new Date();
-							var startDate = new Date(today.getFullYear(), 1, 1);
-							var endDate = new Date(today.getFullYear(), 5, 31);
-							var startDate2 = new Date(today.getFullYear(), 8, 1);
-							var endDate2 = new Date(today.getFullYear(), 12, 31);
-							if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+					var enddate = '';
+					var today = new Date();
+					var startDate = new Date(today.getFullYear(), 1, 1);
+					var endDate = new Date(today.getFullYear(), 5, 31);
+					var startDate2 = new Date(today.getFullYear(), 8, 1);
+					var endDate2 = new Date(today.getFullYear(), 12, 31);
+					var room = results2[0].room__c;
+					if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+					{
+						enddate = today.getFullYear() + '-5-31';
+					}
+					else
+					{
+						enddate = today.getFullYear() + '-7-31';
+						room = results2[0].room_summer__c;
+					}
+					
+					if (room === null)
+					{
+						db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE SFID='" + results2[0].sfid + "' RETURNING *")
+						.then(function(results3) {
+							console.log(results3);	
+							if(results3.length > 0)
 							{
-								enddate = today.getFullYear() + '-5-31';
+								db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + room + "', '" + enddate + "', '" + enddate + "', true)")
+								.then(function(results4) {
+									console.log(results4);	
+									res.send("Success");
+								})
+							    .catch(next);
 							}
-							else
-							{
-								enddate = today.getFullYear() + '-7-31';
-							}
-							db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + results3[0].room__c + "', '" + enddate + "', '" + enddate + "', true)")
-							.then(function(results4) {
-								console.log(results4);	
-								res.send("Success");
-							})
-						    .catch(next);
-						}
-					})
-				    .catch(next);
+						})
+					    .catch(next);
+					}
+					else
+					{
+						res.send("No room assign, Please contact staff.");
+					}
 				}
 				else
 				{
@@ -326,26 +336,46 @@ exports.checkout = function(req, res, next){
 			}
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    //res.send(obj.identities[0].user_id);
-		    db.select("UPDATE salesforce.Account SET Status__c='Checkout' WHERE Mobile_Id__c='" + obj.identities[0].user_id + "' RETURNING *")
+			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results2) {
-				console.log(results2);
-				//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
-				db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results2[0].sfid + "' and active__c=true")
-				.then(function(results3) {
-					console.log(results3);	
-					var today = new Date();
-					var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-					db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + todayDate + "' WHERE SFID='" + results3[0].sfid + "' RETURNING *")
-					.then(function(results4) {
-						console.log(results4);	
-						//res.json(results);
-						res.send("Success");
+				if(results2.length > 0)
+				{
+				    var obj = JSON.parse(str);
+				    //res.send(obj.identities[0].user_id);
+				    var query = "UPDATE salesforce.Account SET Status__c='Checkout', room__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+				    if(results2[0].renew__c == true)
+			    	{
+				    	query = "UPDATE salesforce.Account SET Status__c='Checkout' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+			    	}
+				    var today = new Date();
+					var startDate = new Date(today.getFullYear(), 6, 1);
+					var endDate = new Date(today.getFullYear(), 7, 31);
+					if((startDate < today && today < endDate))
+					{
+						enddate = today.getFullYear() + '-5-31';
+						query = "UPDATE salesforce.Account SET Status__c='Checkout', room_summer__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+					}
+				    db.select(query)
+					.then(function(results3) {
+						console.log(results3);
+						//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
+						db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results3[0].sfid + "' and active__c=true")
+						.then(function(results4) {
+							console.log(results4);	
+							var today = new Date();
+							var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+							db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + todayDate + "' WHERE SFID='" + results4[0].sfid + "' RETURNING *")
+							.then(function(results5) {
+								console.log(results5);	
+								//res.json(results);
+								res.send("Success");
+							})
+						    .catch(next);
+						})
+					    .catch(next);
 					})
 				    .catch(next);
-				})
-			    .catch(next);
+				}
 			})
 		    .catch(next);
 		});
