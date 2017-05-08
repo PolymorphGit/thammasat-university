@@ -168,6 +168,8 @@
             <Center>
             <table>
             	<tr ng-repeat="r in roommate" >
+            		<td>
+            		</td>
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
             			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" />
