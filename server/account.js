@@ -336,6 +336,7 @@ exports.checkout = function(req, res, next){
 			}
 		});
 		results.on('end', function() {
+			var obj = JSON.parse(str);
 			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			.then(function(results2) {
 				if(results2.length > 0)
