@@ -232,7 +232,7 @@ exports.checkin = function(req, res, next){
 					}
 					else
 					{
-						res.send("No room assign, Please contact staff.");
+						res.send("No room assign, Please contact staff." + room);
 					}
 				}
 				else
