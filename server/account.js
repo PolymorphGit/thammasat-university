@@ -213,7 +213,7 @@ exports.checkin = function(req, res, next){
 						room = results2[0].room_summer__c;
 					}
 					
-					if (room === null)
+					if (room != null)
 					{
 						db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE SFID='" + results2[0].sfid + "' RETURNING *")
 						.then(function(results3) {
@@ -232,7 +232,7 @@ exports.checkin = function(req, res, next){
 					}
 					else
 					{
-						res.send("No room assign, Please contact staff." + room);
+						res.send("No room assign, Please contact staff.");
 					}
 				}
 				else
