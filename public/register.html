@@ -40,11 +40,15 @@
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
 	        
+	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
 	        var v203 = ( v100 ? validateDistrict() : true);
 	        var v204 = ( v100 ? validateState2() : true);
 	        var v205 = ( v100 ? validatePostcode() : true);
 	        var v206 = ( v100 ? validateCountry() : true); 
+	        */
+	        
+	        
 	        
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
@@ -52,8 +56,8 @@
 	        var v304= validateParent2()
 	        var v305= validateParentPhone2();
 	        
-	        
-	        
+	        //check address on field input box
+	        //&& (!v100 || (v202 && v203 && v204 && v205 && v206 ) )
 	        if ( 
 	        		v101 
 	        		
@@ -67,7 +71,7 @@
 	        		&& v111
 	        		&& v112
 	        		
-	        		&& (!v100 || (v202 && v203 && v204 && v205 && v206 ) )
+	        		
 	        		
 	        		&& v300 
 	        		&& v301 
