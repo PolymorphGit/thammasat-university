@@ -109,7 +109,7 @@ exports.updateRoommate = function(req, res, next) {
 				{
 					b.select("SELECT * FROM salesforce.Account WHERE sfid='" + p + "'")
 					.then(function(results3) {
-						if(results3[0].zone__c == results[0].zone__c)
+						if(results3[0].zone__c == results[0].zone__c && results3[0].gender__c == results[0].gender__c)
 						{
 							var query = "UPDATE salesforce.roommate__c SET primary_roommate__c='" + p + "', "; 
 							query += "co_roommate__c='" + results[0].sfid + "' ";
@@ -131,7 +131,7 @@ exports.updateRoommate = function(req, res, next) {
 						}
 						else
 						{
-							res.json("This student zone is not match.");
+							res.json("This student information is not match.");
 						}
 					})	
 				    .catch(next);

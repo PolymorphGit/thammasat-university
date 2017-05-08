@@ -73,6 +73,7 @@ angular.module('select_roommateApp', [])
 			{
 				//alert(JSON.stringify(data));
 				$scope.message = JSON.stringify(data);
+				alert(JSON.stringify(data));
 				//TODO: Remove data in input field
 				record = {"identification_number__c": null };
 			}
@@ -112,6 +113,7 @@ angular.module('select_roommateApp', [])
 			else if(data != "")
 			{
 				$scope.message = JSON.stringify(data);
+				alert(JSON.stringify(data));
 				//TODO: Remove data in input field
 				record = {"identification_number__c": null };
 			}
