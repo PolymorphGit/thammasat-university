@@ -77,7 +77,7 @@ exports.deleteuser = function(req, res, next) {
 			str += chunk;
 		});
 		results.on('end', function() {
-			console.log('return:' + str);
+			//console.log('return:' + str);
 			var obj = JSON.parse(str);
 			//obj.access_token
 			console.log('Id:' + id + ', Token:' + obj.access_token);
@@ -94,7 +94,7 @@ exports.deleteuser = function(req, res, next) {
 			callback2 = function(results2) {
 				var str2 = '';
 				results2.on('data', function(chunk2) {
-					str += chunk2;
+					str2 += chunk2;
 				});
 				results2.on('end', function() {
 					var obj2 = JSON.parse(str2);
