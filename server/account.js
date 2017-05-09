@@ -90,6 +90,7 @@ exports.deleteuser = function(req, res, next) {
 			  method: 'DELETE',
 			  headers: { 'Authorization': 'Bearer ' + obj.access_token }
 			};
+			console.log(option2);
 			
 			callback2 = function(results2) {
 				var str2 = '';
@@ -97,9 +98,7 @@ exports.deleteuser = function(req, res, next) {
 					str2 += chunk2;
 				});
 				results2.on('end', function() {
-					console.log(str2);
-					var obj2 = JSON.parse(str2);
-					
+					console.log(str2);				
 					if(str2 == '')
 					{
 						console.log('Delete Success');
@@ -107,7 +106,8 @@ exports.deleteuser = function(req, res, next) {
 					}
 					else
 					{
-						res.json(obj);
+						var obj2 = JSON.parse(str2);
+						res.json(obj2);
 					}
 				});
 			}
