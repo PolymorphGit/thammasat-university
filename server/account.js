@@ -85,7 +85,7 @@ exports.deleteuser = function(req, res, next) {
 			var https2 = require('https');
 			var options2 = {
 			  host: 'app64319644.auth0.com',
-			  path: 'api/v2/users/auth0|' + id,
+			  path: '/api/v2/users/auth0|' + id,
 			  port: '443',
 			  method: 'DELETE',
 			  headers: { 'Authorization': 'Bearer ' + obj.access_token }
