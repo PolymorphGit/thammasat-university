@@ -178,6 +178,11 @@ exports.update = function(req, res, next) {
 	query += "parent_phone__c='" + req.body.parent_phone__c + "', ";
 	query += "parent_name_2__c='" + req.body.parent_name_2__c + "', ";
 	query += "parent_phone_2__c='" + req.body.parent_phone_2__c + "', ";
+	
+	query += "sleeping_time__c='" + req.body.sleeping_time__c + "', ";
+	query += "sleeping_behavior__c='" + req.body.sleeping_behavior__c + "', ";
+	query += "using_air_conditioner__c='" + req.body.using_air_conditioner__c + "', ";
+	
 	//New Field
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
 	console.log(Scholarship);
