@@ -52,7 +52,7 @@ exports.deleteuser = function(req, res, next) {
 	var https = require('https');
 
 	// Build the post string from an object
-	var post_data = querystring.stringify({      
+	var post_data = JSON.stringify({      
 		'client_id':'eXK3gp22Vo0qFEXVgOAnWuSdkYpAdEl3',
 		'client_secret':'GjV6PSghfaM2ctf8miKFmO1uHZrPpz51ohFkZlAormf6_ZjF_pB5f17mAcjvKWcO',
 		'audience':'https://app64319644.auth0.com/api/v2/',
@@ -66,7 +66,9 @@ exports.deleteuser = function(req, res, next) {
 	  //path: '/',
 	  port: '443',
 	  method: 'POST',
-	  headers: { 'Content-Type': 'application/json' }
+	  headers: { 'Content-Type': 'application/json',
+		  		 'Content-Length': Buffer.byteLength(postBody)
+	  }
 	};
 	
 	callback = function(results) {
@@ -123,6 +125,7 @@ exports.deleteuser = function(req, res, next) {
 		//console.log(`problem with request: ${e.message}`);
 		res.send('problem with request: ${e.message}');
 	});
+	httprequest.write(postBody);
 	httprequest.end();
 };
 
