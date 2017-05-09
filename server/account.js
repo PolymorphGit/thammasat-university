@@ -47,6 +47,85 @@ exports.getInfo = function(req, res, next) {
 	httprequest.end();
 };
 
+exports.deleteuser = function(req, res, next) {
+	var id = req.params.id;
+	var https = require('https');
+
+	// Build the post string from an object
+	var post_data = querystring.stringify({      
+		'client_id':'eXK3gp22Vo0qFEXVgOAnWuSdkYpAdEl3',
+		'client_secret':'GjV6PSghfaM2ctf8miKFmO1uHZrPpz51ohFkZlAormf6_ZjF_pB5f17mAcjvKWcO',
+		'audience':'https://app64319644.auth0.com/api/v2/',
+		'grant_type':'client_credentials'
+	});
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/oauth/token',
+	  //host: 'thammasat-university.herokuapp.com',
+	  //path: '/',
+	  port: '443',
+	  method: 'POST',
+	  headers: { 'Content-Type': 'application/json' }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			
+		});
+		results.on('end', function() {
+			var obj = JSON.parse(str);
+			//obj.access_token
+			console.log('Id:' + id + ', Token:' + obj.access_token);
+			
+			var https2 = require('https');
+			var options2 = {
+			  host: 'app64319644.auth0.com',
+			  path: 'api/v2/users/auth0|' + id,
+			  port: '443',
+			  method: 'DELETE',
+			  headers: { 'Authorization': 'Bearer ' + obj.access_token }
+			};
+			
+			callback2 = function(results2) {
+				var str2 = '';
+				results2.on('data', function(chunk2) {
+					
+				});
+				results2.on('end', function() {
+					var obj2 = JSON.parse(str2);
+					console.log(obj2);
+					
+					if(str2 == '')
+					{
+						console.log('Delete Success');
+						res.send('Delete Success');
+					}
+					else
+					{
+						res.json(obj);
+					}
+				});
+			}
+			
+			var httprequest2 = https.request(options2, callback2);
+			httprequest2.on('error', (e2) => {
+				//console.log(`problem with request: ${e.message}`);
+				res.send('problem with request: ${e2.message}');
+			});
+			httprequest2.end();
+		});
+	}
+	
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+};
+
 exports.UserInfobyId = function(req, res, next) {
 	var id = req.params.id;
 	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
@@ -452,3 +531,4 @@ exports.getprimary = function(req, res, next) {
 	})
     .catch(next);
 }
+
