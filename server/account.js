@@ -52,7 +52,7 @@ exports.deleteuser = function(req, res, next) {
 	var https = require('https');
 
 	// Build the post string from an object
-	var post_data = JSON.stringify({      
+	var postBody = JSON.stringify({      
 		'client_id':'eXK3gp22Vo0qFEXVgOAnWuSdkYpAdEl3',
 		'client_secret':'GjV6PSghfaM2ctf8miKFmO1uHZrPpz51ohFkZlAormf6_ZjF_pB5f17mAcjvKWcO',
 		'audience':'https://app64319644.auth0.com/api/v2/',
