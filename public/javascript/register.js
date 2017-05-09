@@ -27,6 +27,11 @@ angular.module('leadApp', [])
 	  				 						  'หอพักเคียงโดมปรับอากาศ ห้องน้ำรวม','หอพักเคียงโดมปรับอากาศ ห้องน้ำในตัว','หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน',
 	  				 						  'หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน',
 	  				 						  'หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}];
+  
+  $scope.sleepingtime = ['ก่อนเวลา 22.00 น.','หลังเวลา 22.00 น.'];
+  $scope.sleepingbehavior = ['นอนไม่กรน','นอนกรน'];
+  $scope.usingairconditioner = ['เปิดเครื่องปรับอากาศ','ไม่เปิดเครื่องปรับอากาศ'];
+  
 	  			
   $scope.$watch('lead.gender__c', function(newVal) {
       if (newVal)
@@ -109,6 +114,11 @@ angular.module('leadApp', [])
     	data[0].parent_name_2__c = data[0].parent_name_2__c == null || data[0].parent_name_2__c =='null' ? '' : data[0].parent_name_2__c;
     	data[0].parent_phone_2__c = data[0].parent_phone_2__c == null || data[0].parent_phone_2__c =='null' ? '' : data[0].parent_phone_2__c;
     	data[0].disabled__c = data[0].disabled__c == null || data[0].disabled__c =='null' ? '' : data[0].disabled__c;
+    	
+    	data[0].sleeping_time__c = data[0].sleeping_time__c == null || data[0].sleeping_time__c =='null' ? '' : data[0].sleeping_time__c;
+    	data[0].sleeping_behavior__c = data[0].sleeping_behavior__c == null || data[0].sleeping_behavior__c =='null' ? '' : data[0].sleeping_behavior__c;
+    	data[0].using_air_conditioner__c = data[0].using_air_conditioner__c == null || data[0].using_air_conditioner__c =='null' ? '' : data[0].using_air_conditioner__c;
+    	
     	
     	if (data[0].birthdate__c) {
     		var str = data[0].birthdate__c;

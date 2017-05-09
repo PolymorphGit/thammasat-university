@@ -591,7 +591,8 @@
 				
 				<tr>
 				
-					<td align="center"><table style="width:100%">
+					<td align="center">
+					<table style="width:100%">
 					
 						<tr>
 							<td align="right" class='CustomLayout1' >
@@ -868,7 +869,8 @@
 						    <td><a href="http://www.psm.tu.ac.th/main.php?page_name=dormitory.m1.p01" target="_blank" />รายละเอียดหอพัก</a></td>
 						</tr>
 					
-					</table></td>
+					</table>
+					</td>
 					
 				</tr>
 				
@@ -1098,7 +1100,7 @@
 							<td>
 							</td>
 							<td class='CustomLayout1'>
-								<input type="text" ng-model="lead.Sleeping_Time__c"  id="sleepingTime" />
+							    <select ng-model="lead.sleeping_time__c" ng-options="x for x in sleepingtime" id="sleepingTime"></select>
 								<label id="sleepingTimeResult" />
 							</td>
 						</tr>
@@ -1109,7 +1111,7 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.Sleeping_Behavior__c" id="sleepingBehavior"/>
+								<select ng-model="lead.sleeping_behavior__c" ng-options="x for x in sleepingbehavior" id="sleepingBehavior"></select>
 								<label id="sleepingBehaviorResult" />
 							</td>
 						</tr>
@@ -1121,7 +1123,7 @@
 							<td>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.Using_Air_Conditioner__c" id="usingAirConditioner"/>
+								<select ng-model="lead.using_air_conditioner__c" ng-options="x for x in usingairconditioner" id="usingAirConditioner"></select>
 								<label id="usingAirConditionerResult" />
 							</td>
 						</tr>						
