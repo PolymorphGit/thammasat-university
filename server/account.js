@@ -90,7 +90,7 @@ exports.deleteuser = function(req, res, next) {
 			  method: 'DELETE',
 			  headers: { 'Authorization': 'Bearer ' + obj.access_token }
 			};
-			console.log(option2);
+			console.log(options2);
 			
 			callback2 = function(results2) {
 				var str2 = '';
