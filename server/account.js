@@ -97,8 +97,8 @@ exports.deleteuser = function(req, res, next) {
 					str2 += chunk2;
 				});
 				results2.on('end', function() {
+					console.log(str2);
 					var obj2 = JSON.parse(str2);
-					console.log(obj2);
 					
 					if(str2 == '')
 					{
