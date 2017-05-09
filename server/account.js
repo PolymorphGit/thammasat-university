@@ -74,7 +74,7 @@ exports.deleteuser = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			
+			str += chunk;
 		});
 		results.on('end', function() {
 			console.log('return:' + str);
@@ -94,7 +94,7 @@ exports.deleteuser = function(req, res, next) {
 			callback2 = function(results2) {
 				var str2 = '';
 				results2.on('data', function(chunk2) {
-					
+					str += chunk2;
 				});
 				results2.on('end', function() {
 					var obj2 = JSON.parse(str2);
