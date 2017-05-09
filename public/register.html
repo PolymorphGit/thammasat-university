@@ -567,19 +567,18 @@
 	
 	<body id="main" onload="init();" ng-app="leadApp" ng-controller="mainController">
 		<div>
+		
+		    <!-- Student Information -->
 			<table style="width:100%">
 				<tr>
-					<td colspan ="3" align="center" >
-				  
+					<td colspan ="3" align="center" >			  
 					</td>
 				</tr>
 				
 				<tr style="height:5px">
 					<td colspan="3"></td>
 				</tr>
-				
-				<!-- Student Information -->
-				
+
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
 						<b style="color:white">Student Information / ข้อมูลของนักศึกษาผู้จอง</b>
@@ -881,9 +880,8 @@
 				
 			</table>
 			
+			<!-- Address information -->
 			<table style="width:100%">
-				
-				<!-- Address Information -->
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
@@ -981,9 +979,8 @@
 				
 			</table>
 			
+			<!-- Parent Information -->
 			<table style="width:100%">
-			
-				<!-- Parent Information -->
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
@@ -996,7 +993,8 @@
 				</tr>
 				
 				<tr>
-					<td align="center"><table style="width:100%">
+					<td align="center">
+					    <table style="width:100%">
 				
 						<tr>
 							<td align="right" class='CustomLayout1'>
@@ -1067,12 +1065,70 @@
 							</td>
 						</tr>
 						
-					</table></td>
+					</table>
+					</td>
 				
 				</tr>
 				
 				<!-- Parent Information -->
 			   
+			</table>
+			
+			<!-- Sleeping Behavior   -->
+			<table style="width:100%">
+				
+				<tr style="background-color: #C80000">
+					<td colspan="3" align="left">
+						<b style="color:white">Sleeping Behavior / พฤติกรรมการนอน</b>
+					</td>
+				</tr>
+				
+				<tr style="height:5px">
+					<td colspan="3"></td>
+				</tr>
+				
+				<tr>
+					<td align="center">
+					<table style="width:100%">
+				
+						<tr>
+							<td align="right" class='CustomLayout1'>
+								Sleeping Time /ระยะเวลาเข้านอน
+							</td>
+							<td>
+							</td>
+							<td class='CustomLayout1'>
+								<input type="text" ng-model="lead.Sleeping_Time__c"  id="sleepingTime" />
+								<label id="sleepingTimeResult" />
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+								Sleeping Behavior /พฤติกรรมการนอน
+							</td>
+							<td>
+							</td>
+							<td>
+								<input type="text" ng-model="lead.Sleeping_Behavior__c" id="sleepingBehavior"/>
+								<label id="sleepingBehaviorResult" />
+							</td>
+						</tr>
+			
+						<tr>
+							<td align="right">
+								Using Air Conditioner /พฤติกรรมการใช้เครื่องปรับอากาศ
+							</td>
+							<td>
+							</td>
+							<td>
+								<input type="text" ng-model="lead.Using_Air_Conditioner__c" id="usingAirConditioner"/>
+								<label id="usingAirConditionerResult" />
+							</td>
+						</tr>						
+					</table>
+					
+					</td>
+				</tr>
 			</table>
 			
 			<br/><br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
