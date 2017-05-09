@@ -77,7 +77,7 @@ exports.deleteuser = function(req, res, next) {
 			
 		});
 		results.on('end', function() {
-			console.log(str);
+			console.log('return:' + str);
 			var obj = JSON.parse(str);
 			//obj.access_token
 			console.log('Id:' + id + ', Token:' + obj.access_token);
