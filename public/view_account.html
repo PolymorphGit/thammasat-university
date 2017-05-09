@@ -752,7 +752,7 @@
                 </tr>
                 
             </table>
-            
+            <!-- Parent infomation -->
             <table style="width:100%">
             
                 <!-- Parent Information -->
@@ -840,6 +840,64 @@
                 <!-- Parent Information -->
                 
             </table>
+            
+            <!-- Sleeping Behavior   -->
+			<table style="width:100%">
+				
+				<tr style="background-color: #C80000">
+					<td colspan="3" align="left">
+						<b style="color:white">Sleeping Behavior / พฤติกรรมการนอน</b>
+					</td>
+				</tr>
+				
+				<tr style="height:5px">
+					<td colspan="3"></td>
+				</tr>
+				
+				<tr>
+					<td align="center">
+					<table style="width:100%">
+				
+						<tr>
+							<td align="right" class='CustomLayout1'>
+								Sleeping Time /ระยะเวลาเข้านอน
+							</td>
+							<td>
+							</td>
+							<td class='CustomLayout1'>
+							    <select ng-model="lead.sleeping_time__c" ng-options="x for x in sleepingtime" id="sleepingTime"></select>
+								<label id="sleepingTimeResult" />
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+								Sleeping Behavior /พฤติกรรมการนอน
+							</td>
+							<td>
+							</td>
+							<td>
+								<select ng-model="lead.sleeping_behavior__c" ng-options="x for x in sleepingbehavior" id="sleepingBehavior"></select>
+								<label id="sleepingBehaviorResult" />
+							</td>
+						</tr>
+			
+						<tr>
+							<td align="right">
+								Using Air Conditioner /พฤติกรรมการใช้เครื่องปรับอากาศ
+							</td>
+							<td>
+							</td>
+							<td>
+								<select ng-model="lead.using_air_conditioner__c" ng-options="x for x in usingairconditioner" id="usingAirConditioner"></select>
+								<label id="usingAirConditionerResult" />
+							</td>
+						</tr>						
+					</table>
+					
+					</td>
+				</tr>
+			</table>
+			
             
                 <br/><br/><center>
                     <!-- <button onclick="update();" >Save</button> -->
