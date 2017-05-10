@@ -7,8 +7,8 @@ angular.module('leadApp', [])
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
   
-  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']} 
-                 , {'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
+  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']}, 
+                     {'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
  
   
   
