@@ -58,13 +58,10 @@ angular.module('leadApp', [])
     	  angular.forEach($scope.salutation , function(value)
 	      {
     		  //alert(value.Gender);
-    		  
     		  if(value.Gender == $scope.lead.gender__c)
     		  {
     			//alert(value.zones);
-    			if (value.salutations!=''){
-    				$scope.salutations = value.salutations;
-    			}
+    			$scope.salutations = value.salutations;
     		  }
 	      });
     	  
@@ -170,10 +167,7 @@ angular.module('leadApp', [])
 	  var dd=BeforeChange.substring(0, 2);
 	  var mm = BeforeChange.substring(3, 5);
 	  var yyyy = BeforeChange.substring(6, 10);
-	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;
-
-	  
-	  
+	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;	  
 	 
 	  if($scope.id == null)
 		{
@@ -210,6 +204,7 @@ angular.module('leadApp', [])
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		alert('update success');
+		$location.url('http://www.google.com')
 	})
 	.error((data) => {
 		alert('Error: ' + data);
