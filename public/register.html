@@ -194,11 +194,13 @@
 			  return re.test(myDateValue);
 		}
 		
+		/*
 		function validateDateFormatYYYYMMDD(myDateValue)
 		{
 			var re2 =^\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9]))$/;
 			return re2.test(myDateValue);
 		}
+		*/
 		
 		function validateBirthdate() {
 			  $("#birthdateResult").css("color", "red");
@@ -208,7 +210,6 @@
 			  alert('myBirthdate='+myBirthdate);
 			  
 			  if (validateDateFormat(myBirthdate)) {
-				
 			    return true;
 			  }
 			  else if((myBirthdate=="")||(myBirthdate=="?")) {
