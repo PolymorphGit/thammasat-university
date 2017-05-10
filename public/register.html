@@ -562,6 +562,39 @@
 	            if (pageblock != null){ pageblock.firstChild.style.cssText = "background-color: #C80000; color: white;";}
 	        }
 	    </script>
+	    
+	    window.onload = function() {
+
+              //alert('start');
+                
+              // it get  = Fri May 19 00:00:00 GMT 2017
+              /*
+              var objSFDate1= document.getElementById('pg:frm:SFDate').value;
+              alert('31 ='+objSFDate1);
+              
+              if (objSFDate1!=''){
+                  //alert('5 inside if');
+                  var yyyy = objSFDate1.substring(6,11);
+                  var mm = objSFDate1.substring(3,5);
+                  var dd = objSFDate1.substring(0,2);
+                  var tempValue2= yyyy+"-"+mm+"-"+dd;
+                  //alert('tempValue2='+tempValue2);
+                  
+                  var objDate= document.getElementById('birthdate');
+                  objDate.value=tempValue2;
+              }
+              */
+              
+              var objSFDate2= document.getElementById('pg:frm:SFDateTemp').value;
+              //alert('32 ='+objSFDate2);
+              if (objSFDate2!=''){
+                  var objDate= document.getElementById('birthdate');
+                  objDate.value=objSFDate2;
+              } 
+              
+              //alert('end');
+        };
+	    
 		
 	</header>
 	
@@ -715,7 +748,7 @@
 							</td>
 							<td>
 								<input type="date" ng-model="lead.birthdate__c" id="birthdate"  value="2016-01-15"/>
-								<input type="text" ng-model="lead.birthdate__c" id="birthdate2" onchange="alert('2');" />
+								<input type="text" ng-model="lead.birthdate__c" id="SFDate"  />
 								<!--
 								<label id="birthdateResult"/>
 								<script type="text/javascript">
