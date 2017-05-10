@@ -146,9 +146,9 @@ angular.module('leadApp', [])
 		    var yyyy = res.substring(0,4);
 		    
 		    //res = dd + "/" + mm + "/" + yyyy;
-		    res = yyyy + "-" + mm + "-" + dd;
+		    //res = yyyy + "-" + mm + "-" + dd;
 		    
-		    data[0].birthdate__c = res;
+		    //data[0].birthdate__c = res;
     	}
     	
     	
