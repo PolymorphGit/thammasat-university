@@ -698,7 +698,7 @@
 											<input type="text" ng-model="lead.firstname" id="first_name_en__c" />
 										</td>
 										<td>
-											<input type="text" ng-model="lead.lastname" id="last_name_en__c" onchange="alert('2');" />
+											<input type="text" ng-model="lead.lastname" id="last_name_en__c" />
 											<label id="lbl_name_en__c"/>
 										</td>
 									</tr>
@@ -714,8 +714,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="date" ng-model="lead.birthdate__c" id="birthdate"  />
-								<input type="text" ng-model="lead.birthdate__c" id="birthdate2" />
+								<input type="date" ng-model="lead.birthdate__c" id="birthdate"  value="2016-01-15"/>
+								<input type="text" ng-model="lead.birthdate__c" id="birthdate2" onchange="alert('2');" />
 								<!--
 								<label id="birthdateResult"/>
 								<script type="text/javascript">
