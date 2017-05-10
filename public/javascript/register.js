@@ -3,9 +3,16 @@ angular.module('leadApp', [])
   $scope.id = null;
   $scope.lead = { };
   
-  $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
+  //$scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
+  
+  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']} 
+                 , {'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
+ 
+  
+  
+  
   /*
   $scope.faculty = ['นิติศาสตร์ 99/3', 'พาณิชยศาสตร์และการบัญชี 99/4', 'รัฐศาสตร์ 99/10', 'เศรษฐศาสตร์ 99/8', 'สังคมสงเคราะห์ศาสตร์ 99/9', 'สังคมวิทยามนุษย์วิทยา 99/10', 'ศิลปศาสตร์ 99/5',
 	  				'วารสารศาสตร์และสื่อสารมวลชน 99/10', 'วิทยาศาสตร์และเทคโนโลยี 99/2', 'วิศวกรรมศาสตร์ 99/6', 'สถาบันเทคโนโลยีนานาชาติสิรินธร 99/7', 'สถาปัตยกรรมศาสตร์และผังเมือง 99/10',
@@ -47,6 +54,19 @@ angular.module('leadApp', [])
     	  		$scope.zones = value.zones;
     		  }
 	      });
+    	  
+    	  
+    	  angular.forEach($scope.salutation , function(value)
+	      {
+    		  //alert(value.Gender);
+    		  
+    		  if(value.Gender == $scope.lead.gender__c)
+    		  {
+    			//alert(value.zones);
+    	  		$scope.salutations = value.salutations;
+    		  }
+	      });
+    	  
       }
   });
   
