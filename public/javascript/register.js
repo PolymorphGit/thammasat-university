@@ -204,7 +204,6 @@ angular.module('leadApp', [])
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		alert('update success');
-		$location.url('http://www.google.com')
 	})
 	.error((data) => {
 		alert('Error: ' + data);
