@@ -25,18 +25,20 @@ exports.getInfo = function(req, res, next) {
 			catch(ex)
 			{
 				res.status(887).send("Invalid access token");
-				return;
 			}
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    //res.send(obj.identities[0].user_id);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				console.log(results);	
-				res.json(results);
-			})
-		    .catch(next);
+			if(str != 'Unauthorized')
+			{
+			    var obj = JSON.parse(str);
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					console.log(results);	
+					res.json(results);
+				})
+			    .catch(next);
+			}
 		});
 	}
 	
