@@ -17,18 +17,10 @@ exports.getInfo = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-				console.log(JSON.parse(chunk));	
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+			str += chunk;
 		});
 		results.on('end', function() {
-			if(str != 'Unauthorized')
+			try
 			{
 			    var obj = JSON.parse(str);
 			    //res.send(obj.identities[0].user_id);
@@ -39,6 +31,7 @@ exports.getInfo = function(req, res, next) {
 				})
 			    .catch(next);
 			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -77,57 +70,58 @@ exports.deleteuser = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-			//console.log('return:' + str);
-			var obj = JSON.parse(str);
-			//obj.access_token
-			console.log('Id:' + id + ', Token:' + obj.access_token);
-			
-			var https2 = require('https');
-			var options2 = {
-			  host: 'app64319644.auth0.com',
-			  path: '/api/v2/users/auth0|' + id,
-			  port: '443',
-			  method: 'DELETE',
-			  headers: { 'Authorization': 'Bearer ' + obj.access_token }
-			};
-			console.log(options2);
-			
-			callback2 = function(results2) {
-				var str2 = '';
-				results2.on('data', function(chunk2) {
-					str2 += chunk2;
+			try
+			{
+				//console.log('return:' + str);
+				var obj = JSON.parse(str);
+				//obj.access_token
+				console.log('Id:' + id + ', Token:' + obj.access_token);
+				
+				var https2 = require('https');
+				var options2 = {
+				  host: 'app64319644.auth0.com',
+				  path: '/api/v2/users/auth0|' + id,
+				  port: '443',
+				  method: 'DELETE',
+				  headers: { 'Authorization': 'Bearer ' + obj.access_token }
+				};
+				console.log(options2);
+				
+				callback2 = function(results2) {
+					var str2 = '';
+					results2.on('data', function(chunk2) {
+						str2 += chunk2;
+					});
+					results2.on('end', function() {
+						try
+						{
+							console.log(str2);				
+							if(str2 == '')
+							{
+								console.log('Delete Success');
+								res.send('Delete Success');
+							}
+							else
+							{
+								var obj2 = JSON.parse(str2);
+								res.json(obj2);
+							}
+						}
+						catch(ex) {	res.status(887).send("Invalid access token");	}
+					});
+				}
+				
+				var httprequest2 = https.request(options2, callback2);
+				httprequest2.on('error', (e2) => {
+					//console.log(`problem with request: ${e.message}`);
+					res.send('problem with request: ${e2.message}');
 				});
-				results2.on('end', function() {
-					console.log(str2);				
-					if(str2 == '')
-					{
-						console.log('Delete Success');
-						res.send('Delete Success');
-					}
-					else
-					{
-						var obj2 = JSON.parse(str2);
-						res.json(obj2);
-					}
-				});
+				httprequest2.end();
 			}
-			
-			var httprequest2 = https.request(options2, callback2);
-			httprequest2.on('error', (e2) => {
-				//console.log(`problem with request: ${e.message}`);
-				res.send('problem with request: ${e2.message}');
-			});
-			httprequest2.end();
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -275,69 +269,66 @@ exports.checkin = function(req, res, next){
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    //res.send(obj.identities[0].user_id);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results2) {
-				console.log(results2);
-				//TODO: Update account and Create Asset
-				if(results2.length > 0)
-				{
-					var enddate = '';
-					var today = new Date();
-					var startDate = new Date(today.getFullYear(), 1, 1);
-					var endDate = new Date(today.getFullYear(), 5, 31);
-					var startDate2 = new Date(today.getFullYear(), 8, 1);
-					var endDate2 = new Date(today.getFullYear(), 12, 31);
-					var room = results2[0].room__c;
-					if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+			try
+			{
+			    var obj = JSON.parse(str);
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results2) {
+					console.log(results2);
+					//TODO: Update account and Create Asset
+					if(results2.length > 0)
 					{
-						enddate = today.getFullYear() + '-5-31';
+						var enddate = '';
+						var today = new Date();
+						var startDate = new Date(today.getFullYear(), 1, 1);
+						var endDate = new Date(today.getFullYear(), 5, 31);
+						var startDate2 = new Date(today.getFullYear(), 8, 1);
+						var endDate2 = new Date(today.getFullYear(), 12, 31);
+						var room = results2[0].room__c;
+						if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
+						{
+							enddate = today.getFullYear() + '-5-31';
+						}
+						else
+						{
+							enddate = today.getFullYear() + '-7-31';
+							room = results2[0].room_summer__c;
+						}
+						
+						if (room != null)
+						{
+							db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE SFID='" + results2[0].sfid + "' RETURNING *")
+							.then(function(results3) {
+								console.log(results3);	
+								if(results3.length > 0)
+								{
+									db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + room + "', '" + enddate + "', '" + enddate + "', true)")
+									.then(function(results4) {
+										console.log(results4);	
+										res.send("Success");
+									})
+								    .catch(next);
+								}
+							})
+						    .catch(next);
+						}
+						else
+						{
+							res.send("No room assign, Please contact staff.");
+						}
 					}
 					else
 					{
-						enddate = today.getFullYear() + '-7-31';
-						room = results2[0].room_summer__c;
+						res.send("User can't Login. Please contact staff.");
 					}
-					
-					if (room != null)
-					{
-						db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE SFID='" + results2[0].sfid + "' RETURNING *")
-						.then(function(results3) {
-							console.log(results3);	
-							if(results3.length > 0)
-							{
-								db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + room + "', '" + enddate + "', '" + enddate + "', true)")
-								.then(function(results4) {
-									console.log(results4);	
-									res.send("Success");
-								})
-							    .catch(next);
-							}
-						})
-					    .catch(next);
-					}
-					else
-					{
-						res.send("No room assign, Please contact staff.");
-					}
-				}
-				else
-				{
-					res.send("User can't Login. Please contact staff.");
-				}
-			})
-		    .catch(next);
+				})
+			    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -366,35 +357,32 @@ exports.RequestCheckout = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-			//TODO: Open Case
-			var obj = JSON.parse(str);
-			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				db.select("SELECT * FROM salesforce.RecordType WHERE name='Checkout'")
-				.then(function(results2) {
-					var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, Checkout_Date__c) ";
-						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + req.body.checkout_date + "')";
-						//console.log(query);
-						db.select(query)
-						.then(function(results3) {
-							
-							res.send('success');
-						})
-					    .catch(next);
+			try
+			{
+				//TODO: Open Case
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Checkout'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, Checkout_Date__c) ";
+							query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + req.body.checkout_date + "')";
+							//console.log(query);
+							db.select(query)
+							.then(function(results3) {
+								
+								res.send('success');
+							})
+						    .catch(next);
+					})
+				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -421,59 +409,56 @@ exports.checkout = function(req, res, next){
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+			str += chunk;
 		});
 		results.on('end', function() {
-			var obj = JSON.parse(str);
-			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results2) {
-				if(results2.length > 0)
-				{
-				    var obj = JSON.parse(str);
-				    //res.send(obj.identities[0].user_id);
-				    var query = "UPDATE salesforce.Account SET Status__c='Checkout', room__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
-				    if(results2[0].renew__c == true)
-			    	{
-				    	query = "UPDATE salesforce.Account SET Status__c='Checkout' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
-			    	}
-				    var today = new Date();
-					var startDate = new Date(today.getFullYear(), 6, 1);
-					var endDate = new Date(today.getFullYear(), 7, 31);
-					if((startDate < today && today < endDate))
+			try
+			{
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results2) {
+					if(results2.length > 0)
 					{
-						enddate = today.getFullYear() + '-5-31';
-						query = "UPDATE salesforce.Account SET Status__c='Checkout', room_summer__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
-					}
-				    db.select(query)
-					.then(function(results3) {
-						console.log(results3);
-						//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
-						db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results3[0].sfid + "' and active__c=true")
-						.then(function(results4) {
-							console.log(results4);	
-							var today = new Date();
-							var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-							db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + todayDate + "' WHERE SFID='" + results4[0].sfid + "' RETURNING *")
-							.then(function(results5) {
-								console.log(results5);	
-								//res.json(results);
-								res.send("Success");
+					    var obj = JSON.parse(str);
+					    //res.send(obj.identities[0].user_id);
+					    var query = "UPDATE salesforce.Account SET Status__c='Checkout', room__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+					    if(results2[0].renew__c == true)
+				    	{
+					    	query = "UPDATE salesforce.Account SET Status__c='Checkout' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+				    	}
+					    var today = new Date();
+						var startDate = new Date(today.getFullYear(), 6, 1);
+						var endDate = new Date(today.getFullYear(), 7, 31);
+						if((startDate < today && today < endDate))
+						{
+							enddate = today.getFullYear() + '-5-31';
+							query = "UPDATE salesforce.Account SET Status__c='Checkout', room_summer__c='' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
+						}
+					    db.select(query)
+						.then(function(results3) {
+							console.log(results3);
+							//TODO: Query Active Asset and Update to deactive and Usage end date to TODAY
+							db.select("SELECT * FROM salesforce.Asset WHERE accountId='" + results3[0].sfid + "' and active__c=true")
+							.then(function(results4) {
+								console.log(results4);	
+								var today = new Date();
+								var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+								db.select("UPDATE salesforce.Asset SET active__c=false, usageenddate='" + todayDate + "' WHERE SFID='" + results4[0].sfid + "' RETURNING *")
+								.then(function(results5) {
+									console.log(results5);	
+									//res.json(results);
+									res.send("Success");
+								})
+							    .catch(next);
 							})
 						    .catch(next);
 						})
 					    .catch(next);
-					})
-				    .catch(next);
-				}
-			})
-		    .catch(next);
+					}
+				})
+			    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -502,19 +487,15 @@ exports.renew = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    //TODO: Open Case Renew
-		    
+			try
+			{
+			    var obj = JSON.parse(str);
+			    //TODO: Open Case Renew
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
