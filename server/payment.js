@@ -57,53 +57,50 @@ exports.getList = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				var query = "SELECT * FROM salesforce.Invoice__c where Student_Name__c='" + results[0].sfid + "'";
-				if(!isNaN(limit))
-				{
-					query += " limit " + limit;
-				}
-				if(!isNaN(start) && start != 0)
-				{
-					query += " OFFSET  " + start;
-				}
-				//console.log(query);
-				db.select(query)
-				.then(function(results2) {	
-					//Build Output
-					var output = '[';
-					for(var i = 0 ; i <results2.length ; i++)
+			try
+			{
+			    var obj = JSON.parse(str);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					var query = "SELECT * FROM salesforce.Invoice__c where Student_Name__c='" + results[0].sfid + "'";
+					if(!isNaN(limit))
 					{
-						output += '{"Invoice ID":"' + results2[i].sfid;
-						output += '", "Invoice Number":"' + results2[i].name;
-						output += '", "Student Name":"' + results[0].name;
-						output += '", "Due Date":"' + results2[i].due_date__c;
-						output += '", "Total Amount":"' + results2[i].total_amount__c;
-						output += '", "Create Date":"' + results2[i].createdate + '"},';
+						query += " limit " + limit;
 					}
-					if(results2.length)
+					if(!isNaN(start) && start != 0)
 					{
-						output = output.substr(0, output.length - 1);
+						query += " OFFSET  " + start;
 					}
-					output+= ']';
-					console.log(output);
-					res.json(JSON.parse(output));
+					//console.log(query);
+					db.select(query)
+					.then(function(results2) {	
+						//Build Output
+						var output = '[';
+						for(var i = 0 ; i <results2.length ; i++)
+						{
+							output += '{"Invoice ID":"' + results2[i].sfid;
+							output += '", "Invoice Number":"' + results2[i].name;
+							output += '", "Student Name":"' + results[0].name;
+							output += '", "Due Date":"' + results2[i].due_date__c;
+							output += '", "Total Amount":"' + results2[i].total_amount__c;
+							output += '", "Create Date":"' + results2[i].createdate + '"},';
+						}
+						if(results2.length)
+						{
+							output = output.substr(0, output.length - 1);
+						}
+						output+= ']';
+						console.log(output);
+						res.json(JSON.parse(output));
+					})
+				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+		    catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	

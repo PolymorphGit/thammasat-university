@@ -43,54 +43,51 @@ exports.getList = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				var query = "SELECT * FROM salesforce.Case where accountid='" + results[0].sfid + "'";
-				if(!isNaN(limit))
-				{
-					query += " limit " + limit;
-				}
-				if(!isNaN(start) && start != 0)
-				{
-					query += " OFFSET  " + start;
-				}
-				//console.log(query);
-				db.select(query)
-				.then(function(results2) {	
-					//Build Output
-					var output = '[';
-					for(var i = 0 ; i < results2.length ; i++)
+			try
+			{
+			    var obj = JSON.parse(str);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					var query = "SELECT * FROM salesforce.Case where accountid='" + results[0].sfid + "'";
+					if(!isNaN(limit))
 					{
-						output += '{"Case id":"' + results2[i].sfid;
-						output += '", "Type":"' + results2[i].type;
-						output += '", "Sub Type":"' + results2[i].problem_type__c;
-						output += '", "Room Problem Type":"' + results2[i].problem_sub_type__c;
-						output += '", "Priority":"' + results2[i].priority;
-						output += '", "Subject":"' + results2[i].subject;
-						output += '", "Status":"' + results2[i].status + '"},';
+						query += " limit " + limit;
 					}
-					if(results2.length > 0)
+					if(!isNaN(start) && start != 0)
 					{
-						output = output.substr(0, output.length - 1);
+						query += " OFFSET  " + start;
 					}
-					output += ']';
-					//console.log(output);
-					res.json(JSON.parse(output));
+					//console.log(query);
+					db.select(query)
+					.then(function(results2) {	
+						//Build Output
+						var output = '[';
+						for(var i = 0 ; i < results2.length ; i++)
+						{
+							output += '{"Case id":"' + results2[i].sfid;
+							output += '", "Type":"' + results2[i].type;
+							output += '", "Sub Type":"' + results2[i].problem_type__c;
+							output += '", "Room Problem Type":"' + results2[i].problem_sub_type__c;
+							output += '", "Priority":"' + results2[i].priority;
+							output += '", "Subject":"' + results2[i].subject;
+							output += '", "Status":"' + results2[i].status + '"},';
+						}
+						if(results2.length > 0)
+						{
+							output = output.substr(0, output.length - 1);
+						}
+						output += ']';
+						//console.log(output);
+						res.json(JSON.parse(output));
+					})
+				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -119,37 +116,34 @@ exports.openCase = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				db.select("SELECT * FROM salesforce.RecordType WHERE name='Problem'")
-				.then(function(results2) {
-					var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, problem_sub_type__c, problem_type__c"
-					query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority, subject) ";
-					query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + req.body.type + "', '";
-					query += req.body.sub_type + "', '" + req.body.topic + "', '" + req.body.other + "', '" + req.body.access + "', '";
-					query += req.body.payment + "', 'Medium', '" + req.body.type + "-" + req.body.sub_type + "-" + req.body.topic + "')";
-					//console.log(query);
-					db.select(query)
-					.then(function(results3) {
-						
-						res.send('success');
+			try
+			{
+			    var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Problem'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, problem_sub_type__c, problem_type__c"
+						query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority, subject) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + req.body.type + "', '";
+						query += req.body.sub_type + "', '" + req.body.topic + "', '" + req.body.other + "', '" + req.body.access + "', '";
+						query += req.body.payment + "', 'Medium', '" + req.body.type + "-" + req.body.sub_type + "-" + req.body.topic + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('success');
+						})
+					    .catch(next);
 					})
 				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	var httprequest = https.request(options, callback);

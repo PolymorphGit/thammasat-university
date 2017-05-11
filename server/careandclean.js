@@ -15,32 +15,29 @@ exports.getCleanRate = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    //res.send(obj.identities[0].user_id);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results[0].room__c + "'")
-				.then(function(results2) {
-					db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2[0].room_type__c + "'")
+			try
+			{
+			    var obj = JSON.parse(str);
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results[0].room__c + "'")
 					.then(function(results2) {
-						console.log(results2);	
-						res.json(results2);
+						db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2[0].room_type__c + "'")
+						.then(function(results2) {
+							console.log(results2);	
+							res.json(results2);
+						})
+					    .catch(next);
 					})
 				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	
@@ -108,48 +105,45 @@ exports.getList = function(req, res, next) {
 	
 	callback = function(results) {
 		var str = '';
-		results.on('data', function(chunk) {
-			try
-			{
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.status(887).send("Invalid access token");
-			}
+		results.on('data', function(chunk) {			
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-		    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and status='Completed'";
-				if(!isNaN(limit))
-				{
-					query += " limit " + limit;
-				}
-				console.log(query);
-				db.select(query)
-				.then(function(results2) {	
-					//Build Output
-					var output = '[';
-					for(var i = 0 ; i <results2.length ; i++)
+			try
+			{
+			    var obj = JSON.parse(str);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and status='Completed'";
+					if(!isNaN(limit))
 					{
-						output += '{"Clean Id":"' + results2[i].sfid;
-						output += '", "Order Id":"' + results2[i].caseid;
-						output += '", "Reporter Name":"' + results[0].name; 
-						output += '", "Create Date":"' + results2[i].createdate + '"},';
+						query += " limit " + limit;
 					}
-					if(results2.length)
-					{
-						output = output.substr(0, output.length - 1);
-					}
-					output+= ']';
-					//console.log(output);
-					res.json(JSON.parse(output));
+					console.log(query);
+					db.select(query)
+					.then(function(results2) {	
+						//Build Output
+						var output = '[';
+						for(var i = 0 ; i <results2.length ; i++)
+						{
+							output += '{"Clean Id":"' + results2[i].sfid;
+							output += '", "Order Id":"' + results2[i].caseid;
+							output += '", "Reporter Name":"' + results[0].name; 
+							output += '", "Create Date":"' + results2[i].createdate + '"},';
+						}
+						if(results2.length)
+						{
+							output = output.substr(0, output.length - 1);
+						}
+						output+= ']';
+						//console.log(output);
+						res.json(JSON.parse(output));
+					})
+				    .catch(next);
 				})
-			    .catch(next);
-			})
-		    .catch(next);
+			    .catch(next); 
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -177,57 +171,53 @@ exports.openClean = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try
-			{
-				//console.log(JSON.parse(chunk));	
-			    str += chunk;
-			}
-			catch(ex)
-			{
-				res.send("Invalid access token");
-			}
+		    str += chunk;
 		});
 		results.on('end', function() {
-		    var obj = JSON.parse(str);
-			db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-			.then(function(results) {
-				db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
-				.then(function(results2) {
-					var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, subject, Description";
-					query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
-					query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
-					query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '";
-					query += req.body[0].payment + "', 'Medium') RETURNING *";
-					//console.log(query);
-					db.select(query)
-					.then(function(results3) {
-						setTimeout(function () {
-							db.select("SELECT * FROM salesforce.Case WHERE id='" + results3[0].id + "'")
-							.then(function(results4) {
-								//console.log(results3);
-								var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
-								for(var i = 0 ; i < req.body[0].schedule.length; i++)
-								{
-									query2 += "('" + results4[0].sfid + "', '" + req.body[0].schedule[i].date + "', '" + req.body[0].schedule[i].time + "'), ";
-								}
-								if(req.body[0].schedule.length > 0)
-								{
-									query2 = query2.substr(0, query2.length - 2);
-								}
-								db.select(query2)
-								.then(function(results5) {
-									res.send('success');
+			try
+			{
+			    var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, subject, Description";
+						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
+						query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '";
+						query += req.body[0].payment + "', 'Medium') RETURNING *";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							setTimeout(function () {
+								db.select("SELECT * FROM salesforce.Case WHERE id='" + results3[0].id + "'")
+								.then(function(results4) {
+									//console.log(results3);
+									var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
+									for(var i = 0 ; i < req.body[0].schedule.length; i++)
+									{
+										query2 += "('" + results4[0].sfid + "', '" + req.body[0].schedule[i].date + "', '" + req.body[0].schedule[i].time + "'), ";
+									}
+									if(req.body[0].schedule.length > 0)
+									{
+										query2 = query2.substr(0, query2.length - 2);
+									}
+									db.select(query2)
+									.then(function(results5) {
+										res.send('success');
+									})
+								    .catch(next);
 								})
 							    .catch(next);
-							})
-						    .catch(next);
-						}, 5000) 
+							}, 5000) 
+						})
+					    .catch(next);
 					})
 				    .catch(next);
 				})
 			    .catch(next);
-			})
-		    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("Invalid access token");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
