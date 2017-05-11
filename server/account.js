@@ -25,6 +25,7 @@ exports.getInfo = function(req, res, next) {
 			catch(ex)
 			{
 				res.status(887).send("Invalid access token");
+				return;
 			}
 		});
 		results.on('end', function() {
