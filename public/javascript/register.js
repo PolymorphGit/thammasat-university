@@ -190,7 +190,7 @@ angular.module('leadApp', [])
 		$scope.lead = data[0];
 		$scope.id = data[0].sfid;
 		alert('create success');
-		
+		window.location.href = "http://developer-tutestdev.cs5.force.com/register";
 	})
 	.error((data) => {
 		console.log('Error: ' + data);
@@ -205,6 +205,7 @@ angular.module('leadApp', [])
 	$http.post('../updatestudent/' + $scope.id, data)
 	.success((data) => {
 		alert('update success');
+		window.location.href = "http://developer-tutestdev.cs5.force.com/register";
 	})
 	.error((data) => {
 		alert('Error: ' + data);
