@@ -74,7 +74,14 @@ exports.deleteuser = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			str += chunk;
+			try
+			{
+			    str += chunk;
+			}
+			catch(ex)
+			{
+				res.status(887).send("Invalid access token");
+			}
 		});
 		results.on('end', function() {
 			//console.log('return:' + str);
@@ -267,12 +274,11 @@ exports.checkin = function(req, res, next){
 		results.on('data', function(chunk) {
 			try
 			{
-				console.log(JSON.parse(chunk));	
 			    str += chunk;
 			}
 			catch(ex)
 			{
-				res.send("Invalid access token");
+				res.status(887).send("Invalid access token");
 			}
 		});
 		results.on('end', function() {
@@ -359,12 +365,11 @@ exports.RequestCheckout = function(req, res, next) {
 		results.on('data', function(chunk) {
 			try
 			{
-				//console.log(JSON.parse(chunk));	
 			    str += chunk;
 			}
 			catch(ex)
 			{
-				res.send("Invalid access token");
+				res.status(887).send("Invalid access token");
 			}
 		});
 		results.on('end', function() {
@@ -415,12 +420,11 @@ exports.checkout = function(req, res, next){
 		results.on('data', function(chunk) {
 			try
 			{
-				console.log(JSON.parse(chunk));	
 			    str += chunk;
 			}
 			catch(ex)
 			{
-				res.send("Invalid access token");
+				res.status(887).send("Invalid access token");
 			}
 		});
 		results.on('end', function() {
@@ -497,12 +501,11 @@ exports.renew = function(req, res, next) {
 		results.on('data', function(chunk) {
 			try
 			{
-				console.log(JSON.parse(chunk));	
 			    str += chunk;
 			}
 			catch(ex)
 			{
-				res.send("Invalid access token");
+				res.status(887).send("Invalid access token");
 			}
 		});
 		results.on('end', function() {

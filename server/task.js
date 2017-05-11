@@ -17,8 +17,14 @@ exports.getFeed = function(req, res, next) {
 	callback = function(results) {
 		var str = '';
 		results.on('data', function(chunk) {
-			try { str += chunk; }
-			catch(ex) { res.send("Invalid access token"); }
+			try
+			{
+			    str += chunk;
+			}
+			catch(ex)
+			{
+				res.status(887).send("Invalid access token");
+			}
 		});
 		results.on('end', function() {
 			console.log(str);
