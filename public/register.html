@@ -252,7 +252,7 @@
 		function validateEmail() {
 			  $("#lbl_email").css("color", "red");
 			  $("#lbl_email").text("");
-			  var myEmail = $("#txtEmail").val();
+			  var myEmail = $("#txtEmail").val().trim();
 			  
 			  
 			  if (validateEmailFormat(myEmail)) {
