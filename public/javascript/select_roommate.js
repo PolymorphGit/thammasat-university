@@ -32,7 +32,10 @@ angular.module('select_roommateApp', [])
 		$http.get('../getroommate/' + accountId)
 		.success((data) => {
 			//alert(data);
-			$scope.roommate = data;
+			if(data != 'No Roommate')
+			{
+				$scope.roommate = data;
+			}
 			for(var i = data.length ; i < 3 ; i++)
 			{
 				$scope.roommate.push({"identification_number__c": null });
