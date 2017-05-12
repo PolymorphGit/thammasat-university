@@ -74,7 +74,7 @@ exports.createRoommate = function(req, res, next) {
 		}
 		else
 		{
-			res.send("Not Found Account");
+			res.send("Not found student or already have roommate.");
 		}
 	})
 	.catch(next);
