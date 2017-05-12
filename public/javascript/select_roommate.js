@@ -70,7 +70,8 @@ angular.module('select_roommateApp', [])
 			{
 				var index = $scope.roommate.indexOf(record);
 				delete $scope.roommate.splice(index, 1);
-				$scope.roommate.push(data[0]);
+				//$scope.roommate.push(data[0]);
+				recors = data[0];
 			}
 			else
 			{
