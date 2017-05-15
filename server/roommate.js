@@ -60,14 +60,14 @@ exports.createRoommate = function(req, res, next) {
 						}
 						else
 						{
-							res.json("This student zone is not match.");
+							res.json("This student zone or gender is not match.");
 						}
 					})
 				    .catch(next);	
 				}
 				else 
 				{
-					res.json("This student already have roommate.");
+					res.json("This student is the primary roommate.");
 				}
 			})
 		    .catch(next);
@@ -131,21 +131,21 @@ exports.updateRoommate = function(req, res, next) {
 						}
 						else
 						{
-							res.json("This student information is not match.");
+							res.json("This student zone or gender is not match.");
 						}
 					})	
 				    .catch(next);
 				}
 				else
 				{
-					res.json("This Student already have roommate.");
+					res.json("This student is the primary roommate.");
 				}
 			})	
 		    .catch(next);
 		}
 		else
 		{
-			res.send("Not Found Account");
+			res.send("Not found student or already have roommate.");
 		}
 	})	
     .catch(next);
