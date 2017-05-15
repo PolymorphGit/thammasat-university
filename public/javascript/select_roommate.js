@@ -5,6 +5,11 @@ angular.module('select_roommateApp', [])
 	$scope.account = {};
 	//$scope.roommate = [ {"identification_number__c": "123"},{"passport_number__c":"abc"}];
 	$scope.roommate = [{"identification_number__c": null},{},{}];
+	$scope.maxroommate = 3;
+	$scope.zone4 = ['หอพักเอเชี่ยนเกมส์โซน B', 'หอพักเอเชี่ยนเกมส์โซน B8', 'หอพักเคียงโดมปรับอากาศ ห้องน้ำรวม', 'หอพักเคียงโดมปรับอากาศ ห้องน้ำในตัว', 'หอพักเคียงโดมพัดลม ห้องน้ำรวม', 'หอพักเคียงโดมพัดลม ห้องน้ำในตัว', 
+				   'หอพักคู่โดมปรับอากาศ ห้องน้ำรวม', 'หอพักคู่โดมปรับอากาศ ห้องน้ำในตัว', 'หอพักคู่โดมพัดลม ห้องน้ำรวม', 'หอพักคู่โดมพัดลม ห้องน้ำในตัว', 'หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน', 'หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน',
+				   'หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน', 'หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน'];
+	$scope.zone2 = ['หอพักเอเชี่ยนเกมส์โซน C,E', 'หอพักเอเชี่ยนเกมส์โซน C Plus'];
 	
 	//Get a account Detail
 	$scope.getData = function (accountId) {	
@@ -16,6 +21,12 @@ angular.module('select_roommateApp', [])
 			{
 				//alert("Pass");
 				$scope.account = data[0];
+				angular.forEach($scope.zone2, function(zone) {
+					if(data[0].zone__c == zone )
+					{
+						$scope.maxroommate = 1;
+					}
+				});
 			}
 			else
 			{
@@ -36,7 +47,7 @@ angular.module('select_roommateApp', [])
 			{
 				$scope.roommate = data;
 			}
-			for(var i = data.length ; i < 3 ; i++)
+			for(var i = data.length ; i < $scope.maxroommate ; i++)
 			{
 				$scope.roommate.push({"identification_number__c": null });
 			}
