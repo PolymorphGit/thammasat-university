@@ -170,7 +170,7 @@
             	<tr ng-repeat="r in roommate" >
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
-            			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" ng-disabled="(r.identification_number__c!=null) ?  false : true"  />
+            			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" ng-disabled="(r.identification_number__c!=null) ?  true : false"  />
             		</td>
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			{{r.firstname}} {{r.lastname}}
