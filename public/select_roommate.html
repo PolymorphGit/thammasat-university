@@ -168,13 +168,13 @@
             	<tr ng-repeat="r in roommate" >
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			ชื่อผู้พักร่วม {{$index + 1}}<input type="text" ng-model="r.identification_number__c" ng-show="r.identification_number__c != null" />
-            			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" ng-disable="(r.firstname!=null||r.lastname!=null)" />
+            			<input type="text" ng-model="r.passport_number__c" ng-show="r.identification_number__c == null" ng-disable="(r.name!=null)"  />
             		</td>
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			{{r.firstname}} {{r.lastname}}
             		</td>
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
-            			<button ng-click="upsertRoommate(r)">OK</button>
+            			<button ng-click="upsertRoommate(r)" >OK</button>
             		</td>
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			<button ng-click="deleteRoommate(r)">Delete</button>
