@@ -1,7 +1,7 @@
 /*
  * DatePicker
  * @author Rick Hopkins
- * @modified by Micah Nolte and Martin Vašina
+ * @modified by Micah Nolte and Martin Vaï¿½ina
  * @version 0.3.2
  * @classDescription A date picker object. Created with the help of MooTools v1.11
  * MIT-style License.
@@ -23,7 +23,7 @@ var DatePicker = new Class({
 		this.dayChars = 1; // number of characters in day names abbreviation
 		this.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		this.daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		this.format = 'mm/dd/yyyy';
+		this.format = 'dd/mm/yyyy';
 		this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		this.startDay = 7; // 1 = week starts on Monday, 7 = week starts on Sunday
 		this.yearOrder = 'desc';
