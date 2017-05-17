@@ -53,7 +53,8 @@
                     break;
                 case 'ms.' :   
                 case 'mrs.' :   alert('22');
-                    angular.element(document.getElementById('main')).scope().lead.salutation = 'Female';
+                    //angular.element(document.getElementById('main')).scope().lead.salutation = 'Female';
+                    loopSelectedData(ddlSex,'Female');
                 	//ddlSex.value='Female';
                     break;
                 default:	alert('23'); 
@@ -68,9 +69,11 @@
 	    }
 		
 		function loopSelectedData(obj ,value){
-			
 			for (i = 0; i < obj.options.length; i++) {
-				   ddlArray[i] = ddl .options[i].value;
+			   if (obj.options[i].value==value){
+				   elmnt.selectedIndex = i;
+				   break;
+			   }
 		    }
 		}
 		 
