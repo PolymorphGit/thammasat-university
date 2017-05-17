@@ -98,8 +98,9 @@ function sendContractExpire()
 {
 	var listId = '(';
 	var to;
-	db.select("SELECT * FROM salesforce.Asset WHERE Active__c=true and send_notification__c is null and Contract_End__c < NOW() - interval '1 month' limit 5")
+	db.select("SELECT * FROM salesforce.Asset WHERE active__c=true and send_notification__c is null and Contract_End__c < NOW() - interval '1 month' limit 5")
 	.then(function(results) {
+		console.log(results);
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].accountid;
