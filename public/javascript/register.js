@@ -56,7 +56,7 @@ angular.module('leadApp', [])
 	      });
     	  
     	  
-    	  angular.forEach($scope.salutation , function(value)
+    	  angular.forEach($scope.salutation2 , function(value)
 	      {
     		  //alert(value.Gender);
     		  if(value.Gender == $scope.lead.gender__c)
