@@ -94,7 +94,6 @@ function sendMailing()
 }
 sendMailing();
 
-
 function sendContractExpire()
 {
 	var listId = '(';
