@@ -33,8 +33,8 @@ exports.getCleanRate = function(req, res, next) {
 							for(var i = 0 ; i <results2.length ; i++)
 							{
 								output += '{"sfid":"' + results2[i].sfid;
-								output += '", "quantity":"' + results[i].quantity__c;
-								output += '", "rate":"' + results[i].rate__c + '"},';
+								output += '", "quantity":"' + results2[i].quantity__c;
+								output += '", "rate":"' + results2[i].rate__c + '"},';
 							}
 							if(results.length)
 							{
