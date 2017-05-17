@@ -28,6 +28,7 @@ function sendBilling()
 	var to;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
+		console.log(results);
 		for(var i = 0 ; i <results.length ; i++)
 		{
 			to = results[i].student_name__c;
@@ -54,7 +55,7 @@ function sendBilling()
 	})
 	.catch(function(e){console.log(e);});
 }
-//sendBilling();
+sendBilling();
 
 function sendMailing()
 {
@@ -62,7 +63,8 @@ function sendMailing()
 	var to;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
-		for(var i = 0 ; i <results.length ; i++)
+		console.log(results);
+		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c
 			console.log('To:' + to + ', No:' + results[i].name + ' ,type:' + results[i].mailing_type__c + ' , date:' + results[i].received_date__c);
