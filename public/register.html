@@ -48,16 +48,19 @@
             
             
             switch(ddlSalutationText) {
-                case 'mr.' :   ddlSex.value='Male'; 
+                case 'mr.' : alert('21');   
+                	ddlSex.value='Male'; 
                     break;
                 case 'ms.' :   
-                case 'mrs.' :   ddlSex.value='Female';
+                case 'mrs.' :   alert('22');   
+                	ddlSex.value='Female';
                     break;
-                default: ddlSex.value='';
+                default:	alert('23'); 
+                	ddlSex.value='';
                     break;
             }
             alert('9');
-            ddlSex.onchange();
+            //ddlSex.onchange();
             alert('10');
             
             alert('end');
