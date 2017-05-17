@@ -33,11 +33,12 @@
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
             alert('0-1  ddlSalutation'+ddlSalutation);
-            
-            
-            
             var ddlSalutationValue=ddlSalutation.value.toLowerCase();
-            alert('0-2 ddlSalutationValue'+ ddlSalutationValue);
+            var value = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].value;
+            var text = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].text;
+            alert('0-2 ddlSalutationValue'+ ddlSalutationValue +"<br/> value="+value +"<br/> text="+text);
+            
+            
             var ddlSex = document.getElementById("pick_gender__c'");
             alert('0-3  ddlSex='+ddlSex );
             alert('1' );
@@ -52,9 +53,9 @@
                 default: ddlSex.value='';
                     break;
             }
-            
+            alert('9');
             ddlSex.onchange();
-            
+            alert('10');
             
             alert('end');
 	    }
