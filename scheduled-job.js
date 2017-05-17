@@ -94,3 +94,36 @@ function sendMailing()
 }
 sendMailing();
 
+
+function sendContractExpire()
+{
+	var listId = '(';
+	var to;
+	db.select("SELECT * FROM salesforce.Asset WHERE Active__c=true and send_notification__c is null and Contract_End__c < NOW() - interval '1 month' limit 5")
+	.then(function(results) {
+		for(var i = 0 ; i < results.length ; i++)
+		{
+			to = results[i].accountid;
+			console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c);
+			pusher.trigger(to, 'Contract Expire', {
+				message: 'สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c
+			});
+			
+			listId += '\'' + results[i].sfid + '\', ';
+		}
+		
+		if(results.length > 0)
+		{
+			//TODO Mark Send Notification to true
+			listId = listId.substr(0, listId.length - 2) + ')';
+			//TODO Mark Send Notification to true
+			db.select("UPDATE salesforce.Asset SET send_notification__c=true WHERE SFID IN " + listId)
+			.then(function(results) {
+				console.log('Contract complete');
+			})
+			.catch(function(e){console.log(e);});
+		}
+	})
+	.catch(function(e){console.log(e);});
+}
+sendContractExpire();
