@@ -87,7 +87,7 @@ exports.getList = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -135,7 +135,7 @@ exports.openCase = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('success');
+							res.send('{ status: "success" }');
 						})
 					    .catch(next);
 					})
@@ -143,7 +143,7 @@ exports.openCase = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);

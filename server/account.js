@@ -31,7 +31,7 @@ exports.getInfo = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -110,7 +110,7 @@ exports.deleteuser = function(req, res, next) {
 								res.json(obj2);
 							}
 						}
-						catch(ex) {	res.status(887).send("Invalid access token");	}
+						catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 					});
 				}
 				
@@ -121,7 +121,7 @@ exports.deleteuser = function(req, res, next) {
 				});
 				httprequest2.end();
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -230,7 +230,7 @@ exports.getRoommate = function(req, res, next) {
 
 exports.logout = function(req, res, next) {
 	var head = req.headers['authorization'];
-	res.send("Success");
+	res.send("{ status: \"Success\" }");
 };
 
 exports.checkinDetail = function(req, res, next){
@@ -309,7 +309,7 @@ exports.checkin = function(req, res, next){
 									db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + room + "', '" + enddate + "', '" + enddate + "', true)")
 									.then(function(results4) {
 										console.log(results4);	
-										res.send("Success");
+										res.send("{ status: \"Success\"");
 									})
 								    .catch(next);
 								}
@@ -318,17 +318,18 @@ exports.checkin = function(req, res, next){
 						}
 						else
 						{
-							res.send("No room assign, Please contact staff.");
+							res.send("{ status: \"fail\", detail: \"No room assign, Please contact staff.\"}");
 						}
 					}
 					else
 					{
-						res.send("User can't Login. Please contact staff.");
+						res.send("{ status: \"fail\", detail: \"User can't Login. Please contact staff.\"}");
+						
 					}
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -374,7 +375,7 @@ exports.RequestCheckout = function(req, res, next) {
 							db.select(query)
 							.then(function(results3) {
 								
-								res.send('success');
+								res.send('{ status: \"success\" }');
 							})
 						    .catch(next);
 					})
@@ -382,7 +383,7 @@ exports.RequestCheckout = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -447,7 +448,7 @@ exports.checkout = function(req, res, next){
 								.then(function(results5) {
 									console.log(results5);	
 									//res.json(results);
-									res.send("Success");
+									res.send("{ status: \"Success\" }");
 								})
 							    .catch(next);
 							})
@@ -458,7 +459,7 @@ exports.checkout = function(req, res, next){
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -495,7 +496,7 @@ exports.renew = function(req, res, next) {
 			    var obj = JSON.parse(str);
 			    //TODO: Open Case Renew
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	

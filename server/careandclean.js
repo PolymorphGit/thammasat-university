@@ -37,7 +37,7 @@ exports.getCleanRate = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -143,7 +143,7 @@ exports.getList = function(req, res, next) {
 				})
 			    .catch(next); 
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -204,7 +204,7 @@ exports.openClean = function(req, res, next) {
 									}
 									db.select(query2)
 									.then(function(results5) {
-										res.send('success');
+										res.send('{ status: "success" }');
 									})
 								    .catch(next);
 								})
@@ -217,7 +217,7 @@ exports.openClean = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("Invalid access token");	}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
