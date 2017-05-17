@@ -21,7 +21,7 @@ sendAnnouncement();
 
 function sendBilling()
 {
-	var listId = '[';
+	var listId = '(';
 	var invoiceNo;
 	var amount;
 	var duedate;
@@ -44,7 +44,7 @@ function sendBilling()
 			
 			listId += results[i].sfid + ', ';
 		}
-		listId = listId.substr(0, listId.length - 2) + ']';
+		listId = listId.substr(0, listId.length - 2) + ')';
 		//TODO Mark Send Notification to true
 		db.select("UPDATE salesforce.Invoice__c SET send_notification__c=true WHERE SFID IN " + listId)
 		.then(function(results) {
@@ -58,7 +58,7 @@ function sendBilling()
 
 function sendMailing()
 {
-	var listId = '[';
+	var listId = '(';
 	var to;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is not null limit 5")
 	.then(function(results) {
@@ -74,7 +74,7 @@ function sendMailing()
 			listId += '\'' + results[i].sfid + '\', ';
 		}
 		//TODO Mark Send Notification to true
-		listId = listId.substr(0, listId.length - 2) + ']';
+		listId = listId.substr(0, listId.length - 2) + ')';
 		//TODO Mark Send Notification to true
 		db.select("UPDATE salesforce.Mailing__c SET send_notification__c=true WHERE SFID IN " + listId)
 		.then(function(results) {
