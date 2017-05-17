@@ -177,15 +177,15 @@ exports.openClean = function(req, res, next) {
 			try
 			{
 			    var obj = JSON.parse(str);
-				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities.user_id + "'")
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
 					.then(function(results2) {
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, type, subject, Description";
 						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Care and Clean', 'Care and Clean', '";
-						query += req.body[0].comment + "', '" + req.body[0].amount + "', '" + req.body[0].access + "', '";
-						query += req.body[0].payment + "', 'Medium') RETURNING *";
+						query += req.body.comment + "', '" + req.body.amount + "', '" + req.body.access + "', '";
+						query += req.body.payment + "', 'Medium') RETURNING *";
 						//console.log(query);
 						db.select(query)
 						.then(function(results3) {
@@ -194,11 +194,11 @@ exports.openClean = function(req, res, next) {
 								.then(function(results4) {
 									//console.log(results3);
 									var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c) VALUES ";
-									for(var i = 0 ; i < req.body[0].schedule.length; i++)
+									for(var i = 0 ; i < req.body.schedule.length; i++)
 									{
-										query2 += "('" + results4[0].sfid + "', '" + req.body[0].schedule[i].date + "', '" + req.body[0].schedule[i].time + "'), ";
+										query2 += "('" + results4[0].sfid + "', '" + req.body.schedule[i].date + "', '" + req.body.schedule[i].time + "'), ";
 									}
-									if(req.body[0].schedule.length > 0)
+									if(req.body.schedule.length > 0)
 									{
 										query2 = query2.substr(0, query2.length - 2);
 									}
