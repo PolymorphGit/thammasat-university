@@ -1,4 +1,88 @@
+var db = require('./server/pghelper');
+var Pusher = require('pusher');
+
 function sayHello() {
-    console.log('Hello');
+    console.log('Notification');
 }
 sayHello();
+
+var pusher = new Pusher({
+  appId: '321597',
+  key: 'f57a4e884d78cc6e048a',
+  secret: '6bd62949b0bcbf8b22a8',
+  encrypted: true
+});
+
+function sendAnnouncement()
+{
+	
+}
+sendAnnouncement();
+
+function sendBilling()
+{
+	var listId = '[';
+	var invoiceNo;
+	var amount;
+	var duedate;
+	var to;
+	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 10")
+	.then(function(results) {
+		for(var i = 0 ; i <results.length ; i++)
+		{
+			to = results[i].student_name__c;
+			invoiceNo = results[i].name;
+			amount = results[i].total_amount__c;
+			duedate = results[i].due_date__c;
+			
+			console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
+			pusher.trigger(to, 'Billing', {
+				no: invoiceNo,
+				amount: amount,
+				message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate 
+			});
+			
+			listId += results[i].sfid + ', ';
+		}
+		listId = listId.substr(0, listId.length - 2) + ']';
+		//TODO Mark Send Notification to true
+		db.select("UPDATE salesforce.Invoice__c SET send_notification__c=true WHERE SFID IN " + listId)
+		.then(function(results) {
+			console.log('Invoice complete');
+		})
+		.catch(next);
+	})
+	.catch(next);
+}
+//sendBilling();
+
+function sendMailing()
+{
+	var listId = '[';
+	var to;
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is not null limit 10")
+	.then(function(results) {
+		for(var i = 0 ; i <results.length ; i++)
+		{
+			to = results[i].student_name__c
+			console.log('To:' + to + ', No:' + results[i].name + ' ,type:' + results[i].mailing_type__c + ' , date:' + results[i].received_date__c);
+			pusher.trigger(to, 'Mailing', {
+				no: results[i].name,
+				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].received_date__c
+			});
+			
+			listId += results[i].sfid + ', ';
+		}
+		//TODO Mark Send Notification to true
+		listId = listId.substr(0, listId.length - 2) + ']';
+		//TODO Mark Send Notification to true
+		db.select("UPDATE salesforce.Mailing__c SET send_notification__c=true WHERE SFID IN " + listId)
+		.then(function(results) {
+			console.log('Mailing complete');
+		})
+		.catch(next);
+	})
+	.catch(next);
+}
+sendMailing();
+
