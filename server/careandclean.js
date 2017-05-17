@@ -28,8 +28,20 @@ exports.getCleanRate = function(req, res, next) {
 					.then(function(results2) {
 						db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2[0].room_type__c + "'")
 						.then(function(results2) {
-							console.log(results2);	
-							res.json(results2);
+							console.log(results2);
+							var output = '[';
+							for(var i = 0 ; i <results2.length ; i++)
+							{
+								output += '{"sfid":"' + results2[i].sfid;
+								output += '", "quantity":"' + results[i].quantity__c;
+								output += '", "rate":"' + results[i].rate__c + '"},';
+							}
+							if(results.length)
+							{
+								output = output.substr(0, output.length - 1);
+							}
+							output+= ']';
+							res.json(JSON.parse(output));
 						})
 					    .catch(next);
 					})
