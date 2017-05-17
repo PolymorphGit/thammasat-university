@@ -41,7 +41,6 @@
                 case 'mr.' : 
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
-                	ddlSex.value='Male'; 
                     break;
                 case 'ms.' :
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
@@ -52,7 +51,7 @@
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
                     break;
                 default: 
-                	ddlSex.value='';
+                	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
                     break;
             }
                         
