@@ -28,8 +28,7 @@ function sendBilling()
 	var to;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
-		console.log(results);
-		for(var i = 0 ; i <results.length ; i++)
+		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c;
 			invoiceNo = results[i].name;
@@ -45,13 +44,17 @@ function sendBilling()
 			
 			listId += results[i].sfid + ', ';
 		}
-		listId = listId.substr(0, listId.length - 2) + ')';
-		//TODO Mark Send Notification to true
-		db.select("UPDATE salesforce.Invoice__c SET send_notification__c=true WHERE SFID IN " + listId)
-		.then(function(results) {
-			console.log('Invoice complete');
-		})
-		.catch(function(e){console.log(e);});
+		
+		if(results.length > 0)
+		{
+			listId = listId.substr(0, listId.length - 2) + ')';
+			//TODO Mark Send Notification to true
+			db.select("UPDATE salesforce.Invoice__c SET send_notification__c=true WHERE SFID IN " + listId)
+			.then(function(results) {
+				console.log('Invoice complete');
+			})
+			.catch(function(e){console.log(e);});
+		}
 	})
 	.catch(function(e){console.log(e);});
 }
@@ -63,7 +66,6 @@ function sendMailing()
 	var to;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
-		console.log(results);
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c
@@ -75,14 +77,18 @@ function sendMailing()
 			
 			listId += '\'' + results[i].sfid + '\', ';
 		}
-		//TODO Mark Send Notification to true
-		listId = listId.substr(0, listId.length - 2) + ')';
-		//TODO Mark Send Notification to true
-		db.select("UPDATE salesforce.Mailing__c SET send_notification__c=true WHERE SFID IN " + listId)
-		.then(function(results) {
-			console.log('Mailing complete');
-		})
-		.catch(function(e){console.log(e);});
+		
+		if(results.length > 0)
+		{
+			//TODO Mark Send Notification to true
+			listId = listId.substr(0, listId.length - 2) + ')';
+			//TODO Mark Send Notification to true
+			db.select("UPDATE salesforce.Mailing__c SET send_notification__c=true WHERE SFID IN " + listId)
+			.then(function(results) {
+				console.log('Mailing complete');
+			})
+			.catch(function(e){console.log(e);});
+		}
 	})
 	.catch(function(e){console.log(e);});
 }
