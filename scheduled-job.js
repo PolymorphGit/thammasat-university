@@ -71,7 +71,7 @@ function sendMailing()
 				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].received_date__c
 			});
 			
-			listId += results[i].sfid + ', ';
+			listId += '\'' + results[i].sfid + '\', ';
 		}
 		//TODO Mark Send Notification to true
 		listId = listId.substr(0, listId.length - 2) + ']';
