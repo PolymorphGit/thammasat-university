@@ -34,10 +34,11 @@
             var ddlSalutation = document.getElementById("pick_title_en__c");
             alert('0-1  ddlSalutation'+ddlSalutation);
             var ddlSalutationValue=ddlSalutation.value.toLowerCase();
-            var value = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].value;
-            var text = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].text;
-            alert('0-2 ddlSalutationValue'+ ddlSalutationValue +"<br/> value="+value +"<br/> text="+text);
-            
+            alert('0-2 ddlSalutationValue'+ ddlSalutationValue);
+            alert('0-2 text'+ ddlSalutation.text);
+            alert('0-2 selectedindex'+ ddlSalutation.selectedindex);
+            //var value = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].value;
+            //var text = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].text;
             
             var ddlSex = document.getElementById("pick_gender__c'");
             alert('0-3  ddlSex='+ddlSex );
