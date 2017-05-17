@@ -50,9 +50,9 @@ function sendBilling()
 		.then(function(results) {
 			console.log('Invoice complete');
 		})
-		.catch(next);
+		.catch();
 	})
-	.catch(next);
+	.catch();
 }
 //sendBilling();
 
@@ -80,9 +80,9 @@ function sendMailing()
 		.then(function(results) {
 			console.log('Mailing complete');
 		})
-		.catch(next);
+		.catch();
 	})
-	.catch(next);
+	.catch();
 }
 sendMailing();
 
