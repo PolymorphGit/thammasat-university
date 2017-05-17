@@ -177,7 +177,7 @@ exports.openClean = function(req, res, next) {
 			try
 			{
 			    var obj = JSON.parse(str);
-				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities.user_id + "'")
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
 					.then(function(results2) {
