@@ -26,7 +26,7 @@ function sendBilling()
 	var amount;
 	var duedate;
 	var to;
-	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 10")
+	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
 		for(var i = 0 ; i <results.length ; i++)
 		{
@@ -60,7 +60,7 @@ function sendMailing()
 {
 	var listId = '[';
 	var to;
-	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is not null limit 10")
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is not null limit 5")
 	.then(function(results) {
 		for(var i = 0 ; i <results.length ; i++)
 		{
