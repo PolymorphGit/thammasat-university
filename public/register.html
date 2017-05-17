@@ -29,12 +29,15 @@
 		
 		<script type="text/javascript">
 		function setDependenciesTitle(){
-            //alert('start');
+            alert('start');
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
+            alert('0-1  ddlSalutation'++ddlSalutation);
             var ddlSalutationValue=ddlSalutation.value.toLowerCase();
+            alert('0-2 ddlSalutationValue'+ ddlSalutationValue);
             var ddlSex = document.getElementById("pick_gender__c'");
-            //alert('1');
+            alert('0-3  ddlSex='+ddlSex );
+            alert('1' );
             
             
             switch(ddlSalutationValue) {
@@ -49,7 +52,7 @@
             
             ddlSex.onchange();
             
-            //alert('end');
+            alert('end');
 	    }
 		 
 		function checkReadOnly(){
