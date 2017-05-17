@@ -48,12 +48,13 @@
             
             
             switch(ddlSalutationText) {
-                case 'mr.' : alert('21');   
+                case 'mr.' : alert('21');
                 	ddlSex.value='Male'; 
                     break;
                 case 'ms.' :   
-                case 'mrs.' :   alert('22');   
-                	ddlSex.value='Female';
+                case 'mrs.' :   alert('22');
+                    angular.element(document.getElementById('main')).scope().lead.salutation = 'Female';
+                	//ddlSex.value='Female';
                     break;
                 default:	alert('23'); 
                 	ddlSex.value='';
@@ -65,6 +66,13 @@
             
             alert('end');
 	    }
+		
+		function loopSelectedData(obj ,value){
+			
+			for (i = 0; i < obj.options.length; i++) {
+				   ddlArray[i] = ddl .options[i].value;
+		    }
+		}
 		 
 		function checkReadOnly(){
             //alert('1');
