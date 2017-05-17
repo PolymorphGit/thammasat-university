@@ -29,43 +29,30 @@
 		
 		<script type="text/javascript">
 		function setDependenciesTitle(){
-            alert('start');
+            //alert('start');
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
-            alert('0-1  ddlSalutation'+ddlSalutation);
             var ddlSalutationIndex=ddlSalutation.value.toLowerCase();
-            alert('0-2 ddlSalutationValue'+ ddlSalutationIndex);
             var ddlSalutationValue=ddlSalutation.options[ddlSalutationIndex].value.toLowerCase();
-            alert('0-3 value'+ ddlSalutationValue);
             var ddlSalutationText=ddlSalutation.options[ddlSalutationIndex].text.toLowerCase();
-            alert('0-3 text'+ ddlSalutationText);
-            //var value = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].value;
-            //var text = ddlSalutationValue.options[ddlSalutationValue.selectedIndex].text;
-            
             var ddlSex = document.getElementById("pick_gender__c");
-            alert('0-3  ddlSex='+ddlSex );
-            alert('1' );
             
             
             switch(ddlSalutationText) {
-                case 'mr.' : alert('21');
+                case 'mr.' : 
+                    angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
                 	ddlSex.value='Male'; 
                     break;
                 case 'ms.' :   
-                case 'mrs.' :   alert('22');
+                case 'mrs.' :   
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
-                    //loopSelectedData(ddlSex,'Female');
-                	//ddlSex.value='Female';
                     break;
-                default:	alert('23'); 
-                	ddlSex.value='';
-                    break;
+                //default: 
+                //	ddlSex.value='';
+                //    break;
             }
-            alert('9');
-            //ddlSex.onchange();
-            alert('10');
-            
-            alert('end');
+                        
+            //alert('end');
 	    }
 		
 		function loopSelectedData(obj ,value){
@@ -703,7 +690,7 @@
 						</tr>
 						
 						
-						<tr style="display:">
+						<tr style="display:none">
 							<td align="right">
 								Sex /เพศ
 							</td>
