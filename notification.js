@@ -255,10 +255,10 @@ function contractExpire(id, next)
 	var to;
 	db.select("SELECT * FROM salesforce.Asset WHERE SFID='" + id + "'")
 	.then(function(results) {
-		to = results[i].accountid;
-		console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c);
+		to = results[0].accountid;
+		console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c);
 		pusher.trigger(to, 'Contract Expire', {
-			message: 'สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c
+			message: 'สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c
 		});
 	})
 	.catch(next);
