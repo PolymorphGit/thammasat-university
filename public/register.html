@@ -33,7 +33,7 @@
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
             var ddlSalutationValue=ddlSalutation.value.toLowerCase();
-            var ddlSex = document.getElementById("pick_gender__c");
+            var ddlSex = document.getElementById("pick_gender__c'");
             //alert('1');
             
             
@@ -714,7 +714,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>                       
-								<select ng-model="lead.salutation" id="pick_title_en__c" onchange="setDependenciesTitle()"></select>
+								<select ng-model="lead.salutation2" id="pick_title_en__c2" onchange="setDependenciesTitle()"></select>
+								<select ng-model="lead.salutation" id="pick_title_en__c"  ng-options="g for g in salutations" ></select>
 								<label id="lbl_title_en__c"/>
 							</td>
 						</tr>

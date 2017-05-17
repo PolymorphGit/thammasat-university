@@ -6,9 +6,9 @@ angular.module('leadApp', [])
   //$scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
-  $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
-  
-  $scope.salutation2=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
+  $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
+
+  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
  
   
   
@@ -56,7 +56,7 @@ angular.module('leadApp', [])
 	      });
     	  
     	  
-    	  angular.forEach($scope.salutation2 , function(value)
+    	  angular.forEach($scope.salutation , function(value)
 	      {
     		  //alert(value.Gender);
     		  if(value.Gender == $scope.lead.gender__c)
