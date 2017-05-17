@@ -28,7 +28,30 @@
 		</script>
 		
 		<script type="text/javascript">
-		
+		function setDependenciesTitle(){
+            //alert('start');
+            
+            var ddlSalutation = document.getElementById("pick_title_en__c");
+            var ddlSalutationValue=ddlSalutation.value.toLowerCase();
+            var ddlSex = document.getElementById("pick_gender__c");
+            //alert('1');
+            
+            
+            switch(ddlSalutationValue) {
+                case 'mr.' :   ddlSex.value='Male'; 
+                    break;
+                case 'ms.' :   
+                case 'mrs.' :   ddlSex.value='Female';
+                    break;
+                default: ddlSex.value='';
+                    break;
+            }
+            
+            ddlSex.onchange();
+            
+            //alert('end');
+	    }
+		 
 		function checkReadOnly(){
             //alert('1');
             var tempObj= document.getElementById('birthdate3');
@@ -691,7 +714,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>                       
-								<select ng-model="lead.salutation" ng-options="x for x in salutations" id="pick_title_en__c"></select>
+								<select ng-model="lead.salutation" id="pick_title_en__c" onchange="setDependenciesTitle()"></select>
 								<label id="lbl_title_en__c"/>
 							</td>
 						</tr>
