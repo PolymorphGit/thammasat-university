@@ -164,12 +164,12 @@ angular.module('leadApp', [])
 	
 	  
 	  //var sss =$scope.lead.birthdate__c;
-	  //var BeforeChange=$scope.lead.birthdate__c;
+	  var BeforeChange=$scope.lead.birthdate__c;
 	  
-	  //var dd=BeforeChange.substring(0, 2);
-	  //var mm = BeforeChange.substring(3, 5);
-	  //var yyyy = BeforeChange.substring(6, 10);
-	  //$scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;	  
+	  var dd = BeforeChange.substring(0, 2);
+	  var mm = BeforeChange.substring(3, 5);
+	  var yyyy = BeforeChange.substring(6, 10);
+	  $scope.lead.birthdate__c = mm+"/"+dd+"/"+yyyy;	  
 	 
 	  if($scope.id == null)
 		{
@@ -180,7 +180,7 @@ angular.module('leadApp', [])
 			$scope.updateLead();
 		}
 	  
-	  //$scope.lead.birthdate__c=BeforeChange;
+	  $scope.lead.birthdate__c=BeforeChange;
   }
   
   $scope.createLead = function () {
