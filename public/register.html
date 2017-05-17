@@ -672,7 +672,7 @@
 								<b style="color=red"></b>
 							</td>
 							<td>
-								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlenght="10">
+								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlenght="10" />
 								<label id="lbl_student_id__c" />
 							</td>
 						</tr>
@@ -714,8 +714,8 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>                       
-								<select ng-model="lead.salutation2" id="pick_title_en__c2" onchange="setDependenciesTitle()"></select>
-								<select ng-model="lead.salutation" id="pick_title_en__c"  ng-options="g for g in salutations" ></select>
+								<select ng-model="lead.salutation" id="pick_title_en__c"  ng-options="g for g in salutation2" onchange="setDependenciesTitle()"></select>
+								<select ng-model="lead.salutation" id="pick_title_en__c2" ng-options="g for g in salutations" ></select>
 								<label id="lbl_title_en__c"/>
 							</td>
 						</tr>
