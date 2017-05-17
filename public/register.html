@@ -762,7 +762,7 @@
             			            });
         						</script>
         						-->
-        						<input id="birthday3" name="birthday3" type="text" class="DatePicker" value="{!lead.birthdate__c}" onmousedown="checkReadOnly()"  onkeydown="checkReadOnly()"  />
+        						<input id="birthday3" name="birthday3" type="text" class="DatePicker" ng-model="lead.birthdate__c" onmousedown="checkReadOnly()"  onkeydown="checkReadOnly()"  />
         						<script type="text/javascript">
 	        						$$('input.DatePicker').each( function(el){
 										new DatePicker(el);
