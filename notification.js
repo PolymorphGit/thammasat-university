@@ -78,9 +78,9 @@ function getBilling(id, next)
 		to = results[0].student_name__c;
 		invoiceNo = results[0].name;
 		amount = results[0].total_amount__c;
-		duedate = results[0].due_date__c;
+		duedate = results[0].due_date__c.toDateString();
 		
-		console.log('To:' + to + ', No:' + invoiceNo + ' ,Amount:' + amount + ' ,message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
+		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 		pusher.trigger(to, 'Billing', {
 			no: invoiceNo,
 			amount: amount,
@@ -97,10 +97,10 @@ function getMailing(id, next)
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].student_name__c
-		console.log('To:' + to + ', No:' + results[0].name + ' ,type:' + results[0].mailing_type__c + ' , date:' + results[0].received_date__c);
+		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c.toDateString());
 		pusher.trigger(to, 'Mailing', {
 			no: results[0].name,
-			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c
+			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c.toDateString()
 		});
 		return true;
 	})
@@ -113,7 +113,7 @@ function acceptCase(id, next)
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid
-		console.log('To:' + to + ', No:' + results[0].casenumber + ' ,Subject:' + results[0].subject);
+		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		pusher.trigger(to, 'acceptcase', {
 			No: results[0].casenumber,
 			message: results[0].subject + ' ได้รับการ รับเรื่องแล้ว'
@@ -129,7 +129,7 @@ function closeCase(id, next)
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid
-		console.log('To:' + to + ', No:' + results[0].casenumber + ' ,Subject:' + results[0].subject);
+		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		pusher.trigger(to, 'closecase', {
 			No: results[0].casenumber,
 			message: results[0].subject + ' ได้ทำการแก้ไขแล้ว'
@@ -155,7 +155,7 @@ function acceptClean(id, next)
 				date = new Date(results2[i].working_date__c)
 				message +=  date.toDateString() + ', ';
 			}
-			console.log('To:' + to + ', No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
+			console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject + ', message:' + message);
 			pusher.trigger(to, 'Accept Clean', {
 				No: results[0].casenumber,
 				message: message
@@ -183,7 +183,7 @@ function rejectClean(id, next)
 				date = new Date(results2[i].working_date__c);
 				message +=  date.toDateString() + ', ';
 			}
-			console.log('To:' + to + ', No:' + results[0].casenumber + ' ,Subject:' + results[0].subject + ', message:' + message);
+			console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject + ', message:' + message);
 			pusher.trigger(to, 'Reject Clean', {
 				No: results[0].casenumber,
 				message: message
@@ -256,9 +256,9 @@ function contractExpire(id, next)
 	db.select("SELECT * FROM salesforce.Asset WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
-		console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c);
+		console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c.toDateString());
 		pusher.trigger(to, 'Contract Expire', {
-			message: 'สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c
+			message: 'สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c.toDateString()
 		});
 	})
 	.catch(next);

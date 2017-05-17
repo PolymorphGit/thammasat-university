@@ -33,7 +33,7 @@ function sendBilling()
 			to = results[i].student_name__c;
 			invoiceNo = results[i].name;
 			amount = results[i].total_amount__c;
-			duedate = results[i].due_date__c;
+			duedate = results[i].due_date__c.toDateString();
 			
 			console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 			pusher.trigger(to, 'Billing', {
@@ -69,10 +69,10 @@ function sendMailing()
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c
-			console.log('To:' + to + ', No:' + results[i].name + ' ,type:' + results[i].mailing_type__c + ' , date:' + results[i].received_date__c);
+			console.log('To:' + to + ', No:' + results[i].name + ', type:' + results[i].mailing_type__c + ', date:' + results[i].received_date__c.toDateString());
 			pusher.trigger(to, 'Mailing', {
 				no: results[i].name,
-				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].received_date__c
+				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].received_date__c.toDateString()
 			});
 			
 			listId += '\'' + results[i].sfid + '\', ';
@@ -104,9 +104,9 @@ function sendContractExpire()
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].accountid;
-			console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c);
+			console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c.toDateString());
 			pusher.trigger(to, 'Contract Expire', {
-				message: 'สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c
+				message: 'สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c.toDateString()
 			});
 			
 			listId += '\'' + results[i].sfid + '\', ';
