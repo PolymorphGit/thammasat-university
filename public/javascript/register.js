@@ -145,8 +145,8 @@ angular.module('leadApp', [])
 		    var mm = res.substring(5,7);
 		    var yyyy = res.substring(0,4);
 		    
-		    //res = dd + "/" + mm + "/" + yyyy;
-		    mm=mm-1;
+		    res = dd + "/" + mm + "/" + yyyy;
+		    //mm=mm-1;
 		    
 		    data[0].birthdate__c = new Date (yyyy,mm,dd);
     	}

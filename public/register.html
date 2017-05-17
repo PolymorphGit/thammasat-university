@@ -752,7 +752,7 @@
 								<b style="color=red">*</b>
 							</td>
 							<td>
-								<input type="date" id="birthdate" ng-model="lead.birthdate__c" />
+								<!-- <input type="date" id="birthdate" ng-model="lead.birthdate__c" /> -->
 								<!--<input type="text" ng-model="lead.birthdate__c" id="birthdate" />-->
 								<label id="birthdateResult"/>
 								<!--
@@ -762,7 +762,7 @@
             			            });
         						</script>
         						-->
-        						<input id="birthday3" name="birthday3" type="text" class="DatePicker" onchange  required="true" onmousedown="checkReadOnly()"  onkeydown="checkReadOnly()"  />
+        						<input id="birthday3" name="birthday3" type="text" class="DatePicker" ng-model="lead.birthdate__c" onmousedown="checkReadOnly()"  onkeydown="checkReadOnly()"  />
         						<script type="text/javascript">
 	        						$$('input.DatePicker').each( function(el){
 										new DatePicker(el);
