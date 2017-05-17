@@ -60,7 +60,7 @@ function sendMailing()
 {
 	var listId = '(';
 	var to;
-	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is not null limit 5")
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
 		for(var i = 0 ; i <results.length ; i++)
 		{
