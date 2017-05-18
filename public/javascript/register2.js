@@ -26,9 +26,9 @@ angular.module('leadApp', [])
   $scope.zone = [{'Gender':'Male', 'zones':['หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}, 
 	  			 {'Gender':'Female', 'zones':['หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน','หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}];
   
-  $scope.sleepingtime = ['ก่อนเวลา 22.00 น.','หลังเวลา 22.00 น.'];
-  $scope.sleepingbehavior = ['นอนไม่กรน','นอนกรน'];
-  $scope.usingairconditioner = ['เปิดเครื่องปรับอากาศ','ไม่เปิดเครื่องปรับอากาศ'];
+  $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
+  $scope.sleepingbehavior = ['Not Snore','Snore'];
+  $scope.usingairconditioner = ['Turn On Air Conditioner','Turn Off Air Conditioner'];
   
 	  			
   $scope.$watch('lead.gender__c', function(newVal) {
@@ -72,7 +72,10 @@ angular.module('leadApp', [])
 	  			  'Trang', 'Trat', 'Ubon Ratchathani','Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon'];
  
   
-  $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
+  $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['Full Scholarship', 'Partial Scholarship', 'Birthday Scholarship',
+	  																   'Thammasat University Hospital Scholarship', 'Somdejya Scholarship',
+	  																   'SCiUS Scholarship', 'Disability Scholarship']}];
+  
   $scope.$watch('lead.scholarship__c', function(newVal) {
       if (newVal)
       {
