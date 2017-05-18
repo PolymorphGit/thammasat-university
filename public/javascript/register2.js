@@ -9,9 +9,6 @@ angular.module('leadApp', [])
   $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
 
   $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
- 
-  
-  
   
   /*
   $scope.faculty = ['นิติศาสตร์ 99/3', 'พาณิชยศาสตร์และการบัญชี 99/4', 'รัฐศาสตร์ 99/10', 'เศรษฐศาสตร์ 99/8', 'สังคมสงเคราะห์ศาสตร์ 99/9', 'สังคมวิทยามนุษย์วิทยา 99/10', 'ศิลปศาสตร์ 99/5',
@@ -20,11 +17,12 @@ angular.module('leadApp', [])
 	  				'วิทยาการเรียนรู้และศึกษาศาสตร์ 99/10', 'วิทยาลัยพัฒนศาสตร์ ป๋วย อึ๊งภากรณ์ 99/10', 'วิทยาลัยนานาชาติ ปรีดี พนมยงค์ 99/10', 'วิทยาลัยแพทยศาสตร์นานาชาติจุฬาภรณ์ 99/10',
 	  				'วิทยาลัยโลกคดีศึกษา 99/10', 'อื่นๆ 99/10', 'สถาบันภาษา 99/10', 'วิทยาลัยนวัตกรรม 99/10', 'วิทยาลัยสหวิทยาการ 99/10'];
 	  				*/
-  $scope.faculty = ['Laws', 'Business School', 'Political Science', 'Economics', 'Social Administration', '	Sociology and Anthropology', 'Liberal Arts',
-		'Journalism and Mass Communication', 'Science and Technology', 'Engineering', 'Sirindhorn International Institute of Technology', 'Architecture and Planning',
-		'Fine and Applied Arts', 'Medicine', 'Allied Health Sciences', 'Dentistry', 'Nursing', 'Public Health', 'Pharmacy',
-		'Learning Sciences and Education', 'Puey Ungphakorn School of Development Studies', '	Pridi Banomyong International College', 'Chulabhorn International College of Medicine',
-		'School of Global Studies', 'Others', 'Language Institute', 'College of Innovation', 'College of Interdisciplinary Studies'];
+  $scope.faculty = ['Allied Health Sciences', '	Architecture and Planning', 'Business School', 'Chulabhorn International College of Medicine', 
+	  				'College of Innovation', '	College of Interdisciplinary Studies', 'Dentistry', 'Economics', 'Engineering', 
+	  				'Fine and Applied Arts', 'Journalism and Mass Communication', 'Language Institute',	'Laws', 'Learning Sciences and Education', 
+	  				'Liberal Arts', 'Medicine', 'Nursing', 'Others', 'Pharmacy', 'Political Science', 'Pridi Banomyong International College', 
+	  				'Public Health', 'Puey Ungphakorn School of Development Studies', 'School of Global Studies', 'Science and Technology', 
+	  				'Sirindhorn International Institute of Technology', 'Social Administration', 'Sociology and Anthropology'];
   $scope.zone = [{'Gender':'Male', 'zones':['หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}, 
 	  			 {'Gender':'Female', 'zones':['หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน','หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}];
   
