@@ -6,9 +6,9 @@ angular.module('leadApp', [])
   //$scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
-  $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
+  $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.'];
 
-  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
+  $scope.salutation=[{'Gender':'Male','salutations':['Mr.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.']} ];
   
   /*
   $scope.faculty = ['นิติศาสตร์ 99/3', 'พาณิชยศาสตร์และการบัญชี 99/4', 'รัฐศาสตร์ 99/10', 'เศรษฐศาสตร์ 99/8', 'สังคมสงเคราะห์ศาสตร์ 99/9', 'สังคมวิทยามนุษย์วิทยา 99/10', 'ศิลปศาสตร์ 99/5',
@@ -61,11 +61,15 @@ angular.module('leadApp', [])
   });
   
   $scope.country = ['Thailand'];
-  $scope.state = ['กระบี่', 'กรุงเทพมหานคร', 'กาญจนบุรี', 'กาฬสินธุ์', 'กำแพงเพชร', 'ขอนแก่น', 'จันทบุรี', 'ฉะเชิงเทรา', 'ชลบุรี', 'ชัยนาท', 'ชัยภูมิ', 'ชุมพร', 'ตรัง', 'ตราด', 'ตาก', 'นครนายก',
-	  			  'นครปฐม', 'นครพนม', 'นครราชสีมา', 'นครศรีธรรมราช', 'นครสวรรค์', 'นนทบุรี','นราธิวาส', 'น่าน', 'บึงกาฬ', 'บุรีรัมย์', 'ปทุมธานี', 'ประจวบคีรีขันธ์', 'ปราจีนบุรี', 'ปัตตานี', 'พระนครศรีอยุธยา',
-	  			  'พะเยา', 'พังงา', 'พัทลุง', 'พิจิตร', 'พิษณุโลก', 'ภูเก็ต', 'มหาสารคาม', 'มุกดาหาร', 'ยะลา', 'ยโสธร', 'ระนอง', 'ระยอง', 'ราชบุรี', 'ร้อยเอ็ด', 'ลพบุรี', 'ลำปาง', 'ลำพูน', 'ศรีสะเกษ',
-	  			  'สกลนคร', 'สงขลา', 'สตูล', 'สมุทรปราการ', 'สมุทรสงคราม', 'สมุทรสาคร', 'สระบุรี', 'สระแก้ว', 'สิงห์บุรี', 'สุพรรณบุรี', 'สุราษฎร์ธานี', 'สุรินทร์', 'สุโขทัย', 'หนองคาย', 'หนองบัวลำภู',
-	  			  'อำนาจเจริญ', 'อุดรธานี', 'อุตรดิตถ์', 'อุทัยธานี', 'อุบลราชธานี', 'อ่างทอง', 'เชียงราย', 'เชียงใหม่','เพชรบุรี', 'เพชรบูรณ์', 'เลย', 'แพร่', 'แม่ฮ่องสอน'];
+  $scope.state = ['Amnat Charoen', 'Ang Thong', 'Bangkok', 'Bueng Kan', 'Buriram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 
+	  			  'Chiang Mai', 'Chiang Rai', 'Chonburi', 'Chumphon', 'Kalasin', 'Kamphaeng', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 
+	  			  'Lampang', 'Lamphun', 'Loei', 'Lopburi','	Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 
+	  			  'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lamphu', 
+	  			  'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phang Nga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 
+	  			  'Phichit', 'Phitsanulok', 'Phrae', 'Phra Nakhon Si Ayutthaya', 'Phuket', 'Prachinburi', 'Prachuap Khiri Khan', 
+	  			  'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 
+	  			  'Saraburi', 'Satun', 'Sing Buri', 'Sisaket', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 
+	  			  'Trang', 'Trat', 'Ubon Ratchathani','Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon'];
  
   
   $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];

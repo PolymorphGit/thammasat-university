@@ -6,12 +6,9 @@ angular.module('leadApp', [])
   //$scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
-  $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
+  $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.'];
 
-  $scope.salutation=[{'Gender':'Male','salutations':['Mr.','Dr.','Prof.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.', 'Dr.', 'Prof.']} ];
- 
-  
-  
+  $scope.salutation=[{'Gender':'Male','salutations':['Mr.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.']} ];
   
   /*
   $scope.faculty = ['นิติศาสตร์ 99/3', 'พาณิชยศาสตร์และการบัญชี 99/4', 'รัฐศาสตร์ 99/10', 'เศรษฐศาสตร์ 99/8', 'สังคมสงเคราะห์ศาสตร์ 99/9', 'สังคมวิทยามนุษย์วิทยา 99/10', 'ศิลปศาสตร์ 99/5',
@@ -20,11 +17,12 @@ angular.module('leadApp', [])
 	  				'วิทยาการเรียนรู้และศึกษาศาสตร์ 99/10', 'วิทยาลัยพัฒนศาสตร์ ป๋วย อึ๊งภากรณ์ 99/10', 'วิทยาลัยนานาชาติ ปรีดี พนมยงค์ 99/10', 'วิทยาลัยแพทยศาสตร์นานาชาติจุฬาภรณ์ 99/10',
 	  				'วิทยาลัยโลกคดีศึกษา 99/10', 'อื่นๆ 99/10', 'สถาบันภาษา 99/10', 'วิทยาลัยนวัตกรรม 99/10', 'วิทยาลัยสหวิทยาการ 99/10'];
 	  				*/
-  $scope.faculty = ['นิติศาสตร์', 'พาณิชยศาสตร์และการบัญชี', 'รัฐศาสตร์', 'เศรษฐศาสตร์', 'สังคมสงเคราะห์ศาสตร์', 'สังคมวิทยามนุษย์วิทยา', 'ศิลปศาสตร์',
-		'วารสารศาสตร์และสื่อสารมวลชน', 'วิทยาศาสตร์และเทคโนโลยี', 'วิศวกรรมศาสตร์', 'สถาบันเทคโนโลยีนานาชาติสิรินธร', 'สถาปัตยกรรมศาสตร์และผังเมือง',
-		'ศิลปกรรมศาสตร์', 'แพทย์ศาสตร์', 'สหเวชศาสตร์', 'ทันตแพทยศาสตร์', 'พยาบาลศาสตร์', 'สาธารณสุขศาสตร์', 'เภสัชศาสตร์',
-		'วิทยาการเรียนรู้และศึกษาศาสตร์', 'วิทยาลัยพัฒนศาสตร์ ป๋วย อึ๊งภากรณ์', 'วิทยาลัยนานาชาติ ปรีดี พนมยงค์', 'วิทยาลัยแพทยศาสตร์นานาชาติจุฬาภรณ์',
-		'วิทยาลัยโลกคดีศึกษา', 'อื่นๆ', 'สถาบันภาษา', 'วิทยาลัยนวัตกรรม', 'วิทยาลัยสหวิทยาการ'];
+  $scope.faculty = ['Allied Health Sciences', '	Architecture and Planning', 'Business School', 'Chulabhorn International College of Medicine', 
+					'College of Innovation', '	College of Interdisciplinary Studies', 'Dentistry', 'Economics', 'Engineering', 
+					'Fine and Applied Arts', 'Journalism and Mass Communication', 'Language Institute',	'Laws', 'Learning Sciences and Education', 
+					'Liberal Arts', 'Medicine', 'Nursing', 'Others', 'Pharmacy', 'Political Science', 'Pridi Banomyong International College', 
+					'Public Health', 'Puey Ungphakorn School of Development Studies', 'School of Global Studies', 'Science and Technology', 
+					'Sirindhorn International Institute of Technology', 'Social Administration', 'Sociology and Anthropology'];
   $scope.zone = [{'Gender':'Male', 'zones':['หอพักเอเชี่ยนเกมส์โซน B','หอพักเอเชี่ยนเกมส์โซน B8','หอพักเอเชี่ยนเกมส์โซน C Plus',
 	  										'หอพักเอเชี่ยนเกมส์โซน C,E','หอพักคู่โดมพัดลม ห้องน้ำรวม','หอพักคู่โดมพัดลม ห้องน้ำในตัว',
 	  										'หอพักคู่โดมปรับอากาศ ห้องน้ำรวม','หอพักคู่โดมปรับอากาศ ห้องน้ำในตัว',
@@ -69,20 +67,17 @@ angular.module('leadApp', [])
       }
   });
   
-  $scope.zone2 = ['หอพักเอเชี่ยนเกมโซน B (ทั้งผู้ชายและผู้หญิง)', 'หอพักเอเชี่ยนเกมส์โซน C Plus (ทั้งผู้ชายและผู้หญิง)', 'หอพักเอเชี่ยนเกมส์โซน C,E(ทั้งผู้ชายและผู้หญิง)', 'หอพักเคียงโดมปรับอากาศ ห้องน้ำในตัว (ผู้หญิงเท่านั้น)',
-	  			 'หอพักเคียงโดมปรับอากาศ ห้องน้ำรวม (ผู้หญิงเท่านั้น)', 'หอพักเคียงโดมพัดลม ห้องน้ำในตัว (ผู้หญิงเท่านั้น)', 'หอพักเคียงโดมพัดลม ห้องน้ำรวม (ผู้หญิงเท่านั้น)', 'หอพักคู่โดมปรับอากาศ ห้องน้ำในตัว (ผู้ชายเท่านั้น)',
-	  			 'หอพักคู่โดมปรับอากาศ ห้องน้ำรวม (ผู้ชายเท่านั้น)', 'หอพักคู่โดมพัดลม ห้องน้ำในตัว (ผู้ชายเท่านั้น)', 'หอพักคู่โดมพัดลม ห้องน้ำรวม (ผู้ชายเท่านั้น)', 'หอพักเอเชี่ยนเกมส์โซน C,E(ทั้งผู้ชายและผู้หญิง) (4 คน)',
-	  			 'หอพักเคียงโดมปรับอากาศห้องน้ำในตัว (ผู้หญิงเท่านั้น)', 'หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน (ผู้หญิงเท่านั้น)', 'หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน (ผู้หญิงเท่านั้น)',
-	  			 'หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน (ผู้หญิงเท่านั้น)', 'หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน (ผู้หญิงเท่านั้น)', 'หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน (ผู้ชายเท่านั้น)',
-	  			 'หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน (ผู้ชายเท่านั้น)'];
   $scope.country = ['Thailand'];
-  $scope.state = ['กระบี่', 'กรุงเทพมหานคร', 'กาญจนบุรี', 'กาฬสินธุ์', 'กำแพงเพชร', 'ขอนแก่น', 'จันทบุรี', 'ฉะเชิงเทรา', 'ชลบุรี', 'ชัยนาท', 'ชัยภูมิ', 'ชุมพร', 'ตรัง', 'ตราด', 'ตาก', 'นครนายก',
-	  			  'นครปฐม', 'นครพนม', 'นครราชสีมา', 'นครศรีธรรมราช', 'นครสวรรค์', 'นนทบุรี','นราธิวาส', 'น่าน', 'บึงกาฬ', 'บุรีรัมย์', 'ปทุมธานี', 'ประจวบคีรีขันธ์', 'ปราจีนบุรี', 'ปัตตานี', 'พระนครศรีอยุธยา',
-	  			  'พะเยา', 'พังงา', 'พัทลุง', 'พิจิตร', 'พิษณุโลก', 'ภูเก็ต', 'มหาสารคาม', 'มุกดาหาร', 'ยะลา', 'ยโสธร', 'ระนอง', 'ระยอง', 'ราชบุรี', 'ร้อยเอ็ด', 'ลพบุรี', 'ลำปาง', 'ลำพูน', 'ศรีสะเกษ',
-	  			  'สกลนคร', 'สงขลา', 'สตูล', 'สมุทรปราการ', 'สมุทรสงคราม', 'สมุทรสาคร', 'สระบุรี', 'สระแก้ว', 'สิงห์บุรี', 'สุพรรณบุรี', 'สุราษฎร์ธานี', 'สุรินทร์', 'สุโขทัย', 'หนองคาย', 'หนองบัวลำภู',
-	  			  'อำนาจเจริญ', 'อุดรธานี', 'อุตรดิตถ์', 'อุทัยธานี', 'อุบลราชธานี', 'อ่างทอง', 'เชียงราย', 'เชียงใหม่','เพชรบุรี', 'เพชรบูรณ์', 'เลย', 'แพร่', 'แม่ฮ่องสอน'];
+  $scope.state = ['Amnat Charoen', 'Ang Thong', 'Bangkok', 'Bueng Kan', 'Buriram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 
+		  		  'Chiang Mai', 'Chiang Rai', 'Chonburi', 'Chumphon', 'Kalasin', 'Kamphaeng', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 
+		  		  'Lampang', 'Lamphun', 'Loei', 'Lopburi','	Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 
+		  		  'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lamphu', 
+		  		  'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phang Nga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 
+		  		  'Phichit', 'Phitsanulok', 'Phrae', 'Phra Nakhon Si Ayutthaya', 'Phuket', 'Prachinburi', 'Prachuap Khiri Khan', 
+		  		  'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 
+		  		  'Saraburi', 'Satun', 'Sing Buri', 'Sisaket', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 
+		  		  'Trang', 'Trat', 'Ubon Ratchathani','Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon'];
  
-  
   $scope.scholarshipname =[{'Scholarship__c':true, 'scholarshipnames':['ทุนเต็ม','ทุนบางส่วน','ทุนวันเกิด','ทุน. รพ.ธรรมศาสตร์','ทุนสมเด็จย่า','ทุนโครงการ. ว.ม.ว.','นักศึกษาพิการ']}];
   $scope.$watch('lead.scholarship__c', function(newVal) {
       if (newVal)
