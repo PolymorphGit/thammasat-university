@@ -23,15 +23,14 @@ angular.module('leadApp', [])
 					'Liberal Arts', 'Medicine', 'Nursing', 'Others', 'Pharmacy', 'Political Science', 'Pridi Banomyong International College', 
 					'Public Health', 'Puey Ungphakorn School of Development Studies', 'School of Global Studies', 'Science and Technology', 
 					'Sirindhorn International Institute of Technology', 'Social Administration', 'Sociology and Anthropology'];
-  $scope.zone = [{'Gender':'Male', 'zones':['หอพักเอเชี่ยนเกมส์โซน B','หอพักเอเชี่ยนเกมส์โซน B8','หอพักเอเชี่ยนเกมส์โซน C Plus',
-	  										'หอพักเอเชี่ยนเกมส์โซน C,E','หอพักคู่โดมพัดลม ห้องน้ำรวม','หอพักคู่โดมพัดลม ห้องน้ำในตัว',
-	  										'หอพักคู่โดมปรับอากาศ ห้องน้ำรวม','หอพักคู่โดมปรับอากาศ ห้องน้ำในตัว',
-	  										'หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}, 
-	  			 {'Gender':'Female', 'zones':['หอพักเอเชี่ยนเกมส์โซน B','หอพักเอเชี่ยนเกมส์โซน B8','หอพักเอเชี่ยนเกมส์โซน C Plus',
-	  				 						  'หอพักเอเชี่ยนเกมส์โซน C,E','หอพักเคียงโดมพัดลม ห้องน้ำรวม','หอพักเคียงโดมพัดลม ห้องน้ำในตัว',
-	  				 						  'หอพักเคียงโดมปรับอากาศ ห้องน้ำรวม','หอพักเคียงโดมปรับอากาศ ห้องน้ำในตัว','หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน',
-	  				 						  'หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน',
-	  				 						  'หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}];
+  $scope.zone = [{'Gender':'Male', 'zones':['Asian Games Zone B','Asian Games Zone B8','Asian Games Zone C and E',
+	  										'Asian Games Zone C Plus','หอพักคู่โดมพัดลม ห้องน้ำรวม','หอพักคู่โดมพัดลม ห้องน้ำในตัว',
+	  										'Khu Dome with Air Conditioner - Shared Toilet','Khu Dome with Air Conditioner - Private Toilet',
+	  										'Khu Dome with Fan - Shared Toilet', 'Khu Dome with Fan - Private Toilet']}, 
+	  			 {'Gender':'Female', 'zones':['Asian Games Zone B','Asian Games Zone B8','Asian Games Zone C and E',
+	  				 						  'Asian Games Zone C Plus','Keang Dome with Fan - Shared Toilet','Keang Dome with Fan - Private Toilet',
+	  				 						  'Keang Dome with Air Conditioner - Shared Toilet','Keang Dome with Air Conditioner - Private Toilet'
+	  				 						  ]}];
   
   $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
   $scope.sleepingbehavior = ['Not Snore','Snore'];

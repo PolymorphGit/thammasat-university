@@ -23,8 +23,9 @@ angular.module('leadApp', [])
 	  				'Liberal Arts', 'Medicine', 'Nursing', 'Others', 'Pharmacy', 'Political Science', 'Pridi Banomyong International College', 
 	  				'Public Health', 'Puey Ungphakorn School of Development Studies', 'School of Global Studies', 'Science and Technology', 
 	  				'Sirindhorn International Institute of Technology', 'Social Administration', 'Sociology and Anthropology'];
-  $scope.zone = [{'Gender':'Male', 'zones':['หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}, 
-	  			 {'Gender':'Female', 'zones':['หอพักมธ.ลำปาง โดม ๑ (พัดลม) พัก 4 คน','หอพักมธ.ลำปาง โดม ๑ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (ปรับอากาศ) พัก 4 คน','หอพักมธ.ลำปาง โดม ๒ (พัดลม) พัก 4 คน']}];
+  $scope.zone = [{'Gender':'Male', 'zones':['TU Lampang Dome 2 with Air Conditioner (4 students)','TU Lampang Dome 2 with Fan (4 students)']}, 
+	  			 {'Gender':'Female', 'zones':['TU Lampang Dome 1 with Air Conditioner (4 students)','TU Lampang Dome 1 with Fan (4 students)',
+	  				 						  'TU Lampang Dome 2 with Air Conditioner (4 students)','TU Lampang Dome 2 with Fan (4 students)']}];
   
   $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
   $scope.sleepingbehavior = ['Not Snore','Snore'];
