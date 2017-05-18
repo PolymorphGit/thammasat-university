@@ -35,7 +35,7 @@ angular.module('accountApp', [])
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
-    	alert("data : " + JSON.stringify(data[0]));
+    	//alert("data : " + JSON.stringify(data[0]));
     	data[0].Name = data[0].Name == null || data[0].Name =='null' ? '' : data[0].Name;
     	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' ? '' : data[0].identification_number__c;
     	data[0].passport_number__c = data[0].passport_number__c == null || data[0].passport_number__c =='null' ? '' : data[0].passport_number__c;
@@ -97,38 +97,37 @@ angular.module('accountApp', [])
     	
     	$scope.account = data[0];
     	
-
+		 $http.get('../getprimary/' + accountId)
+		.success((data) => {
+			console.log(data);
+			if(data[0].id != null)
+			{
+				$scope.primary = data[0];
+				
+				var title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
+		    	var first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
+		    	var last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;
+		    	
+		    	var primary_roomamate_name ='';
+		    	primary_roomamate_name =title_th__c;
+		    	primary_roomamate_name +=(primary_roomamate_name==''? first_name_th__c :' '+first_name_th__c);
+		    	primary_roomamate_name +=(primary_roomamate_name==''? last_name_th__c :' '+last_name_th__c);
+		    	
+		    	$scope.primaryroommate = primary_roomamate_name;
+			}
+			else
+			{
+				$scope.primaryroommate = '';
+			}
+		})
+		.error((data) => {
+		  console.log('Error: ' + data);
+		});
     })
     .error((data) => {
       console.log('Error: ' + data);
     });
     
-    $http.get('../getprimary/' + accountId)
-    .success((data) => {
-    	console.log(data);
-    	if(data[0].id != null)
-    	{
-    		$scope.primary = data[0];
-    		
-    		var title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
-        	var first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
-        	var last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;
-        	
-        	var primary_roomamate_name ='';
-        	primary_roomamate_name =title_th__c;
-        	primary_roomamate_name +=(primary_roomamate_name==''? first_name_th__c :' '+first_name_th__c);
-        	primary_roomamate_name +=(primary_roomamate_name==''? last_name_th__c :' '+last_name_th__c);
-        	
-        	$scope.primaryroommate = primary_roomamate_name;
-    	}
-    	else
-		{
-    		$scope.primaryroommate = '';
-		}
-    })
-    .error((data) => {
-      console.log('Error: ' + data);
-    });
   };
   
   $scope.updateData = function (accountId) {
