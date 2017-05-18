@@ -88,7 +88,7 @@ angular.module('accountApp', [])
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
     	//alert('angular get data secondary__c:'+data[0].secondary__c);
     	
-        if (data[0].secondary__c || data.zone__c.includes('Lampang')){
+        if (data[0].secondary__c || data[0].zone__c.includes('Lampang')){
         	angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
         }else{
         	angular.element(document.querySelector("#selectRoom"))[0].style.display='';
