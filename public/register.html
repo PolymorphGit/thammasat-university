@@ -28,13 +28,13 @@
 		</script>
 		
 		<script type="text/javascript">
+		//function [checkScholarship] for this page only
 		function checkScholarship(){
 			
 			var obj1 = document.getElementById('request_Zone__c');
 			var obj2 = document.getElementById('chkScholarship');
 			
 			var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();
-		    //alert('sss='+obj2.checked);
 			
 			
 			if ( (tempValue.indexOf('asian game')>-1) && (obj2.checked) ) {
@@ -42,6 +42,8 @@
 			}
 			
 		}
+		
+		//function [setDependenciesScholarship] for this page only
         function setDependenciesScholarship(){
         	
             //alert('s');
@@ -64,49 +66,34 @@
             
             
         }
-  
-		
-		
-		
+  	
+        
 		function setDependenciesTitle(){
-            alert('start');
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
-            alert('1');
            
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
-            alert('4  ddlSalutationText='+ddlSalutationText);
             var ddlSex = document.getElementById("pick_gender__c");
-            alert('5 ddlsex='+ddlSex);
+            
             switch(ddlSalutationText) {
                 case 'mr.' : 
-                	alert('6-1');
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
-                    alert('6-2');
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
-                    alert('6-3');
                     break;
                 case 'ms.' :
-                	alert('7-1');
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
-                	alert('7-2');
                 	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นางสาว';
-                	alert('7-3');
                 	break;
                 case 'mrs.' : 
-                	alert('8-1');
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
-                    alert('8-2');
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
-                    alert('8-3');
                     break;
                 default: 
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
                     break;
             }
-                        
-            alert('end');
+            
 	    }
 		
 		 
