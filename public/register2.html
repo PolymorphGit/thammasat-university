@@ -32,9 +32,9 @@
             //alert('start');
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
-            var ddlSalutationIndex=ddlSalutation.value.toLowerCase();
-            var ddlSalutationValue=ddlSalutation.options[ddlSalutationIndex].value.toLowerCase();
-            var ddlSalutationText=ddlSalutation.options[ddlSalutationIndex].text.toLowerCase();
+            
+            var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
+            
             var ddlSex = document.getElementById("pick_gender__c");
             
             switch(ddlSalutationText) {
