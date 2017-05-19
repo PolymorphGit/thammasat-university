@@ -63,8 +63,11 @@
             
             switch(ddlSalutationText) {
                 case 'mr.' : 
+                	alert('1');
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
+                    alert('2');
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
+                    alert('3');
                     break;
                 case 'ms.' :
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
