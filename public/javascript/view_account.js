@@ -35,7 +35,7 @@ angular.module('accountApp', [])
     $http.get('../userinfo/' + accountId)
     .success((data) => {
     	console.log(data);
-    	alert("data : " + JSON.stringify(data[0]));
+    	//alert("data : " + JSON.stringify(data[0]));
     	data[0].Name = data[0].Name == null || data[0].Name =='null' ? '' : data[0].Name;
     	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' ? '' : data[0].identification_number__c;
     	data[0].passport_number__c = data[0].passport_number__c == null || data[0].passport_number__c =='null' ? '' : data[0].passport_number__c;
@@ -86,7 +86,7 @@ angular.module('accountApp', [])
     	}
     	
     	data[0].secondary__c = data[0].secondary__c == null || data[0].secondary__c =='null' ? '' : data[0].secondary__c;
-    	//alert('angular get data secondary__c:'+data[0].secondary__c);
+    	alert('angular get data secondary__c:'+data[0].secondary__c);
     	
         if (data[0].secondary__c || data[0].zone__c.includes('Lampang')){
         	angular.element(document.querySelector("#selectRoom"))[0].style.display='none';
