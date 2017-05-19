@@ -34,7 +34,7 @@
 			var obj2 = document.getElementById('chkScholarship');
 			
 			var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();
-		    alert('sss='+obj2.checked);
+		    //alert('sss='+obj2.checked);
 			
 			
 			if ( (tempValue.indexOf('asian game')>-1) && (obj2.checked) ) {
@@ -886,7 +886,7 @@
 							</td>
 							<td></td>
 							<td>
-								 <input type="checkbox" ng-model="lead.scholarship__c" id="chkScholarship" onchange="checkScholarship()" />
+								 <input type="checkbox" ng-model="lead.scholarship__c" id="chkScholarship" onclick="checkScholarship()" onchange="checkScholarship()" />
 							</td>
 						</tr>
 						
