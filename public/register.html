@@ -29,22 +29,16 @@
 		
 		<script type="text/javascript">
 		function checkScholarship(){
-			//alert('s');
+			
 			var obj1 = document.getElementById('request_Zone__c');
 			var obj2 = document.getElementById('chkScholarship');
 			
-			//alert('1');
 			var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();
-			alert('2 tempValue='+tempValue);
-			
-			alert('2 chkScholarship='+obj2.checked);
-			alert('2 if='+((tempValue.indexOf('asian game')>-1) && (obj2.checked)));
 			
 			if ( (tempValue.indexOf('asian game')>-1) && (obj2.checked) ) {
 				angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
 			}
 			
-			//alert('e');
 		}
         function setDependenciesScholarship(){
         	
