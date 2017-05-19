@@ -30,21 +30,23 @@
 		<script type="text/javascript">
 
         function setDependenciesScholarship(){
-            
+            alert('s');
             var obj1 = document.getElementById('pg:frm:request_Zone__c');
-            
+            alert('1 obj1='+obj1);
             var obj2 = document.getElementById('pg:frm:chkScholarship');
-
+            alert('2 obj2='+obj2);
             for (var i=0; i < obj1.length; ++i){    
                     
                     tempValue=obj1.options[i].value.toLowerCase();
-                    
+                    alert('2 tempValue='+tempValue);
+                    alert('2 if='+tempValue.indexOf('asian game'));
                     if (tempValue.indexOf('asian game')>-1){
+                    	alert('set');
                         obj1 .options[i].style.display=(obj2.checked ? 'none':'');
                     }
                     
             }
-            
+            alert('e');
         }
   
 		
