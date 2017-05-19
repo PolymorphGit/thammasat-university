@@ -194,10 +194,10 @@ exports.openClean = function(req, res, next) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
 					.then(function(results2) {
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, subject, Description";
-						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority) ";
+						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority, Package_Number__c) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Care and Clean', '";
 						query += req.body.comment + "', '" + req.body.amount + "', '" + req.body.access + "', '";
-						query += req.body.payment + "', 'Medium') RETURNING *";
+						query += req.body.payment + "', 'Medium', " + req.body.schedule.length + ") RETURNING *";
 						//console.log(query);
 						db.select(query)
 						.then(function(results3) {
