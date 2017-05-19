@@ -34,6 +34,8 @@
 			var obj2 = document.getElementById('chkScholarship');
 			
 			var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();
+		    alert('sss='+obj2.checked);
+			
 			
 			if ( (tempValue.indexOf('asian game')>-1) && (obj2.checked) ) {
 				angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
@@ -71,11 +73,9 @@
             
             var ddlSalutation = document.getElementById("pick_title_en__c");
             alert('1');
-            var ddlSalutationIndex=ddlSalutation.value.toLowerCase();
-            alert('2  ddlSalutationIndex='+ddlSalutationIndex);
-            var ddlSalutationValue=ddlSalutation.options[ddlSalutationIndex].value.toLowerCase();
-            alert('3  ddlSalutationValue='+ddlSalutationValue);
-            var ddlSalutationText=ddlSalutation.options[ddlSalutationIndex].text.toLowerCase();
+           
+            var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
+            
             alert('4  ddlSalutationText='+ddlSalutationText);
             var ddlSex = document.getElementById("pick_gender__c");
             alert('5 ddlsex='+ddlSex);
