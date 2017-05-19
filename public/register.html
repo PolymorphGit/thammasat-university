@@ -28,6 +28,28 @@
 		</script>
 		
 		<script type="text/javascript">
+
+        function setDependenciesScholarship(){
+            
+            var obj1 = document.getElementById('pg:frm:request_Zone__c');
+            
+            var obj2 = document.getElementById('pg:frm:chkScholarship');
+
+            for (var i=0; i < obj1.length; ++i){    
+                    
+                    tempValue=obj1.options[i].value.toLowerCase();
+                    
+                    if (tempValue.indexOf('asian game')>-1){
+                        obj1 .options[i].style.display=(obj2.checked ? 'none':'');
+                    }
+                    
+            }
+            
+        }
+  
+		
+		
+		
 		function setDependenciesTitle(){
             //alert('start');
             
@@ -924,7 +946,7 @@
 								<select id="request_Zone__c"
 							    ng-model="lead.request_zone__c"
 							    ng-disabled="!lead.gender__c"
-							    ng-options="z for z in zones" ></select>
+							    ng-options="z for z in zones"  onclick="setDependenciesScholarship()"></select>
 							    
 							    <label id="lbl_request_zone__c" ></label>
 							    
