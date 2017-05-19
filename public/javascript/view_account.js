@@ -96,7 +96,7 @@ angular.module('accountApp', [])
 
     	
     	$scope.account = data[0];
-    	alert(JSON.stringify(data[0]));
+    	//alert(JSON.stringify(data[0]));
     	
 		 $http.get('../getprimary/' + accountId)
 		.success((data) => {
