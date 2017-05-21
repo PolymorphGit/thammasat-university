@@ -376,8 +376,9 @@
 			$("#GraduatedAreaResult").css("color", "red");
 			
 			var value = $("#graduated_area__c :selected").val();
-
+            alert('value='+value)
 			if ((value=="")||(value=="?")) {
+				alert('inside');
 				$("#GraduatedAreaResult").text("Please select graduated area.");
 				return false;
 			}
@@ -876,7 +877,7 @@
 								Mobile No./ เบอร์โทร
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.mobilephone" id="mobilephone" />
@@ -889,7 +890,7 @@
 								Email
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								 <input type="text" ng-model="lead.email" id="txtEmail" />
@@ -919,7 +920,7 @@
 	                            <b style="color:red">*</b>
 	                        </td>
 	                        <td>
-	                             <select type="text" ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
+	                             <select ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
 	                             <label id="GraduatedAreaResult"/> 
 	                        </td>
 	                    </tr>
