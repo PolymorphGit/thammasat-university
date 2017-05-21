@@ -1173,7 +1173,8 @@
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
-						<b style="color:white">Sleeping Behavior / พฤติกรรมการนอน</b>
+						<!--<b style="color:white">Sleeping Behavior / พฤติกรรมการนอน</b>-->
+						<b style="color:white"> Please insert header </b>
 					</td>
 				</tr>
 				
@@ -1184,7 +1185,7 @@
 				<tr>
 					<td align="center">
 					<table style="width:100%">
-				
+						<!--
 						<tr>
 							<td align="right" class='CustomLayout1'>
 								Sleeping Time /ระยะเวลาเข้านอน
@@ -1218,14 +1219,76 @@
 								<select ng-model="lead.using_air_conditioner__c" ng-options="x for x in usingairconditioner" id="usingAirConditioner"></select>
 								<label id="usingAirConditionerResult" />
 							</td>
-						</tr>						
+						</tr>
+						-->
+						
+						<tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Sleep After Midnight / นอนหลังเที่ยงคืนได้
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_after_midnight__c" id="chk_sleep_after_midnight__c" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                             Sleeping Open / นอนเปิดไฟ
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_with_light_on__c" id="chk_sleep_with_light_on__c" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                             Sleep without opening aircondition / นอนโดยไม่ต้องเปิดแอร์
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_with_turn_off_air_condition__c" id="chk_sleep_with_turn_off_air_condition__c" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Easy sleep despite noise / หลับง่ายแม้มีเสียงรบกวน
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_soundly__c" id="chk_sleep_soundly__c" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Like clean room / ชอบทำความสะอาดห้อง
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.love_cleaning__c" id="chk_love_cleaning__c" />
+	                        </td>
+	                    </tr>
+												
 					</table>
 					
 					</td>
 				</tr>
 			</table>
 			
-			<br/><br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
+			<br/>
+			<center>
+	        <b style="color:red">*ติดตามผลได้ทาง E-mail ที่ระบุ</b>
+	        </center>
+			
+			<br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Save</button>
 			
 		</div>
 		
