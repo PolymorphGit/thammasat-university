@@ -17,16 +17,15 @@ angular.module('leadApp', [])
 	  				'วิทยาการเรียนรู้และศึกษาศาสตร์ 99/10', 'วิทยาลัยพัฒนศาสตร์ ป๋วย อึ๊งภากรณ์ 99/10', 'วิทยาลัยนานาชาติ ปรีดี พนมยงค์ 99/10', 'วิทยาลัยแพทยศาสตร์นานาชาติจุฬาภรณ์ 99/10',
 	  				'วิทยาลัยโลกคดีศึกษา 99/10', 'อื่นๆ 99/10', 'สถาบันภาษา 99/10', 'วิทยาลัยนวัตกรรม 99/10', 'วิทยาลัยสหวิทยาการ 99/10'];
 	  				*/
-  $scope.faculty = ['Faculty of Allied Health Sciences','Faculty of Architecture and Planning','Faculty of Commerce and Accountancy'
-                    ,'Chulabhorn International College of Medicine','College of Innovation','College of Interdisciplinary Studies'
-                    ,'Faculty of Dentistry','Faculty of Economics','Faculty of Engineering'
-                    ,'Faculty of Fine and Applied Arts','Faculty of Journalism and Mass Communication'
-                    ,'Language Institute','Faculty of Law','Faculty of Learning Sciences and Education'
+  $scope.faculty = ['Chulabhorn International College of Medicine','College of Innovation','College of Interdisciplinary Studies'
+                    ,'Faculty of Allied Health Sciences','Faculty of Architecture and Planning','Faculty of Commerce and Accountancy'
+                    ,'Faculty of Dentistry','Faculty of Economics','Faculty of Engineering','Faculty of Fine and Applied Arts'
+                    ,'Faculty of Journalism and Mass Communication','Faculty of Law','Faculty of Learning Sciences and Education'
                     ,'Faculty of Liberal Arts','Faculty of Medicine','Faculty of Nursing','Faculty of Pharmacy'
-                    ,'Faculty of Political Science','Pridi Banomyong International College','Faculty of Public Health'
-                    ,'Puey Ungphakorn School of Development Studies','School of Global Studies'
-                    ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
-                    ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Others'];
+                    ,'Faculty of Political Science','Faculty of Public Health','Faculty of Science and Technology'
+                    ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Language Institute'
+                    ,'Pridi Banomyong International College','Puey Ungphakorn School of Development Studies'
+                    ,'School of Global Studies','Sirindhorn International Institute of Technology','Others'];
   $scope.zone = [{'Gender':'Male', 'zones':['Asian Games Zone B','Asian Games Zone B8','Asian Games Zone C and E',
 	  										'Asian Games Zone C Plus','หอพักคู่โดมพัดลม ห้องน้ำรวม','หอพักคู่โดมพัดลม ห้องน้ำในตัว',
 	  										'Khu Dome with Air Conditioner - Shared Toilet','Khu Dome with Air Conditioner - Private Toilet',
