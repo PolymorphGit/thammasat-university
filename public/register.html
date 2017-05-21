@@ -117,24 +117,24 @@
 	        var v106 = validateBirthdate();
 	        var v107 = validateMobile();
 	        var v108 = validateEmail();
-	        var v109 = validateScholarshipName();
+	        //var v109 = validateScholarshipName();
 	        //var v110 = validateStudenID();
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
+	        var v113 =validateGraduatedFrom();
+	        var v114 =validateGraduatedArea();
+	                  
 	        
-	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
 	        var v203 = ( v100 ? validateDistrict() : true);
 	        var v204 = ( v100 ? validateState2() : true);
 	        var v205 = ( v100 ? validatePostcode() : true);
 	        var v206 = ( v100 ? validateCountry() : true); 
-	        */
-	        
 	        
 	        
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
-	        var v303= validateParentIncome();
+	        //var v303= validateParentIncome();
 	        var v304= validateParent2()
 	        var v305= validateParentPhone2();
 	        
@@ -149,15 +149,19 @@
 	        		&& v106
 	        		&& v107 
 	        		&& v108 
-	        		&& v109 
 	        		&& v111
 	        		&& v112
+	        		&& v113
+	        		&& v114
 	        		
-	        		
+	        		&& v202
+	        		&& v203
+	        		&& v204
+	        		&& v205
+	        		&& v206
 	        		
 	        		&& v300 
 	        		&& v301 
-	        		&& v303 
 	        		&& v304 
 	        		&& v305
 
@@ -354,6 +358,31 @@
 			  
 	    }
 		
+		
+		function validateGraduatedFrom() {
+			  $("#GraduatedFromResult").css("color", "red");
+			  $("#GraduatedFromResult").text("");
+			  var value = $("#graduated_from__c").val().trim();
+			 
+			  if ((value=="")||(value=="?")) {
+				$("#GraduatedFromResult").text("Graduated from is require.");
+				return false;
+			  }
+			  return true;
+	    }
+		
+		function validateGraduatedArea(){
+			$("#GraduatedAreaResult").text("");
+			$("#GraduatedAreaResult").css("color", "red");
+			
+			var value = $("#graduated_area__c :selected").val();
+
+			if ((value=="")||(value=="?")) {
+				$("#GraduatedAreaResult").text("Please select graduated area.");
+				return false;
+			}
+			return true;
+		}
 
 
 		
@@ -877,7 +906,7 @@
 	                            <b style="color:red">*</b>
 	                        </td>
 	                        <td>
-	                             <input type="text" ng-model="lead.graduated_from__c" id="Graduated_From__c" />
+	                             <input type="text" ng-model="lead.graduated_from__c" id="graduated_from__c" />
 	                             <label id="GraduatedFromResult"/>
 	                        </td>
 	                    </tr>
@@ -890,7 +919,7 @@
 	                            <b style="color:red">*</b>
 	                        </td>
 	                        <td>
-	                             <select type="text" ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="Graduated_Area__c" />
+	                             <select type="text" ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
 	                             <label id="GraduatedAreaResult"/> 
 	                        </td>
 	                    </tr>
