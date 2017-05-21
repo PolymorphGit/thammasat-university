@@ -672,7 +672,7 @@
 						
 						<tr>
 							<td align="right">
-								Student ID /รหัสนักศึกษา
+								Student ID / รหัสนักศึกษา
 							</td>
 							<td>
 								<b style="color=red"></b>
@@ -686,7 +686,7 @@
 						
 						<tr style="display:none">
 							<td align="right">
-								Sex /เพศ
+								Sex / เพศ
 							</td>
 							<td>
 								<b style="color=red">*</b>
@@ -730,7 +730,7 @@
 						
 						<tr>
 							<td align="right" class="CustomLayout2" >
-								Name-Surname/ชื่อ-สกุลนักศึกษา (Thai)
+								ชื่อ-สกุลนักศึกษา
 							</td>
 							<td class="CustomLayout2">
 								<b style="color=red">*</b>
@@ -754,7 +754,7 @@
 						
 						<tr>
 							<td align="right" class="CustomLayout2">
-								Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
+								Name-surname
 							</td>
 							<td class="CustomLayout2">
 								<b style="color=red">*</b>
@@ -776,7 +776,7 @@
 						
 						<tr>
 							<td align="right">
-								Birthdate /วันเกิด
+								Birthdate / วันเกิด
 							</td>
 							<td>
 								<b style="color=red">*</b>
@@ -803,7 +803,7 @@
 						
 						<tr>
 							<td align="right">
-								Mobile No/เบอร์โทร
+								Mobile No. / เบอร์โทร
 							</td>
 							<td>
 								<b style="color=red">*</b>
@@ -827,10 +827,35 @@
 							</td>
 						</tr>
 						
-						
+						<tr>
+	                        <td align="right">
+	                            Graduated from / จบการศึกษาจาก
+	                        </td>
+	                        <td>
+	                            <b style="color:red">*</b>
+	                        </td>
+	                        <td>
+	                             <input type="text" ng-model="lead.Graduated_From__c" id="Graduated_From__c" />
+	                             <label id="GraduatedFromResult"/>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right">
+	                            Graduated Area / พื้นที่ที่จบการศึกษา
+	                        </td>
+	                        <td>
+	                            <b style="color:red">*</b>
+	                        </td>
+	                        <td>
+	                             <input type="text" ng-model="lead.Graduated_Area__c" id="Graduated_Area__c" />
+	                             <label id="GraduatedAreaResult"/> 
+	                        </td>
+	                    </tr>
+	                    
 						<tr>
 							<td align="right">
-								Scholarship /นักศึกษาทุน
+								Scholarship / นักศึกษาทุน
 							</td>
 							<td></td>
 							<td>
@@ -838,6 +863,7 @@
 							</td>
 						</tr>
 						
+						<!--  
 						<tr>
 							<td align="right">
 								Scholarship Name /ชื่อทุนการศึกษา
@@ -853,12 +879,11 @@
 								 <label id="ScholarshipResult"/>
 							</td>
 						</tr>
-						
-						
+						-->
 						
 						<tr>
 							<td align="right">
-								Congenital disease /โรคประจำตัว
+								Medical problem / โรคประจำตัว
 							</td>
 							<td></td>
 							<td>
@@ -932,7 +957,7 @@
 						<tr>
 						    <td/>
 						    <td/>
-						    <td><a href="http://www.psm.tu.ac.th/main.php?page_name=dormitory.m1.p01" target="_blank" />รายละเอียดหอพัก</a></td>
+						    <td><a href="http://www.psm.tu.ac.th/main.php?page_name=dormitory.m1.p01" target="_blank" />Residence details / รายละเอียดหอพัก</a></td>
 						</tr>
 					
 					</table>
@@ -1052,7 +1077,7 @@
 				
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
-						<b style="color:white">Parent Information / ข้อมูลผู้ปกครอง</b>
+						<b style="color:white">Guardians Information / ข้อมูลผู้ปกครอง</b>
 					</td>
 				</tr>
 				
@@ -1066,7 +1091,7 @@
 				
 						<tr>
 							<td align="right" class='CustomLayout1'>
-								Name /ชื่อ
+								Name-Surname / ชื่อ-สกุล
 							</td>
 							<td>
 							<b style="color=red">*</b>
@@ -1078,7 +1103,7 @@
 						</tr>
 						<tr>
 							<td align="right">
-								Telephone /เบอร์ติดต่อ
+								Mobile No. / เบอร์ติดต่อ
 							</td>
 							<td>
 							<b style="color=red">*</b>
@@ -1088,7 +1113,8 @@
 								<label id="parentPhoneResult" />
 							</td>
 						</tr>
-			
+						
+			            <!-- 
 						<tr>
 							<td align="right">
 								Parent Income (per year) /รายได้ (ต่อปี)
@@ -1102,7 +1128,7 @@
 								
 							</td>
 						</tr>
-
+ 						-->
 
 						<tr style="height:5px">
 							<td colspan="3"></td>
@@ -1110,7 +1136,7 @@
 						
 						<tr>
 							<td align="right" class='CustomLayout1'>
-								Name /ชื่อ (2)
+								Name-Surname / ชื่อ-สกุล (2)
 							</td>
 							<td>
 							<b style="color=red">*</b>
@@ -1122,7 +1148,7 @@
 						</tr>
 						<tr>
 							<td align="right">
-								Telephone /เบอร์ติดต่อ (2)
+								Mobile No. / เบอร์ติดต่อ (2)
 							</td>
 							<td>
 							<b style="color=red">*</b>
