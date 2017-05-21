@@ -98,6 +98,29 @@
             
 	    }
 		
+		function checkSendTitle(){
+            
+            var ddlSalutation = document.getElementById("pick_title_en__c");
+            
+            var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
+            
+            switch(ddlSalutationText) {
+                case 'mr.' : 
+                	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
+                    break;
+                case 'ms.' : 
+                	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นางสาว';
+                	break;
+                case 'mrs.' : 
+                    angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
+                    break;
+                default:
+                	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
+                    break;
+            }
+            
+	    }
+		
 		 
 		function checkReadOnly(){
             //alert('1');
@@ -167,12 +190,13 @@
 		    		
 		    	    
 					var myBirthdate = $("#birthdate3").val();
-					
-					
 					angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
+					
+					checkSendTitle();
 					
 					alert('title__c='+ angular.element(document.getElementById('main')).scope().lead.tltle_th__c);
 		    		
+					
 		    		//angular.element(document.getElementById('main')).scope().updateLead(id);
 	        	    //angular.element(document.getElementById('main')).scope().updateLead();
 	        	    
