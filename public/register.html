@@ -163,16 +163,17 @@
 		      )
 		    	{
 		    		
-		    	
+		    	    alert('1');
 					var myBirthdate = $("#birthdate3").val();
 					
-
+					alert('2');
 					angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
 		    		
 		    		//angular.element(document.getElementById('main')).scope().updateLead(id);
 	        	    //angular.element(document.getElementById('main')).scope().updateLead();
-	        	    
+	        	    alert('3');
 					angular.element(document.getElementById('main')).scope().saveData();
+					alert('4');
 		    	}
 		}
 
