@@ -372,10 +372,12 @@
 			$("#GraduatedAreaResult").css("color", "red");
 			
 			var value = $("#graduated_area__c :selected").val();
-            alert('value='+value)
+            
+			
 			if ((value=="")||(value=="?")) {
-				alert('inside');
+				alert('1111');
 				$("#GraduatedAreaResult").text("Please select graduated area.");
+				alert('2222');
 				return false;
 			}
 			return true;
@@ -917,7 +919,7 @@
 	                        </td>
 	                        <td>
 	                             <select ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
-	                             <label id="GraduatedAreaResult"/> 
+	                             <label id="GraduatedAreaResult" /> 
 	                        </td>
 	                    </tr>
 						
