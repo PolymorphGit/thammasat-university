@@ -37,9 +37,11 @@
 			var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();
 			
 			
-			if ( (tempValue.indexOf('asian game')>-1) && (obj2.checked) ) {
-				angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
-			}
+		 	if(obj2.checked){
+                if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
+                    angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
+                }
+            }
 			
 		}
 		
@@ -55,7 +57,7 @@
                     
                     var tempValue=obj1.options[i].text.toLowerCase();
                     
-                    if (tempValue.indexOf('asian game')>-1){
+                    if ( (tempValue.indexOf('zone m')<=-1) && (tempValue.indexOf('zone f')<=-1) ){
                     	
                         obj1 .options[i].style.display=(obj2.checked ? 'none':'');
                     	
