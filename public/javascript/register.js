@@ -27,14 +27,15 @@ angular.module('leadApp', [])
                     ,'Faculty of Public Health','Puey Ungphakorn School of Development Studies','School of Global Studies'
                     ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
                     ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Others'];
-  $scope.zone = [{'Gender':'Male', 'zones':['Asian Games Zone B','Asian Games Zone B8','Asian Games Zone C and E',
-	  										'Asian Games Zone C Plus','หอพักคู่โดมพัดลม ห้องน้ำรวม','หอพักคู่โดมพัดลม ห้องน้ำในตัว',
-	  										'Khu Dome with Air Conditioner - Shared Toilet','Khu Dome with Air Conditioner - Private Toilet',
-	  										'Khu Dome with Fan - Shared Toilet', 'Khu Dome with Fan - Private Toilet']}, 
-	  			 {'Gender':'Female', 'zones':['Asian Games Zone B','Asian Games Zone B8','Asian Games Zone C and E',
-	  				 						  'Asian Games Zone C Plus','Keang Dome with Fan - Shared Toilet','Keang Dome with Fan - Private Toilet',
-	  				 						  'Keang Dome with Air Conditioner - Shared Toilet','Keang Dome with Air Conditioner - Private Toilet'
-	  				 						  ]}];
+  $scope.zone = [{'Gender':'Male', 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
+                                            ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
+                                            ,'Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
+                                            ,'Zone M (4-person room | fan | share WC)','Zone M (4-person room | fan | private WC)']}, 
+	  			 {'Gender':'Female', 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
+	  			                              ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
+	  			                              ,'Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
+	  			                              ,'Zone F (4-person room | fan | share WC)','Zone F (4-person room | fan | private WC)']
+                                            }];
   
   $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
   $scope.sleepingbehavior = ['Not Snore','Snore'];
