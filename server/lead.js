@@ -76,8 +76,7 @@ exports.createLead = function(req, res, next) {
 	query2 += disable + "', '" + birthdate__c + "' , '";
 	query2 += parent_income__c + "','"
 	//query2 += sleeping_time__c+"','"+sleeping_behavior__c+"','"+using_air_conditioner__c+"'" 
-	query2 += sleep_after_midnight__c+"','"+sleep_with_light_on__c+"','"+sleep_with_turn_off_air_condition__c+"' , '" +sleep_soundly__c+"','"+	love_cleaning__c+"' "	
-	query2 += ") RETURNING *";
+	query2 += sleep_after_midnight__c+"','"+sleep_with_light_on__c+"','"+sleep_with_turn_off_air_condition__c+"' , '" +sleep_soundly__c+"','"+	love_cleaning__c+"') RETURNING *";
 	
 	
 	
