@@ -77,7 +77,7 @@
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
             var ddlSex = document.getElementById("pick_gender__c");
-            alert('1');
+            
             switch(ddlSalutationText) {
                 case 'mr.' : 
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
@@ -92,9 +92,7 @@
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
                     break;
                 default:
-                	alert('!!');
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
-                	alert('!!2');
                     break;
             }
             

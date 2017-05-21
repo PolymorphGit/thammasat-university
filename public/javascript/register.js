@@ -150,7 +150,14 @@ angular.module('leadApp', [])
     	data[0].sleep_soundly__c = data[0].sleep_soundly__c == null || data[0].sleep_soundly__c =='null' ? '' : data[0].sleep_soundly__c;
     	data[0].love_cleaning__c = data[0].love_cleaning__c == null || data[0].love_cleaning__c =='null' ? '' : data[0].love_cleaning__c;
     	
- 
+    	
+    	if (data[0].salutation=="Mr.")
+    		data[0].salutation="นาย";
+    	else if (data[0].salutation=="Ms.")
+    		data[0].salutation="นางสาว";
+    	else if (data[0].salutation=="Mพs.")
+    		data[0].salutation="นาง";
+    	
     	
     	if (data[0].birthdate__c) {
     		var str = data[0].birthdate__c;
