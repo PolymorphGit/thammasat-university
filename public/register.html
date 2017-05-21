@@ -104,6 +104,7 @@
             
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
+            alert('!!!1=' +ddlSalutationText);
             switch(ddlSalutationText) {
                 case 'mr.' : 
                 	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
@@ -115,10 +116,11 @@
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
                     break;
                 default:
-                	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
+                	angular.element(document.getElementById('main')).scope().lead.title_th__c = '';
                     break;
             }
             
+            alert('!!!e=' +angular.element(document.getElementById('main')).scope().lead.title_th__c);
 	    }
 		
 		 
