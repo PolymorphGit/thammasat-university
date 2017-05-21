@@ -368,17 +368,16 @@
 	    }
 		
 		function validateGraduatedArea(){
-			$("#GraduatedAreaResult").text("");
 			$("#GraduatedAreaResult").css("color", "red");
+			$("#GraduatedAreaResult").text("");
 			
 			var value = $("#graduated_area__c :selected").val();
             
-			
 			if ((value=="")||(value=="?")) {
 				alert('1111');
 				alert('ssss='+$("#GraduatedAreaResult"));
-				$("#GraduatedAreaResult").text("Please select graduated area.");
-				alert('fffff='+$("#GraduatedAreaResult").text());
+				$("#GraduatedAreaResult").text("Please select graduated area");
+				
 				alert('2222');
 				return false;
 			}
@@ -850,7 +849,7 @@
 								Birthdate / วันเกิด
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!-- <input type="date" id="birthdate" ng-model="lead.birthdate__c" /> -->
@@ -920,8 +919,8 @@
 	                            <b style="color:red">*</b>
 	                        </td>
 	                        <td>
-	                             <select ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
-	                             a<label id="GraduatedAreaResult" /> d
+	                             <select ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" ></select>
+	                             <label id="GraduatedAreaResult" /> 
 	                        </td>
 	                    </tr>
 						
