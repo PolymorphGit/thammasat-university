@@ -80,6 +80,9 @@
 	        //var v110 = validateStudenID();
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
+	        var v113 =validateGraduatedFrom();
+	        var v114 =validateGraduatedArea();
+	        
 	        
 	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
@@ -111,7 +114,8 @@
 	        		&& v109 
 	        		&& v111
 	        		&& v112
-	        		
+	        		&& v113
+	    	        && v114
 	        		
 	        		
 	        		&& v300 
@@ -312,6 +316,34 @@
 			  }
 			  
 	    }
+		
+		
+
+		function validateGraduatedFrom() {
+			  $("#GraduatedFromResult").css("color", "red");
+			  $("#GraduatedFromResult").text("");
+			  var value = $("#graduated_from__c").val().trim();
+			 
+			  if ((value=="")||(value=="?")) {
+				$("#GraduatedFromResult").text("Graduated from is require.");
+				return false;
+			  }
+			  return true;
+	    }
+		
+		function validateGraduatedArea(){
+			$("#GraduatedAreaResult").css("color", "red");
+			$("#GraduatedAreaResult").text("");
+			
+			var value = $("#graduated_area__c :selected").val();
+            
+			if ((value=="")||(value=="?")) {
+				$("#GraduatedAreaResult").text("Please select graduated area");
+				return false;
+			}
+			return true;
+		}
+
 		
 
 
@@ -675,7 +707,6 @@
 								Student ID / รหัสนักศึกษา
 							</td>
 							<td>
-								<b style="color=red"></b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlenght="10" />
@@ -689,7 +720,7 @@
 								Sex / เพศ
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<select ng-model="lead.gender__c" ng-options="g for g in gender" id='pick_gender__c'></select>
@@ -703,7 +734,7 @@
 								คำนำหน้าชื่อ
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<select ng-model="lead.title_th__c" ng-options="x for x in title" id="pick_title_th__c"></select>
@@ -717,7 +748,7 @@
 								Title / คำนำหน้าชื่อ
 							</td>
 							<td class="CustomLayout2">
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>                       
 								<select ng-model="lead.salutation" id="pick_title_en__c"  ng-options="g for g in salutation2" onchange="setDependenciesTitle()"></select>
@@ -733,7 +764,7 @@
 								ชื่อ-สกุลนักศึกษา
 							</td>
 							<td class="CustomLayout2">
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<Table style="margin-left:-3px;">
@@ -757,7 +788,7 @@
 								Name-surname
 							</td>
 							<td class="CustomLayout2">
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<Table style="margin-left:-3px;">
@@ -779,7 +810,7 @@
 								Birthdate / วันเกิด
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!-- <input type="date" id="birthdate" ng-model="lead.birthdate__c" /> -->
@@ -806,7 +837,7 @@
 								Mobile No. / เบอร์โทร
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.mobilephone" id="mobilephone" />
@@ -819,7 +850,7 @@
 								Email
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								 <input type="text" ng-model="lead.email" id="txtEmail" />
@@ -868,7 +899,7 @@
 							<td align="right">
 								Scholarship Name /ชื่อทุนการศึกษา
 							</td>
-							<td><b style="color=red"></b></td>
+							<td><b style="color:red">*</b></td>
 							<td>
 								 <select id="pick_Scholarshipn__c"
 								 ng-model="lead.scholarship_name__c"
@@ -899,7 +930,7 @@
 								Faculty /คณะ
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 							    <select ng-model="lead.faculty__c" ng-options="x for x in faculty" id="pick_faculty__c"></select>
@@ -913,7 +944,7 @@
 								Year /ปีการศึกษา
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="">
@@ -926,7 +957,7 @@
 								Term /ภาคการศึกษา
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="">
@@ -940,7 +971,7 @@
 								Request Zone /เลือกโซน
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 							   
@@ -994,7 +1025,7 @@
 								Address / ที่อยู่
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td class='CustomLayout1'>
 								<!-- <input type="text" ng-model="lead.street" id="street" ></input> -->
@@ -1008,7 +1039,7 @@
 								District / อำเภอ / เขต
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!-- <input type="text" ng-model="lead.city" id="city" /> -->
@@ -1022,7 +1053,7 @@
 								Province / จังหวัด
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!--<input type="text" ng-model="lead.state" id="state" />-->
@@ -1037,7 +1068,7 @@
 								Postal Code / รหัสไปรษณีย์
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!-- <input type="text" ng-model="lead.postalcode" id="postcode" />-->
@@ -1051,7 +1082,7 @@
 								Country / ประเทศ
 							</td>
 							<td>
-								<b style="color=red">*</b>
+								<b style="color:red">*</b>
 							</td>
 							<td>
 								<!-- <input type="text" ng-model="lead.country" id="country">-->
@@ -1094,7 +1125,7 @@
 								Name-Surname / ชื่อ-สกุล
 							</td>
 							<td>
-							<b style="color=red">*</b>
+							<b style="color:red">*</b>
 							</td>
 							<td class='CustomLayout1'>
 								<input type="text" ng-model="lead.parent_name__c"  postrender-action="alert('last posted');" id="parent" />
@@ -1106,7 +1137,7 @@
 								Mobile No. / เบอร์ติดต่อ
 							</td>
 							<td>
-							<b style="color=red">*</b>
+							<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.parent_phone__c" id="parentPhone"/>
@@ -1120,7 +1151,7 @@
 								Parent Income (per year) /รายได้ (ต่อปี)
 							</td>
 							<td>
-							<b style="color=red">*</b>
+							<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.parent_income__c" id="parentIncome" onkeyup="isNumber(this)" maxlength="18"/>
@@ -1139,7 +1170,7 @@
 								Name-Surname / ชื่อ-สกุล (2)
 							</td>
 							<td>
-							<b style="color=red">*</b>
+							<b style="color:red">*</b>
 							</td>
 							<td class='CustomLayout1'>
 								<input type="text" ng-model="lead.parent_name_2__c" id="parent2">
@@ -1151,7 +1182,7 @@
 								Mobile No. / เบอร์ติดต่อ (2)
 							</td>
 							<td>
-							<b style="color=red">*</b>
+							<b style="color:red">*</b>
 							</td>
 							<td>
 								<input type="text" ng-model="lead.parent_phone_2__c" id="parentPhone2" />

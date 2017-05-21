@@ -122,9 +122,8 @@
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
 	        var v113 =validateGraduatedFrom();
-	        alert('1');
 	        var v114 =validateGraduatedArea();
-	        alert('e');
+	        
 	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
 	        var v203 = ( v100 ? validateDistrict() : true);
@@ -374,11 +373,7 @@
 			var value = $("#graduated_area__c :selected").val();
             
 			if ((value=="")||(value=="?")) {
-				alert('1111');
-				alert('ssss='+$("#GraduatedAreaResult"));
 				$("#GraduatedAreaResult").text("Please select graduated area");
-				
-				alert('2222');
 				return false;
 			}
 			return true;
