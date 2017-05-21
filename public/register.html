@@ -77,7 +77,7 @@
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
             var ddlSex = document.getElementById("pick_gender__c");
-            
+            alert('1');
             switch(ddlSalutationText) {
                 case 'mr.' : 
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
@@ -91,8 +91,10 @@
                     angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
                     break;
-                default: 
+                default:
+                	alert('!!');
                 	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
+                	alert('!!2');
                     break;
             }
             
@@ -170,11 +172,13 @@
 					
 					
 					angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
+					
+					alert('title__c='+ angular.element(document.getElementById('main')).scope().lead.tltle__c);
 		    		
 		    		//angular.element(document.getElementById('main')).scope().updateLead(id);
 	        	    //angular.element(document.getElementById('main')).scope().updateLead();
 	        	    
-					angular.element(document.getElementById('main')).scope().saveData();
+					//angular.element(document.getElementById('main')).scope().saveData();
 					
 		    	}
 
