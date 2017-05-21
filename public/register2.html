@@ -66,7 +66,7 @@
         }
 		
 		function update(){
-			
+			alert('start');
 			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
@@ -80,9 +80,11 @@
 	        //var v110 = validateStudenID();
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
+	        alert('1');
 	        var v113 =validateGraduatedFrom();
+	        alert('2');
 	        var v114 =validateGraduatedArea();
-	        
+	        alert('3');
 	        
 	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
@@ -96,7 +98,7 @@
 	        
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
-	        var v303= validateParentIncome();
+	        //var v303= validateParentIncome();
 	        var v304= validateParent2()
 	        var v305= validateParentPhone2();
 	        
@@ -126,8 +128,7 @@
 
 		      )
 		    	{
-		    		
-		    	
+	        	alert('4');
 					var myBirthdate = $("#birthdate3").val();
 					
 
@@ -137,7 +138,10 @@
 	        	    //angular.element(document.getElementById('main')).scope().updateLead();
 	        	    
 					angular.element(document.getElementById('main')).scope().saveData();
+					alert('5');
 		    	}
+	        
+	        alert('end');
 		}
 
 		function validate_Thai() {
