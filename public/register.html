@@ -376,7 +376,9 @@
 			
 			if ((value=="")||(value=="?")) {
 				alert('1111');
+				alert('ssss='+$("#GraduatedAreaResult"));
 				$("#GraduatedAreaResult").text("Please select graduated area.");
+				alert('fffff='+$("#GraduatedAreaResult").text());
 				alert('2222');
 				return false;
 			}
@@ -919,7 +921,7 @@
 	                        </td>
 	                        <td>
 	                             <select ng-model="lead.graduated_area__c" ng-options="x for x in graduated_area"  id="graduated_area__c" />
-	                             <label id="GraduatedAreaResult" /> 
+	                             a<label id="GraduatedAreaResult" /> d
 	                        </td>
 	                    </tr>
 						
