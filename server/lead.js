@@ -155,7 +155,7 @@ exports.updateLead = function(req, res, next) {
 	//query += "using_air_conditioner__c='" + req.body.using_air_conditioner__c + "', ";
 	
 	query += "sleep_after_midnight__c='" + req.body.sleep_after_midnight__c + "', ";
-	query += "sleep_with_light_on__c='" + req.body.req.body.sleep_with_light_on__c + "', ";
+	query += "sleep_with_light_on__c='" + req.body.sleep_with_light_on__c + "', ";
 	query += "sleep_with_turn_off_air_condition__c='" + req.body.sleep_with_turn_off_air_condition__c + "', ";
 	query += "sleep_soundly__c='" + req.body.sleep_soundly__c + "', ";
 	query += "love_cleaning__c='" + req.body.love_cleaning__c + "', ";
