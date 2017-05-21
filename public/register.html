@@ -107,7 +107,7 @@
         }
 		
 		function update(){
-			
+			alert('start');
 			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
@@ -121,9 +121,10 @@
 	        //var v110 = validateStudenID();
 	        var v111 = validateFaculty();
 	        var v112 = validateZone();
+	        alert('1');
 	        var v113 =validateGraduatedFrom();
 	        var v114 =validateGraduatedArea();
-	        
+	        alert('3');
 	        /*
 	        var v202 = ( v100 ? validateStreet() : true );
 	        var v203 = ( v100 ? validateDistrict() : true);
@@ -131,13 +132,13 @@
 	        var v205 = ( v100 ? validatePostcode() : true);
 	        var v206 = ( v100 ? validateCountry() : true); 
 	        */
-	        
+	        alert('4');
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
 	        //var v303= validateParentIncome();
 	        var v304= validateParent2()
 	        var v305= validateParentPhone2();
-	        
+	        alert('5');
 	        //check address on field input box
 	        //&& (!v100 || (v202 && v203 && v204 && v205 && v206 ) )
 	        if ( 
@@ -163,18 +164,19 @@
 		      )
 		    	{
 		    		
-		    	    alert('1');
+		    	    alert('6');
 					var myBirthdate = $("#birthdate3").val();
 					
-					alert('2');
+					alert('7');
 					angular.element(document.getElementById('main')).scope().lead.birthdate__c = myBirthdate;
 		    		
 		    		//angular.element(document.getElementById('main')).scope().updateLead(id);
 	        	    //angular.element(document.getElementById('main')).scope().updateLead();
-	        	    alert('3');
+	        	    alert('8');
 					angular.element(document.getElementById('main')).scope().saveData();
-					alert('4');
+					alert('9');
 		    	}
+	        alert('e');
 		}
 
 		function validate_Thai() {
@@ -356,6 +358,7 @@
 		
 		
 		function validateGraduatedFrom() {
+			
 			  $("#GraduatedFromResult").css("color", "red");
 			  $("#GraduatedFromResult").text("");
 			  var value = $("#graduated_from__c").val().trim();
