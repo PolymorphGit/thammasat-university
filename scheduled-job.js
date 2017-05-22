@@ -28,6 +28,7 @@ function sendBilling()
 	var to;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null limit 5")
 	.then(function(results) {
+		console.log('count: ' + results.length);
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c;
