@@ -7,11 +7,11 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
-		output = '[{"Id":"' + results[0].sfid;
-		output += '", "Invoice Id":"' + results[0].name;
-		output += '", "Due Date":"' + results[0].due_date__c;
-		output += '", "Total Amount":"' + results[0].total_amount__c;
-		output += '", "Create Date":"' + results[0].createdate + '"}]';
+		output = '[{"id":"' + results[0].sfid;
+		output += '", "invoice_id":"' + results[0].name;
+		output += '", "due_date":"' + results[0].due_date__c;
+		output += '", "total_amount":"' + results[0].total_amount__c;
+		output += '", "create_date":"' + results[0].createdate + '"}]';
 		
 		db.select("SELECT * FROM salesforce.Invoice_Line_Item__c WHERE Invoice__c='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -22,11 +22,11 @@ exports.getDetail = function(req, res, next) {
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
-					output += '{"Line ID":"' + results2[i].sfid;
-					output += '", "Line Number":"' + results2[i].name;
-					output += '", "Type":"' + results2[i].invoice_line_item_type__c;
-					output += '", "Date":"' + results2[i].due_date__c;
-					output += '", "Amount":"' + results2[i].amount__c + '"},';
+					output += '{"line_id":"' + results2[i].sfid;
+					output += '", "line_number":"' + results2[i].name;
+					output += '", "type":"' + results2[i].invoice_line_item_type__c;
+					output += '", "date":"' + results2[i].due_date__c;
+					output += '", "amount":"' + results2[i].amount__c + '"},';
 				}
 				output = output.substr(0, output.length - 1);
 				output+= ']}]';
@@ -81,12 +81,12 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						for(var i = 0 ; i <results2.length ; i++)
 						{
-							output += '{"Invoice ID":"' + results2[i].sfid;
-							output += '", "Invoice Number":"' + results2[i].name;
-							output += '", "Student Name":"' + results[0].name;
-							output += '", "Due Date":"' + results2[i].due_date__c;
-							output += '", "Total Amount":"' + results2[i].total_amount__c;
-							output += '", "Create Date":"' + results2[i].createdate + '"},';
+							output += '{"invoice_id":"' + results2[i].sfid;
+							output += '", "invoice_number":"' + results2[i].name;
+							output += '", "student_name":"' + results[0].name;
+							output += '", "due_date":"' + results2[i].due_date__c;
+							output += '", "total_amount":"' + results2[i].total_amount__c;
+							output += '", "create_date":"' + results2[i].createdate + '"},';
 						}
 						if(results2.length)
 						{
