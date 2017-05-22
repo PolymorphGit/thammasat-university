@@ -418,7 +418,7 @@
                     
                         <tr>
                             <td align="right" class='CustomLayout1' >
-                                ID Cards / หมายเลขประชาชน
+                                Citizen ID / หมายเลขประชาชน
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
@@ -438,27 +438,37 @@
                         
                         <tr>
                             <td align="right">
+                                Student ID /รหัสนักศึกษา
+                            </td>
+                            <td> : </td>
+                            <td>
+                            	<label id="studentId"> {{ account.student_id__c }} </label>
+                            </td>
+                        </tr>
+                        
+                        <!--<tr>
+                            <td align="right">
                                 Sex /เพศ
                             </td>
                             <td> : </td>
                             <td>
                             	<label id="gender">{{ account.gender__c }}</label>
                             </td>
-                        </tr>
+                        </tr>-->
                         
                         <tr>
                             <td align="right">
-                           		  คำนำหน้าชื่อ
+                           		 Title / คำนำหน้าชื่อ
                             </td>
                             <td> : </td>
                             <td>
-						<label id="titleTH">{{ account.title_th__c }}</label>
+						<label id="titleTH">{{ account.salutation }}</label>
                             </td>
                         </tr>
                         
                         <tr>
                             <td align="right" class="CustomLayout2" >
-                                Student Name-Surname/ชื่อ-สกุลนักศึกษา (Thi)
+                                	ชื่อ-สกุลนักศึกษา
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -477,17 +487,7 @@
                         
                         <tr>
                             <td align="right" class="CustomLayout2">
-                                Title
-                            </td>
-                            <td class="CustomLayout2"> : </td>
-                            <td>
-                            	<label id="titleEN">{{ account.salutation }}</label>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right" class="CustomLayout2">
-                                Student Name-surname/ชื่อ-สกุลนักศึกษา (Eng)
+                                Name-Surname
                             </td>
                             <td class="CustomLayout2"> : </td>
                             <td>
@@ -506,7 +506,7 @@
                         
                         <tr>
                             <td align="right">
-                                Birthdate /วันเกิด
+                                Birthdate / วันเกิด
                             </td>
                             <td> : </td>
                             <td>
@@ -518,7 +518,7 @@
                         
                         <tr>
                             <td align="right">
-                                Mobile No/เบอร์โทร
+                                Mobile No. / เบอร์โทร
                             </td>
                             <td> : </td>
                             <td>
@@ -530,7 +530,7 @@
                         
                         <tr>
                             <td align="right">
-                                Email /อีเมลล์
+                                Email
                             </td>
                             <td> : </td>
                             <td>
@@ -541,8 +541,17 @@
                         </tr>
                         
                         <tr>
+	                        <td align="right">
+	                            Graduated From / จบการศึกษาจาก
+	                        </td>
+	                        <td>
+	                             <label>{{account.graduated_from__c}}</label>
+	                        </td>
+	                    </tr>             
+                        
+                        <tr>
                             <td align="right">
-                                Scholarship /นักศึกษาทุน
+                                Scholarships / นักศึกษาทุน
                             </td>
                             <td> : </td>
                             <td>
@@ -552,17 +561,7 @@
                         
                         <tr>
                             <td align="right">
-                                Scholarship Name /ชื่อทุนการศึกษา
-                            </td>
-                            <td> : </td>
-                            <td>
-                                 <label id="scholarshipname"> {{ account.scholarship_name__c }} </label>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Disabled /ทุพพลภาพ
+                                Disabled / ทุพพลภาพ
                             </td>
                             <td> : </td>
                             <td>
@@ -572,7 +571,7 @@
                         
                         <tr>
                             <td align="right">
-                                Congenital disease /โรคประจำตัว
+                                Medical Problem / โรคประจำตัว
                             </td>
                             <td> : </td>
                             <td>
@@ -584,17 +583,7 @@
                         
                         <tr>
                             <td align="right">
-                                Student ID /รหัสนักศึกษา
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="studentId"> {{ account.student_id__c }} </label>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Faculty /คณะ
+                                Faculty / คณะ
                             </td>
                             <td> : </td>
                             <td>
@@ -624,7 +613,7 @@
                          -->
                         <tr>
                             <td align="right">
-                                Request Zone /เลือกโซน
+                                Request Zone / เลือกโซน
                             </td>
                             <td> : </td>
                             <td>
@@ -641,17 +630,7 @@
                                 <apex:outputField value="{!theAccount.Request_Zone_Reserve__c}" />
                             </td>
                         </tr> -->
-                        
-                        <tr>
-                            <td align="right">
-                                Primary Roommate  Name /ชื่อ เจ้าของห้อง
-                            </td>
-                            <td> : </td>
-                            <td>
-                            	<label id="PrimaryRoommateName"> {{primaryroommate}} </label>
-                            </td>
-                        </tr>
-                    
+                                 
                     </table></td>
                     
                 </tr>
@@ -761,7 +740,7 @@
                 
                 <tr style="background-color: #C80000">
                     <td colspan="3" align="left">
-                        <b style="color:white">Parent Information / ชื่อผู้ปกครอง</b>
+                        <b style="color:white">Guardians Information / ข้อมูลผู้ปกครอง</b>
                     </td>
                 </tr>
                 
@@ -774,7 +753,7 @@
                 
                         <tr>
                             <td align="right" class='CustomLayout1'>
-                                Parent Name /ชื่อผู้ปกครอง
+                                Name-Surname / ชื่อ-สกุล
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
@@ -785,25 +764,13 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                Parent Telephone /เบอร์ติดต่อผู้ปกครอง
+                                Mobile No. / เบอร์ติดต่อ
                             </td>
                             <td> : </td>
                             <td>
                                 <!--  <input type="text" id="parentPhone" ng-model="account.parent_phone__c" onkeyup="isNumber(this)" >-->
                                 <label>{{account.parent_phone__c}}</label>
                                 <label id='parentPhoneResult' style="color:red"></label>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td align="right">
-                                Parent Income (per year) /รายได้ผู้ปกครอง (ต่อปี)
-                            </td>
-                            <td> : </td>
-                            <td>
-                                <!--  <input type="text" id="parentIncome" ng-model="account.parent_income__c" onkeyup="isNumber(this)" > -->
-                                <label>{{account.parent_income__c}}</label>
-                                <label id='parentIncomeResult' style="color:red"></label>
                             </td>
                         </tr>
                         
@@ -814,7 +781,7 @@
                         
                         <tr>
                             <td align="right" class='CustomLayout1'>
-                                Parent Name(2) /ชื่อผู้ปกครอง (2)
+                                Name-Surname / ชื่อ-สกุล (2)
                             </td>
                             <td> : </td>
                             <td class='CustomLayout1'>
@@ -825,7 +792,7 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                Parent Telephone(2) /เบอร์ติดต่อผู้ปกครอง (2)
+                                Mobile No. / เบอร์ติดต่อ (2)
                             </td>
                             <td> : </td>
                             <td>
@@ -900,6 +867,24 @@
 				</tr>
 			</table>
 			
+			<!-- Sleeping Behavior   -->
+			<table style="width:100%">
+				<tr style="background-color: #C80000">
+					<td colspan="3" align="left">
+						<b style="color:white">Roommate / เพื่อนร่วมห้อง</b>
+					</td>
+				</tr>
+			
+				<tr>
+                	<td align="right">
+                    	Primary Roommate  Name /ชื่อ เจ้าของห้อง
+                    </td>
+                    <td> : </td>
+                    <td>
+                    	<label id="PrimaryRoommateName"> {{primaryroommate}} </label>
+                    </td>
+            	</tr>
+			</table>
             
                 <br/><br/><center>
                     <!-- <button onclick="update();" >Save</button> -->
