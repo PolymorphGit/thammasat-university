@@ -137,4 +137,10 @@ angular.module('select_roommateApp', [])
 			console.log('Error: ' + data);
 		});
 	}
+	
+	
+	$scope.UrlBack = function () {
+		window.location.href = "https://thammasat-university.herokuapp.com/register.html?id="+$scope.id;
+	}
+	
 });
