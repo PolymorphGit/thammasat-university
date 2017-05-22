@@ -121,7 +121,12 @@ angular.module('accountApp', [])
 		    	
 		    	$scope.primaryroommate = primary_roomamate_name;
 		    	
-		    	$scope.roommate = data;
+		    	var message = '';
+		    	for(var i = 0 ; i < data.length; i++)
+				{
+		    		message += data[i].first_name_th__c + ' ' + data[i].last_name_th__c + '<br/>';
+				}
+		    	$scope.roommate = message;
 			}
 			else
 			{
