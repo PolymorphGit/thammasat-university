@@ -185,6 +185,9 @@
             		<td ng-class="{'CustomLayout2': r.firstname!=null}">
             			<button ng-click="deleteRoommate(r)"  ng-disabled="(r.firstname==null) ?  true : false"  >Delete</button>
             		</td>
+            		<td>
+            		    <label>{{r.identification_number__c}}</label>
+            		</td>
             	</tr>
             </table>
             </Center>
