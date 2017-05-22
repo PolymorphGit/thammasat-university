@@ -186,7 +186,7 @@
             			<button ng-click="deleteRoommate(r)"  ng-disabled="(r.firstname==null) ?  true : false"  >Delete</button>
             		</td>
             		<td>
-            		    <label style="color:red">{{firstname!=null? 'a' : 'b'}}</label>
+            		    <label ng-show="{r.firstname!=null}" style="color:red">complete</label>
             		</td>
             	</tr>
             </table>
