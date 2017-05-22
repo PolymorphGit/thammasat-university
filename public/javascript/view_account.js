@@ -101,7 +101,12 @@ angular.module('accountApp', [])
 		 $http.get('../getroommate/' + accountId)
 		.success((data) => {
 			console.log(data);
-			if(data.length > 0)
+			if(data == 'This student didn\'t have primary roommate.')
+			{
+				$scope.primaryroommate = '';
+				$scope.roommate = 'Click "select roommate" for manage roommate.';
+			}
+			else if(data.length > 0)
 			{
 				$scope.primary = data[0];
 				
