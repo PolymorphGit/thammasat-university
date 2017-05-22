@@ -529,3 +529,38 @@ exports.getprimary = function(req, res, next) {
     .catch(next);
 }
 
+exports.getroommate = function(req, res, next) {
+	var id = req.params.id;
+	db.select("SELECT * FROM salesforce.roommate__c WHERE co_roommate__c='" + id + "'")
+	.then(function(results) {
+		console.log(results);	
+		if(results.length > 0)
+		{
+			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].primary_roommate__c + "'")
+			.then(function(results2) {
+				var listacc = '(\'' + results[0].primary_roommate__c + '\', ';
+				for(var i = 0 ; i < results2.length ; i++)
+				{
+					listacc += '\'' + results2[i].sfid + '\', ';
+				}
+				
+				if(results2.length > 0)
+				{
+					listacc = listacc.substr(0, listacc.length - 2) + ')';
+					db.select("SELECT * FROM salesforce.Account WHERE SFID IN " + listacc)
+					.then(function(results3) {
+						res.json(results3);
+					})
+					.catch(function(e){console.log(e);});
+				}
+			})
+		    .catch(next);
+		}
+		else
+		{
+			res.send("This student didn't have primary roommate.");
+		}
+	})
+    .catch(next);
+}
+
