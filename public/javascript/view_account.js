@@ -104,7 +104,7 @@ angular.module('accountApp', [])
 			if(data == 'This student didn\'t have primary roommate.')
 			{
 				$scope.primaryroommate = '';
-				$scope.roommate = 'Click "select roommate" for manage roommate.';
+				$scope.roommate = '';
 			}
 			else if(data.length > 0)
 			{
@@ -126,7 +126,7 @@ angular.module('accountApp', [])
 			else
 			{
 				$scope.primaryroommate = '';
-				$scope.roommate = 'Click "select roommate" for manage roommate.';
+				$scope.roommate = '';
 			}
 		})
 		.error((data) => {
