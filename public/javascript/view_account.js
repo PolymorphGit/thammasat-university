@@ -98,7 +98,7 @@ angular.module('accountApp', [])
     	$scope.account = data[0];
     	//alert(JSON.stringify(data[0]));
     	
-		 $http.get('../getroommate/' + accountId)
+		 $http.get('../getroommate2/' + accountId)
 		.success((data) => {
 			console.log(data);
 			if(data == 'This student didn\'t have primary roommate.')

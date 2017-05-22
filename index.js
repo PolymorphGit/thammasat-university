@@ -44,7 +44,7 @@ app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
 app.get('/userinfo/:id', account.UserInfobyId);
 app.get('/getprimary/:id', account.getprimary);
-app.get('/getroommate/:id', account.getroommate);
+app.get('/getroommate2/:id', account.getroommate);
 //app.get('/userinfobymobileid/:mobileid', account.UserInfobyMobileId);
 app.get('/getroomate', account.getRoommate);
 app.get('/logout', account.logout);
