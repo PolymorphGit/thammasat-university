@@ -51,11 +51,11 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						for(var i = 0 ; i <results2.length ; i++)
 						{
-							output += '{"Mailing id":"' + results2[i].sfid;
-							output += '", "Mailing Number":"' + results2[i].name;
-							output += '", "Student Name":"' + results[0].name;
-							output += '", "Delivery Date":"' + results2[i].createddate;
-							output += '", "Mailing Type":"' + results2[i].mailing_type__c + '"},';
+							output += '{"mailing_id":"' + results2[i].sfid;
+							output += '", "mailing_number":"' + results2[i].name;
+							output += '", "student_name":"' + results[0].name;
+							output += '", "delivery_date":"' + results2[i].createddate;
+							output += '", "mailing_type":"' + results2[i].mailing_type__c + '"},';
 						}
 						if(results2.length)
 						{
