@@ -53,32 +53,7 @@
                 }
                 
         	}
-		}
-		
-		//function [setDependenciesScholarship] for this page only
-        function setDependenciesScholarship(){
-        	
-            //alert('s');
-            var obj1 = document.getElementById('request_Zone__c');
-            
-            var obj2 = document.getElementById('chkScholarship');
-            
-            for (var i=0; i < obj1.length; ++i){    
-                    
-                    var tempValue=obj1.options[i].text.toLowerCase();
-                    
-                    if ( (tempValue.indexOf('zone m')<=-1) && (tempValue.indexOf('zone f')<=-1) ){
-                    	
-                        obj1 .options[i].style.display=(obj2.checked ? 'none':'');
-                    	
-                    }
-                    
-            }
-            //alert('e');
-            
-            
-        }
-  	
+		}	
         
 		function setDependenciesTitle(){
             
