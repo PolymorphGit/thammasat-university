@@ -126,7 +126,7 @@ angular.module('accountApp', [])
 				{
 		    		if(data[i].sfid != $scope.account.sfid)
 		    		{
-		    			message += data[i].first_name_th__c + ' ' + data[i].last_name_th__c + ',\n';
+		    			message += data[i].first_name_th__c + ' ' + data[i].last_name_th__c + '\n';
 		    		}
 				}
 		    	$scope.roommate = message;
