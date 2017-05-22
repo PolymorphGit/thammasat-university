@@ -43,7 +43,7 @@ function sendBilling()
 				message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate 
 			});
 			
-			listId += results[i].sfid + ', ';
+			listId += '\'' + results[i].sfid + ',\' ';
 		}
 		
 		if(results.length > 0)
