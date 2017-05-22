@@ -71,10 +71,10 @@ function sendMailing()
 		for(var i = 0 ; i < results.length ; i++)
 		{
 			to = results[i].student_name__c
-			console.log('To:' + to + ', No:' + results[i].name + ', type:' + results[i].mailing_type__c + ', date:' + results[i].received_date__c.toDateString());
+			console.log('To:' + to + ', No:' + results[i].name + ', type:' + results[i].mailing_type__c + ', date:' + results[i].createddate.toDateString());
 			pusher.trigger(to, 'Mailing', {
 				no: results[i].name,
-				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].received_date__c.toDateString()
+				message: 'มีพัศดุ ' + results[i].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[i].createddate.toDateString()
 			});
 			
 			listId += '\'' + results[i].sfid + '\', ';
