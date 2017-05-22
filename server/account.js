@@ -541,7 +541,7 @@ exports.getroommate = function(req, res, next) {
 				var listacc = '(\'' + results[0].primary_roommate__c + '\', ';
 				for(var i = 0 ; i < results2.length ; i++)
 				{
-					listacc += '\'' + results2[i].sfid + '\', ';
+					listacc += '\'' + results2[i].co_roommate__c + '\', ';
 				}
 				
 				if(results2.length > 0)
