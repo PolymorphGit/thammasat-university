@@ -139,8 +139,8 @@ angular.module('select_roommateApp', [])
 	}
 	
 	
-	$scope.UrlBack = function () {
-		window.location.href = "https://thammasat-university.herokuapp.com/register.html?id="+$scope.id;
+	$scope.urlBack = function() {
+		window.location.href="https://thammasat-university.herokuapp.com/register.html?id="+$scope.id;
 	}
 	
 });
