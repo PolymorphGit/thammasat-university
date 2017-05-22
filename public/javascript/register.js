@@ -8,7 +8,7 @@ angular.module('leadApp', [])
   $scope.gender = ['Male', 'Female'];
   $scope.salutation2 = ['Mr.', 'Ms.', 'Mrs.'];
   
-  $scope.graduated_area=["กรุงเทพฯและปริมณฑล ","อื่นๆ"];
+  $scope.graduated_area=["Bangkok and Metropolitan","Other"];
 
   $scope.salutation=[{'Gender':'Male','salutations':['Mr.']},{'Gender':'Female' ,'salutations':['Ms.', 'Mrs.']} ];
   
