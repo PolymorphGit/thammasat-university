@@ -6,19 +6,19 @@ exports.getDetail = function(req, res, next) {
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);
-		output = '[{"Case Id":"' + results[0].sfid;
+		output = '[{"case_id":"' + results[0].sfid;
 		output += '", "casenumber":"' + results[0].name;
-		output += '", "Type":"' + results[0].type;
-		output += '", "Problem Type":"' + results[0].problem_type__c;
-		output += '", "Problem Sub Type":"' + results[0].problem_sub_type__c;
-		output += '", "Priority":"' + results[0].priority;
-		output += '", "Subject":"' + results[0].subject;
-		output += '", "Status":"' + results[0].status;
-		output += '", "Amount":"' + results[0].amount__c;
-		output += '", "Agree to Pay":"' + results[0].agree_to_pay__c;
-		output += '", "Allow to Access":"' + results[0].allow_to_access_room__c;
-		output += '", "Remark":"' + results[0].description;
-		output += '", "Create Date":"' + results[0].createdate + '"}]';
+		output += '", "type":"' + results[0].type;
+		output += '", "problem_type":"' + results[0].problem_type__c;
+		output += '", "problem_sub_type":"' + results[0].problem_sub_type__c;
+		output += '", "priority":"' + results[0].priority;
+		output += '", "subject":"' + results[0].subject;
+		output += '", "status":"' + results[0].status;
+		output += '", "amount":"' + results[0].amount__c;
+		output += '", "agree_to_pay":"' + results[0].agree_to_pay__c;
+		output += '", "allow_to_access":"' + results[0].allow_to_access_room__c;
+		output += '", "remark":"' + results[0].description;
+		output += '", "create_date":"' + results[0].createdate + '"}]';
 		output = JSON.parse(output);
 		res.json(output);
 		//res.json(results);
@@ -67,13 +67,13 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						for(var i = 0 ; i < results2.length ; i++)
 						{
-							output += '{"Case id":"' + results2[i].sfid;
-							output += '", "Type":"' + results2[i].type;
-							output += '", "Sub Type":"' + results2[i].problem_type__c;
-							output += '", "Room Problem Type":"' + results2[i].problem_sub_type__c;
-							output += '", "Priority":"' + results2[i].priority;
-							output += '", "Subject":"' + results2[i].subject;
-							output += '", "Status":"' + results2[i].status + '"},';
+							output += '{"case_id":"' + results2[i].sfid;
+							output += '", "type":"' + results2[i].type;
+							output += '", "sub_type":"' + results2[i].problem_type__c;
+							output += '", "room_problem_type":"' + results2[i].problem_sub_type__c;
+							output += '", "priority":"' + results2[i].priority;
+							output += '", "subject":"' + results2[i].subject;
+							output += '", "status":"' + results2[i].status + '"},';
 						}
 						if(results2.length > 0)
 						{

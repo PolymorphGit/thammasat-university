@@ -69,12 +69,12 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
-		output = '[{"Order Id":"' + results[0].sfid;
-		output += '", "Allow Access":"' + results[0].allow_to_access_room__c;
-		output += '", "Agrre to Payment":"' + results[0].agree_to_pay__c;
-		output += '", "Remark":"' + results[0].Description;
-		output += '", "Total Amount":"' + results[0].amount__c;
-		output += '", "Create Date":"' + results[0].createdate + '"}]';
+		output = '[{"order_id":"' + results[0].sfid;
+		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
+		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
+		output += '", "remark":"' + results[0].Description;
+		output += '", "total_amount":"' + results[0].amount__c;
+		output += '", "create_date":"' + results[0].createdate + '"}]';
 		
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -85,10 +85,10 @@ exports.getDetail = function(req, res, next) {
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
-					output += '{"Clean Id":"' + results2[i].sfid;
-					output += '", "Working Date":"' + results2[i].working_date__c;
-					output += '", "Period":"' + results2[i].cleaning_period__c;
-					output += '", "Status":"' + results2[i].status + '"},';
+					output += '{"clean_id":"' + results2[i].sfid;
+					output += '", "working_date":"' + results2[i].working_date__c;
+					output += '", "period":"' + results2[i].cleaning_period__c;
+					output += '", "status":"' + results2[i].status + '"},';
 				}
 				output = output.substr(0, output.length - 1);
 				output += ']}]';
@@ -138,10 +138,10 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						for(var i = 0 ; i <results2.length ; i++)
 						{
-							output += '{"Clean Id":"' + results2[i].sfid;
-							output += '", "Order Id":"' + results2[i].caseid;
-							output += '", "Reporter Name":"' + results[0].name; 
-							output += '", "Create Date":"' + results2[i].createdate + '"},';
+							output += '{"clean_id":"' + results2[i].sfid;
+							output += '", "order_id":"' + results2[i].caseid;
+							output += '", "reporter_name":"' + results[0].name; 
+							output += '", "create_date":"' + results2[i].createdate + '"},';
 						}
 						if(results2.length)
 						{
@@ -193,8 +193,8 @@ exports.openClean = function(req, res, next) {
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Care and Clean'")
 					.then(function(results2) {
-						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, subject, Description";
-						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority, Package_Number__c) ";
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, subject, description";
+						query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority, package_number__c) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Care and Clean', '";
 						query += req.body.comment + "', '" + req.body.amount + "', '" + req.body.access + "', '";
 						query += req.body.payment + "', 'Medium', " + req.body.schedule.length + ") RETURNING *";

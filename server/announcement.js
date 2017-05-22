@@ -19,10 +19,10 @@ exports.getDetail = function(req, res, next) {
 		var output = '[';
 		for(var i = 0 ; i <results.length ; i++)
 		{
-			output += '{"Id":"' + results[i].sfid;
-			output += '", "Name":"' + results[i].name;
+			output += '{"id":"' + results[i].sfid;
+			output += '", "name":"' + results[i].name;
 			output += '", "image":"' + results[i].image_path__c; 
-			output += '", "Create Date":"' + results[i].createdate + '"},';
+			output += '", "create_date":"' + results[i].createdate + '"},';
 		}
 		if(results.length)
 		{
