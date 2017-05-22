@@ -3,7 +3,7 @@ angular.module('accountApp', [])
   $scope.account = {
 		 
   };
-  $scope.primary = {};
+  $scope.roommate = {};
   $scope.salutation = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
   $scope.title = ['นาย', 'นางสาว', 'นาง'];
   $scope.gender = ['Male', 'Female'];
@@ -98,10 +98,15 @@ angular.module('accountApp', [])
     	$scope.account = data[0];
     	//alert(JSON.stringify(data[0]));
     	
-		 $http.get('../getprimary/' + accountId)
+		 $http.get('../getroommate/' + accountId)
 		.success((data) => {
 			console.log(data);
-			if(data[0].id != null)
+			if(data == 'This student didn\'t have primary roommate.')
+			{
+				$scope.primaryroommate = '';
+				$scope.roommate = '';
+			}
+			else if(data.length > 0)
 			{
 				$scope.primary = data[0];
 				
@@ -115,10 +120,13 @@ angular.module('accountApp', [])
 		    	primary_roomamate_name +=(primary_roomamate_name==''? last_name_th__c :' '+last_name_th__c);
 		    	
 		    	$scope.primaryroommate = primary_roomamate_name;
+		    	
+		    	$scope.roommate = data;
 			}
 			else
 			{
 				$scope.primaryroommate = '';
+				$scope.roommate = '';
 			}
 		})
 		.error((data) => {
