@@ -73,7 +73,8 @@ exports.getList = function(req, res, next) {
 							output += '", "room_problem_type":"' + results2[i].problem_sub_type__c;
 							output += '", "priority":"' + results2[i].priority;
 							output += '", "subject":"' + results2[i].subject;
-							output += '", "status":"' + results2[i].status + '"},';
+							output += '", "status":"' + results2[i].statu;
+							output += '", "create_date":"' + results2[i].createdate + '"},';
 						}
 						if(results2.length > 0)
 						{
