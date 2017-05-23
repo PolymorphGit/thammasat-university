@@ -65,18 +65,24 @@
             //alert('end');
         }
 		
-		function copyNme(){
+		function copyName(){
 			
-			var fname_th = $("#first_name_th__c").val();
-			var lname_th = $("#last_name_th__c").val();
+			var fname_th= document.getElementById('first_name_th__c').value.trim();
+			var lname_th= document.getElementById('last_name_th__c').value.trim();
+			
+			var fname_en= document.getElementById('first_name_en__c').value;
+			var lname_en= document.getElementById('last_name_en__c').value;
             
-			var fname_en = $("#first_name_en__c").val();
-			var lname_en = $("#last_name_en__c").val();	
 			
 			if (fname_th==''&& lname_th==''){
-				$("#first_name_th__c").text(fname_en);
-				$("#last_name_th__c").text(lname_en);
+				
+				document.getElementById('first_name_th__c').value=fname_en;
+				document.getElementById('last_name_th__c').value=lname_en;
+				angular.element(document.getElementById('main')).scope().lead.first_name_th__c = fname_en;
+				angular.element(document.getElementById('main')).scope().lead.last_name_th__c = lname_en;
 			}
+			
+			
 			
 		}
 		
@@ -88,11 +94,11 @@
 	        //var v102 = validate_title_th();
 	        var v103  = (v100 ? validate_name_th() : true);
 	        var v104 = validate_title_en();
+	        var v105 = validate_name_en();
 	        if (!v100){
 	        	copyName();	
 	        }
 	        
-	        var v105 = validate_name_en();
 	        var v106 = validateBirthdate();
 	        var v107 = validateMobile();
 	        var v108 = validateEmail();
