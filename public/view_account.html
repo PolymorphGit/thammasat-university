@@ -631,6 +631,61 @@
                                 <apex:outputField value="{!theAccount.Request_Zone_Reserve__c}" />
                             </td>
                         </tr> -->
+                        
+                        <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Sleep After Midnight / นอนหลังเที่ยงคืนได้
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_after_midnight__c" id="chk_sleep_after_midnight__c" disabled="disabled" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                             Sleeping Open / นอนเปิดไฟ
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_with_light_on__c" id="chk_sleep_with_light_on__c" disabled="disabled" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                             Sleep without opening aircondition / นอนโดยไม่ต้องเปิดแอร์
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_with_turn_off_air_condition__c" id="chk_sleep_with_turn_off_air_condition__c" disabled="disabled" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Easy sleep despite noise / หลับง่ายแม้มีเสียงรบกวน
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.sleep_soundly__c" id="chk_sleep_soundly__c" disabled="disabled" />
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td align="right" class='CustomLayout1'>
+	                            Like clean room / ชอบทำความสะอาดห้อง
+	                        </td>
+	                        <td>
+	                        </td>
+	                        <td class='CustomLayout1'>
+	                            <input type="checkbox" ng-model="lead.love_cleaning__c" id="chk_love_cleaning__c" disabled="disabled" />
+	                        </td>
+	                    </tr>	
                                  
                     </table></td>
                     
@@ -812,6 +867,7 @@
             </table>
             
             <!-- Sleeping Behavior   -->
+            <!-- 
 			<table style="width:100%">
 				
 				<tr style="background-color: #C80000">
@@ -887,8 +943,9 @@
 					</td>
 				</tr>
 			</table>
-			
-			<!-- Sleeping Behavior   -->
+		    -->
+		    
+			<!-- Roommate  -->
 			<table style="width:100%" ng-show="roommate != ''">
 				<tr style="background-color: #C80000">
 					<td colspan="3" align="left">
