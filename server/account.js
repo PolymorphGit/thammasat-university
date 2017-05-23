@@ -306,10 +306,9 @@ exports.checkin = function(req, res, next){
 								console.log(results3);	
 								if(results3.length > 0)
 								{
-									db.select("SELECT * FROM salesforce.priduct2 where sfid='" + room + "'")
+									db.select("SELECT * FROM salesforce.product2 where sfid='" + room + "'")
 									.then(function(result4) {
-										
-										db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('Room', '" + results2[0].sfid + "', '" + result4[0].name + "', '" + enddate + "', '" + enddate + "', true)")
+										db.select("INSERT INTO salesforce.Asset (Name, accountId, product2id, UsageEndDate, contract_end__c, active__c) VALUES ('" + result4[0].name + "', '" + results2[0].sfid + "', '" + room + "', '" + enddate + "', '" + enddate + "', true)")
 										.then(function(results5) {
 											console.log(results5);	
 											res.send("{ status: \"Success\"");
