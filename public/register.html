@@ -92,21 +92,23 @@
         }
 		
 		function copyName(){
-			alert('!!');
+			
 			var fname_th= document.getElementById('first_name_th__c').value.trim();
 			var lname_th= document.getElementById('last_name_th__c').value.trim();
-			alert('2');
+			
 			var fname_en= document.getElementById('first_name_en__c').value;
 			var lname_en= document.getElementById('last_name_en__c').value;
             
-			alert('3');
+			
 			if (fname_th==''&& lname_th==''){
-				alert('4');
+				
+				document.getElementById('first_name_th__c').value=fname_en;
+				document.getElementById('last_name_th__c').value=lname_en;
 				angular.element(document.getElementById('main')).scope().lead.first_name_th__c = fname_en;
-				angular.element(document.getElementById('main')).scope().lead.last_name_th__c = fname_en;
+				angular.element(document.getElementById('main')).scope().lead.last_name_th__c = lname_en;
 			}
 			
-			alert('5');
+			
 			
 		}
 		
@@ -116,10 +118,7 @@
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
 	        var v103  = (v100 ? validate_name_th() : true);
-	        
-	        alert('0');
-	        if (!v100){
-	        	alert('01');
+	        if (!v100){	       
 	        	copyName();	
 	        }
 	        
