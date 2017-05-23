@@ -91,12 +91,31 @@
             //alert('end');
         }
 		
+		function copyNme(){
+			
+			var fname_th = $("#first_name_th__c").val();
+			var lname_th = $("#last_name_th__c").val();
+            
+			var fname_en = $("#first_name_en__c").val();
+			var lname_en = $("#last_name_en__c").val();	
+			
+			if (fname_th==''&& lname_th==''){
+				$("#first_name_th__c").text(fname_en);
+				$("#last_name_th__c").text(lname_en);
+			}
+			
+		}
+		
 		function update(){
 			
 			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
 	        var v103  = (v100 ? validate_name_th() : true);
+	        if (!v100){
+	        	copyName();	
+	        }
+	        
 	        var v104 = validate_title_en();
 	        var v105 = validate_name_en();
 	        var v106 = validateBirthdate();
