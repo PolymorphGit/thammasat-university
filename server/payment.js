@@ -11,7 +11,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "invoice_id":"' + results[0].name;
 		output += '", "due_date":"' + results[0].due_date__c;
 		output += '", "total_amount":"' + results[0].total_amount__c;
-		output += '", "create_date":"' + results[0].createdate + '"}]';
+		output += '", "create_date":"' + results[0].createddate + '"}]';
 		
 		db.select("SELECT * FROM salesforce.Invoice_Line_Item__c WHERE Invoice__c='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -86,7 +86,7 @@ exports.getList = function(req, res, next) {
 							output += '", "student_name":"' + results[0].name;
 							output += '", "due_date":"' + results2[i].due_date__c;
 							output += '", "total_amount":"' + results2[i].total_amount__c;
-							output += '", "create_date":"' + results2[i].createdate + '"},';
+							output += '", "create_date":"' + results2[i].createddate + '"},';
 						}
 						if(results2.length)
 						{
