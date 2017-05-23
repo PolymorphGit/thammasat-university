@@ -184,7 +184,7 @@
 			var value = $("#pick_gender__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#lbl_gender__c").text("Please select title. / โปรดเลือกคำนำหน้าชื่อ");
+				$("#lbl_gender__c").text("Please select sex.");
 			    return false;
 			}
 			return true;
@@ -198,7 +198,7 @@
 			var value = $("#pick_title_th__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#lbl_title_th__c").text("Please select title.");
+				$("#lbl_title_th__c").text("Please select title. / โปรดเลือกคำนำหน้าชื่อ");
 				return false;
 				
 			}
@@ -216,13 +216,13 @@
 
 			
 			if ((fname_th=="")&&(lname_th=="")) {
-				$("#lbl_name_th__c").text("First name and last name is require.");
+				$("#lbl_name_th__c").text("โปรดใส่ชื่อ-นามสกุล");
 				return false;
 			}else if(fname_th==""){
-				$("#lbl_name_th__c").text("First name is require.");
+				$("#lbl_name_th__c").text("โปรดใส่ชื่อ");
 				return false;
 			}else if(lname_th==""){
-				$("#lbl_name_th__c").text("Last name is require.");
+				$("#lbl_name_th__c").text("โปรดใส่นามสกุล");
 				return false;
 			}
 			return true;
