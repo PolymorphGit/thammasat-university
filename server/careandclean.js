@@ -209,11 +209,11 @@ exports.openClean = function(req, res, next) {
 									.then(function(results5) {
 										db.select("SELECT * FROM salesforce.Asset WHERE accountid='" + results[0].sfid + "' and active__c=true")
 										.then(function(results6) {
-											var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c, recordtypeid, assetid, subject) VALUES ";
+											var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c, recordtypeid, assetid, subject, accountid) VALUES ";
 											for(var i = 0 ; i < req.body.schedule.length; i++)
 											{
 												query2 += "('" + results4[0].sfid + "', '" + req.body.schedule[i].date + "', '" + req.body.schedule[i].time;
-												query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean'), ";
+												query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean', '" + results[0].sfid + "'), ";
 											}
 											if(req.body.schedule.length > 0)
 											{
