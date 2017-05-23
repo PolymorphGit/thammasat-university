@@ -92,23 +92,26 @@
         }
 		
 		function copyNme(){
-		    
+			alert('!!');
 			var fname_th= document.getElementById('first_name_th__c').value.trim();
 			var lname_th= document.getElementById('last_name_th__c').value.trim();
-		    
+			alert('2');
 			var fname_th= document.getElementById('first_name_en__c').value;
 			var lname_th= document.getElementById('last_name_en__c').value;
             
-			
+			alert('3');
 			if (fname_th==''&& lname_th==''){
+				alert('4');
 				angular.element(document.getElementById('main')).scope().lead.gender__c = fname_th;
 				angular.element(document.getElementById('main')).scope().lead.gender__c = lname_th;
 			}
 			
+			alert('5');
+			
 		}
 		
 		function update(){
-			
+			alert('0');
 			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
