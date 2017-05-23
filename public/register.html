@@ -91,7 +91,7 @@
             //alert('end');
         }
 		
-		function copyNme(){
+		function copyName(){
 			alert('!!');
 			var fname_th= document.getElementById('first_name_th__c').value.trim();
 			var lname_th= document.getElementById('last_name_th__c').value.trim();
@@ -111,12 +111,15 @@
 		}
 		
 		function update(){
-			alert('0');
+			
 			var v100 = validate_Thai(); 
 	        var v101 = validate_sex();
 	        //var v102 = validate_title_th();
 	        var v103  = (v100 ? validate_name_th() : true);
+	        
+	        alert('0');
 	        if (!v100){
+	        	alert('01');
 	        	copyName();	
 	        }
 	        
