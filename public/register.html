@@ -122,8 +122,8 @@
 	        var v300= validateParent();
 	        var v301= validateParentPhone();
 	        //var v303= validateParentIncome();
-	        var v304= validateParent2()
-	        var v305= validateParentPhone2();
+	        //var v304= validateParent2()
+	        //var v305= validateParentPhone2();
 	        
 	        //check address on field input box
 	        //&& (!v100 || (v202 && v203 && v204 && v205 && v206 ) )
@@ -144,9 +144,7 @@
 	        		
 	        		&& v300 
 	        		&& v301 
-	        		&& v304 
-	        		&& v305
-
+	        		
 		      )
 		    	{
 		    		
@@ -914,8 +912,20 @@
 							<td></td>
 							<td>
 								 <input type="checkbox" ng-model="lead.scholarship__c" id="chkScholarship" onclick="checkScholarship()" onchange="checkScholarship()" />
+								 <label style="color:red;" >*โปรดทำเครื่องหมายในช่องสี่เหลี่ยมกรณีเป็นนักศึกษาทุนทุกประเภท</label>
 							</td>
 						</tr>
+						
+						<tr>
+	                        <td align="right">
+	                            Disabled / ทุพพลภาพ
+	                        </td>
+	                        <td></td>
+	                        <td>
+	                             <input type="checkbox" ng-model="lead.disabled__c" id="chkDisabled"/>
+	                             <label style="color:red;" >*โปรดทำเครื่องหมายในช่องสี่เหลี่ยมกรณีเป็นนักศึกษาทุพพลภาพทุกประเภท</label>
+	                        </td>
+                    	</tr>
 						
 						<!-- 
 						<tr>
