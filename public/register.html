@@ -215,7 +215,7 @@
 			var value = $("#pick_title_th__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#lbl_title_th__c").text("Please select title. / โปรดเลือกคำนำหน้าชื่อ");
+				$("#lbl_title_th__c").text("โปรดเลือกคำนำหน้าชื่อ");
 				return false;
 				
 			}
@@ -253,7 +253,7 @@
 			var value = $("#pick_title_en__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#lbl_title_en__c").text("Please select title.");
+				$("#lbl_title_en__c").text("Please select title. / โปรดเลือกคำนำหน้าชื่อ");
 				return false;
 			}
 			return true;
@@ -268,13 +268,13 @@
 			var lname_th = $("#last_name_en__c").val();
 
 			if ((fname_th=="")&&(lname_th=="")) {
-				$("#lbl_name_en__c").text("First name and last name is require.");
+				$("#lbl_name_en__c").text("First name and last name is required.");
 				return false;
 			}else if(fname_th==""){
-				$("#lbl_name_en__c").text("First name is require.");
+				$("#lbl_name_en__c").text("First name is required.");
 				return false;
 			}else if(lname_th==""){
-				$("#lbl_name_en__c").text("Last name is require.");
+				$("#lbl_name_en__c").text("Last name is required.");
 				return false;
 			}
 			
@@ -307,7 +307,7 @@
 			    return true;
 			  }
 			  else if((myBirthdate=="")||(myBirthdate=="?")) {
-				  $("#birthdateResult").text("Birthdate is require");
+				  $("#birthdateResult").text("Birthdate is required. / โปรดใส่วันเกิด");
 				  return false;
 			  }
 			  else if(myBirthdate.length!=10) 
@@ -331,7 +331,7 @@
 			if ($.trim($('#mobilephone').val()) != '') {
 				return true;
 			} else {
-				$("#lbl_mobilephone").text("Mobile is required");
+				$("#lbl_mobilephone").text("Mobile is required. / โปรดใส่เบอร์โทร");
 				return false;
 			}
 		}
@@ -353,11 +353,12 @@
 			    return true;
 			  }
 			  else if((myEmail=="")||(myEmail=="?")) {
-				  $("#lbl_email").text("Email is require");
+				  $("#lbl_email").text("Email is required. / โปรดใส่อีเมล์");
 				  return false;
 			  }
 			  else {
-			    $("#lbl_email").text(myEmail + " is not valid.");
+			    $("#lbl_email").text(myEmail + " is not valid. / อีเมล์  "+myEmail+" ไม่ถูกต้อง");
+			    
 			    return false;
 			  }
 			  
@@ -371,7 +372,7 @@
 			  var value = $("#graduated_from__c").val().trim();
 			 
 			  if ((value=="")||(value=="?")) {
-				$("#GraduatedFromResult").text("Graduated from is require.");
+				$("#GraduatedFromResult").text("Graduated from is require. / โปรดใส่จบการศึกษาจาก");
 				return false;
 			  }
 			  return true;
@@ -384,7 +385,7 @@
 			var value = $("#graduated_area__c :selected").val();
             
 			if ((value=="")||(value=="?")) {
-				$("#GraduatedAreaResult").text("Please select graduated area");
+				$("#GraduatedAreaResult").text("Please select graduated area. / โปรดเลือกพื้นที่ที่จบการศึกษา");
 				return false;
 			}
 			return true;
@@ -433,7 +434,7 @@
 			var value = $("#pick_faculty__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#lbl_faculty__c").text("Please select faculty.");
+				$("#lbl_faculty__c").text("Please select faculty. / โปรดเลือกคณะ");
 				return false;
 			}
 			return true;
@@ -450,7 +451,7 @@
 			
 			if ((value=="")||(value=="?")) {
 				if(validate_sex()){
-					$("#lbl_request_zone__c").text("Please select zone.");
+					$("#lbl_request_zone__c").text("Please select zone. / โปรดเลือกโซน");
 					return false;
 				}
 			}
@@ -469,7 +470,7 @@
 				*/
 				return true;
 			} else {
-				$("#streetResult").text("No. / Soi / Road is required");
+				$("#streetResult").text("Address is require. / โปรดใส่ที่อยู่");
 				$("#streetResult").css("color", "red");
 				    
 				return false;
@@ -489,7 +490,7 @@
 				*/
 				return true;
 			} else {
-				$("#cityResult").text("District is required");
+				$("#cityResult").text("District is required. / โปรดใส่อำเภอ / เขต");
 				$("#cityResult").css("color", "red");
 				    
 				return false;
@@ -509,7 +510,7 @@
 				*/
 				return true;
 			} else {
-				$("#stateResult").text("Province is required");
+				$("#stateResult").text("Please select province. / โปรดเลือกจังหวัด");
 				$("#stateResult").css("color", "red");
 				    
 				return false;
@@ -524,7 +525,7 @@
 			var value = $("#pick_state__c :selected").val();
 
 			if ((value=="")||(value=="?")) {
-				$("#stateResult").text("Please select province.");
+				$("#stateResult").text("Please select province. / โปรดเลือกจังหวัด");
 			    return false;
 			    
 			}
@@ -542,7 +543,7 @@
 				*/
 				return true;
 			} else {
-				$("#postcodeResult").text("Postal Code is required");
+				$("#postcodeResult").text("Post code is required. / โปรดใส่รหัสไปรษณีย์");
 				$("#postcodeResult").css("color", "red");
 				    
 				return false;
@@ -561,7 +562,7 @@
 				*/
 				return true;
 			} else {
-				$("#countryResult").text("Country is required");
+				$("#countryResult").text("Country is required. / โปรดใส่ประเทศ");
 				$("#countryResult").css("color", "red");
 				    
 				return false;
@@ -577,7 +578,7 @@
 			if ($.trim($('#parent').val()) != '') {
 				return true;
 			} else {
-				$("#parentResult").text("Parent Name is required");
+				$("#parentResult").text("Name-Surname is required. / โปรดใส่ชื่อ-สกุล");
 				$("#parentResult").css("color", "red");
 				    
 				return false;
@@ -596,7 +597,7 @@
 				*/
 				return true;
 			} else {
-				$("#parentPhoneResult").text("Parent Phone is required");
+				$("#parentPhoneResult").text("Mobile No. is required. / โปรดใส่เบอร์ติดต่อ");
 				$("#parentPhoneResult").css("color", "red");
 				    
 				return false;
