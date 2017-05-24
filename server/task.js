@@ -26,7 +26,7 @@ exports.getFeed = function(req, res, next) {
 				var obj = JSON.parse(str);
 				 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-						var query = "SELECT sfid as id, subject||' ('||name||')' as name, 'case' as type, description as detail, status, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.Case WHERE accountid='" + results[0].sfid + "'";
+						var query = "SELECT sfid as id, subject||' ('||casenumber||')' as name, 'case' as type, description as detail, status, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.Case WHERE accountid='" + results[0].sfid + "' and type!='Care and Clean'";
 						query += " UNION ALL ";
 						query += "SELECT sfid as id, name, 'announcement' as type, image_path__c as detail, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.Announcement__c";
 						query += " UNION ALL ";
@@ -34,7 +34,7 @@ exports.getFeed = function(req, res, next) {
 						query += " UNION ALL ";
 						query += "SELECT sfid as id, 'Invoice No. '||name, 'billing' as type, 'สิ้นสุดชำระวันที่:'||to_char(due_date__c, 'DD/MM/YYYY')||' จำนวนเงิน:'||coalesce(total_amount__c, 0) as detail, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.Invoice__c WHERE Student_Name__c='" + results[0].sfid + "'";
 						query += " UNION ALL ";
-					    query += "SELECT caseid as id, subject||' ('||name||')' as name, 'clean' as type, 'วันที่: '||to_char(working_date__c, 'DD/MM/YYYY') as detail, status, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.WorkOrder WHERE accountid='" + results[0].sfid + "' and status='Completed'";
+					    query += "SELECT caseid as id, subject||' ('||workordernumber||')' as name, 'clean' as type, 'วันที่: '||to_char(working_date__c, 'DD/MM/YYYY') as detail, status, to_char(createddate, 'DD/MM/YYYY') FROM salesforce.WorkOrder WHERE accountid='" + results[0].sfid + "' and status='Completed'";
 						query += " Order by createddate desc";
 						if(!isNaN(limit))
 						{
