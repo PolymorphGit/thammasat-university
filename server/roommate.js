@@ -32,7 +32,7 @@ exports.createRoommate = function(req, res, next) {
 	var p = req.headers['primary'];
 	var c = req.headers['co'];
 	
-	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and secondary__c = false and room__c is not null")
+	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and (secondary__c = false or secondary__c in not null) and (room__c is not null or room__c ='')")
 	.then(function(results) {
 		console.log(results);
 		console.log(p);
@@ -101,7 +101,7 @@ exports.updateRoommate = function(req, res, next) {
 	
 	db.select("SELECT * FROM salesforce.Account WHERE (identification_number__c ='" + c + "' or passport_number__c = '" + c + "' or student_id__c='" + c + "') and (secondary__c = false or secondary__c in not null) and (room__c is not null or room__c ='')")
 	.then(function(results) {
-		console.log(results); 
+		//console.log(results); 
 		if(results.length > 0 && p != results[0].sfid)
 		{
 			db.select("SELECT * FROM salesforce.roommate__c WHERE primary_roommate__c='" + results[0].sfid + "'")
