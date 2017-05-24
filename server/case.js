@@ -18,7 +18,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "agree_to_pay":"' + results[0].agree_to_pay__c;
 		output += '", "allow_to_access":"' + results[0].allow_to_access_room__c;
 		output += '", "remark":"' + results[0].description;
-		output += '", "create_date":"' + results[0].createdate + '"}]';
+		output += '", "create_date":"' + results[0].createddate + '"}]';
 		output = JSON.parse(output);
 		res.json(output);
 		//res.json(results);
@@ -74,7 +74,7 @@ exports.getList = function(req, res, next) {
 							output += '", "priority":"' + results2[i].priority;
 							output += '", "subject":"' + results2[i].subject;
 							output += '", "status":"' + results2[i].statu;
-							output += '", "create_date":"' + results2[i].createdate + '"},';
+							output += '", "create_date":"' + results2[i].createddate + '"},';
 						}
 						if(results2.length > 0)
 						{

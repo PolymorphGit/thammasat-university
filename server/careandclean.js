@@ -74,7 +74,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
 		output += '", "remark":"' + results[0].Description;
 		output += '", "total_amount":"' + results[0].amount__c;
-		output += '", "create_date":"' + results[0].createdate + '"}]';
+		output += '", "create_date":"' + results[0].createddate + '"}]';
 		
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -141,7 +141,7 @@ exports.getList = function(req, res, next) {
 							output += '{"clean_id":"' + results2[i].sfid;
 							output += '", "order_id":"' + results2[i].caseid;
 							output += '", "reporter_name":"' + results[0].name; 
-							output += '", "create_date":"' + results2[i].createdate + '"},';
+							output += '", "create_date":"' + results2[i].createddate + '"},';
 						}
 						if(results2.length)
 						{
