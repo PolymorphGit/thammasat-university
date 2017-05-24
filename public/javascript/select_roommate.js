@@ -43,7 +43,7 @@ angular.module('select_roommateApp', [])
 		$http.get('../getroommate/' + accountId)
 		.success((data) => {
 			//alert(data);
-			$scope.roommate = [];
+			//$scope.roommate = [];
 			if(data != 'No Roommate')
 			{
 				$scope.roommate = data;
