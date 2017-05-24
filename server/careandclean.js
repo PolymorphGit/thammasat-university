@@ -131,7 +131,7 @@ exports.getList = function(req, res, next) {
 					{
 						query += " limit " + limit;
 					}
-					console.log(query);
+					//console.log(query);
 					db.select(query)
 					.then(function(results2) {	
 						//Build Output
@@ -143,7 +143,7 @@ exports.getList = function(req, res, next) {
 						{
 							createdate = results2[i].createddate;
 							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							time = createdate.getHours() + ':' + createdate.getMinutes();
+							time = createdate.getHours() + '-' + createdate.getMinutes();
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
 							output += '", "type":"clean"'; 
@@ -155,7 +155,7 @@ exports.getList = function(req, res, next) {
 						{
 							output = output.substr(0, output.length - 1);
 						}
-						output+= ']';
+						output += ']';
 						//console.log(output);
 						res.json(JSON.parse(output));
 					})
