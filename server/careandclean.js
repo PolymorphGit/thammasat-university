@@ -126,7 +126,7 @@ exports.getList = function(req, res, next) {
 			    var obj = JSON.parse(str);
 			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and status='Completed'";
+					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "'";
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
