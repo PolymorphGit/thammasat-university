@@ -146,7 +146,6 @@ exports.getList = function(req, res, next) {
 							time = createdate.getHours() + ':' + createdate.getMinutes();
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
-							output += '", "type":"clean'; 
 							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results2[i].cleaning_period__c;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';

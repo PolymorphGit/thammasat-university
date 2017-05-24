@@ -18,13 +18,18 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		var output = '[';
 		var createdate;
+		var date;
+		var time;
 		for(var i = 0 ; i <results.length ; i++)
 		{
 			createdate = results[i].createddate;
+			date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+			time = createdate.getHours() + ':' + createdate.getMinutes();
 			output += '{"id":"' + results[i].sfid;
 			output += '", "name":"' + results[i].name;
 			output += '", "detail":"' + results[i].image_path__c; 
-			output += '", "created_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear() + '"},';
+			output += '", "created_date":"' + date;
+			output += '", "created_time":"' + time + '"},';
 		}
 		if(results.length)
 		{
