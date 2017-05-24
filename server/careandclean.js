@@ -136,12 +136,20 @@ exports.getList = function(req, res, next) {
 					.then(function(results2) {	
 						//Build Output
 						var output = '[';
+						var createdate;
+						var date;
+						var time;
 						for(var i = 0 ; i <results2.length ; i++)
 						{
-							output += '{"clean_id":"' + results2[i].sfid;
-							output += '", "order_id":"' + results2[i].caseid;
-							output += '", "reporter_name":"' + results[0].name; 
-							output += '", "create_date":"' + results2[i].createddate + '"},';
+							createdate = results2[i].createddate;
+							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							time = createdate.getHours() + ':' + createdate.getMinutes();
+							output += '{"id":"' + results2[i].sfid;
+							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
+							output += '", "type":"clean"'; 
+							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results2[i].cleaning_period__c;
+							output += '", "created_date":"' + date;
+							output += '", "created_time":"' + time + '"},';
 						}
 						if(results2.length)
 						{

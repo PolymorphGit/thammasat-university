@@ -50,13 +50,18 @@ exports.getList = function(req, res, next) {
 						//Build Output
 						var output = '[';
 						var createdate;
+						var date;
+						var time;
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
+							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							time = createdate.getHours() + ':' + createdate.getMinutes();
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].name;
-							output += '", "detail":"พัสดุ:' + results2[0].mailing_type__c + ' มาถึงวันที่:' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							output += '", "created_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear() + '"},';
+							output += '", "detail":"พัสดุ:' + results2[0].mailing_type__c + ' มาถึงวันที่:' + date;
+							output += '", "created_date":"' + date;
+							output += '", "created_time":"' + time + '"},';
 						}
 						if(results2.length)
 						{
