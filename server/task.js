@@ -30,7 +30,7 @@ exports.getFeed = function(req, res, next) {
 						query += " UNION ALL ";
 						query += "SELECT sfid as id, name, 'announcement' as type, image_path__c as detail, '' as status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Announcement__c";
 						query += " UNION ALL ";
-						query += "SELECT sfid as id, name, 'mailling' as type, 'พัสดุ:'||mailing_type__c||' มาถึงวันที่:'||to_char(createddate, 'DD/MM/YYYY') as detail, '' as status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Mailing__c WHERE Student_Name__c='" + results[0].sfid + "'";
+						query += "SELECT sfid as id, name, 'mailing' as type, 'พัสดุ:'||mailing_type__c||' มาถึงวันที่:'||to_char(createddate, 'DD/MM/YYYY') as detail, '' as status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Mailing__c WHERE Student_Name__c='" + results[0].sfid + "'";
 						query += " UNION ALL ";
 						query += "SELECT sfid as id, 'Invoice No. '||name, 'billing' as type, 'สิ้นสุดชำระวันที่:'||to_char(due_date__c, 'DD/MM/YYYY')||' จำนวนเงิน:'||coalesce(total_amount__c, 0) as detail, '' as status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Invoice__c WHERE Student_Name__c='" + results[0].sfid + "'";
 						query += " UNION ALL ";

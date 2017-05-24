@@ -59,6 +59,7 @@ exports.getList = function(req, res, next) {
 							time = createdate.getHours() + ':' + createdate.getMinutes();
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].name;
+							output += '", "type":"mailing';
 							output += '", "detail":"พัสดุ:' + results2[0].mailing_type__c + ' มาถึงวันที่:' + date;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
