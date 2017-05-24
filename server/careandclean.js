@@ -146,7 +146,7 @@ exports.getList = function(req, res, next) {
 							time = createdate.getHours() + ':' + createdate.getMinutes();
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
-							output += '", "type":"clean"'; 
+							output += '", "type":"clean'; 
 							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results2[i].cleaning_period__c;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
@@ -156,7 +156,7 @@ exports.getList = function(req, res, next) {
 							output = output.substr(0, output.length - 1);
 						}
 						output += ']';
-						console.log(output);
+						//console.log(output);
 						res.json(JSON.parse(output));
 					})
 				    .catch(next);
