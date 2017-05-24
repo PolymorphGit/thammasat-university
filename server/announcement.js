@@ -22,7 +22,7 @@ exports.getDetail = function(req, res, next) {
 			output += '{"id":"' + results[i].sfid;
 			output += '", "name":"' + results[i].name;
 			output += '", "detail":"' + results[i].image_path__c; 
-			output += '", "created_date":"' + results[i].createddate + '"},';
+			output += '", "created_date":"' + results[i].createddate.getDate() + '/' + results[i].createddate.getMonth() + '/' + results[i].createddate.getFullYear() + '"},';
 		}
 		if(results.length)
 		{
