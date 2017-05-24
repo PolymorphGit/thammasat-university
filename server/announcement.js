@@ -27,6 +27,7 @@ exports.getDetail = function(req, res, next) {
 			time = createdate.getHours() + ':' + createdate.getMinutes();
 			output += '{"id":"' + results[i].sfid;
 			output += '", "name":"' + results[i].name;
+			output += '", "type":"announcement';
 			output += '", "detail":"' + results[i].image_path__c; 
 			output += '", "created_date":"' + date;
 			output += '", "created_time":"' + time + '"},';
