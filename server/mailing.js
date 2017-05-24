@@ -53,11 +53,10 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							output += '{"mailing_id":"' + results2[i].sfid;
-							output += '", "mailing_number":"' + results2[i].name;
-							output += '", "student_name":"' + results[0].name;
-							output += '", "delivery_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							output += '", "mailing_type":"' + results2[i].mailing_type__c + '"},';
+							output += '{"id":"' + results2[i].sfid;
+							output += '", "name":"' + results2[i].name;
+							output += '", "detail":"พัสดุ:' + results2[0].mailing_type__c + ' มาถึงวันที่:' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							output += '", "created_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear() + '"},';
 						}
 						if(results2.length)
 						{
