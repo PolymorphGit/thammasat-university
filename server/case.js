@@ -153,3 +153,71 @@ exports.openCase = function(req, res, next) {
 	});
 	httprequest.end();
 }
+
+exports.openCaseOther = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
+exports.openCaseRenew = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}

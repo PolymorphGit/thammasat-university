@@ -64,6 +64,8 @@ app.get('/billing/:id', pay.getDetail);
 app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
 app.post('/opencase', urlencodedParser, case2.openCase);
+app.post('/opencaseother', urlencodedParser, case2.openCaseOther);
+app.post('/opencaserenew', urlencodedParser, case2.openCaseRenew);
 app.get('/getcleanrate', clean.getCleanRate);
 app.get('/clean', clean.getList);
 app.get('/clean/:id', clean.getDetail);
