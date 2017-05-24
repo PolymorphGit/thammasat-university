@@ -17,12 +17,14 @@ exports.getDetail = function(req, res, next) {
 	db.select(query)
 	.then(function(results) {
 		var output = '[';
+		var createdate;
 		for(var i = 0 ; i <results.length ; i++)
 		{
+			createdate = results[i].createddate;
 			output += '{"id":"' + results[i].sfid;
 			output += '", "name":"' + results[i].name;
 			output += '", "detail":"' + results[i].image_path__c; 
-			output += '", "created_date":"' + results[i].createddate.getDate() + '/' + results[i].createddate.getMonth() + '/' + results[i].createddate.getFullYear() + '"},';
+			output += '", "created_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear() + '"},';
 		}
 		if(results.length)
 		{

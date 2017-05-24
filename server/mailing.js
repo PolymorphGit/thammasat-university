@@ -49,12 +49,14 @@ exports.getList = function(req, res, next) {
 					.then(function(results2) {	
 						//Build Output
 						var output = '[';
+						var createdate;
 						for(var i = 0 ; i <results2.length ; i++)
 						{
+							createdate = results2[i].createddate;
 							output += '{"mailing_id":"' + results2[i].sfid;
 							output += '", "mailing_number":"' + results2[i].name;
 							output += '", "student_name":"' + results[0].name;
-							output += '", "delivery_date":"' + results2[i].createddate;
+							output += '", "delivery_date":"' + createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
 							output += '", "mailing_type":"' + results2[i].mailing_type__c + '"},';
 						}
 						if(results2.length)
