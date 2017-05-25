@@ -48,6 +48,8 @@ angular.module('select_roommateApp', [])
 			{
 				$scope.roommate = data;
 			}
+			alert(data.length);
+			alert($scope.maxroommate);
 			for(var i = data.length ; i < $scope.maxroommate ; i++)
 			{
 				$scope.roommate.push({"identification_number__c": null });
