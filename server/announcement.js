@@ -29,6 +29,7 @@ exports.getDetail = function(req, res, next) {
 			output += '", "name":"' + results[i].name;
 			output += '", "type":"announcement';
 			output += '", "detail":"' + results[i].image_path__c; 
+			output += '", "status":"';
 			output += '", "created_date":"' + date;
 			output += '", "created_time":"' + time + '"},';
 		}

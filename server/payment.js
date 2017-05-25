@@ -79,14 +79,24 @@ exports.getList = function(req, res, next) {
 					.then(function(results2) {	
 						//Build Output
 						var output = '[';
+						var createdate, duedate;
+						var date, date2;
+						var time, time2;
 						for(var i = 0 ; i <results2.length ; i++)
 						{
-							output += '{"invoice_id":"' + results2[i].sfid;
-							output += '", "invoice_number":"' + results2[i].name;
-							output += '", "student_name":"' + results[0].name;
-							output += '", "due_date":"' + results2[i].due_date__c;
-							output += '", "total_amount":"' + results2[i].total_amount__c;
-							output += '", "create_date":"' + results2[i].createddate + '"},';
+							createdate = results2[i].createddate;
+							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							time = createdate.getHours() + ':' + createdate.getMinutes();
+							duedate = results2[i].due_date__c;
+							date2 = duedate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							time2 = duedate.getHours() + ':' + createdate.getMinutes();
+							output += '{"id":"' + results2[i].sfid;
+							output += '", "name":"Invoice No. ' + results2[i].name;
+							output += '", "type":"billing';
+							output += '", "detail":"สิ้นสุดชำระวันที่: ' + date2 + ' จำนวนเงิน:' + results2[i].total_amount__c;
+							output += '", "status":"';
+							output += '", "created_date":"' + date;
+							output += '", "created_time":"' + time + '"},';
 						}
 						if(results2.length)
 						{

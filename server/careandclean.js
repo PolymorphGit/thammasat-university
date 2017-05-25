@@ -148,6 +148,7 @@ exports.getList = function(req, res, next) {
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
 							output += '", "type":"clean';
 							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results2[i].cleaning_period__c;
+							output += '", "status":"' + results2[i].status;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
 						}
