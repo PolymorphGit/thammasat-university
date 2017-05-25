@@ -56,7 +56,7 @@ exports.getList = function(req, res, next) {
 						{
 							createdate = results2[i].createddate;
 							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							time = createdate.getHours() + ':' + createdate.getMinutes();
+							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].name;
 							output += '", "type":"mailing';

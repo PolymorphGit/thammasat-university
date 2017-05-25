@@ -24,7 +24,7 @@ exports.getDetail = function(req, res, next) {
 		{
 			createdate = results[i].createddate;
 			date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-			time = createdate.getHours() + ':' + createdate.getMinutes();
+			time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 			output += '{"id":"' + results[i].sfid;
 			output += '", "name":"' + results[i].name;
 			output += '", "type":"announcement';

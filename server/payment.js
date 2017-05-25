@@ -86,10 +86,10 @@ exports.getList = function(req, res, next) {
 						{
 							createdate = results2[i].createddate;
 							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							time = createdate.getHours() + ':' + createdate.getMinutes();
+							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							duedate = results2[i].due_date__c;
 							date2 = duedate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							time2 = duedate.getHours() + ':' + createdate.getMinutes();
+							time2 = ("0" + duedate.getHours()).slice(-2) + ':' + ("0" + duedate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"Invoice No. ' + results2[i].name;
 							output += '", "type":"billing';

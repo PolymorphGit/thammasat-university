@@ -72,7 +72,8 @@ exports.getDetail = function(req, res, next) {
 		output = '[{"order_id":"' + results[0].sfid;
 		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
 		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
-		output += '", "remark":"' + results[0].Description;
+		output += '", "remark":"' + results[0].description;
+		output += '", "quantity":"' + results[0].Package_Number__c;
 		output += '", "total_amount":"' + results[0].amount__c;
 		output += '", "create_date":"' + results[0].createddate + '"}]';
 		
@@ -143,7 +144,7 @@ exports.getList = function(req, res, next) {
 						{
 							createdate = results2[i].createddate;
 							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
-							time = createdate.getHours() + ':' + createdate.getMinutes();
+							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
 							output += '", "type":"clean';
