@@ -26,7 +26,7 @@ exports.getFeed = function(req, res, next) {
 				var obj = JSON.parse(str);
 				 db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-						var query = "SELECT sfid as id, subject||' ('||casenumber||')' as name, 'case' as type, description as detail, status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Case WHERE accountid='" + results[0].sfid + "' and type!='Care and Clean'";
+						var query = "SELECT sfid as id, subject||' ('||casenumber||')' as name, 'case' as type, detail as detail, status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Case WHERE accountid='" + results[0].sfid + "' and type!='Care and Clean'";
 						query += " UNION ALL ";
 						query += "SELECT sfid as id, name, 'announcement' as type, image_path__c as detail, '' as status, to_char(createddate, 'DD/MM/YYYY') as created_date, to_char(createddate + interval '7 hour', 'HH24:MI') as created_time, createddate FROM salesforce.Announcement__c";
 						query += " UNION ALL ";

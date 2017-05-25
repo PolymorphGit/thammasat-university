@@ -67,14 +67,12 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						for(var i = 0 ; i < results2.length ; i++)
 						{
-							output += '{"case_id":"' + results2[i].sfid;
-							output += '", "type":"' + results2[i].type;
-							output += '", "sub_type":"' + results2[i].problem_type__c;
-							output += '", "room_problem_type":"' + results2[i].problem_sub_type__c;
-							output += '", "priority":"' + results2[i].priority;
-							output += '", "subject":"' + results2[i].subject;
-							output += '", "status":"' + results2[i].statu;
-							output += '", "create_date":"' + results2[i].createddate + '"},';
+							output += '{"id":"' + results2[i].sfid;
+							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')'
+							output += '", "type":"case';
+							output += '", "detail":"' + results2[i].description;
+							output += '", "created_date":"' + date;
+							output += '", "created_time":"' + time + '"},';
 						}
 						if(results2.length > 0)
 						{
