@@ -77,7 +77,7 @@ exports.getDetail = function(req, res, next) {
 		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
 		output = '[{"id":"' + results[0].sfid;
-		output += '", "name":"' + results[0].subject + " (" + results[0].workordernumber + ")";
+		output += '", "name":"' + results[0].subject + " (" + results[0].casenumber + ")";
 		output += '", "type":"clean';
 		output += '", "detail":"' + results[0].description;	
 		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
@@ -99,7 +99,7 @@ exports.getDetail = function(req, res, next) {
 					date = results2[0].working_date__c;
 					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
 					output += '{"clean_id":"' + results2[i].sfid;
-					output += '", "working_date":"' + results2[i].working_date__c;
+					output += '", "working_date":"' + date;
 					output += '", "period":"' + results2[i].cleaning_period__c;
 					output += '", "status":"' + results2[i].status + '"},';
 				}
