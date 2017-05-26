@@ -23,7 +23,14 @@ exports.getDetail = function(req, res, next) {
 			output += '", "received_name__c":"' + results[0].received_name__c;
 			
 			date = results[0].received_date__c;
-			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+			if(date != null)
+			{
+				date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+			}
+			else
+			{
+				date = '';
+			}
 			output += '", "received_date__c":"' + date + '"}]';
 		
 			res.json(results);
