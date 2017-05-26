@@ -13,7 +13,7 @@ exports.getDetail = function(req, res, next) {
 			//console.log(results2);	
 			date = results[0].createddate;
 			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
-			time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
+			time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 			output = '[{"id":"' + results[0].sfid;
 			output += '", "Name":"' + results[0].name;
 			output += '", "created_date":"' + date;
