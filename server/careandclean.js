@@ -67,7 +67,9 @@ exports.getDetail = function(req, res, next) {
 	var output = '';
 	var date;
 	var time;
-	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
+	db.select("SELECT * FROM salesforce.WorkOrder WHERE sfid='" + id + "'")
+	.then(function(results0) {
+	db.select("SELECT * FROM salesforce.case WHERE sfid='" + results0.caseid + "' and type='Care and Clean'")
 	.then(function(results) {
 		console.log(results);	
 		//output = JSON.stringify(results);
@@ -109,6 +111,8 @@ exports.getDetail = function(req, res, next) {
 			res.json(output);
 		})
 	    .catch(next);
+	})
+    .catch(next);
 	})
     .catch(next);
 }
