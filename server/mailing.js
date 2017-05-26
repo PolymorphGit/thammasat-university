@@ -33,7 +33,7 @@ exports.getDetail = function(req, res, next) {
 			}
 			output += '", "received_date__c":"' + date + '"}]';
 		
-			res.json(results);
+			res.json(JSON.parse(output));
 		})
 	    .catch(next);
 	})
