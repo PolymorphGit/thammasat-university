@@ -69,7 +69,7 @@ exports.getDetail = function(req, res, next) {
 	var time;
 	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
-		//console.log(results);	
+		console.log(results);	
 		//output = JSON.stringify(results);
 		date = results[0].createddate;
 		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
