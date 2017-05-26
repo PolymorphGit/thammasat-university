@@ -65,17 +65,25 @@ exports.getCleanRate = function(req, res, next) {
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
 	var output = '';
+	var date;
+	var time;
 	db.select("SELECT * FROM salesforce.case WHERE sfid='" + id + "' and type='Care and Clean'")
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
-		output = '[{"order_id":"' + results[0].sfid;
+		date = results[0].createddate;
+		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
+		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+		output = '[{"id":"' + results[0].sfid;
+		output += '", "name":"' + results[0].subject + " (" + results[0].workordernumber + ")";
+		output += '", "type":"clean';
+		output += '", "detail":"' + results[0].description;	
 		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
 		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
-		output += '", "remark":"' + results[0].description;
 		output += '", "quantity":"' + results[0].package_number__c;
 		output += '", "total_amount":"' + results[0].amount__c;
-		output += '", "create_date":"' + results[0].createddate + '"}]';
+		output += '", "created_date":"' + date;
+		output += '", "created_time":"' + time + '"}]';
 		
 		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
 		.then(function(results2) {	
@@ -86,6 +94,8 @@ exports.getDetail = function(req, res, next) {
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
+					date = results2[0].working_date__c;
+					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
 					output += '{"clean_id":"' + results2[i].sfid;
 					output += '", "working_date":"' + results2[i].working_date__c;
 					output += '", "period":"' + results2[i].cleaning_period__c;
