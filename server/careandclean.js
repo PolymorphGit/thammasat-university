@@ -73,7 +73,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
 		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
 		output += '", "remark":"' + results[0].description;
-		output += '", "quantity":"' + results[0].Package_Number__c;
+		output += '", "quantity":"' + results[0].package_number__c;
 		output += '", "total_amount":"' + results[0].amount__c;
 		output += '", "create_date":"' + results[0].createddate + '"}]';
 		

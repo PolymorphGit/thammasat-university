@@ -3,13 +3,16 @@ var db = require('./pghelper');
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
 	var output = '';
+	var date;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
+		date = results[0].due_date__c;
+		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
 		output = '[{"id":"' + results[0].sfid;
 		output += '", "invoice_id":"' + results[0].name;
-		output += '", "due_date":"' + results[0].due_date__c;
+		output += '", "due_date":"' + date;
 		output += '", "total_amount":"' + results[0].total_amount__c;
 		output += '", "create_date":"' + results[0].createddate + '"}]';
 		
@@ -22,10 +25,12 @@ exports.getDetail = function(req, res, next) {
 				//output += JSON.stringify(results2);
 				for(var i = 0 ; i <results2.length ; i++)
 				{
+					date = results2[i].due_date__c;
+					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
 					output += '{"line_id":"' + results2[i].sfid;
 					output += '", "line_number":"' + results2[i].name;
 					output += '", "type":"' + results2[i].invoice_line_item_type__c;
-					output += '", "date":"' + results2[i].due_date__c;
+					output += '", "date":"' + date;
 					output += '", "amount":"' + results2[i].amount__c + '"},';
 				}
 				output = output.substr(0, output.length - 1);
@@ -85,7 +90,7 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + ("0" + createdate.getFullYear()).slice(-2);
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							duedate = results2[i].due_date__c;
 							date2 = duedate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();

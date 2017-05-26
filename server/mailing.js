@@ -2,10 +2,30 @@ var db = require('./pghelper');
 
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
+	var output = '';
+	var date;
+	var time;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);	
-		res.json(results);
+		db.select("SELECT * FROM salesforce.Account WHERE SFID='" + results[0].student_name__c + "'")
+		.then(function(results2) {
+			//console.log(results2);	
+			date = results[0].createddate;
+			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
+			time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
+			output = '[{"id":"' + results[0].sfid;
+			output += '", "Name":"' + results[0].name;
+			output += '", "created_date":"' + date;
+			output += '", "created_time":"' + time;
+			output += '", "name":' + results2[0].first_name_th__c + ' ' + results2[0].last_name_th__c;
+			output += '", "mailing_type__c":"' + results[0].mailing_type__c;
+			output += '", "received_name__c":"' + results[0].received_name__c;
+			output += '", "received_date__c":"' + results[0].received_date__c + '"}]';
+		
+			res.json(results);
+		})
+	    .catch(next);
 	})
     .catch(next);
 }
@@ -55,7 +75,7 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + ("0" + createdate.getFullYear()).slice(-2);
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].name;
