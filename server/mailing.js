@@ -21,7 +21,10 @@ exports.getDetail = function(req, res, next) {
 			output += '", "owner_name":' + results2[0].first_name_th__c + ' ' + results2[0].last_name_th__c;
 			output += '", "mailing_type__c":"' + results[0].mailing_type__c;
 			output += '", "received_name__c":"' + results[0].received_name__c;
-			output += '", "received_date__c":"' + results[0].received_date__c + '"}]';
+			
+			date = results[0].received_date__c;
+			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+			output += '", "received_date__c":"' + date + '"}]';
 		
 			res.json(results);
 		})
