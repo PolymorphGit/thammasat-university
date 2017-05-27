@@ -77,7 +77,7 @@ exports.getList = function(req, res, next) {
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')';
 							output += '", "type":"case';
 							detail = results2[i].description;
-							detail = detail.replace(/[\n\r]+/g, " ");
+							detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
 							//detail = detail.trim();
 							output += '", "detail":"' + results2[i].description;
 							output += '", "status":"' + results2[i].status;
@@ -90,7 +90,6 @@ exports.getList = function(req, res, next) {
 						}
 						output += ']';
 						console.log(output);
-						alert(output);
 						res.json(JSON.parse(output));
 					})
 				    .catch(next);
