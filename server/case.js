@@ -67,6 +67,7 @@ exports.getList = function(req, res, next) {
 						var output = '[';
 						var date;
 						var time;
+						var detail;
 						for(var i = 0 ; i < results2.length ; i++)
 						{
 							date = results2[0].createddate;
@@ -75,7 +76,9 @@ exports.getList = function(req, res, next) {
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')';
 							output += '", "type":"case';
-							//output += '", "detail":"' + results2[i].description;
+							detail = results2[i].description;
+							detail = detail.replace("\n", "");
+							output += '", "detail":"' + results2[i].description;
 							output += '", "status":"' + results2[i].status;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
