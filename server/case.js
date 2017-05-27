@@ -65,8 +65,13 @@ exports.getList = function(req, res, next) {
 					.then(function(results2) {	
 						//Build Output
 						var output = '[';
+						var date;
+						var time;
 						for(var i = 0 ; i < results2.length ; i++)
 						{
+							date = results2[0].createddate;
+							time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
+							date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);		
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')'
 							output += '", "type":"case';
