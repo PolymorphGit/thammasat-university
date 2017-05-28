@@ -95,7 +95,7 @@ angular.module('leadApp', [])
 	      {
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
-    	  		$scope.scholarshipnames = value.scholarshipnames;
+    			  checkScholarship();
     		  }
 	      });
       }
@@ -169,7 +169,6 @@ angular.module('leadApp', [])
     	
     	
     	$scope.lead = data[0];
-    	checkScholarship();
     })
     .error((data) => {
       console.log('Error: ' + data);
