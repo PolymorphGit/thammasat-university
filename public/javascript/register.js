@@ -89,7 +89,7 @@ angular.module('leadApp', [])
 	  																   'SCiUS Scholarship', 'Disability Scholarship']}];
 
   $scope.$watch('lead.scholarship__c', function(newVal) {
-      if (newVal)
+      /*if (newVal)
       {
     	  angular.forEach($scope.scholarshipname , function(value)
 	      {
@@ -98,7 +98,30 @@ angular.module('leadApp', [])
     	  		$scope.scholarshipnames = value.scholarshipnames;
     		  }
 	      });
+      }*/
+      
+      var obj1 = document.getElementById('request_Zone__c');
+		var obj2 = document.getElementById('chkScholarship');
+		
+		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
+		alert("Scholarship: " + obj2.checked);
+	 	if(obj2.checked){
+          if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
+              angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
+          }
       }
+		
+	 	for (var i=0; i < obj1.length; ++i){    
+          
+          tempValue=obj1.options[i].text.toLowerCase();
+          
+          if ( (tempValue.indexOf('zone m')<=-1) && (tempValue.indexOf('zone f')<=-1) ){
+          	
+              obj1 .options[i].style.display=(obj2.checked ? 'none':'');
+          	
+          }
+          
+  	}
   });
   
   $scope.getData = function () {	
