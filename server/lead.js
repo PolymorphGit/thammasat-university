@@ -165,7 +165,7 @@ exports.updateLead = function(req, res, next) {
 	
 	//New Field
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
-	console.log(req.body.graduated_from__c.replace('\'', '\'\''));
+	//console.log(req.body.graduated_from__c.replace('\'', '\'\''));
 	//console.log(req.body.scholarship__c);
 	query += "scholarship__c=" + Scholarship + ", ";
 	if(req.body.scholarship_name__c)
@@ -191,7 +191,7 @@ exports.updateLead = function(req, res, next) {
 	query += " WHERE SFID='" + id + "' RETURNING *";
 	db.select(query)
 	.then(function(results) {
-		console.log(results);	
+		//console.log(results);	
 		res.json(results);
 	})	
     .catch(next);
