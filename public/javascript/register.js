@@ -29,15 +29,19 @@ angular.module('leadApp', [])
                     ,'Faculty of Public Health','Puey Ungphakorn School of Development Studies','School of Global Studies'
                     ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
                     ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Others'];
-  $scope.zone = [{'Gender':'Male', 'zones':['Zone B (4-person room)'
+  $scope.zone = [{'Gender':'Male', 'Scholar': false, 'zones':['Zone B (4-person room)'
                                             ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
                                             ,'Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
                                             ,'Zone M (4-person room | fan | share WC)','Zone M (4-person room | fan | private WC)']}, 
-	  			 {'Gender':'Female', 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
+                 {'Gender':'Male', 'Scholar': true, 'zones':['Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
+                                            ,'Zone M (4-person room | fan | share WC)','Zone M (4-person room | fan | private WC)']}, 
+	  			 {'Gender':'Female', 'Scholar': false, 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
 	  			                              ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
 	  			                              ,'Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
+	  			                              ,'Zone F (4-person room | fan | share WC)','Zone F (4-person room | fan | private WC)']},
+	  			 {'Gender':'Female', 'Scholar': true, 'zones':['Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
 	  			                              ,'Zone F (4-person room | fan | share WC)','Zone F (4-person room | fan | private WC)']
-                                            }];
+	  			                              }];
   
   $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
   $scope.sleepingbehavior = ['Not Snore','Snore'];
@@ -99,36 +103,18 @@ angular.module('leadApp', [])
     		  }
 	      });
       }*/
-      
-      var obj1 = angular.element(document.querySelector('#request_Zone__c'))[0];
-		alert(obj1.length);
-		alert(obj1.options.length);
-		alert(obj1.selectedIndex);
-		alert(obj1.options[obj1.selectedIndex]);
-		alert(obj1.options[obj1.selectedIndex].text);
-		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
-		
-		/*
-		//alert("Scholarship: " + newVal);
-	 	if(newVal){
-	 		
-          if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
-              $scope.lead.request_zone__c = null;
-          }
-	 	}
-	 	
-	 	for (var i=0; i < obj1.length; ++i){    
-          
-          tempValue=obj1.options[i].text.toLowerCase();
-          
-          if ( (tempValue.indexOf('zone m')<=-1) && (tempValue.indexOf('zone f')<=-1) ){
-          	
-              obj1.options[i].style.display=(newVal ? 'none':'');
-          	
-          }
-          
-  		}
-  		*/
+	  if (newVal)
+      {
+    	  //alert($scope.lead.scholarship__c);
+    	  angular.forEach($scope.zone , function(value)
+	      {
+    		  if(value.Gender == $scope.lead.gender__c && value.Scholar == $scope.lead.scholarship__c)
+    		  {
+    			  //alert(value.zones);
+    	  			$scope.zones = value.zones;
+    		  }
+	      });
+      }
   });
   
   $scope.getData = function () {	
