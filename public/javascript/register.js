@@ -110,7 +110,7 @@ angular.module('leadApp', [])
           }
 	 	}
 	 	alert(tempValue);
-		alert(obj1.length);
+		alert(obj1.options.length);
 	 	for (var i=0; i < obj1.length; ++i){    
           
           tempValue=obj1.options[i].text.toLowerCase();
