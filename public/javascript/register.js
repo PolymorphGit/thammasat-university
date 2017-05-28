@@ -106,9 +106,10 @@ angular.module('leadApp', [])
 		alert(obj1.selectedIndex);
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
 		alert(tempValue);
-		
+		/*
 		//alert("Scholarship: " + newVal);
 	 	if(newVal){
+	 		
           if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
               $scope.lead.request_zone__c = null;
           }
@@ -124,7 +125,8 @@ angular.module('leadApp', [])
           	
           }
           
-  	}
+  		}
+  		*/
   });
   
   $scope.getData = function () {	
