@@ -101,7 +101,7 @@ angular.module('leadApp', [])
       }*/
       
       var obj1 = angular.element(document.querySelector('#request_Zone__c'));
-		
+		alert(obj1);
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
 		//alert("Scholarship: " + newVal);
 	 	if(newVal){
