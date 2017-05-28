@@ -56,7 +56,7 @@ angular.module('leadApp', [])
 	      {
     		  //alert(value.Gender);
     		  
-    		  if(value.Gender == $scope.lead.gender__c)
+    		  if(value.Gender == $scope.lead.gender__c && value.Scholar == $scope.lead.scholarship__c)
     		  {
     			//alert(value.zones);
     	  		$scope.zones = value.zones;
