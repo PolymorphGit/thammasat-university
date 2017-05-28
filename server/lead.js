@@ -176,7 +176,7 @@ exports.updateLead = function(req, res, next) {
 	query += "disabled__c=" + Disable + ", ";
 	var Birthday = '1990-7-2';
 	query += "birthdate__c='" + req.body.birthdate__c + "', ";
-	query += "parent_income__c='" + req.body.parent_income__c + "' ";
+	//query += "parent_income__c='" + req.body.parent_income__c + "' ";
 	if(req.body.year__c)
 	{
 		query += ", year__c=" + req.body.year__c + ", ";
