@@ -100,13 +100,13 @@ angular.module('leadApp', [])
 	      });
       }*/
       
-      var obj1 = document.getElementById('request_Zone__c');
+      var obj1 = $document.getElementById('request_Zone__c');
 		
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
 		alert("Scholarship: " + newVal);
 	 	if(newVal){
           if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
-              angular.element(document.getElementById('main')).scope().lead.request_zone__c = null;
+              angular.element($document.getElementById('main')).scope().lead.request_zone__c = null;
           }
       }
 		
