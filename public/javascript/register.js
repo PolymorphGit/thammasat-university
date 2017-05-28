@@ -100,7 +100,7 @@ angular.module('leadApp', [])
 	      });
       }*/
       
-      var obj1 = angular.element(document.querySelector('#request_Zone__c'))[0];
+      var obj1 = angular.element(document.querySelector('#request_Zone__c'));
 		
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
 		//alert("Scholarship: " + newVal);
@@ -110,7 +110,7 @@ angular.module('leadApp', [])
           }
 	 	}
 	 	alert(tempValue);
-		alert(obj1.options.length);
+		alert(obj1.length);
 	 	for (var i=0; i < obj1.length; ++i){    
           
           tempValue=obj1.options[i].text.toLowerCase();
