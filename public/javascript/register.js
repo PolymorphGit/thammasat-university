@@ -95,7 +95,7 @@ angular.module('leadApp', [])
 	      {
     		  if(value.Scholarship__c == $scope.lead.scholarship__c)
     		  {
-    			  checkScholarship();
+    	  		$scope.scholarshipnames = value.scholarshipnames;
     		  }
 	      });
       }
