@@ -3,6 +3,9 @@ var db = require('./pghelper');
 exports.getDetail = function(req, res, next) {
 	var id = req.params.id;
 	var output = '';
+	var date;
+	var time;
+	var detail;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);
