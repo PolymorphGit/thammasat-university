@@ -100,8 +100,10 @@ angular.module('leadApp', [])
 	      });
       }*/
       
-      var obj1 = angular.element(document.querySelector('#request_Zone__c'));
+      var obj1 = angular.element(document.querySelector('#request_Zone__c'))[0];
 		alert(obj1.length);
+		alert(obj1.options.length);
+		alert(obj1.selectedIndex);
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
 		alert(tempValue);
 		
