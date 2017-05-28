@@ -136,7 +136,7 @@ exports.updateLead = function(req, res, next) {
 	query += "lastname='" + req.body.lastname + "', ";
 	query += "mobilephone='" + req.body.mobilephone + "', ";
 	query += "email='" + req.body.email + "', ";
-	query += "graduated_from__c='" + req.body.graduated_from__c.toString() + "', ";
+	query += "graduated_from__c='" + req.body.graduated_from__c.replace('\\', '\\\\') + "', ";
 	query += "graduated_area__c='" + req.body.graduated_area__c + "', ";
 	query += "congenital_disease__c='" + req.body.congenital_disease__c + "', ";
 	query += "student_id__c='" + req.body.student_id__c + "', ";
