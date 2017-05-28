@@ -103,7 +103,7 @@ angular.module('leadApp', [])
     		  }
 	      });
       }*/
-	  if (newVal)
+	  //if (newVal)
       {
     	  //alert($scope.lead.scholarship__c);
     	  angular.forEach($scope.zone , function(value)
