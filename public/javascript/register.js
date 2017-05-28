@@ -104,8 +104,10 @@ angular.module('leadApp', [])
 		alert(obj1.length);
 		alert(obj1.options.length);
 		alert(obj1.selectedIndex);
+		alert(obj1.options[obj1.selectedIndex]);
+		alert(obj1.options[obj1.selectedIndex].text);
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
-		alert(tempValue);
+		
 		/*
 		//alert("Scholarship: " + newVal);
 	 	if(newVal){
