@@ -165,7 +165,7 @@ exports.updateLead = function(req, res, next) {
 	
 	//New Field
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
-	//console.log(Scholarship);
+	console.log(req.body.graduated_from__c.replace('\\', '\\\\'));
 	//console.log(req.body.scholarship__c);
 	query += "scholarship__c=" + Scholarship + ", ";
 	if(req.body.scholarship_name__c)
