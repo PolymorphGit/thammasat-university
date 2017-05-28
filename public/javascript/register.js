@@ -101,16 +101,17 @@ angular.module('leadApp', [])
       }*/
       
       var obj1 = angular.element(document.querySelector('#request_Zone__c'));
-		alert(obj1);
+		alert(obj1.length);
 		var tempValue=obj1.options[obj1.selectedIndex].text.toLowerCase();   
+		alert(tempValue);
+		
 		//alert("Scholarship: " + newVal);
 	 	if(newVal){
           if ( (tempValue.indexOf('zone m')<=-1)&&(tempValue.indexOf('zone f')<=-1) ){
               $scope.lead.request_zone__c = null;
           }
 	 	}
-	 	alert(tempValue);
-		alert(obj1.length);
+	 	
 	 	for (var i=0; i < obj1.length; ++i){    
           
           tempValue=obj1.options[i].text.toLowerCase();
