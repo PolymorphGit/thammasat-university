@@ -343,11 +343,11 @@ exports.checkCap = function(req, res, next) {
 							}
 							if(message != '')
 							{
-								res.send('{ status: "fail", message: "' + message + ' เต็ม" }');
+								res.send('{ "status": "fail", message: "' + message + ' เต็ม" }');
 							}
 							else
 							{
-								res.send('{ status: "success" }');
+								res.send('{ "status": "success" }');
 							}
 						})
 					    .catch(next);
