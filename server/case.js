@@ -9,19 +9,28 @@ exports.getDetail = function(req, res, next) {
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		//console.log(results);
-		output = '[{"case_id":"' + results[0].sfid;
-		output += '", "casenumber":"' + results[0].name;
-		output += '", "type":"' + results[0].type;
-		output += '", "problem_type":"' + results[0].problem_type__c;
-		output += '", "problem_sub_type":"' + results[0].problem_sub_type__c;
-		output += '", "priority":"' + results[0].priority;
-		output += '", "subject":"' + results[0].subject;
-		output += '", "status":"' + results[0].status;
-		output += '", "amount":"' + results[0].amount__c;
+		date = results[0].createddate;
+		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
+		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+		output = '[{"id":"' + results[0].sfid;
+		output += '", "name":"' + results[i].subject + ' (' + results[i].casenumber + ')';
+		detail = results2[i].description;
+		detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
+		//detail = detail.trim();
+		output += '", "detail":"' + detail;
+		//output += '", "type":"' + results[0].type;
+		//output += '", "problem_type":"' + results[0].problem_type__c;
+		//output += '", "problem_sub_type":"' + results[0].problem_sub_type__c;
+		//output += '", "priority":"' + results[0].priority;
+		//output += '", "subject":"' + results[0].subject;
+		output += '", "checkout_date":"' + results[0].checkout_date__c;
 		output += '", "agree_to_pay":"' + results[0].agree_to_pay__c;
 		output += '", "allow_to_access":"' + results[0].allow_to_access_room__c;
-		output += '", "remark":"' + results[0].description;
-		output += '", "create_date":"' + results[0].createddate + '"}]';
+		output += '", "amount":"' + results[0].amount__c;
+		output += '", "payment_detail":"' + results[0].payment_detail__c;
+		output += '", "status":"' + results[0].status;
+		output += '", "created_date":"' + date;
+		output += '", "created_time":"' + time + '"},';
 		output = JSON.parse(output);
 		res.json(output);
 		//res.json(results);
@@ -79,7 +88,7 @@ exports.getList = function(req, res, next) {
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')';
 							output += '", "type":"case';
-							detail = results2[i].description;
+							detail = results2[i].description == null ? '' : results2[i].description;
 							detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
 							//detail = detail.trim();
 							output += '", "detail":"' + detail;
@@ -200,6 +209,108 @@ exports.openCaseOther = function(req, res, next) {
 }
 
 exports.openCaseRenew = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
+exports.openCaseAccess = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
+exports.openCaseGuest = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
+exports.openCaseChange = function(req, res, next) {
 	var head = req.headers['authorization'];
 	if (!req.body) return res.sendStatus(400);
 	console.log(req.body);
