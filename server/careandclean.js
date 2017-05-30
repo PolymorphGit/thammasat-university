@@ -306,7 +306,7 @@ exports.checkCap = function(req, res, next) {
 					db.select("SELECT * FROM salesforce.clean_capacity__c WHERE zone__c='" + results2[0].zone__c + "'")
 					.then(function(results3) {
 						//Build Query 
-						console.log(result3);
+						console.log(results3);
 						var listDate = '';
 						for(var i = 0 ; i < req.body.schedule.length; i++)
 						{
