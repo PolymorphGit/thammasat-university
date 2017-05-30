@@ -141,33 +141,35 @@ exports.getList = function(req, res, next) {
 			    var obj = JSON.parse(str);
 			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "'";
+					
+					
+					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and subject='Care and Clean'";
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
 					}
 					//console.log(query);
 					db.select(query)
-					.then(function(results2) {	
+					.then(function(results3) {	
 						//Build Output
 						var output = '[';
 						var createdate;
 						var date;
 						var time;
-						for(var i = 0 ; i <results2.length ; i++)
+						for(var i = 0 ; i <results3.length ; i++)
 						{
-							createdate = results2[i].createddate;
+							createdate = results3[i].createddate;
 							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
-							output += '{"id":"' + results2[i].sfid;
-							output += '", "name":"' + results2[i].subject + ' (' + results2[i].workordernumber + ')';
+							output += '{"id":"' + results3[i].sfid;
+							output += '", "name":"' + results3[i].subject + ' (' + results3[i].workordernumber + ')';
 							output += '", "type":"clean';
-							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results2[i].cleaning_period__c;
-							output += '", "status":"' + results2[i].status;
+							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results3[i].cleaning_period__c;
+							output += '", "status":"' + results3[i].status;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
 						}
-						if(results2.length)
+						if(results3.length)
 						{
 							output = output.substr(0, output.length - 1);
 						}
@@ -322,9 +324,17 @@ exports.checkCap = function(req, res, next) {
 							var message = '';
 							for(var i = 0 ; i < results4.length; i++)
 							{
-								if(results4[i].count > 10)
+								for(var j = 0 ; j < req.body.schedule.length; j++)
 								{
-									message += ' วันที่ ' + results4[i].date + ' ช่วง ' + results4[i].cleaning_period__c + '/';
+									if(results4[i].cleaning_period__c == req.body.schedule[j].time && results4[i].date == req.body.schedule[j].date)
+									{
+										console.log('date: ' + results4[i].date + ', period: ' + results4[i].cleaning_period__c);
+										if((results4[i].cleaning_period__c = 'Morning' && results4[i].count >= results3[0].morning__c) || 
+										   (results4[i].cleaning_period__c = 'Afternoon' && results4[i].count >= results3[0].afternoon__c))
+										{
+											message += ' วันที่ ' + results4[i].date + ' ช่วง ' + results4[i].cleaning_period__c + '/';
+										}
+									}
 								}
 							}
 							if(message != '')
