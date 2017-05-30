@@ -310,7 +310,7 @@ exports.checkCap = function(req, res, next) {
 						var listDate = '';
 						for(var i = 0 ; i < req.body.schedule.length; i++)
 						{
-							listDate += req.body.schedule[i].date + "', ";
+							listDate += "'" + req.body.schedule[i].date + "', ";
 						}
 						listDate = listDate.substr(0, listDate.length - 2);
 						
