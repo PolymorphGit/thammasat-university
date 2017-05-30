@@ -200,7 +200,7 @@ exports.openClean = function(req, res, next) {
 	  host: 'thammasat-university.herokuapp.com',
 	  path: '/checkclean',
 	  port: '443',
-	  method: 'GET',
+	  method: 'POST',
 	  headers: { 'authorization': head, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(req.body) }
 	};
 	
