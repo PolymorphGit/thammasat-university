@@ -324,11 +324,12 @@ exports.checkCap = function(req, res, next) {
 							var message = '';
 							for(var i = 0 ; i < results4.length; i++)
 							{
+								console.log('date: ' + results4[i].date + ', period: ' + results4[i].cleaning_period__c);
 								for(var j = 0 ; j < req.body.schedule.length; j++)
 								{
+									
 									if(results4[i].cleaning_period__c == req.body.schedule[j].time && results4[i].date == req.body.schedule[j].date)
 									{
-										console.log('date: ' + results4[i].date + ', period: ' + results4[i].cleaning_period__c);
 										if((results4[i].cleaning_period__c = 'Morning' && results4[i].count >= results3[0].morning__c) || 
 										   (results4[i].cleaning_period__c = 'Afternoon' && results4[i].count >= results3[0].afternoon__c))
 										{
