@@ -31,6 +31,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "status":"' + results[0].status;
 		output += '", "created_date":"' + date;
 		output += '", "created_time":"' + time + '"},';
+		console.log(output);
 		output = JSON.parse(output);
 		res.json(output);
 		//res.json(results);
