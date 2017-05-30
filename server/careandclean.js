@@ -330,6 +330,7 @@ exports.checkCap = function(req, res, next) {
 									console.log('>> date: ' + req.body.schedule[j].date + ', period: ' + req.body.schedule[j].time);
 									if(results4[i].cleaning_period__c == req.body.schedule[j].time && results4[i].date == req.body.schedule[j].date)
 									{
+										console.log("---check---")
 										if((results4[i].cleaning_period__c = 'Morning' && results4[i].count >= results3[0].morning__c) || 
 										   (results4[i].cleaning_period__c = 'Afternoon' && results4[i].count >= results3[0].afternoon__c))
 										{
