@@ -221,7 +221,8 @@ exports.openClean = function(req, res, next) {
 			}
 			else if(obj.status == 'fail')
 			{
-				res.json(obj);
+				//res.json(obj);
+				res.send('{ status: "fail", message: "' + obj.message + ' เต็ม" }');
 			}
 			else
 			{
@@ -356,7 +357,7 @@ exports.checkCap = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-		    catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		    catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	
