@@ -30,7 +30,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "payment_detail":"' + results[0].payment_detail__c;
 		output += '", "status":"' + results[0].status;
 		output += '", "created_date":"' + date;
-		output += '", "created_time":"' + time + '"},';
+		output += '", "created_time":"' + time + '"}';
 		console.log(output);
 		output = JSON.parse(output);
 		res.json(output);
