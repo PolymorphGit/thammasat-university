@@ -197,7 +197,23 @@ exports.openCaseOther = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
-				
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Other'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, Description, priority, subject) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', '" + req.body.type + "', '";
+						query += req.body.comment + "', 'Medium', '" + req.body.type + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('{ status: "success" }');
+						})
+					    .catch(next);
+					})
+				    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
