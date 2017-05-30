@@ -213,7 +213,7 @@ exports.openClean = function(req, res, next) {
 		    str += chunk;
 		});
 		results.on('end', function() {
-			console.log(str);
+			//console.log(str);
 			var obj = JSON.parse(str);
 			if(obj.status == 'Invalid access token')
 			{
@@ -343,7 +343,7 @@ exports.checkCap = function(req, res, next) {
 							}
 							if(message != '')
 							{
-								res.send('{ "status": "fail", message: "' + message + ' เต็ม" }');
+								res.send('{ "status": "fail", "message": "' + message + ' เต็ม" }');
 							}
 							else
 							{
