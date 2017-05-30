@@ -214,6 +214,8 @@ exports.openCaseOther = function(req, res, next) {
 					    .catch(next);
 					})
 				    .catch(next);
+				})
+			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
