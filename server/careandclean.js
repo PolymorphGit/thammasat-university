@@ -197,13 +197,14 @@ exports.openClean = function(req, res, next) {
 	if (!req.body) return res.sendStatus(400);
 	console.log(req.body);
 	var https = require('https');
+	var postBody = JSON.stringify(req.body);
 	
 	var options = {
 	  host: 'thammasat-university.herokuapp.com',
 	  path: '/checkclean',
 	  port: '443',
 	  method: 'POST',
-	  headers: { 'authorization': head, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(req.body) }
+	  headers: { 'authorization': head, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(postBody) }
 	};
 	
 	callback = function(results) {
@@ -276,7 +277,7 @@ exports.openClean = function(req, res, next) {
 	httprequest.on('error', (e) => {
 		res.send('problem with request: ${e.message}');
 	});
-	httprequest.write(req.body);
+	httprequest.write(postBody);
 	httprequest.end();
 }
 
