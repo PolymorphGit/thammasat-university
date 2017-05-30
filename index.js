@@ -70,6 +70,7 @@ app.get('/getcleanrate', clean.getCleanRate);
 app.get('/clean', clean.getList);
 app.get('/clean/:id', clean.getDetail);
 app.post('/openclean', jsonParser, clean.openClean);
+app.post('/checkclean', jsonParser, clean.checkCap);
 
 app.get('/checkindetail', account.checkinDetail);
 app.get('/checkin', account.checkin);
