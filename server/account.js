@@ -499,6 +499,24 @@ exports.renew = function(req, res, next) {
 			{
 			    var obj = JSON.parse(str);
 			    //TODO: Open Case Renew
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results2) {
+					if(results2.length > 0)
+					{
+					    var query = "UPDATE salesforce.Account SET renew__c=true WHERE SFID='" + results2[0].sfid + "'";
+					    if(req.body.summer == 'true')
+				    	{
+					    	query = "UPDATE salesforce.Account SET renew__c=true, room_summer__c='" + results2[0].room__c + "' WHERE SFID='" + results2[0].sfid + "'";
+				    	}
+					    db.select(query)
+						.then(function(results3) {
+							console.log(result3);
+							res.send("{ status: \"Success\", message:\"หากต้องการเปลี่ยนห้องให้ดำเนินการภายใน 1 เดือน\" }");
+						})
+					    .catch(next);
+					}
+				})
+			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});

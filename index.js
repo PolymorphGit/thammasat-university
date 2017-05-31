@@ -65,7 +65,6 @@ app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
 app.post('/opencase', urlencodedParser, case2.openCase);
 app.post('/opencaseother', urlencodedParser, case2.openCaseOther);
-app.post('/opencaserenew', urlencodedParser, case2.openCaseRenew);
 app.post('/opencaseaccess', urlencodedParser, case2.openCaseAccess);
 app.post('/opencaseguest', urlencodedParser, case2.openCaseGuest);
 app.post('/opencasechange', urlencodedParser, case2.openCaseChange);
