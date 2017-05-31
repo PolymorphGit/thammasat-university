@@ -9,6 +9,7 @@ var case2 = require('./server/case')
 var	clean = require('./server/careandclean')
 var noti = require('./notification')
 var roommate = require('./server/roommate')
+var fyi = require('./server/fyi')
 var lead = require('./server/lead')
 var bodyParser = require('body-parser')
 var app = express()
@@ -61,6 +62,7 @@ app.get('/mailing', mail.getList);
 app.get('/mailing/:id', mail.getDetail);
 app.get('/billing', pay.getList);
 app.get('/billing/:id', pay.getDetail);
+app.get('/getfyi', fyi.getDetail);
 app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
 app.post('/opencase', urlencodedParser, case2.openCase);
