@@ -76,7 +76,7 @@ app.post('/openclean', jsonParser, clean.openClean);
 app.post('/checkclean', jsonParser, clean.checkCap);
 
 app.get('/checkindetail', account.checkinDetail);
-app.get('/checkin', account.checkin);
+app.post('/checkin', urlencodedParser, account.checkin);
 app.post('/requestcheckout', account.RequestCheckout);
 app.get('/checkout', account.checkout);
 

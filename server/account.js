@@ -301,7 +301,7 @@ exports.checkin = function(req, res, next){
 						
 						if (room != null)
 						{
-							db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false WHERE SFID='" + results2[0].sfid + "' RETURNING *")
+							db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false, check_in_comment__c='" + req.body.comment + "' WHERE SFID='" + results2[0].sfid + "' RETURNING *")
 							.then(function(results3) {
 								console.log(results3);	
 								if(results3.length > 0)
