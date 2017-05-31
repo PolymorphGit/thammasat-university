@@ -67,6 +67,7 @@ exports.getDetail = function(req, res, next) {
 	var output = '';
 	var date;
 	var time;
+	var detail;
 	db.select("SELECT * FROM salesforce.WorkOrder WHERE sfid='" + id + "'")
 	.then(function(results0) {
 	db.select("SELECT * FROM salesforce.case WHERE sfid='" + results0[0].caseid + "' and type='Care and Clean'")
@@ -79,7 +80,9 @@ exports.getDetail = function(req, res, next) {
 		output = '[{"id":"' + results[0].sfid;
 		output += '", "name":"' + results[0].subject + " (" + results[0].casenumber + ")";
 		output += '", "type":"clean';
-		output += '", "detail":"' + results[0].description;	
+		detail = results[0].description == null ? '' : results[0].description;
+		detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
+		output += '", "detail":"' + detail;	
 		output += '", "allow_access":"' + results[0].allow_to_access_room__c;
 		output += '", "agrre_to_payment":"' + results[0].agree_to_pay__c;
 		output += '", "quantity":"' + results[0].package_number__c;
