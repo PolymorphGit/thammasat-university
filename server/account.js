@@ -233,6 +233,99 @@ exports.logout = function(req, res, next) {
 	res.send("{ status: \"Success\" }");
 };
 
+exports.getZone = function(req, res, next) {
+	var head = req.headers['authorization'];
+	var https = require('https');
+
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  //host: 'thammasat-university.herokuapp.com',
+	  //path: '/',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+			    var obj = JSON.parse(str);
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results2) {
+					console.log(results2);
+					if(results2.length > 0)
+					{
+						var zone = {};
+						var isLampang = results2[0].zone__c.includes('Lampang ');
+						var isMale = result2[0].gender__c.includes('Male');
+						var isScholarShip = results2[0].scholarship__c;
+						if(isLampang)
+						{
+							if(isMale)
+							{
+								zone = {zone:["TU Lampang Dome 2 with Air Conditioner (4 students)", "TU Lampang Dome 2 with Fan (4 students)"]};
+							}
+							else
+							{
+								zone = {zone:["TU Lampang Dome 1 with Air Conditioner (4 students)", "TU Lampang Dome 1 with Fan (4 students)",
+										      "TU Lampang Dome 2 with Air Conditioner (4 students)", "TU Lampang Dome 2 with Fan (4 students)"]};
+							}
+						}
+						else
+						{
+							if(isScholarShip)
+							{
+								if(isMale)
+								{
+									zone = {zone:["Zone M (4-person room | air-condition | share WC)", "Zone M (4-person room | air-condition | private WC)",
+										          "Zone M (4-person room | fan | share WC)", "Zone M (4-person room | fan | private WC)"]};
+								}
+								else
+								{
+									zone = {zone:["	Zone F (4-person room | air-condition | share WC)", "Zone F (4-person room | air-condition | private WC)",
+										  		  "Zone F (4-person room | fan | share WC)", "Zone F (4-person room | fan | private WC)"]};
+								}
+							}
+							else
+							{
+								if(isMale)
+								{
+									zone = {zone:["	Zone B (4-person room)", "Zone C and E (2-person room)", "Zone C Plus (2-person room)", 
+												  "Zone M (4-person room | air-condition | share WC)", "Zone M (4-person room | air-condition | private WC)",
+												  "Zone M (4-person room | fan | share WC)", "Zone M (4-person room | fan | private WC)"]};
+								}
+								else
+								{
+									zone = {zone:["	Zone B (4-person room)", "Zone B8 (4-person room)", "Zone C and E (2-person room)", "Zone C Plus (2-person room)", 
+										  "Zone M (4-person room | air-condition | share WC)", "Zone M (4-person room | air-condition | private WC)",
+										  "Zone M (4-person room | fan | share WC)", "Zone M (4-person room | fan | private WC)"]};
+								}
+							}
+						}
+						console.log(zone);	
+						res.json(zone);
+					}
+				})
+			    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
 exports.checkinDetail = function(req, res, next){
 	var head = req.headers['authorization'];
 	var output = '[{"URL":[';
