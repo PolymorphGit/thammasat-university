@@ -304,8 +304,8 @@ exports.getZone = function(req, res, next) {
 								else
 								{
 									zone = {zone:["Zone B (4-person room)", "Zone B8 (4-person room)", "Zone C and E (2-person room)", "Zone C Plus (2-person room)", 
-										  "Zone M (4-person room | air-condition | share WC)", "Zone M (4-person room | air-condition | private WC)",
-										  "Zone M (4-person room | fan | share WC)", "Zone M (4-person room | fan | private WC)"]};
+										  "Zone F (4-person room | air-condition | share WC)", "Zone F (4-person room | air-condition | private WC)",
+										  "Zone F (4-person room | fan | share WC)", "Zone F (4-person room | fan | private WC)"]};
 								}
 							}
 						}
