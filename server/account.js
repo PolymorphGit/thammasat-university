@@ -264,7 +264,7 @@ exports.getZone = function(req, res, next) {
 					{
 						var zone = {};
 						var isLampang = results2[0].zone__c.includes('Lampang ');
-						var isMale = result2[0].gender__c.includes('Male');
+						var isMale = results2[0].gender__c.includes('Male');
 						var isScholarShip = results2[0].scholarship__c;
 						if(isLampang)
 						{
