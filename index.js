@@ -40,7 +40,7 @@ app.post('/createstudent', jsonParser, lead.createLead);
 app.get('/deletestudent/:id', lead.deleteLead);
 app.post('/updatestudent/:id', jsonParser, lead.updateLead);
 
-app.get('/listzone', account.getZone);
+app.get('/getlistzone', account.getZone);
 app.get('/deleteuser/:id', account.deleteuser);
 app.get('/userinfo', account.getInfo);
 app.post('/updateaccount/:id', jsonParser, account.update);
