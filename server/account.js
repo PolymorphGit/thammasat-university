@@ -236,7 +236,7 @@ exports.logout = function(req, res, next) {
 exports.checkinDetail = function(req, res, next){
 	var head = req.headers['authorization'];
 	var output = '[{"URL":[';
-	db.select("SELECT * FROM salesforce.Master_Checklist__c")
+	db.select("SELECT * FROM salesforce.FYI__c where type__c='Checkin'")
 	.then(function(results) {
 		//console.log(results.length);	
 		for(var i = 0 ; i < results.length; i++)
