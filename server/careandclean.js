@@ -76,7 +76,7 @@ exports.getDetail = function(req, res, next) {
 		//output = JSON.stringify(results);
 		date = results[0].createddate;
 		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
-		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		output = '[{"id":"' + results[0].sfid;
 		output += '", "name":"' + results[0].subject + " (" + results[0].casenumber + ")";
 		output += '", "type":"clean';
@@ -100,7 +100,7 @@ exports.getDetail = function(req, res, next) {
 				for(var i = 0 ; i <results2.length ; i++)
 				{
 					date = results2[0].working_date__c;
-					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);
+					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 					output += '{"clean_id":"' + results2[i].sfid;
 					output += '", "working_date":"' + date;
 					output += '", "period":"' + results2[i].cleaning_period__c;
@@ -162,8 +162,9 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results3.length ; i++)
 						{
 							createdate = results3[i].createddate;
-							date = createdate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
+							date = createdate;
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
+							date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 							output += '{"id":"' + results3[i].sfid;
 							output += '", "name":"' + results3[i].subject + ' (' + results3[i].workordernumber + ')';
 							output += '", "type":"clean';
@@ -256,7 +257,9 @@ exports.openClean = function(req, res, next) {
 										var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c, recordtypeid, assetid, subject, accountid) VALUES ";
 										for(var i = 0 ; i < req.body.schedule.length; i++)
 										{
-											query2 += "('" + results4[0].sfid + "', '" + req.body.schedule[i].date + "', '" + req.body.schedule[i].time;
+											var date = req.body.schedule[i].date;
+											date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
+											query2 += "('" + results4[0].sfid + "', '" + date + "', '" + req.body.schedule[i].time;
 											query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean', '" + obj.sfid + "'), ";
 										}
 										if(req.body.schedule.length > 0)
@@ -326,7 +329,7 @@ exports.checkCap = function(req, res, next) {
 						}
 						listDate = listDate.substr(0, listDate.length - 2);
 						
-						var query = "SELECT count(worder.Id) as count, to_char(working_date__c, 'MM/DD/YYYY') as date, cleaning_period__c FROM salesforce.workorder as worder ";
+						var query = "SELECT count(worder.Id) as count, to_char(working_date__c, 'DD/MM/YYYY') as date, cleaning_period__c FROM salesforce.workorder as worder ";
 						query += "LEFT JOIN salesforce.account as acc on worder.accountid = acc.sfid "
 						query += "where acc.zone__c='" + results2[0].zone__c + "' and working_date__c IN (" + listDate +") group by working_date__c, cleaning_period__c";
 						db.select(query)

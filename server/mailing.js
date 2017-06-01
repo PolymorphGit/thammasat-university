@@ -13,7 +13,7 @@ exports.getDetail = function(req, res, next) {
 			//console.log(results2);	
 			date = results[0].createddate;
 			time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
-			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);		
+			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();		
 			output = '[{"id":"' + results[0].sfid;
 			output += '", "name":"' + results[0].name;
 			output += '", "created_date":"' + date;
@@ -24,7 +24,7 @@ exports.getDetail = function(req, res, next) {
 			date = results[0].received_date__c;
 			if(date != null)
 			{
-				date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + ("0" + date.getFullYear()).slice(-2);	
+				date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 			}
 			else
 			{
@@ -84,7 +84,7 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + ("0" + createdate.getFullYear()).slice(-2);
+							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + createdate.getFullYear();
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"' + results2[i].name;
