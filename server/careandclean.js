@@ -235,7 +235,7 @@ exports.openClean = function(req, res, next) {
 					
 					var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, subject, description";
 					query += ", amount__c, allow_to_access_room__c, agree_to_pay__c, priority, package_number__c) ";
-					query += "VALUES ('" + results2[0].sfid + "', '" + obj.sfid + "', 'Mobile Application', 'Care and Clean', '";
+					query += "VALUES ('" + results2[0].sfid + "', '" + obj.identities[0].sfid + "', 'Mobile Application', 'Care and Clean', '";
 					query += req.body.comment + "', '" + req.body.amount + "', '" + req.body.access + "', '";
 					query += req.body.payment + "', 'Medium', " + req.body.schedule.length + ") RETURNING *";
 					//console.log(query);
@@ -247,13 +247,13 @@ exports.openClean = function(req, res, next) {
 							.then(function(results4) {
 								db.select("SELECT * FROM salesforce.RecordType WHERE name='Maid'")
 								.then(function(results5) {
-									db.select("SELECT * FROM salesforce.Asset WHERE accountid='" + obj.sfid + "' and active__c=true")
+									db.select("SELECT * FROM salesforce.Asset WHERE accountid='" + obj.identities[0].sfid + "' and active__c=true")
 									.then(function(results6) {
 										var query2 = "INSERT INTO salesforce.WorkOrder (caseid, working_date__c, cleaning_period__c, recordtypeid, assetid, subject, accountid) VALUES ";
 										for(var i = 0 ; i < req.body.schedule.length; i++)
 										{
 											query2 += "('" + results4[0].sfid + "', '" + req.body.schedule[i].date + "', '" + req.body.schedule[i].time;
-											query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean', '" + obj.sfid + "'), ";
+											query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean', '" + obj.identities[0].sfid + "'), ";
 										}
 										if(req.body.schedule.length > 0)
 										{
