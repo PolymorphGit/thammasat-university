@@ -249,9 +249,11 @@ exports.openCaseAccess = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
+				console.log(results);
 				var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
+					console.log(results);
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Early and Late Access'")
 					.then(function(results2) {
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject) ";
@@ -260,7 +262,7 @@ exports.openCaseAccess = function(req, res, next) {
 						//console.log(query);
 						db.select(query)
 						.then(function(results3) {
-							
+							console.log(result3);
 							res.send('{ status: "success" }');
 						})
 					    .catch(next);
