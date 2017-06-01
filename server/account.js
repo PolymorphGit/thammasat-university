@@ -511,7 +511,7 @@ exports.RequestCheckout = function(req, res, next) {
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Checkout'")
 					.then(function(results2) {
-						var date = req.body.checkout_date;
+						var date = req.body.date;
 						date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, checkout_date__c, type, problem_type__c, subject, description, reason_to_check_out__c) ";
 							query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', '" + date + "', '";
