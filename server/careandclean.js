@@ -227,6 +227,10 @@ exports.openClean = function(req, res, next) {
 				//res.json(obj);
 				res.send('{ status: "fail", message: "' + obj.message + ' เต็ม" }');
 			}
+			else if(obj.status__c != 'Checkin')
+			{
+				res.send('{ status: "fail", message: "คุณยังไม่ได้ทำการ Check in" }');
+			}
 			else
 			{
 				//Open Case 
