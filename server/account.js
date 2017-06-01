@@ -72,7 +72,7 @@ exports.checkStatus = function(req, res, next) {
 				.then(function(results) {
 					console.log(results);	
 					var output = { renew : results[0].renew__c, checkout : results[0].allow_check_out__c};
-					res.json(results);
+					res.json(output);
 				})
 			    .catch(next);
 			}
