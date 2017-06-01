@@ -352,7 +352,7 @@ exports.checkCap = function(req, res, next) {
 							else
 							{
 								//res.send('{ "status": "success" }');
-								res.json(results2);
+								res.json(results2[0]);
 							}
 						})
 					    .catch(next);
