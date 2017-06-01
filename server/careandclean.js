@@ -330,8 +330,8 @@ exports.checkCap = function(req, res, next) {
 					var query = "SELECT Id, to_char(working_date__c, 'DD/MM/YYYY') as date FROM salesforce.workorder where accountid='" + results2[0].sfid + "' and working_date__c IN (" + listDate +")";
 					db.select(query)
 					.then(function(results3) {
-						console.log(results3);
-						if(result3.length == 0)
+						//console.log(results3);
+						if(results3.length == 0)
 						{
 							db.select("SELECT * FROM salesforce.clean_capacity__c WHERE zone__c='" + results2[0].zone__c + "'")
 							.then(function(results4) {
@@ -378,9 +378,9 @@ exports.checkCap = function(req, res, next) {
 						else
 						{
 							var message = "คุณได้ทำการจอง วันที่ ";
-							for(var i = 0 ; i < results2.length ; i++)
+							for(var i = 0 ; i < results3.length ; i++)
 							{
-								message += results2[i].date + ", ";
+								message += results3[i].date + ", ";
 							}
 							res.send('{ "status": "fail", "message": "' + message + ' แล้ว" }');
 						}
