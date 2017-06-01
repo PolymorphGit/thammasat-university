@@ -258,7 +258,7 @@ exports.openClean = function(req, res, next) {
 										for(var i = 0 ; i < req.body.schedule.length; i++)
 										{
 											var date = req.body.schedule[i].date;
-											date = date.substring(3, 4) + "/" + date.substring(0, 1) + "/" + date.substring(6, 7);
+											date = date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
 											query2 += "('" + results4[0].sfid + "', '" + date + "', '" + req.body.schedule[i].time;
 											query2 += "', '" + results5[0].sfid + "', '" + results6[0].sfid +"', 'Care and Clean', '" + obj.sfid + "'), ";
 										}
