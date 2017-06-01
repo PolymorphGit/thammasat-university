@@ -327,7 +327,7 @@ exports.checkCap = function(req, res, next) {
 						listDate = listDate.substr(0, listDate.length - 2);
 						
 						var query = "SELECT count(Id) as count, to_char(working_date__c, 'MM/DD/YYYY') as date, cleaning_period__c FROM salesforce.workorder as order ";
-						query += "INNER LEFT JOIN salesforce.account as acc on order.accountid = acc.sfid "
+						query += "LEFT JOIN salesforce.account as acc on order.accountid = acc.sfid "
 						query += "where acc.zone__c='" + results2[0].zone__c + "' and working_date__c IN (" + listDate +") group by working_date__c, cleaning_period__c";
 						db.select(query)
 						.then(function(results4) {
