@@ -202,7 +202,7 @@ exports.openCaseOther = function(req, res, next) {
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Other'")
 					.then(function(results2) {
-						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, Description, priority, subject) ";
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, description, priority, subject) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', '" + req.body.type + "', '";
 						query += req.body.comment + "', 'Medium', '" + req.body.type + "')";
 						//console.log(query);
@@ -249,7 +249,25 @@ exports.openCaseAccess = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
-				
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Early and Late Access'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '"; 
+						query += req.body.type + "', '" + req.body.comment + "', 'Medium', '" + req.body.type + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('{ status: "success" }');
+						})
+					    .catch(next);
+					})
+				    .catch(next);
+				})
+			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
@@ -283,7 +301,25 @@ exports.openCaseGuest = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
-				
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Request to Stay'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject, citizen_id_passport_no__c, stay_start_date__c) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '"; 
+						query += "ขออนุญาตค้างคืน', '" + req.body.comment + "', 'Medium', 'ขออนุญาตค้างคืน', '" + req.body.identity_number + "', '" + req.body.date + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('{ status: "success" }');
+						})
+					    .catch(next);
+					})
+				    .catch(next);
+				})
+			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
@@ -317,7 +353,25 @@ exports.openCaseChange = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
-				
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Move Room'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject, Request_Zone__c, reason_to_move_room__c) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '"; 
+						query += "ย้ายห้อง', '" + req.body.comment + "', 'Medium', 'ย้ายห้อง', '" + req.body.zone + "', '" + req.body.reason + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('{ status: "success" }');
+						})
+					    .catch(next);
+					})
+				    .catch(next);
+				})
+			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
 		});
