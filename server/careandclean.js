@@ -318,56 +318,72 @@ exports.checkCap = function(req, res, next) {
 				var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results2) {
-					db.select("SELECT * FROM salesforce.clean_capacity__c WHERE zone__c='" + results2[0].zone__c + "'")
+					var listDate = '';
+					var date;
+					for(var i = 0 ; i < req.body.schedule.length; i++)
+					{
+						date = req.body.schedule[i].date;
+						date = date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
+						listDate += "'" + date + "', ";
+					}
+					listDate = listDate.substr(0, listDate.length - 2);
+					var query = "SELECT Id, to_char(working_date__c, 'DD/MM/YYYY') as date FROM salesforce.workorder where accountid='" + results2[0].sfid + "' and working_date__c IN (" + listDate +")";
+					db.select(query)
 					.then(function(results3) {
-						//Build Query 
 						console.log(results3);
-						var listDate = '';
-						var date;
-						for(var i = 0 ; i < req.body.schedule.length; i++)
+						if(result3.length == 0)
 						{
-							date = req.body.schedule[i].date;
-							date = date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
-							listDate += "'" + date + "', ";
-						}
-						listDate = listDate.substr(0, listDate.length - 2);
-						
-						var query = "SELECT count(worder.Id) as count, to_char(working_date__c, 'DD/MM/YYYY') as date, cleaning_period__c FROM salesforce.workorder as worder ";
-						query += "LEFT JOIN salesforce.account as acc on worder.accountid = acc.sfid "
-						query += "where acc.zone__c='" + results2[0].zone__c + "' and working_date__c IN (" + listDate +") group by working_date__c, cleaning_period__c";
-						db.select(query)
-						.then(function(results4) {
-							//Loop check count with capacity
-							console.log(results4);
-							var message = '';
-							for(var i = 0 ; i < results4.length; i++)
-							{
-								console.log('date: ' + results4[i].date + ', period: ' + results4[i].cleaning_period__c);
-								for(var j = 0 ; j < req.body.schedule.length; j++)
-								{
-									console.log('>> date: ' + req.body.schedule[j].date + ', period: ' + req.body.schedule[j].time);
-									if(results4[i].cleaning_period__c == req.body.schedule[j].time && results4[i].date == req.body.schedule[j].date)
+							db.select("SELECT * FROM salesforce.clean_capacity__c WHERE zone__c='" + results2[0].zone__c + "'")
+							.then(function(results4) {
+								console.log(results4);
+								query = "SELECT count(worder.Id) as count, to_char(working_date__c, 'DD/MM/YYYY') as date, cleaning_period__c FROM salesforce.workorder as worder ";
+								query += "LEFT JOIN salesforce.account as acc on worder.accountid = acc.sfid ";
+								query += "where acc.zone__c='" + results2[0].zone__c + "' and working_date__c IN (" + listDate +") group by working_date__c, cleaning_period__c";
+								db.select(query)
+								.then(function(results5) {
+									//Loop check count with capacity
+									console.log(results5);
+									var message = '';
+									for(var i = 0 ; i < results5.length; i++)
 									{
-										console.log("---check---")
-										if((results4[i].cleaning_period__c == 'Morning' && results4[i].count >= results3[0].morning__c) || 
-										   (results4[i].cleaning_period__c == 'Afternoon' && results4[i].count >= results3[0].afternoon__c))
+										console.log('date: ' + results5[i].date + ', period: ' + results5[i].cleaning_period__c);
+										for(var j = 0 ; j < req.body.schedule.length; j++)
 										{
-											message += ' วันที่ ' + results4[i].date + ' ช่วง ' + results4[i].cleaning_period__c + '/';
+											console.log('>> date: ' + req.body.schedule[j].date + ', period: ' + req.body.schedule[j].time);
+											if(results5[i].cleaning_period__c == req.body.schedule[j].time && results5[i].date == req.body.schedule[j].date)
+											{
+												console.log("---check---(" + results5[i].cleaning_period__c + ")-(" + results5[i].count + ")");
+												if((results5[i].cleaning_period__c == 'Morning' && results5[i].count >= results4[0].morning__c) || 
+												   (results5[i].cleaning_period__c == 'Afternoon' && results5[i].count >= results4[0].afternoon__c))
+												{
+													message += ' วันที่ ' + results5[i].date + ' ช่วง ' + results5[i].cleaning_period__c + '/';
+												}
+											}
 										}
 									}
-								}
-							}
-							if(message != '')
+									if(message != '')
+									{
+										res.send('{ "status": "fail", "message": "' + message + ' เต็ม" }');
+									}
+									else
+									{
+										//res.send('{ "status": "success" }');
+										res.json(results2[0]);
+									}
+								})
+							    .catch(next);
+							})
+						    .catch(next);
+						}
+						else
+						{
+							var message = "คุณได้ทำการจอง วันที่ ";
+							for(var i = 0 ; i < results2.length ; i++)
 							{
-								res.send('{ "status": "fail", "message": "' + message + ' เต็ม" }');
+								message += results2[i].date + ", ";
 							}
-							else
-							{
-								//res.send('{ "status": "success" }');
-								res.json(results2[0]);
-							}
-						})
-					    .catch(next);
+							res.send('{ "status": "fail", "message": "' + message + ' แล้ว" }');
+						}
 					})
 				    .catch(next);
 				})
