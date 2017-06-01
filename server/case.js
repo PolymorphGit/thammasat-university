@@ -263,7 +263,7 @@ exports.openCaseAccess = function(req, res, next) {
 						//console.log(query);
 						db.select(query)
 						.then(function(results3) {
-							console.log(result3);
+							console.log(results3);
 							res.send('{ status: "success" }');
 						})
 					    .catch(next);
