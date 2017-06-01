@@ -257,6 +257,8 @@ exports.openCaseAccess = function(req, res, next) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Early and Late Access'")
 					.then(function(results2) {
 						console.log(results2);
+						var date = req.body.date;
+						date = date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject, Early_Late_Access_Date__c) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '"; 
 						query += req.body.type + "', '" + req.body.comment + "', 'Medium', '" + req.body.type + "', '" + req.body.date + "')";
