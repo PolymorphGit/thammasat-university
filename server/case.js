@@ -261,7 +261,7 @@ exports.openCaseAccess = function(req, res, next) {
 						date = date.substring(3, 5) + "/" + date.substring(0, 2) + "/" + date.substring(6, 10);
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject, Early_Late_Access_Date__c) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '"; 
-						query += req.body.type + "', '" + req.body.comment + "', 'Medium', '" + req.body.type + "', '" + req.body.date + "')";
+						query += req.body.type + "', '" + req.body.comment + "', 'Medium', '" + req.body.type + "', '" + date + "')";
 						//console.log(query);
 						db.select(query)
 						.then(function(results3) {
