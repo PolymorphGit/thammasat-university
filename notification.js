@@ -80,10 +80,10 @@ function getMailing(id, next)
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].student_name__c
-		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c.toDateString());
+		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c);
 		pusher.trigger(to, 'Mailing', {
 			no: results[0].name,
-			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c.toDateString()
+			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c
 		});
 		return true;
 	})
