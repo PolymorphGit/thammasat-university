@@ -13,52 +13,35 @@ exports.push = function(req, res, next)
 {
 	var id = req.headers['sfid'];
 	var type = req.headers['type'];
+	var message = req.headers['message'];
 	var result = true;
-	if(type == 'billing')
+	switch(type)
 	{
-		result = getBilling(id, next);
+		case 'billling' : result = getBilling(id, next);	break;
+		case 'mailing' : result = getMailing(id, next);	break;
+		case 'problem working' : result = problemWorking(id, next);	break;
+		case 'problem on hold' : result = problemHold(id, message, next);	break;
+		case 'problem closed' : result = problemClosed(id, message, next);	break;
+		case 'complain accept' : result = complainAccept(id, message, next);	break;
+		//case 'clean closed' : result = getMailing(id, next);	break;
+		//case 'checkout confirm' : result = getMailing(id, next);	break;
+		//case 'access approve' : result = getMailing(id, next);	break;
+		//case 'access reject' : result = getMailing(id, next);	break;
+		//case 'leave approve' : result = getMailing(id, next);	break;
+		//case 'leave reject' : result = getMailing(id, next);	break;
+		//case 'stay approve' : result = getMailing(id, next);	break;
+		//case 'stay reject' : result = getMailing(id, next);	break;
+		//case 'room accept' : result = getMailing(id, next);	break;
+		//case 'room reject' : result = getMailing(id, next);	break;
+		//case 'mail found' : result = getMailing(id, next);	break;
+		//case 'mail not found' : result = getMailing(id, next);	break;
+		//case 'household in progress' : result = getMailing(id, next);	break;
+		//case 'household wait doc' : result = getMailing(id, next);	break;
+		//case 'household completed' : result = getMailing(id, next);	break;
+		//case 'other in progress' : result = getMailing(id, next);	break;
+		//case 'other completed' : result = getMailing(id, next);	break;
+		default: testSend();
 	}
-	else if(type == 'mailing')
-	{
-		result = getMailing(id, next);
-	}
-	else if(type == 'Accept case')
-	{
-		result = acceptCase(id, next);
-	}
-	else if(type == 'Close case')
-	{
-		result = closeCase(id, next);
-	}
-	else if(type == 'Accept clean')
-	{
-		result = acceptClean(id, next);
-	}
-	else if(type == 'Reject clean')
-	{
-		result = rejectClean(id, next);
-	}
-	else if(type == 'Complete clean')
-	{
-		result = completeClean(id, next);
-	}
-	else if(type == 'Allow checkout')
-	{
-		result = allowCheckout(id, next);
-	}
-	else if(type == 'Reject checkout')
-	{
-		result = rejectCheckout(id, next);
-	}
-	else if(type == 'Contract Expire')
-	{
-		result = contractExpire(id, next);
-	}
-	else
-	{
-		testSend();
-	}
-	
 	if(result == false)
 	{
 		res.send("Fail");
@@ -107,32 +90,64 @@ function getMailing(id, next)
 	.catch(next);
 }
 
-function acceptCase(id, next)
+function problemWorking(id, next)
 {
 	var to;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
-		to = results[0].accountid
+		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'acceptcase', {
+		pusher.trigger(to, 'problem working', {
 			No: results[0].casenumber,
-			message: results[0].subject + ' ได้รับการ รับเรื่องแล้ว'
+			message: results[0].subject + ' กำลังดำเนินการ'
 		});
 		return true;
 	})
 	.catch(next);
 }
 
-function closeCase(id, next)
+function problemHold(id, message, next)
 {
 	var to;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'closecase', {
+		pusher.trigger(to, 'problem on hold', {
 			No: results[0].casenumber,
-			message: results[0].subject + ' ได้ทำการแก้ไขแล้ว'
+			message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message
+		});
+		return true;
+	})
+	.catch(next);
+}
+
+function problemClosed(id, message, next)
+{
+	var to;
+	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].accountid
+		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		pusher.trigger(to, 'problem closed', {
+			No: results[0].casenumber,
+			message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message
+		});
+		return true;
+	})
+	.catch(next);
+}
+
+function complainAccept(id, message, next)
+{
+	var to;
+	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].accountid
+		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		pusher.trigger(to, 'complain ฟccept', {
+			No: results[0].casenumber,
+			message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message
 		});
 		return true;
 	})
