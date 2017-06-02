@@ -23,7 +23,7 @@ exports.push = function(req, res, next)
 		case 'problem on hold' : result = problemHold(id, message, next);	break;
 		case 'problem closed' : result = problemClosed(id, message, next);	break;
 		case 'complain accept' : result = complainAccept(id, message, next);	break;
-		//case 'clean closed' : result = getMailing(id, next);	break;
+		case 'clean closed' : result = cleanClose(id, next);	break;
 		//case 'checkout confirm' : result = getMailing(id, next);	break;
 		//case 'access approve' : result = getMailing(id, next);	break;
 		//case 'access reject' : result = getMailing(id, next);	break;
@@ -61,7 +61,7 @@ function getBilling(id, next)
 		to = results[0].student_name__c;
 		invoiceNo = results[0].name;
 		amount = results[0].total_amount__c;
-		duedate = results[0].due_date__c.toDateString();
+		duedate = results[0].due_date__c;
 		
 		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 		pusher.trigger(to, 'Billing', {
@@ -145,7 +145,7 @@ function complainAccept(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'complain ฟccept', {
+		pusher.trigger(to, 'complain accept', {
 			No: results[0].casenumber,
 			message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message
 		});
@@ -154,63 +154,7 @@ function complainAccept(id, message, next)
 	.catch(next);
 }
 
-function acceptClean(id, next)
-{
-	var to;
-	var message = 'ยืนยันทำความสะอาด  วันที่ ';
-	var date;
-	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "'")
-	.then(function(results) {
-		console.log(results);
-		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
-		.then(function(results2) {
-			to = results[0].accountid
-			for(var i = 0 ; i < results2.length ; i++)
-			{
-				date = new Date(results2[i].working_date__c)
-				message +=  date.toDateString() + ', ';
-			}
-			console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject + ', message:' + message);
-			pusher.trigger(to, 'Accept Clean', {
-				No: results[0].casenumber,
-				message: message
-			});
-			return true;
-		})
-		.catch(next);
-	})
-	.catch(next);
-}
-
-function rejectClean(id, next)
-{
-	var to;
-	var message = 'ยกเลิกทำความสะอาด  วันที่ ';
-	var date;
-	db.select("SELECT * FROM salesforce.case WHERE SFID='" + id + "'")
-	.then(function(results) {
-		console.log(results);
-		db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid='" + results[0].sfid + "'")
-		.then(function(results2) {
-			to = results[0].accountid
-			for(var i = 0 ; i < results2.length ; i++)
-			{
-				date = new Date(results2[i].working_date__c);
-				message +=  date.toDateString() + ', ';
-			}
-			console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject + ', message:' + message);
-			pusher.trigger(to, 'Reject Clean', {
-				No: results[0].casenumber,
-				message: message
-			});
-			return true;
-		})
-		.catch(next);
-	})
-	.catch(next);
-}
-
-function completeClean(id, next)
+function cleanClosed(id, next)
 {
 	var to;
 	var date;
@@ -222,59 +166,13 @@ function completeClean(id, next)
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
-			pusher.trigger(to, 'Complete Clean', {
+			pusher.trigger(to, 'clean closed', {
 				No: results2[0].casenumber,
 				message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c
 			});
 			return true;
 		})
 		.catch(next);
-	})
-	.catch(next);
-}
-
-function allowCheckout(id, next)
-{
-	var to;
-	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
-	.then(function(results) {
-		console.log(results);
-		to = results[0].sfid;
-		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
-		pusher.trigger(to, 'Allow Checkout', {
-			message: 'First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname + ' อนุญาติให้ทำการ Check-out ออกจากห้องพัก'
-		});
-		return true;
-	})
-	.catch(next);
-}
-
-function rejectCheckout(id, next)
-{
-	var to;
-	db.select("SELECT * FROM salesforce.Account WHERE SFID='" + id + "'")
-	.then(function(results) {
-		console.log(results);
-		to = results[0].sfid;
-		console.log('To:' + to + ', First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname);
-		pusher.trigger(to, 'Reject Checkout', {
-			message: 'First Name:' + results[0].firstname + ', Last Name:' + results[0].lastname + ' ไม่อนุญาติให้ทำการ Check-out ออกจากห้องพัก เนื่องจากค้างค่าใช้จ่าย'
-		});
-		return true;
-	})
-	.catch(next);
-}
-
-function contractExpire(id, next)
-{
-	var to;
-	db.select("SELECT * FROM salesforce.Asset WHERE SFID='" + id + "'")
-	.then(function(results) {
-		to = results[0].accountid;
-		console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c.toDateString());
-		pusher.trigger(to, 'Contract Expire', {
-			message: 'สัญญาจะหมดอายุในวันที่:' + results[0].contract_end__c.toDateString()
-		});
 	})
 	.catch(next);
 }
