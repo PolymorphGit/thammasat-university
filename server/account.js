@@ -104,8 +104,16 @@ exports.getInfo2 = function(req, res, next) {
 						output += '", "faculty__c":"' + results[0].faculty__c;
 						output += '", "status__c":"' + results[0].status__c;
 						output += '", "allow_check_out__c":"' + results[0].allow_check_out__c;
-						output += '", "room__c":"' + results2[0].name;
-						output += '", "building__c":"' + results2[0].building__c;
+						if(results2.length > 0)
+						{
+							output += '", "room__c":"' + results2[0].name;
+							output += '", "building__c":"' + results2[0].building__c;
+						}
+						else
+						{
+							output += '", "room__c":"no room';
+							output += '", "building__c":"no building';
+						}
 						output += '", "zone__c":"' + results[0].zone__c;
 						output += '", "gender__c":"' + results[0].gender__c;
 						output += '", "billingstreet":"' + results[0].billingstreet;
