@@ -43,6 +43,108 @@ exports.getInfo = function(req, res, next) {
 	httprequest.end();
 };
 
+exports.getInfo2 = function(req, res, next) {
+	var head = req.headers['authorization'];
+	var https = require('https');
+
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  //host: 'thammasat-university.herokuapp.com',
+	  //path: '/',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+			    var obj = JSON.parse(str);
+			    var output = '';
+			    var date;
+				var time;
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					console.log(results);
+					var room = results[0].room__c;
+					var enddate = '';
+					var today = new Date();
+					var startDate = new Date(today.getFullYear(), 1, 6);
+					var endDate = new Date(today.getFullYear(), 7, 31);
+					if((startDate < today && today < endDate))
+					{
+						room = results[0].room_summer__c;
+					}
+					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + room + "'")
+					.then(function(results2) {
+						console.log(results2);	
+						date = results[0].birthdate__c;
+						date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
+						output = '[{"id":"' + results[0].sfid;
+						output += '", "salutation":"' + results[0].salutation;
+						output += '", "name":"' + results[0].name;
+						output += '", "firstname":"' + results[0].firstname;
+						output += '", "lastname":"' + results[0].lastname;
+						output += '", "title_th__c":"' + results[0].title_th__c;
+						output += '", "first_name_th__c":"' + results[0].first_name_th__c;		
+						output += '", "last_name_th__c":"' + results[0].last_name_th__c;
+						output += '", "identification_number__c":"' + results[0].identification_number__c;
+						output += '", "passport_number__c":"' + results[0].passport_number__c;
+						output += '", "student_id__c":"' + results[0].student_id__c;
+						output += '", "personemail":"' + results[0].personemail;
+						output += '", "personmobilephone":"' + results[0].personmobilephone;
+						output += '", "birthdate__c":"' + date;
+						output += '", "faculty__c":"' + results[0].faculty__c;
+						output += '", "status__c":"' + results[0].status__c;
+						output += '", "allow_check_out__c":"' + results[0].allow_check_out__c;
+						output += '", "room__c":"' + results2[0].name;
+						output += '", "building__c":"' + results2[0].building__c;
+						output += '", "zone__c":"' + results[0].zone__c;
+						output += '", "gender__c":"' + results[0].gender__c;
+						output += '", "billingstreet":"' + results[0].billingstreet;
+						output += '", "billingcountry":"' + results[0].billingcountry;
+						output += '", "billingcity":"' + results[0].billingcity;
+						output += '", "billingpostalcode":"' + results[0].billingpostalcode;
+						output += '", "billingstate":"' + results[0].billingstate;
+						output += '", "parent_name__c":"' + results[0].parent_name__c;
+						output += '", "parent_phone__c":"' + results[0].parent_phone__c;
+						output += '", "parent_name_2__c":"' + results[0].parent_name_2__c;
+						output += '", "parent_phone_2__c":"' + results[0].parent_phone_2__c;
+						output += '", "scholarship__c":"' + results[0].scholarship__c;
+						output += '", "disabled__c":"' + results[0].disabled__c;
+						output += '", "renew__c":"' + results[0].renew__c;
+						output += '", "graduated_from__c":"' + results[0].graduated_from__c;
+						output += '", "sleep_after_midnight__c":"' + results[0].sleep_after_midnight__c;
+						output += '", "sleep_soundly__c":"' + results[0].sleep_soundly__c;
+						output += '", "sleep_with_light_on__c":"' + results[0].sleep_with_light_on__c;
+						output += '", "love_cleaning__c":"' + results[0].love_cleaning__c;
+						output += '", "sleep_with_turn_off_air_condition__c":"' + results[0].sleep_with_turn_off_air_condition__c;
+						output += '", "check_in_comment__c":"' + results[0].check_in_comment__c;
+						output += '", "picture_url__c":"' + results[0].picture_url__c + '"}]';
+						res.json(JSON.parse(output));
+					})
+				    .catch(next);
+				})
+			    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+};
 
 exports.checkStatus = function(req, res, next) {
 	var head = req.headers['authorization'];
