@@ -121,7 +121,7 @@ exports.getList = function(req, res, next) {
 	httprequest.end();
 }
 
-exports.openCase = function(req, res, next) {
+exports.openCaseService = function(req, res, next) {
 	var head = req.headers['authorization'];
 	if (!req.body) return res.sendStatus(400);
 	console.log(req.body);
@@ -146,7 +146,61 @@ exports.openCase = function(req, res, next) {
 			    var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-					db.select("SELECT * FROM salesforce.RecordType WHERE name='Problem'")
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Services'")
+					.then(function(results2) {
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, problem_sub_type__c"
+						query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority, subject) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', '" + req.body.type + "', '";
+						query += req.body.problem_type + "', '" + req.body.problem_sub_type + "', '" + req.body.comment + "', '" + req.body.access + "', '";
+						query += req.body.payment + "', 'Medium', '" + req.body.type + "-" + req.body.problem_type + "-" + req.body.problem_sub_type + "')";
+						//console.log(query);
+						db.select(query)
+						.then(function(results3) {
+							
+							res.send('{ status: "success" }');
+						})
+					    .catch(next);
+					})
+				    .catch(next);
+				})
+			    .catch(next);
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+}
+
+exports.openCaseComplain = function(req, res, next) {
+	var head = req.headers['authorization'];
+	if (!req.body) return res.sendStatus(400);
+	console.log(req.body);
+	var https = require('https');
+	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+		    str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+			    var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='Complain'")
 					.then(function(results2) {
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, problem_sub_type__c"
 						query += ", Description, allow_to_access_room__c, agree_to_pay__c, priority, subject) ";
