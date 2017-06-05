@@ -70,6 +70,7 @@ app.get('/case', case2.getList);
 app.get('/case/:id', case2.getDetail);
 app.post('/opencaseservice', urlencodedParser, case2.openCaseService);
 app.post('/opencasecomplain', urlencodedParser, case2.openCaseComplain);
+app.post('/opencaserequest', urlencodedParser, case2.openCaseRequest);
 app.post('/opencaseother', urlencodedParser, case2.openCaseOther);
 app.post('/opencaseaccess', urlencodedParser, case2.openCaseAccess);
 app.post('/opencaseguest', urlencodedParser, case2.openCaseGuest);
