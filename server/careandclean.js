@@ -146,7 +146,7 @@ exports.getList = function(req, res, next) {
 				.then(function(results) {
 					
 					
-					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and subject='Care and Clean'";
+					var query = "SELECT * FROM salesforce.WorkOrder where accountid='" + results[0].sfid + "' and subject='Care and Clean' Order by createddate desc";
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
