@@ -256,8 +256,8 @@ exports.openCaseRequest = function(req, res, next) {
 				.then(function(results) {
 					db.select("SELECT * FROM salesforce.RecordType WHERE name='Other'")
 					.then(function(results2) {
-						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, description, priority, subject) ";
-						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', '" + req.body.problem_type + "', '";
+						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject) ";
+						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '" + req.body.problem_type + "', '";
 						query += req.body.comment + "', 'Medium', '" + req.body.problem_type + "')";
 						//console.log(query);
 						db.select(query)
