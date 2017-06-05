@@ -83,9 +83,9 @@ app.post('/checkclean', jsonParser, clean.checkCap);
 app.get('/checkindetail', account.checkinDetail);
 app.post('/checkin', urlencodedParser, account.checkin);
 app.post('/requestcheckout', urlencodedParser, account.RequestCheckout);
-app.get('/checkout', urlencodedParser, account.checkout);
+app.get('/checkout', account.checkout);
 
-app.post('/notification', noti.push);
+app.post('/notification', urlencodedParser, noti.push);
 
 app.get('/view_account/:id', function(request, response){
 	console.log(request.params.id);
