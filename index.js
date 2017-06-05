@@ -83,7 +83,7 @@ app.post('/checkclean', jsonParser, clean.checkCap);
 app.get('/checkindetail', account.checkinDetail);
 app.post('/checkin', urlencodedParser, account.checkin);
 app.post('/requestcheckout', urlencodedParser, account.RequestCheckout);
-app.get('/checkout', account.checkout);
+app.get('/checkout', urlencodedParser, account.checkout);
 
 app.post('/notification', noti.push);
 
