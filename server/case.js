@@ -254,7 +254,12 @@ exports.openCaseRequest = function(req, res, next) {
 				var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-					db.select("SELECT * FROM salesforce.RecordType WHERE name='Other'")
+					var type = "Check Mailing";
+					if (req.body.problem_type == "ขอทะเบียนบ้าน")
+					{
+						type = "Request Household";
+					}
+					db.select("SELECT * FROM salesforce.RecordType WHERE name='" + type + "'")
 					.then(function(results2) {
 						var query = "INSERT INTO salesforce.Case (recordtypeid, accountid, origin, type, problem_type__c, description, priority, subject) ";
 						query += "VALUES ('" + results2[0].sfid + "', '" + results[0].sfid + "', 'Mobile Application', 'Request', '" + req.body.problem_type + "', '";
