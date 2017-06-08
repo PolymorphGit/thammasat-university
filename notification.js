@@ -6,7 +6,8 @@ var pusher = new Pusher({
   appId: '321597',
   key: 'f57a4e884d78cc6e048a',
   secret: '6bd62949b0bcbf8b22a8',
-  encrypted: true
+  encrypted: true,
+  cluster: "mt1"
 });
 
 exports.push = function(req, res, next) 
