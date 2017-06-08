@@ -70,11 +70,11 @@ function getBilling(id, next)
 		payload = {	ID: results[0].sfid,
 				message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
 		pusher.trigger(to, 'Billing', payload);
-		/*pusher.notify([to], {
+		pusher.notify([to], {
 			apns: { aps: { alert: payload } },
 			gcm: { notification: { payload } }
-			fcm: { notification: { payload } }
-		);*/
+			//fcm: { notification: { payload } }
+		});
 		return true;
 	})
 	.catch(next);
