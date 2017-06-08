@@ -139,6 +139,11 @@ function problemClosed(id, message, next)
 		payload = {	ID: results[0].sfid,
 				message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert: payload } },
+			gcm: { notification: { payload } }
+			//fcm: { notification: { payload } }
+		});
 		return true;
 	})
 	.catch(next);
