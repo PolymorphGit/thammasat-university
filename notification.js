@@ -57,6 +57,7 @@ function getBilling(id, next)
 	var amount;
 	var duedate;
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].student_name__c;
@@ -65,12 +66,14 @@ function getBilling(id, next)
 		duedate = results[0].due_date__c;
 		
 		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
-		pusher.trigger(to, 'Billing', {
-			ID: results[0].sfid,
-			no: invoiceNo,
-			amount: amount,
-			message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate 
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
+		pusher.trigger(to, 'Billing', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert: payload } },
+			gcm: { notification: { payload } }
+			//fcm: { notification: { payload } }
+		);
 		return true;
 	})
 	.catch(next);
@@ -79,15 +82,14 @@ function getBilling(id, next)
 function getMailing(id, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].student_name__c;
 		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c);
-		pusher.trigger(to, 'Mailing', {
-			ID: results[0].sfid,
-			no: results[0].name,
-			message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].received_date__c };
+		pusher.trigger(to, 'Mailing', payload);
 		return true;
 	})
 	.catch(next);
@@ -96,15 +98,14 @@ function getMailing(id, next)
 function problemWorking(id, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: results[0].subject + ' กำลังดำเนินการ'
-		});
+		payload = { 	ID: results[0].sfid,
+				message: results[0].subject + ' กำลังดำเนินการ' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -113,15 +114,14 @@ function problemWorking(id, next)
 function problemHold(id, message, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -130,15 +130,14 @@ function problemHold(id, message, next)
 function problemClosed(id, message, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -147,15 +146,14 @@ function problemClosed(id, message, next)
 function complainAccept(id, message, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -165,6 +163,7 @@ function cleanClosed(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.WorkOrder WHERE SFID='" + id + "'")
 	.then(function(results) {
 		console.log(results);
@@ -173,11 +172,9 @@ function cleanClosed(id, next)
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
-			pusher.trigger(to, 'Clean', {
-				ID: results[0].sfid,
-				No: results2[0].casenumber,
-				message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c
-			});
+			payload = {	ID: results[0].sfid,
+					message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
+			pusher.trigger(to, 'Clean', payload);
 			return true;
 		})
 		.catch(next);
@@ -188,15 +185,14 @@ function cleanClosed(id, next)
 function checkoutConfirm(id, next)
 {
 	var to;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'อนุญาติให้ทำการ Check-out ได้'
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'อนุญาติให้ทำการ Check-out ได้' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -206,17 +202,16 @@ function accessApprove(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -226,17 +221,16 @@ function accesReject(id, message, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -246,17 +240,16 @@ function leaveApprove(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date
-		});
+		payload =  {	ID: results[0].sfid,
+				message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -266,17 +259,16 @@ function leaveReject(id, message, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -286,17 +278,16 @@ function stayApprove(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].stay_start_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -306,17 +297,16 @@ function stayReject(id, message, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].stay_start_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message
-		});
+		payload =  {	ID: results[0].sfid,
+				message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -326,15 +316,14 @@ function roomAccept(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'อนุญาติให้ทำการย้ายห้อง '
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'อนุญาติให้ทำการย้ายห้อง' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -344,15 +333,14 @@ function roomReject(id, message, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -362,15 +350,14 @@ function mailFound(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'พบพัศดุของท่าน ให้มารับได้'
-		});
+		payload =  {	ID: results[0].sfid,
+				message: 'พบพัศดุของท่าน ให้มารับได้' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -380,15 +367,14 @@ function mailNotFound(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่พบพัศดุของท่าน'
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ไม่พบพัศดุของท่าน' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -398,15 +384,14 @@ function houseProgress(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้'
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -416,15 +401,14 @@ function houseDoc(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'
-		});
+		payload =  {	ID: results[0].sfid,
+				message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -434,15 +418,14 @@ function houseCompleted(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว'
-		});
+		payload =  {	ID: results[0].sfid,
+				message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -452,15 +435,14 @@ function otherProgress(id, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ'
-		});
+		payload = {	ID: results[0].sfid,
+				message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
@@ -470,15 +452,13 @@ function otherCompleted(id, message, next)
 {
 	var to;
 	var date;
+	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'Case', {
-			ID: results[0].sfid,
-			No: results[0].casenumber,
-			message: message
-		});
+		payload = { ID: results[0].sfid, message: message };
+		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
 	.catch(next);
