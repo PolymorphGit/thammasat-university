@@ -100,7 +100,7 @@ function problemWorking(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'problem working', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: results[0].subject + ' กำลังดำเนินการ'
@@ -117,7 +117,7 @@ function problemHold(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'problem on hold', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message
@@ -134,7 +134,7 @@ function problemClosed(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'problem closed', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message
@@ -151,7 +151,7 @@ function complainAccept(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'complain accept', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message
@@ -173,7 +173,7 @@ function cleanClosed(id, next)
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
-			pusher.trigger(to, 'clean closed', {
+			pusher.trigger(to, 'Clean', {
 				ID: results[0].sfid,
 				No: results2[0].casenumber,
 				message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c
@@ -192,7 +192,7 @@ function checkoutConfirm(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'checkout confirm', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'อนุญาติให้ทำการ Check-out ได้'
@@ -212,7 +212,7 @@ function accessApprove(id, next)
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'access approve', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date
@@ -232,7 +232,7 @@ function accesReject(id, message, next)
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'access reject', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message
@@ -252,7 +252,7 @@ function leaveApprove(id, next)
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'leave approve', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date
@@ -272,7 +272,7 @@ function leaveReject(id, message, next)
 		date = results[0].early_late_access_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'leave reject', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message
@@ -292,7 +292,7 @@ function stayApprove(id, next)
 		date = results[0].stay_start_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'stay approve', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date
@@ -312,7 +312,7 @@ function stayReject(id, message, next)
 		date = results[0].stay_start_date__c;
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'stay reject', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message
@@ -330,7 +330,7 @@ function roomAccept(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'room accept', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'อนุญาติให้ทำการย้ายห้อง '
@@ -348,7 +348,7 @@ function roomReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'room reject', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message
@@ -366,7 +366,7 @@ function mailFound(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'mail found', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'พบพัศดุของท่าน ให้มารับได้'
@@ -384,7 +384,7 @@ function mailNotFound(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'mail found', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่พบพัศดุของท่าน'
@@ -402,7 +402,7 @@ function houseProgress(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'household in progress', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้'
@@ -420,7 +420,7 @@ function houseDoc(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'household wait document', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'
@@ -438,7 +438,7 @@ function houseCompleted(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'household completed', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว'
@@ -456,7 +456,7 @@ function otherProgress(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'other in progress', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ'
@@ -474,7 +474,7 @@ function otherCompleted(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		pusher.trigger(to, 'other in progress', {
+		pusher.trigger(to, 'Case', {
 			ID: results[0].sfid,
 			No: results[0].casenumber,
 			message: message
