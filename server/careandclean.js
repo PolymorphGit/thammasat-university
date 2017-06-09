@@ -24,7 +24,17 @@ exports.getCleanRate = function(req, res, next) {
 			    //res.send(obj.identities[0].user_id);
 			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results) {
-					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + results[0].room__c + "'")
+					var today = new Date();
+					var startDate = new Date(today.getFullYear(), 5, 1);
+					var endDate = new Date(today.getFullYear(), 6, 31);
+					var room = results2[0].room__c;
+					console.log("Today: " + today + ", Start: " + startDate + ", End: " + endDate);
+					if((startDate < today && today < endDate))
+					{
+						console.log("Summer Term");
+						room = results2[0].room_summer__c;
+					}
+					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + room + "'")
 					.then(function(results2) {
 						db.select("SELECT * FROM salesforce.Master_Clean_Rate__c where type__c='" + results2[0].room_type__c + "' order by quantity__c asc")
 						.then(function(results2) {
