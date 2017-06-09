@@ -539,17 +539,18 @@ exports.checkin = function(req, res, next){
 						var room = results2[0].room__c;
 						if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
 						{
+							console.log("Normal Term");
 							enddate = today.getFullYear() + '-5-31';
 						}
 						else
 						{
+							console.log("Summer Term");
 							enddate = today.getFullYear() + '-7-31';
 							room = results2[0].room_summer__c;
 						}
 						
 						if (room != null)
 						{
-							console.log("Have Room");
 							db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false, check_in_comment__c='" + req.body.comment + "' WHERE SFID='" + results2[0].sfid + "' RETURNING *")
 							.then(function(results3) {
 								console.log(results3);	
