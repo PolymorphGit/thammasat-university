@@ -180,9 +180,9 @@ exports.checkStatus = function(req, res, next) {
 			    var obj = JSON.parse(str);
 			    //res.send(obj.identities[0].user_id);
 			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-				.then(function(results) {
+				.then(function(results) { 
 					console.log(results);	
-					var output = { renew : results[0].renew__c, checkout : results[0].allow_check_out__c};
+					var output = { renew : results[0].allow_renew__c, checkout : results[0].allow_check_out__c};
 					res.json(output);
 				})
 			    .catch(next);
