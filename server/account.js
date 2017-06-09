@@ -764,7 +764,7 @@ exports.renew = function(req, res, next) {
 				    	}
 					    db.select(query)
 						.then(function(results3) {
-							console.log(result3);
+							console.log(results3);
 							res.send("{ status: \"Success\", message:\"หากต้องการเปลี่ยนห้องให้ดำเนินการภายใน 1 เดือน\" }");
 						})
 					    .catch(next);
