@@ -163,15 +163,18 @@ exports.getList = function(req, res, next) {
 						{
 							createdate = results3[i].createddate;
 							date = createdate;
-							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
-							date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
-							output += '{"id":"' + results3[i].sfid;
-							output += '", "name":"' + results3[i].subject + ' (' + results3[i].workordernumber + ')';
-							output += '", "type":"clean';
-							output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results3[i].cleaning_period__c;
-							output += '", "status":"' + results3[i].status;
-							output += '", "created_date":"' + date;
-							output += '", "created_time":"' + time + '"},';
+							if(date != null)
+							{
+								time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
+								date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
+								output += '{"id":"' + results3[i].sfid;
+								output += '", "name":"' + results3[i].subject + ' (' + results3[i].workordernumber + ')';
+								output += '", "type":"clean';
+								output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results3[i].cleaning_period__c;
+								output += '", "status":"' + results3[i].status;
+								output += '", "created_date":"' + date;
+								output += '", "created_time":"' + time + '"},';
+							}
 						}
 						if(results3.length)
 						{

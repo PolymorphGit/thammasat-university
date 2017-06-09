@@ -76,8 +76,8 @@ exports.getInfo2 = function(req, res, next) {
 					var room = results[0].room__c;
 					var enddate = '';
 					var today = new Date();
-					var startDate = new Date(today.getFullYear(), 1, 6);
-					var endDate = new Date(today.getFullYear(), 7, 31);
+					var startDate = new Date(today.getFullYear(), 5, 1);
+					var endDate = new Date(today.getFullYear(), 6, 31);
 					if((startDate < today && today < endDate))
 					{
 						room = results[0].room_summer__c;
@@ -532,8 +532,8 @@ exports.checkin = function(req, res, next){
 					{
 						var enddate = '';
 						var today = new Date();
-						var startDate = new Date(today.getFullYear(), 6, 1);
-						var endDate = new Date(today.getFullYear(), 7, 31);
+						var startDate = new Date(today.getFullYear(), 5, 1);
+						var endDate = new Date(today.getFullYear(), 6, 31);
 						var room = results2[0].room__c;
 						console.log("Today: " + today + ", Start: " + startDate + ", End: " + endDate);
 						if((startDate < today && today < endDate))
@@ -685,8 +685,8 @@ exports.checkout = function(req, res, next){
 					    	query = "UPDATE salesforce.Account SET Status__c='Checkout' WHERE SFID='" + results2[0].sfid + "' RETURNING *";
 				    	}
 					    var today = new Date();
-						var startDate = new Date(today.getFullYear(), 6, 1);
-						var endDate = new Date(today.getFullYear(), 7, 31);
+						var startDate = new Date(today.getFullYear(), 5, 1);
+						var endDate = new Date(today.getFullYear(), 6, 31);
 						if((startDate < today && today < endDate))
 						{
 							enddate = today.getFullYear() + '-5-31';

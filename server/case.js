@@ -84,18 +84,21 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i < results2.length ; i++)
 						{
 							date = results2[i].createddate;
-							time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
-							date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();		
-							output += '{"id":"' + results2[i].sfid;
-							output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')';
-							output += '", "type":"case';
-							detail = results2[i].description == null ? '' : results2[i].description;
-							detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
-							//detail = detail.trim();
-							output += '", "detail":"' + detail;
-							output += '", "status":"' + results2[i].status;
-							output += '", "created_date":"' + date;
-							output += '", "created_time":"' + time + '"},';
+							if(date != null)
+							{
+								time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
+								date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();		
+								output += '{"id":"' + results2[i].sfid;
+								output += '", "name":"' + results2[i].subject + ' (' + results2[i].casenumber + ')';
+								output += '", "type":"case';
+								detail = results2[i].description == null ? '' : results2[i].description;
+								detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
+								//detail = detail.trim();
+								output += '", "detail":"' + detail;
+								output += '", "status":"' + results2[i].status;
+								output += '", "created_date":"' + date;
+								output += '", "created_time":"' + time + '"},';
+							}
 						}
 						if(results2.length > 0)
 						{
