@@ -23,6 +23,7 @@ exports.getDetail = function(req, res, next) {
 		for(var i = 0 ; i <results.length ; i++)
 		{
 			date = createdate = results[i].createddate;
+			date = date.setHours(date.getHours() + 7);
 			time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 			output += '{"id":"' + results[i].sfid;

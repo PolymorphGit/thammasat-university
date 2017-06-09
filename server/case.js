@@ -10,6 +10,7 @@ exports.getDetail = function(req, res, next) {
 	.then(function(results) {
 		//console.log(results);
 		date = results[0].createddate;
+		date = date.setHours(date.getHours() + 7);
 		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		output = '{"id":"' + results[0].sfid;
@@ -84,6 +85,7 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i < results2.length ; i++)
 						{
 							date = results2[i].createddate;
+							date = date.setHours(date.getHours() + 7);
 							if(date != null)
 							{
 								time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);

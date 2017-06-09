@@ -65,6 +65,7 @@ function getBilling(id, next)
 		invoiceNo = results[0].name;
 		amount = results[0].total_amount__c;
 		duedate = results[0].due_date__c;
+		duedate = duedate.setHours(duedate.getHours() + 7);
 		
 		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 		payload = {	ID: results[0].sfid,
@@ -177,6 +178,7 @@ function cleanClosed(id, next)
 		.then(function(results2) {
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
+			date = date.setHours(date.getHours() + 7);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
 			payload = {	ID: results[0].sfid,
 					message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
@@ -213,6 +215,7 @@ function accessApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload = {	ID: results[0].sfid,
@@ -232,6 +235,7 @@ function accesReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload = {	ID: results[0].sfid,
@@ -251,6 +255,7 @@ function leaveApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload =  {	ID: results[0].sfid,
@@ -270,6 +275,7 @@ function leaveReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload = {	ID: results[0].sfid,
@@ -289,6 +295,7 @@ function stayApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].stay_start_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload = {	ID: results[0].sfid,
@@ -308,6 +315,7 @@ function stayReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].stay_start_date__c;
+		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload =  {	ID: results[0].sfid,
