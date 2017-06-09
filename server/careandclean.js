@@ -133,6 +133,7 @@ exports.getDetail = function(req, res, next) {
 exports.getList = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var limit = req.headers['limit'];
+	var start = req.headers['start'];
 	var https = require('https');
 	
 	var options = {
@@ -160,6 +161,10 @@ exports.getList = function(req, res, next) {
 					if(!isNaN(limit))
 					{
 						query += " limit " + limit;
+					}
+				    	if(!isNaN(start) && start != 0)
+					{
+						query += " OFFSET  " + start;
 					}
 					//console.log(query);
 					db.select(query)
