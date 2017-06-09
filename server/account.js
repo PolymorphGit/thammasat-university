@@ -549,6 +549,7 @@ exports.checkin = function(req, res, next){
 						
 						if (room != null)
 						{
+							console.log("Have Room");
 							db.select("UPDATE salesforce.Account SET Status__c='Checkin', allow_check_out__c=false, renew__c=false, check_in_comment__c='" + req.body.comment + "' WHERE SFID='" + results2[0].sfid + "' RETURNING *")
 							.then(function(results3) {
 								console.log(results3);	
@@ -570,6 +571,7 @@ exports.checkin = function(req, res, next){
 						}
 						else
 						{
+							console.log("No Room Assign");
 							res.send("{ status: \"fail\", detail: \"No room assign, Please contact staff.\"}");
 						}
 					}
