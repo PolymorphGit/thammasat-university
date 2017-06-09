@@ -9,7 +9,7 @@ exports.getDetail = function(req, res, next) {
 		//console.log(results);	
 		//output = JSON.stringify(results);
 		date = results[0].due_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 		output = '[{"id":"' + results[0].sfid;
 		output += '", "invoice_id":"' + results[0].name;
@@ -27,7 +27,7 @@ exports.getDetail = function(req, res, next) {
 				for(var i = 0 ; i <results2.length ; i++)
 				{
 					date = results2[i].due_date__c;
-					date = date.setHours(date.getHours() + 7);
+					date.setHours(date.getHours() + 7);
 					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 					output += '{"line_id":"' + results2[i].sfid;
 					output += '", "line_number":"' + results2[i].name;
@@ -92,11 +92,12 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							date = createdate.setHours(createdate.getHours() + 7);
+							createdate.setHours(createdate.getHours() + 7);
+							date = createdate;
 							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + createdate.getFullYear();
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							duedate = results2[i].due_date__c;
-							duedate = duedate.setHours(duedate.getHours() + 7);
+							duedate.setHours(duedate.getHours() + 7);
 							date2 = duedate.getDate() + '/' + createdate.getMonth() + '/' + createdate.getFullYear();
 							time2 = ("0" + duedate.getHours()).slice(-2) + ':' + ("0" + duedate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;

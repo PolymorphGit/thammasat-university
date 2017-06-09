@@ -12,7 +12,7 @@ exports.getDetail = function(req, res, next) {
 		.then(function(results2) {
 			//console.log(results2);	
 			date = results[0].createddate;
-			date = date.setHours(date.getHours() + 7);
+			date.setHours(date.getHours() + 7);
 			time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();		
 			output = '[{"id":"' + results[0].sfid;
@@ -23,7 +23,7 @@ exports.getDetail = function(req, res, next) {
 			output += '", "mailing_type__c":"' + results[0].mailing_type__c;
 			output += '", "received_name__c":"' + results[0].received_name__c;			
 			date = results[0].received_date__c;
-			date = date.setHours(date.getHours() + 7);
+			date.setHours(date.getHours() + 7);
 			if(date != null)
 			{
 				date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
@@ -86,7 +86,8 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results2.length ; i++)
 						{
 							createdate = results2[i].createddate;
-							date = createdate.setHours(createdate.getHours() + 7);
+							createdate.setHours(createdate.getHours() + 7);
+							date = createdate;
 							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth()).slice(-2) + '/' + createdate.getFullYear();
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
