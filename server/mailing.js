@@ -23,9 +23,9 @@ exports.getDetail = function(req, res, next) {
 			output += '", "mailing_type__c":"' + results[0].mailing_type__c;
 			output += '", "received_name__c":"' + results[0].received_name__c;			
 			date = results[0].received_date__c;
-			date.setHours(date.getHours() + 7);
 			if(date != null)
 			{
+				date.setHours(date.getHours() + 7);
 				date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 			}
 			else
