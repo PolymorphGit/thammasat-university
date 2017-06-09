@@ -532,21 +532,20 @@ exports.checkin = function(req, res, next){
 					{
 						var enddate = '';
 						var today = new Date();
-						var startDate = new Date(today.getFullYear(), 1, 1);
-						var endDate = new Date(today.getFullYear(), 5, 31);
-						var startDate2 = new Date(today.getFullYear(), 8, 1);
-						var endDate2 = new Date(today.getFullYear(), 12, 31);
+						var startDate = new Date(today.getFullYear(), 6, 1);
+						var endDate = new Date(today.getFullYear(), 7, 31);
 						var room = results2[0].room__c;
-						if((startDate < today && today < endDate) || (startDate2 < today && today < endDate2))
-						{
-							console.log("Normal Term");
-							enddate = today.getFullYear() + '-5-31';
-						}
-						else
+						console.log("Today: " + today + ", Start: " + startDate + ", End: " + endDate);
+						if((startDate < today && today < endDate))
 						{
 							console.log("Summer Term");
 							enddate = today.getFullYear() + '-7-31';
 							room = results2[0].room_summer__c;
+						}
+						else
+						{
+							console.log("Normal Term");
+							enddate = today.getFullYear() + '-5-31';
 						}
 						
 						if (room != null)
