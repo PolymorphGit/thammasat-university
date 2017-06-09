@@ -27,12 +27,12 @@ exports.getCleanRate = function(req, res, next) {
 					var today = new Date();
 					var startDate = new Date(today.getFullYear(), 5, 1);
 					var endDate = new Date(today.getFullYear(), 6, 31);
-					var room = results2[0].room__c;
+					var room = results[0].room__c;
 					console.log("Today: " + today + ", Start: " + startDate + ", End: " + endDate);
 					if((startDate < today && today < endDate))
 					{
 						console.log("Summer Term");
-						room = results2[0].room_summer__c;
+						room = results[0].room_summer__c;
 					}
 					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + room + "'")
 					.then(function(results2) {
