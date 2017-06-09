@@ -245,11 +245,11 @@ exports.openClean = function(req, res, next) {
 			else if(obj.status == 'fail')
 			{
 				//res.json(obj);
-				res.send('{ status: "fail", message: "' + obj.message + '" }');
+				res.send('{ "status": "fail", "message": "' + obj.message + '" }');
 			}
 			else if(obj.status__c != 'Checkin')
 			{
-				res.send('{ status: "fail", message: "คุณยังไม่ได้ทำการ Check in" }');
+				res.send('{ "status": "fail", "message": "คุณยังไม่ได้ทำการ Check in" }');
 			}
 			else
 			{
