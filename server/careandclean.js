@@ -172,10 +172,10 @@ exports.getList = function(req, res, next) {
 						for(var i = 0 ; i <results3.length ; i++)
 						{
 							createdate = results3[i].createddate;
-							createdate.setHours(createdate.getHours() + 7);
 							date = createdate;
 							if(date != null)
 							{
+								createdate.setHours(createdate.getHours() + 7);
 								time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 								date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 								output += '{"id":"' + results3[i].sfid;
