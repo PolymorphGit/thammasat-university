@@ -10,7 +10,7 @@ exports.getDetail = function(req, res, next) {
 		//output = JSON.stringify(results);
 		date = results[0].due_date__c;
 		date.setHours(date.getHours() + 7);
-		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth() + 1).slice(-2) + '/' + date.getFullYear();
+		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
 		output = '[{"id":"' + results[0].sfid;
 		output += '", "invoice_id":"' + results[0].name;
 		output += '", "due_date":"' + date;
@@ -28,7 +28,7 @@ exports.getDetail = function(req, res, next) {
 				{
 					date = results2[i].due_date__c;
 					date.setHours(date.getHours() + 7);
-					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth() + 1).slice(-2) + '/' + date.getFullYear();
+					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
 					output += '{"line_id":"' + results2[i].sfid;
 					output += '", "line_number":"' + results2[i].name;
 					output += '", "type":"' + results2[i].invoice_line_item_type__c;
@@ -94,11 +94,11 @@ exports.getList = function(req, res, next) {
 							createdate = results2[i].createddate;
 							createdate.setHours(createdate.getHours() + 7);
 							date = createdate;
-							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + createdate.getMonth() + 1).slice(-2) + '/' + createdate.getFullYear();
+							date = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + (createdate.getMonth() + 1)).slice(-2) + '/' + createdate.getFullYear();
 							time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
 							duedate = results2[i].due_date__c;
 							duedate.setHours(duedate.getHours() + 7);
-							date2 =  ("0" + duedate.getDate()).slice(-2) + '/' + ("0" + duedate.getMonth() + 1).slice(-2) + '/' + duedate.getFullYear();
+							date2 =  ("0" + duedate.getDate()).slice(-2) + '/' + ("0" + (duedate.getMonth() + 1)).slice(-2) + '/' + duedate.getFullYear();
 							time2 = ("0" + duedate.getHours()).slice(-2) + ':' + ("0" + duedate.getMinutes()).slice(-2);
 							output += '{"id":"' + results2[i].sfid;
 							output += '", "name":"Invoice No. ' + results2[i].name;
