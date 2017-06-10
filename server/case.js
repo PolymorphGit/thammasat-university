@@ -78,6 +78,7 @@ exports.getList = function(req, res, next) {
 					db.select(query)
 					.then(function(results2) {	
 						//Build Output
+						console.log(results2);
 						var output = '[';
 						var date;
 						var time;
