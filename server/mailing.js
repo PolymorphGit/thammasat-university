@@ -23,6 +23,7 @@ exports.getDetail = function(req, res, next) {
 			output += '", "mailing_type__c":"' + results[0].mailing_type__c;
 			output += '", "received_name__c":"' + results[0].received_name__c;			
 			date = results[0].received_date__c;
+			/*
 			if(date != null)
 			{
 				date.setHours(date.getHours() + 7);
@@ -32,6 +33,7 @@ exports.getDetail = function(req, res, next) {
 			{
 				date = '';
 			}
+			*/
 			output += '", "received_date__c":"' + date + '"}]';
 			console.log(output);
 			res.json(JSON.parse(output));
