@@ -31,7 +31,7 @@ exports.getInfo = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -573,18 +573,18 @@ exports.checkin = function(req, res, next){
 						else
 						{
 							console.log("No Room Assign");
-							res.send("{ status: \"fail\", detail: \"No room assign, Please contact staff.\"}");
+							res.send("{ \"status\": \"fail\", detail: \"No room assign, Please contact staff.\"}");
 						}
 					}
 					else
 					{
-						res.send("{ status: \"fail\", detail: \"User can't Login. Please contact staff.\"}");
+						res.send("{ \"status\": \"fail\", detail: \"User can't Login. Please contact staff.\"}");
 						
 					}
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -633,7 +633,7 @@ exports.RequestCheckout = function(req, res, next) {
 							db.select(query)
 							.then(function(results3) {
 								
-								res.send('{ status: \"success\" }');
+								res.send('{ \"status\": \"success\" }');
 							})
 						    .catch(next);
 					})
@@ -706,7 +706,7 @@ exports.checkout = function(req, res, next){
 								.then(function(results5) {
 									console.log(results5);	
 									//res.json(results);
-									res.send("{ status: \"Success\" }");
+									res.send("{ \"status\": \"Success\" }");
 								})
 							    .catch(next);
 							})
@@ -717,7 +717,7 @@ exports.checkout = function(req, res, next){
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -772,7 +772,7 @@ exports.renew = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	

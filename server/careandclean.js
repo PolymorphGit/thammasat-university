@@ -240,7 +240,7 @@ exports.openClean = function(req, res, next) {
 			var obj = JSON.parse(str);
 			if(obj.status == 'Invalid access token')
 			{
-				res.status(887).send("{ status: \"Invalid access token\" }");
+				res.status(887).send("{ \"status\": \"Invalid access token\" }");
 			}
 			else if(obj.status == 'fail')
 			{
@@ -287,7 +287,7 @@ exports.openClean = function(req, res, next) {
 										}
 										db.select(query2)
 										.then(function(results7) {
-											res.send('{ status: "success" }');
+											res.send('{ "status": "success" }');
 										})
 									    .catch(next);
 									})
@@ -399,7 +399,7 @@ exports.checkCap = function(req, res, next) {
 							var message = "คุณได้ทำการจอง วันที่ ";
 							for(var i = 0 ; i < results3.length ; i++)
 							{
-								message += results3[i].date + ", ";
+								message += results3[i].date + "และ ";
 							}
 							res.send('{ "status": "fail", "message": "' + message + ' แล้ว" }');
 						}

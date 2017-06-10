@@ -114,7 +114,7 @@ exports.getList = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	
@@ -162,7 +162,7 @@ exports.openCaseService = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -170,7 +170,7 @@ exports.openCaseService = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -216,7 +216,7 @@ exports.openCaseComplain = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -224,7 +224,7 @@ exports.openCaseComplain = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -273,7 +273,7 @@ exports.openCaseRequest = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -281,7 +281,7 @@ exports.openCaseRequest = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -325,7 +325,7 @@ exports.openCaseOther = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -333,7 +333,7 @@ exports.openCaseOther = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -382,7 +382,7 @@ exports.openCaseAccess = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							console.log(results3);
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -390,7 +390,7 @@ exports.openCaseAccess = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -434,7 +434,7 @@ exports.openCaseGuest = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -442,7 +442,7 @@ exports.openCaseGuest = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
@@ -486,7 +486,7 @@ exports.openCaseChange = function(req, res, next) {
 						db.select(query)
 						.then(function(results3) {
 							
-							res.send('{ status: "success" }');
+							res.send('{ \"status\": "success" }');
 						})
 					    .catch(next);
 					})
@@ -494,7 +494,7 @@ exports.openCaseChange = function(req, res, next) {
 				})
 			    .catch(next);
 			}
-			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
 		});
 	}
 	var httprequest = https.request(options, callback);
