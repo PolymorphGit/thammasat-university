@@ -170,11 +170,12 @@ exports.getList = function(req, res, next) {
 					db.select(query)
 					.then(function(results3) {	
 						//Build Output
+						console.log(results3);
 						var output = '[';
 						var createdate;
 						var date;
 						var time;
-						for(var i = 0 ; i <results3.length ; i++)
+						for(var i = 0 ; i < results3.length ; i++)
 						{
 							createdate = results3[i].createddate;
 							date = createdate;
@@ -192,6 +193,7 @@ exports.getList = function(req, res, next) {
 								output += '", "created_time":"' + time + '"},';
 							}
 						}
+						console.log(results3.length);
 						if(results3.length > 0)
 						{
 							output = output.substr(0, output.length - 1);
