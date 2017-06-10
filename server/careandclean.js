@@ -85,6 +85,7 @@ exports.getDetail = function(req, res, next) {
 		console.log(results);	
 		//output = JSON.stringify(results);
 		date = results[0].createddate;
+		date.setHours(date.getHours() + 7);
 		time = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		output = '[{"id":"' + results[0].sfid;
@@ -110,6 +111,7 @@ exports.getDetail = function(req, res, next) {
 				for(var i = 0 ; i <results2.length ; i++)
 				{
 					date = results2[0].working_date__c;
+					date.setHours(date.getHours() + 7);
 					date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 					output += '{"clean_id":"' + results2[i].sfid;
 					output += '", "working_date":"' + date;
