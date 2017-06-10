@@ -402,6 +402,10 @@ exports.checkCap = function(req, res, next) {
 							{
 								message += results3[i].date + "และ ";
 							}
+							if(results3.length > 0)
+							{
+								message = message.substr(0, message.length - 4);
+							}
 							res.send('{ "status": "fail", "message": "' + message + ' แล้ว" }');
 						}
 					})
