@@ -102,7 +102,7 @@ exports.getList = function(req, res, next) {
 								output += '", "created_time":"' + time + '"},';
 							}
 						}
-						if(results2.length > 0)
+						if(output.length > 1)
 						{
 							output = output.substr(0, output.length - 1);
 						}
