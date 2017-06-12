@@ -179,7 +179,7 @@ exports.getList = function(req, res, next) {
 						var time;
 						for(var i = 0 ; i < results3.length ; i++)
 						{
-							createdate = results3[i].createddate;
+							createdate = results3[i].working_date__c;
 							date = createdate;
 							if(date != null)
 							{
