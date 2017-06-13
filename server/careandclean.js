@@ -179,19 +179,21 @@ exports.getList = function(req, res, next) {
 						var time;
 						for(var i = 0 ; i < results3.length ; i++)
 						{
-							createdate = results3[i].working_date__c;
-							date = createdate;
-							if(date != null)
+							createdate = results3[i].createddate;
+							date = results3[i].working_date__c;
+							if(createdate != null)
 							{
 								createdate.setHours(createdate.getHours() + 7);
+								date.setHours(date.getHours() + 7);
 								time = ("0" + createdate.getHours()).slice(-2) + ':' + ("0" + createdate.getMinutes()).slice(-2);
+								createdate = ("0" + createdate.getDate()).slice(-2) + '/' + ("0" + (createdate.getMonth() + 1)).slice(-2) + '/' + createdate.getFullYear();
 								date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
 								output += '{"id":"' + results3[i].sfid;
 								output += '", "name":"' + results3[i].subject + ' (' + results3[i].workordernumber + ')';
 								output += '", "type":"clean';
 								output += '", "detail":"วันที่: ' + date + ' ช่วงเวลา: ' + results3[i].cleaning_period__c;
 								output += '", "status":"' + results3[i].status;
-								output += '", "created_date":"' + date;
+								output += '", "created_date":"' + createdate;
 								output += '", "created_time":"' + time + '"},';
 							}
 						}
