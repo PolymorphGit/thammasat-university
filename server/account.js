@@ -98,7 +98,7 @@ exports.getInfo2 = function(req, res, next) {
 						output += '", "last_name_th__c":"' + results[0].last_name_th__c;
 						output += '", "identification_number__c":"' + results[0].identification_number__c;
 						output += '", "passport_number__c":"' + results[0].passport_number__c;
-						if(results[0].student_id__c == null || results[0].student_id__c == '')
+						if(results[0].student_id__c != null)
 						{
 							output += '", "student_id__c":"' + results[0].student_id__c;
 						}
