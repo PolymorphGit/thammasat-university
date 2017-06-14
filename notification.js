@@ -27,6 +27,7 @@ exports.push = function(req, res, next)
 		case 'complain accept' : result = complainAccept(id, message, next);	break;
 		case 'clean closed' : result = cleanClose(id, next);	break;
 		case 'checkout confirm' : result = checkoutConfirm(id, next);	break;
+		case 'checkout payment' : result = checkoutPayment(id, message, next);	break;
 		case 'access approve' : result = accessApprove(id, next);	break;
 		case 'access reject' : result = accessReject(id, message, next);	break;
 		case 'leave approve' : result = leaveApprove(id, next);	break;
@@ -200,6 +201,22 @@ function checkoutConfirm(id, next)
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		payload = {	ID: results[0].sfid,
 				message: 'อนุญาติให้ทำการ Check-out ได้' };
+		pusher.trigger(to, 'Case', payload);
+		return true;
+	})
+	.catch(next);
+}
+
+function checkoutPayment(id, message, next)
+{
+	var to;
+	var payload;
+	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
+	.then(function(results) {
+		to = results[0].accountid;
+		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		payload = {	ID: results[0].sfid,
+				message: message };
 		pusher.trigger(to, 'Case', payload);
 		return true;
 	})
