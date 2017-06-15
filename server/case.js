@@ -19,17 +19,25 @@ exports.getDetail = function(req, res, next) {
 		detail = detail.replace(/(\r\n|\n|\r)/gm, " ");
 		//detail = detail.trim();
 		output += '", "detail":"' + detail;
-		//output += '", "type":"' + results[0].type;
-		//output += '", "problem_type":"' + results[0].problem_type__c;
-		//output += '", "problem_sub_type":"' + results[0].problem_sub_type__c;
-		//output += '", "priority":"' + results[0].priority;
-		//output += '", "subject":"' + results[0].subject;
+		output += '", "type":"' + results[0].type;
+		output += '", "category":"' + results[0].problem_type__c;
+		output += '", "sub_category":"' + results[0].problem_sub_type__c;
+		output += '", "subject":"' + results[0].subject;
 		output += '", "checkout_date":"' + results[0].checkout_date__c;
 		output += '", "agree_to_pay":"' + results[0].agree_to_pay__c;
 		output += '", "allow_to_access":"' + results[0].allow_to_access_room__c;
 		output += '", "amount":"' + results[0].amount__c;
 		output += '", "payment_detail":"' + results[0].payment_detail__c;
 		output += '", "status":"' + results[0].status;
+		
+		output += '", "reason_on_hold":"' + results[0].reason_on_hold__c;
+		output += '", "checkout_date":"' + results[0].checkout_date__c;
+		output += '", "reason_to_checkout":"' + results[0].reason_to_check_out__c;
+		output += '", "early_late_access_date":"' + results[0].early_late_access_date__c;
+		output += '", "stay_start_date":"' + results[0].stay_start_date__c;
+		output += '", "request_zone":"' + results[0].request_zone
+		output += '", "reason_to_move_room":"' + results[0].reason_to_move_room__c;
+		
 		output += '", "created_date":"' + date;
 		output += '", "created_time":"' + time + '"}';
 		console.log(output);
