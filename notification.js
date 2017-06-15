@@ -59,7 +59,7 @@ function getBilling(id, next)
 	var amount;
 	var duedate;
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Invoice__c WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -70,14 +70,15 @@ function getBilling(id, next)
 		duedate = duedate.setHours(duedate.getHours() + 7);
 		
 		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
-		message = { title : 'คุณมียอดค่าใช้จ่าย จำนวน ' + amount + 'บาท', body : 'No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
+		noti = { title : 'คุณมียอดค่าใช้จ่าย จำนวน ' + amount + 'บาท', 
+				 body : 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate  };
 		payload = {	ID: results[0].sfid,
 				    type: 'Billing',
 				    message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
 		pusher.trigger(to, 'Billing', payload);
 		pusher.notify([to], {
-			apns: { aps: { alert : message, data : payload } },
-			fcm: { notification : message, data : payload }
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
 		});
 		return true;
 	})
@@ -87,21 +88,21 @@ function getBilling(id, next)
 function getMailing(id, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Mailing__c WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].student_name__c;
 		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c);
-		message = { title : 'มีพัศดุส่งมาถึง วันที่ ' + results[0].createddate.toDateString(), 
-					body : 'No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].createddate.toDateString()};
+		noti = { title : 'มีพัศดุส่งมาถึง วันที่ ' + results[0].createddate.toDateString(), 
+					body : 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString()};
 		payload = {	ID: results[0].sfid,
 					type: 'Mailing',
 					message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString() };
 		pusher.trigger(to, 'Mailing', payload);
 		pusher.notify([to], {
-			apns: { aps: { alert : message, data : payload } },
-			fcm: { notification : message, data : payload }
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
 		});
 		return true;
 	})
@@ -111,21 +112,21 @@ function getMailing(id, next)
 function problemWorking(id, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		message = { title : 'กำลังดำเนินการแก้ไข Case ' + results[0].casenumber, 
-					body : 'No:' + results[0].casenumber + ', Subject:' + results[0].subject};
+		noti = { title : 'กำลังดำเนินการแก้ไข Case ' + results[0].casenumber, 
+					body : results[0].subject + ' กำลังดำเนินการ'};
 		payload = { ID: results[0].sfid,
 					type: 'Case',
 					message: results[0].subject + ' กำลังดำเนินการ' };
 		pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
-			apns: { aps: { alert : message, data : payload } },
-			fcm: { notification : message, data : payload }
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
 		});
 		return true;
 	})
@@ -135,21 +136,21 @@ function problemWorking(id, next)
 function problemHold(id, message, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		message = { title : 'Case ' + results[0].casenumber + ' ได้ถูกพักช่ั่วคราว', 
-					body : 'No:' + results[0].casenumber + ', Subject:' + results[0].subject};
+		noti = { title : 'Case ' + results[0].casenumber + ' ได้ถูกพักช่ั่วคราว', 
+				 body : 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message };
 		pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
-			apns: { aps: { alert : message, data : payload } },
-			fcm: { notification : message, data : payload }
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
 		});
 		return true;
 	})
@@ -159,21 +160,21 @@ function problemHold(id, message, next)
 function problemClosed(id, message, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		message = { title : 'Case ' + results[0].casenumber + ' ได้ดำเนินการแก้ไข', 
-				body : 'No:' + results[0].casenumber + ', Subject:' + results[0].subject};
+		noti = { title : 'Case ' + results[0].casenumber + ' ได้ดำเนินการแก้ไข', 
+				body : 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว ' + message};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message };
 		pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
-			apns: { aps: { alert : message, data : payload } },
-			fcm: { notification : message, data : payload }
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
 		});
 		return true;
 	})
@@ -183,16 +184,22 @@ function problemClosed(id, message, next)
 function complainAccept(id, message, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'รับทราบ ' + results[0].casenumber, 
+				body : 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -202,7 +209,7 @@ function cleanClosed(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.WorkOrder WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -213,10 +220,16 @@ function cleanClosed(id, next)
 			date = new Date(results[0].working_date__c);
 			date = date.setHours(date.getHours() + 7);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
+			noti = { title : 'ได้ทำความสะอาด วันที่ ' + date.toDateString() + ' แล้ว', 
+					 body : 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
 			payload = {	ID: results[0].sfid,
 						type: 'Clean',
 						message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
 			pusher.trigger(to, 'Clean', payload);
+			pusher.notify([to], {
+				apns: { aps: { alert : noti, data : payload } },
+				fcm: { notification : noti, data : payload }
+			});
 			return true;
 		})
 		.catch(next);
@@ -227,16 +240,22 @@ function cleanClosed(id, next)
 function checkoutConfirm(id, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'อนุญาติให้ทำการ Check-out ได้', 
+				 body : 'อนุญาติให้ทำการ Check-out ได้ ' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการ Check-out ได้' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -245,16 +264,22 @@ function checkoutConfirm(id, next)
 function checkoutPayment(id, message, next)
 {
 	var to;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : message, 
+				 body : message };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -264,7 +289,7 @@ function accessApprove(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -273,10 +298,16 @@ function accessApprove(id, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date, 
+				 body : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -286,7 +317,7 @@ function accesReject(id, message, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -295,10 +326,16 @@ function accesReject(id, message, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message, 
+				 body : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -308,7 +345,7 @@ function leaveApprove(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -317,10 +354,16 @@ function leaveApprove(id, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date, 
+				 body : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -330,7 +373,7 @@ function leaveReject(id, message, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -339,10 +382,16 @@ function leaveReject(id, message, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message , 
+				 body : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message  };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -352,7 +401,7 @@ function stayApprove(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -361,10 +410,16 @@ function stayApprove(id, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date , 
+				 body : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date  };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -374,7 +429,7 @@ function stayReject(id, message, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
@@ -383,10 +438,16 @@ function stayReject(id, message, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message, 
+				 body : 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -396,16 +457,22 @@ function roomAccept(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'อนุญาติให้ทำการย้ายห้อง', 
+				 body : 'อนุญาติให้ทำการย้ายห้อง' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการย้ายห้อง' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -415,16 +482,22 @@ function roomReject(id, message, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message, 
+				 body : 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -434,16 +507,22 @@ function mailFound(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'พบพัศดุของท่าน ให้มารับได้', 
+				 body : 'พบพัศดุของท่าน ให้มารับได้'};
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'พบพัศดุของท่าน ให้มารับได้' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -453,16 +532,22 @@ function mailNotFound(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่พบพัศดุของท่าน', 
+				 body : 'ไม่พบพัศดุของท่าน'};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่พบพัศดุของท่าน' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -472,16 +557,22 @@ function houseProgress(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้', 
+				 body : 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้'};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -491,16 +582,22 @@ function houseDoc(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย', 
+				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'};
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -510,16 +607,22 @@ function houseCompleted(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย', 
+				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'};
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -529,16 +632,22 @@ function otherProgress(id, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' ,
+				 body : 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
@@ -548,14 +657,20 @@ function otherCompleted(id, message, next)
 {
 	var to;
 	var date;
-	var message;
+	var noti;
 	var payload;
 	db.select("SELECT * FROM salesforce.Case WHERE SFID='" + id + "'")
 	.then(function(results) {
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
+		noti = { title : message, 
+				 body : message};
 		payload = { ID: results[0].sfid, type: 'Case', message: message };
 		pusher.trigger(to, 'Case', payload);
+		pusher.notify([to], {
+			apns: { aps: { alert : noti, data : payload } },
+			fcm: { notification : noti, data : payload }
+		});
 		return true;
 	})
 	.catch(next);
