@@ -34,6 +34,7 @@ exports.getDetail = function(req, res, next) {
 		output += '", "checkout_date":"' + results[0].checkout_date__c;
 		output += '", "reason_to_checkout":"' + results[0].reason_to_check_out__c;
 		output += '", "early_late_access_date":"' + results[0].early_late_access_date__c;
+		output += '", "friend_id":"' + results[0].citizen_id_passport_no__c;
 		output += '", "stay_start_date":"' + results[0].stay_start_date__c;
 		output += '", "request_zone":"' + results[0].request_zone
 		output += '", "reason_to_move_room":"' + results[0].reason_to_move_room__c;
