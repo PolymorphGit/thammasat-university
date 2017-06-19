@@ -71,7 +71,8 @@ function getBilling(id, next)
 		
 		console.log('To:' + to + ', No:' + invoiceNo + ', Amount:' + amount + ', message:คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate );
 		noti = { title : 'คุณมียอดค่าใช้จ่าย จำนวน ' + amount + 'บาท', 
-				 body : 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate  };
+				 body : 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate,
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = {	ID: results[0].sfid,
 				    type: 'Billing',
 				    message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
@@ -95,7 +96,8 @@ function getMailing(id, next)
 		to = results[0].student_name__c;
 		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c);
 		noti = { title : 'มีพัศดุส่งมาถึง วันที่ ' + results[0].createddate.toDateString(), 
-					body : 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString()};
+				 body : 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString(),
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = {	ID: results[0].sfid,
 					type: 'Mailing',
 					message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString() };
@@ -119,7 +121,8 @@ function problemWorking(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'กำลังดำเนินการแก้ไข Case ' + results[0].casenumber, 
-					body : results[0].subject + ' กำลังดำเนินการ'};
+				 body : results[0].subject + ' กำลังดำเนินการ',
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = { ID: results[0].sfid,
 					type: 'Case',
 					message: results[0].subject + ' กำลังดำเนินการ' };
@@ -143,7 +146,8 @@ function problemHold(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'Case ' + results[0].casenumber + ' ได้ถูกพักช่ั่วคราว', 
-				 body : 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message};
+				 body : 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message,
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message };
@@ -167,7 +171,8 @@ function problemClosed(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'Case ' + results[0].casenumber + ' ได้ดำเนินการแก้ไข', 
-				body : 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว ' + message};
+				 body : 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว ' + message,
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message };
@@ -191,7 +196,8 @@ function complainAccept(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'รับทราบ ' + results[0].casenumber, 
-				body : 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
+				 body : 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
@@ -221,7 +227,8 @@ function cleanClosed(id, next)
 			date = date.setHours(date.getHours() + 7);
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
 			noti = { title : 'ได้ทำความสะอาด วันที่ ' + date.toDateString() + ' แล้ว', 
-					 body : 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
+					 body : 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c,
+					 click_action: 'MAIN_ACTIVITY' };
 			payload = {	ID: results[0].sfid,
 						type: 'Clean',
 						message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
@@ -247,7 +254,8 @@ function checkoutConfirm(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติให้ทำการ Check-out ได้', 
-				 body : 'อนุญาติให้ทำการ Check-out ได้ ' };
+				 body : 'อนุญาติให้ทำการ Check-out ได้ ',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการ Check-out ได้' };
@@ -271,7 +279,8 @@ function checkoutPayment(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : message, 
-				 body : message };
+				 body : message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: message };
@@ -299,7 +308,8 @@ function accessApprove(id, next)
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date, 
-				 body : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
+				 body : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
@@ -327,7 +337,8 @@ function accesReject(id, message, next)
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message, 
-				 body : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
+				 body : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
@@ -355,7 +366,8 @@ function leaveApprove(id, next)
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date, 
-				 body : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
+				 body : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
@@ -382,8 +394,9 @@ function leaveReject(id, message, next)
 		date = date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
-		noti = { title : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message , 
-				 body : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message  };
+		noti = { title : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message, 
+				 body : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
@@ -411,7 +424,8 @@ function stayApprove(id, next)
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date , 
-				 body : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date  };
+				 body : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date };
@@ -439,7 +453,8 @@ function stayReject(id, message, next)
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message, 
-				 body : 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
+				 body : 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
@@ -464,7 +479,8 @@ function roomAccept(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติให้ทำการย้ายห้อง', 
-				 body : 'อนุญาติให้ทำการย้ายห้อง' };
+				 body : 'อนุญาติให้ทำการย้ายห้อง',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการย้ายห้อง' };
@@ -489,7 +505,8 @@ function roomReject(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message, 
-				 body : 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
+				 body : 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message,
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
@@ -514,7 +531,8 @@ function mailFound(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'พบพัศดุของท่าน ให้มารับได้', 
-				 body : 'พบพัศดุของท่าน ให้มารับได้'};
+				 body : 'พบพัศดุของท่าน ให้มารับได้',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'พบพัศดุของท่าน ให้มารับได้' };
@@ -539,7 +557,8 @@ function mailNotFound(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่พบพัศดุของท่าน', 
-				 body : 'ไม่พบพัศดุของท่าน'};
+				 body : 'ไม่พบพัศดุของท่าน',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่พบพัศดุของท่าน' };
@@ -564,7 +583,8 @@ function houseProgress(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้', 
-				 body : 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้'};
+				 body : 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้' };
@@ -589,7 +609,8 @@ function houseDoc(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย', 
-				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'};
+				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย' };
@@ -614,7 +635,8 @@ function houseCompleted(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย', 
-				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย'};
+				 body : 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว' };
@@ -639,7 +661,8 @@ function otherProgress(id, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' ,
-				 body : 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
+				 body : 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ',
+				 click_action: 'MAIN_ACTIVITY' };
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
@@ -664,7 +687,8 @@ function otherCompleted(id, message, next)
 		to = results[0].accountid;
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : message, 
-				 body : message};
+				 body : message,
+				 click_action: 'MAIN_ACTIVITY'};
 		payload = { ID: results[0].sfid, type: 'Case', message: message };
 		pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
