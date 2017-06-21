@@ -76,7 +76,7 @@ function getBilling(id, next)
 		payload = {	ID: results[0].sfid,
 				    type: 'Billing',
 				    message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
-		pusher.trigger(to, 'Billing', payload);
+		//pusher.trigger(to, 'Billing', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -101,7 +101,7 @@ function getMailing(id, next)
 		payload = {	ID: results[0].sfid,
 				type: 'Mailing',
 				message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString() };
-		pusher.trigger(to, 'Mailing', payload);
+		//pusher.trigger(to, 'Mailing', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -126,7 +126,7 @@ function problemWorking(id, next)
 		payload = { ID: results[0].sfid,
 					type: 'Case',
 					message: results[0].subject + ' กำลังดำเนินการ' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -151,7 +151,7 @@ function problemHold(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ถูกพักเนื่องจาก '+ message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -176,7 +176,7 @@ function problemClosed(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'Case ' + results[0].subject + ' ได้ได้ทำการแก้ไขแล้ว '+ message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -201,7 +201,7 @@ function complainAccept(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับทราบเรื่อง ' + results[0].subject + ' แล้ว '+ message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -232,7 +232,7 @@ function cleanClosed(id, next)
 			payload = {	ID: results[0].sfid,
 						type: 'Clean',
 						message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
-			pusher.trigger(to, 'Clean', payload);
+			//pusher.trigger(to, 'Clean', payload);
 			pusher.notify([to], {
 				apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 				fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -259,7 +259,7 @@ function checkoutConfirm(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการ Check-out ได้' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -284,7 +284,7 @@ function checkoutPayment(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -313,7 +313,7 @@ function accessApprove(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -342,7 +342,7 @@ function accesReject(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -371,7 +371,7 @@ function leaveApprove(id, next)
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -400,7 +400,7 @@ function leaveReject(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -429,7 +429,7 @@ function stayApprove(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -458,7 +458,7 @@ function stayReject(id, message, next)
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date + ' เนื่องจาก ' + message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -484,7 +484,7 @@ function roomAccept(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'อนุญาติให้ทำการย้ายห้อง' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -510,7 +510,7 @@ function roomReject(id, message, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่อนุญาติให้ทำการย้ายห้อง เนื่องจาก ' + message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -536,7 +536,7 @@ function mailFound(id, next)
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'พบพัศดุของท่าน ให้มารับได้' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -562,7 +562,7 @@ function mailNotFound(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ไม่พบพัศดุของท่าน' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -588,7 +588,7 @@ function houseProgress(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'กำลังดำเนินการขอเอกสารทะเบียนบ้านให้' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -614,7 +614,7 @@ function houseDoc(id, next)
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'ไม่ได้รับเอกสารในการขอทะเบียนบ้าานของท่าน กรุณานำส่งที่จุดรับด้วย' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -640,7 +640,7 @@ function houseCompleted(id, next)
 		payload =  {	ID: results[0].sfid,
 						type: 'Case',
 						message: 'เอกสสารทะเบียนบ้านของท่านมาถึงแล้ว' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -666,7 +666,7 @@ function otherProgress(id, next)
 		payload = {	ID: results[0].sfid,
 					type: 'Case',
 					message: 'ได้รับเรื่อง' + results[0].description + 'กำลังดำเนินการ' };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
@@ -690,7 +690,7 @@ function otherCompleted(id, message, next)
 				 body : message,
 				 click_action: 'MAIN_ACTIVITY'};
 		payload = { ID: results[0].sfid, type: 'Case', message: message };
-		pusher.trigger(to, 'Case', payload);
+		//pusher.trigger(to, 'Case', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
