@@ -224,7 +224,7 @@ function cleanClosed(id, next)
 		.then(function(results2) {
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
-			date = date.setHours(date.getHours() + 7);
+			date.setHours(date.getHours() + 7);
 			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
 			noti = { title : 'ได้ทำความสะอาด วันที่ ' + date + ' แล้ว', 
@@ -305,7 +305,7 @@ function accessApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติเข้าหอดึกได้ในวันที่ ' + date, 
@@ -334,7 +334,7 @@ function accesReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่อนุญาติเข้าหอดึกได้ในวันที่ ' + date + ' เนื่องจาก ' + message, 
@@ -363,7 +363,7 @@ function leaveApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date, 
@@ -392,7 +392,7 @@ function leaveReject(id, message, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].early_late_access_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'ไม่อนุญาติออกจากหอพักก่อนเวลาได้ในวันที่ ' + date + ' เนื่องจาก ' + message, 
@@ -421,7 +421,7 @@ function stayApprove(id, next)
 	.then(function(results) {
 		to = results[0].accountid;
 		date = results[0].stay_start_date__c;
-		date = date.setHours(date.getHours() + 7);
+		date.setHours(date.getHours() + 7);
 		date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
 		console.log('To:' + to + ', No:' + results[0].casenumber + ', Subject:' + results[0].subject);
 		noti = { title : 'อนุญาติให้พาเพื่อนเข้าพักได้วันที่ ' + date , 
