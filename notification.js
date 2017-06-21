@@ -225,13 +225,14 @@ function cleanClosed(id, next)
 			to = results2[0].accountid;
 			date = new Date(results[0].working_date__c);
 			date = date.setHours(date.getHours() + 7);
+			date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();
 			console.log('To:' + to + ', No:' + results2[0].casenumber + ', Subject:' + results2[0].subject + ', Working Date:' + results[0].working_date__c + ', Period:' + results[0].cleaning_period__c);
-			noti = { title : 'ได้ทำความสะอาด วันที่ ' + date.toDateString() + ' แล้ว', 
-					 body : 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c,
+			noti = { title : 'ได้ทำความสะอาด วันที่ ' + date + ' แล้ว', 
+					 body : 'Subject:' + results2[0].subject + ', Working Date:' + date + ', Period:' + results[0].cleaning_period__c,
 					 click_action: 'MAIN_ACTIVITY' };
 			payload = {	ID: results[0].sfid,
 						type: 'Clean',
-						message: 'Subject:' + results2[0].subject + ', Working Date:' + date.toDateString() + ', Period:' + results[0].cleaning_period__c };
+						message: 'Subject:' + results2[0].subject + ', Working Date:' + date + ', Period:' + results[0].cleaning_period__c };
 			//pusher.trigger(to, 'Clean', payload);
 			pusher.notify([to], {
 				apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
