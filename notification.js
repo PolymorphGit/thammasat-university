@@ -97,10 +97,11 @@ function getMailing(id, next)
 		console.log('To:' + to + ', No:' + results[0].name + ', type:' + results[0].mailing_type__c + ', date:' + results[0].received_date__c);
 		noti = { title : 'มีพัศดุส่งมาถึง วันที่ ' + results[0].createddate.toDateString(), 
 				 body : 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString(),
-				 click_action: 'MAIN_ACTIVITY'};
+				 click_action: 'MAIN_ACTIVITY',
+		       		 badge: 1};
 		payload = {	ID: results[0].sfid,
-					type: 'Mailing',
-					message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString() };
+				type: 'Mailing',
+				message: 'มีพัศดุ ' + results[0].mailing_type__c + ' ส่งถึงคุณ วันที่ ' + results[0].createddate.toDateString() };
 		pusher.trigger(to, 'Mailing', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, data : payload } },
