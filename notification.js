@@ -76,7 +76,7 @@ function getBilling(id, next)
 		payload = {	ID: results[0].sfid,
 				    type: 'Billing',
 				    message: 'คุณมียอดค่าใช้ ' + amount + ' บาท กำหนดชำระวันที่ ' + duedate };
-		//pusher.trigger(to, 'Billing', payload);
+		pusher.trigger(to, 'Billing', payload);
 		pusher.notify([to], {
 			apns: { aps: { alert : noti, badge : 1, sound : "default", data : payload } },
 			fcm: { notification : noti, badge : 1, sound : "default", data : payload }
