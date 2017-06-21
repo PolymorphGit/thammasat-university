@@ -19,7 +19,7 @@ exports.push = function(req, res, next)
 	var result = true;
 	switch(type)
 	{
-		case 'billling' : result = getBilling(id, next);	break;
+		case 'billing' : result = getBilling(id, next);	break;
 		case 'mailing' : result = getMailing(id, next);	break;
 		case 'problem working' : result = problemWorking(id, next);	break;
 		case 'problem on hold' : result = problemHold(id, message, next);	break;
