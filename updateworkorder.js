@@ -21,15 +21,16 @@ function updateWorkOrder() {
 updateWorkOrder();
 
 function CheckNull(){
-	db.select("SELECT * FROM salesforce.WorkOrder SET caseid is null")	
+	db.select("SELECT * FROM salesforce.WorkOrder SET caseid is null or caseid =''")	
 	.then(function(results) {
-	if(results.length > 0)
-	{
-		for(var i = 0 ; i < results.length ; i++)
+		console.log("Record : " + results.length);
+		if(results.length > 0)
 		{
-		  console.log('Update WorkOrder Id:' + results[i].id);
+			for(var i = 0 ; i < results.length ; i++)
+			{
+		  		console.log('Update WorkOrder Id:' + results[i].id);
+			}
 		}
-	}
 	})
 }
 CheckNull();
