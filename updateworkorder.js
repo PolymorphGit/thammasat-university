@@ -3,8 +3,8 @@ var Pusher = require('pusher');
 
 function updateWorkOrder() {
     //console.log('Notification');
-    var query = "UPDATE salesforce.WorkOrder SET salesforce.WorkOrder.caseid = ";
-    query += "(SELECT sfid FROM salesforce.Case WHERE salesforce.Case.id = salesforce.WorkOrder.case_heroku_id__c) "
+    var query = "UPDATE salesforce.WorkOrder SET caseid = ";
+    query += "(SELECT sfid FROM salesforce.Case WHERE id = salesforce.WorkOrder.case_heroku_id__c) "
     query += "WHERE salesforce.WorkOrder.caseid is null RETURNING *";
     db.select(query)
     .then(function(results) {
