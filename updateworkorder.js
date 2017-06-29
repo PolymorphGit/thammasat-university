@@ -21,7 +21,7 @@ function updateWorkOrder() {
 updateWorkOrder();
 
 function CheckNull(){
-	db.select("SELECT * FROM salesforce.WorkOrder SET caseid is null or caseid =''")	
+	db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid is null or caseid =''")	
 	.then(function(results) {
 		console.log("Record : " + results.length);
 		if(results.length > 0)
