@@ -8,6 +8,7 @@ function updateWorkOrder() {
     query += "WHERE salesforce.WorkOrder.caseid is null RETURNING *";
     db.select(query)
     .then(function(results) {
+      console.log("Record : " + results.length);
       if(results.length > 0)
       {
         for(var i = 0 ; i < results.length ; i++)
@@ -21,7 +22,7 @@ function updateWorkOrder() {
 updateWorkOrder();
 
 function CheckNull(){
-	db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid is null or caseid =''")	
+	db.select("SELECT * FROM salesforce.WorkOrder WHERE caseid is null")	
 	.then(function(results) {
 		console.log("Record : " + results.length);
 		if(results.length > 0)
@@ -33,4 +34,4 @@ function CheckNull(){
 		}
 	})
 }
-CheckNull();
+//CheckNull();
