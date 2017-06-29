@@ -301,7 +301,7 @@ exports.openClean = function(req, res, next) {
 							    .catch(next);
 							})
 						    .catch(next);
-						}, 5000) 
+						}, 10000) 
 					})
 				    .catch(next);
 				})
