@@ -96,7 +96,7 @@ exports.getList = function(req, res, next) {
 							output += '", "name":"' + results2[i].name;
 							output += '", "type":"mailing';
 							output += '", "detail":"พัสดุ:' + results2[i].mailing_type__c + ' มาถึงวันที่:' + date;
-							output += '", "status":"' + results2[i].status;
+							output += '", "status":"';// + results2[i].status;
 							output += '", "created_date":"' + date;
 							output += '", "created_time":"' + time + '"},';
 						}
