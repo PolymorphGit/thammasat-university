@@ -131,7 +131,7 @@ function sendContractExpire()
 				 body : 'ในวันที่:' + results[0].contract_end__c.toDateString(),
 				 click_action: 'MAIN_ACTIVITY'};
 			payload = {	ID: to,
-					type: 'contract',
+					type: 'Contract',
 				   	message: 'สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c.toDateString() };
 			console.log('To:' + to + ', สัญญาจะหมดอายุในวันที่:' + results[i].contract_end__c.toDateString());
 			//pusher.trigger(to, 'Contract Expire', payload);
