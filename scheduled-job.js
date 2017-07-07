@@ -29,7 +29,7 @@ function sendBilling()
 	var to;
 	var noti;
 	var payload;
-	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null or send_notification__c = false limit 5")
+	db.select("SELECT * FROM salesforce.Invoice__c WHERE send_notification__c is null or send_notification__c = false limit 30")
 	.then(function(results) {
 		console.log('Invoice count: ' + results.length);
 		for(var i = 0 ; i < results.length ; i++)
@@ -77,7 +77,7 @@ function sendMailing()
 	var to;
 	var noti;
 	var payload;
-	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is null or send_notification__c = false limit 5")
+	db.select("SELECT * FROM salesforce.Mailing__c WHERE send_notification__c is null or send_notification__c = false limit 30")
 	.then(function(results) {
 		console.log('Mailing count: ' + results.length);
 		for(var i = 0 ; i < results.length ; i++)
