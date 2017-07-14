@@ -172,7 +172,7 @@ function caseNotification()
 	.then(function(rec) {
 		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10")
 		.then(function(results) {
-			console.log(results);
+			//console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
 			{
 				for(var j = 0 ; j < rec.length ; j++)
@@ -368,7 +368,7 @@ function workorderNotification()
 	.then(function(rec) {
 		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = '" + rec[0].sfid + "' limit 10")
 		.then(function(results) {
-			console.log(results);
+			//console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
 			{
 				for(var j = 0 ; j < rec.length ; j++)
