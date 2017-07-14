@@ -347,7 +347,7 @@ function caseNotification()
 						httprequest.end();
 					}
 				}
-				db.select("UPDATE salesforce.Case SET send_notification__c=true WHERE SFID = " + results[i].sfid)
+				db.select("UPDATE salesforce.Case SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "'")
 				.then(function(results) {
 					console.log('Send Case : ' + results[i].sfid);
 				})
@@ -366,7 +366,7 @@ function workorderNotification()
 	var listCaseId = '(';
 	db.select("SELECT * FROM salesforce.RecordType WHERE name='Maid'")
 	.then(function(rec) {
-		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = " + rec[0].sfid +" limit 10")
+		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = '" + rec[0].sfid + "' limit 10")
 		.then(function(results) {
 			console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
@@ -396,7 +396,7 @@ function workorderNotification()
 						httprequest.end();
 					}
 				}
-				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = " + results[i].sfid)
+				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "'")
 				.then(function(results) {
 					console.log('Send Clean : ' + results[i].sfid);
 				})
