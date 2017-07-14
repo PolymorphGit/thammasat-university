@@ -337,7 +337,7 @@ function caseNotification()
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'type': type, 'message': message }
+						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'message': message }
 						};
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
