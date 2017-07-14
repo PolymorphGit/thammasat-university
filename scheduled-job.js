@@ -181,6 +181,7 @@ function caseNotification()
 					{
 						sfid = results[i].sfid;
 						message = '';
+						type = '';
 						//Services
 						if(rec[j].name == 'Services')
 						{
@@ -333,23 +334,26 @@ function caseNotification()
 							}
 						}
 						
-						var https = require('https');
-						var postBody = JSON.stringify(message);
-						var options = {
-						  host: 'thammasat-university.herokuapp.com',
-						  path: '/notification',
-						  port: '443',
-						  method: 'POST',
-						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
-						};
-						console.log('Type:' + rec[j].name + 'Status:' + results[i].status + ', ' + options);
-						callback = function(results) { };
-						var httprequest = https.request(options, callback);
-						httprequest.on('error', (e) => {
-							res.send('problem with request: ${e.message}');
-						});
-						httprequest.write(postBody);
-						httprequest.end();
+						if(type != '')
+						{
+							var https = require('https');
+							var postBody = JSON.stringify(message);
+							var options = {
+							  host: 'thammasat-university.herokuapp.com',
+							  path: '/notification',
+							  port: '443',
+							  method: 'POST',
+							  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
+							};
+							console.log('Type:' + rec[j].name + 'Status:' + results[i].status + ', ' + options);
+							callback = function(results) { };
+							var httprequest = https.request(options, callback);
+							httprequest.on('error', (e) => {
+								res.send('problem with request: ${e.message}');
+							});
+							httprequest.write(postBody);
+							httprequest.end();
+						}
 					}
 				}
 				db.select("UPDATE salesforce.Case SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "'")
@@ -382,27 +386,31 @@ function workorderNotification()
 					{
 						sfid = results[i].sfid;
 						message = '';
+						type = '';
 						if (results[i].status == 'Closed') 
 						{
 							type = 'clean closed';
 						}
 						
-						var https = require('https');
-						var postBody = JSON.stringify(message);
-						var options = {
-						  host: 'thammasat-university.herokuapp.com',
-						  path: '/notification',
-						  port: '443',
-						  method: 'POST',
-						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
-						};
-						callback = function(results) { };
-						var httprequest = https.request(options, callback);
-						httprequest.on('error', (e) => {
-							res.send('problem with request: ${e.message}');
-						});
-						httprequest.write(postBody);
-						httprequest.end();
+						if(type != '')
+						{
+							var https = require('https');
+							var postBody = JSON.stringify(message);
+							var options = {
+							  host: 'thammasat-university.herokuapp.com',
+							  path: '/notification',
+							  port: '443',
+							  method: 'POST',
+							  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
+							};
+							callback = function(results) { };
+							var httprequest = https.request(options, callback);
+							httprequest.on('error', (e) => {
+								res.send('problem with request: ${e.message}');
+							});
+							httprequest.write(postBody);
+							httprequest.end();
+						}
 					}
 				}
 				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "'")
