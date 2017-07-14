@@ -351,7 +351,10 @@ function caseNotification()
 							httprequest.on('error', (e) => {
 								console.log('problem with request: ${e.message}');
 							});
-							httprequest.write(postBody);
+							if(message != '')
+							{
+								httprequest.write(postBody);
+							}
 							httprequest.end();
 						}
 					}
@@ -408,7 +411,10 @@ function workorderNotification()
 							httprequest.on('error', (e) => {
 								console.log('problem with request: ${e.message}');
 							});
-							httprequest.write(postBody);
+							if(message != '')
+							{
+								httprequest.write(postBody);
+							}
 							httprequest.end();
 						}
 					}
