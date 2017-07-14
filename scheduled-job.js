@@ -333,12 +333,13 @@ function caseNotification()
 						}
 						
 						var https = require('https');
+						var postBody = JSON.stringify(message);
 						var options = {
 						  host: 'thammasat-university.herokuapp.com',
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'type': type, 'message': message }
+						  headers: { 'sfid': sfid, 'content-type', 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
 						};
 						console.log(options);
 						callback = function(results) { };
@@ -346,6 +347,7 @@ function caseNotification()
 						httprequest.on('error', (e) => {
 							res.send('problem with request: ${e.message}');
 						});
+						httprequest.write(postBody);
 						httprequest.end();
 					}
 				}
@@ -378,24 +380,27 @@ function workorderNotification()
 					if(results[i].recordtypeid == rec[j].sfid)
 					{
 						sfid = results[i].sfid;
+						message = '';
 						if (results[i].Status == 'Closed') 
 						{
 							type = 'clean closed';
 						}
 						
 						var https = require('https');
+						var postBody = JSON.stringify(message);
 						var options = {
 						  host: 'thammasat-university.herokuapp.com',
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'type': type}
+						  headers: { 'sfid': sfid, 'content-type', 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
 						};
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
 						httprequest.on('error', (e) => {
 							res.send('problem with request: ${e.message}');
 						});
+						httprequest.write(postBody);
 						httprequest.end();
 					}
 				}
