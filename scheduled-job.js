@@ -182,20 +182,20 @@ function caseNotification()
 						sfid = results[i].sfid;
 						message = '';
 						//Services
-						if(rec[j].Name == 'Services')
+						if(rec[j].name == 'Services')
 						{
-							if (results[i].Status == 'Working') {
+							if (results[i].status == 'Working') {
 								type = 'problem working';
 							} 
-							else if (results[i].Status == 'On Hold') 
+							else if (results[i].status == 'On Hold') 
 							{
 								type = 'problem on hold';
-								message = results[i].Reason_On_Hold__c;
+								message = results[i].reason_on_hold__c;
 							} 
-							else if (results[i].Status == 'Completed') 
+							else if (results[i].status == 'Completed') 
 							{
 								type = 'problem closed';
-								if(results[i].Amount__c != null)
+								if(results[i].amount__c != null)
 								{
 								    message = 'มีค่าใช้จ่าย ' + results[i].Amount__c + ' บาท เนื่องจาก ' + results[i].Payment_Detail__c;
 								}
@@ -203,54 +203,54 @@ function caseNotification()
 						}
 						
 						//Complain
-						else if(rec[j].Name == 'Complain')
+						else if(rec[j].name == 'Complain')
 						{
-							if (results[i].Status == 'Accepted') {
+							if (results[i].status == 'Accepted') {
 								type = 'complain accept';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 						    	}
 						}
 						
 						//Checkout
-						else if(rec[j].Name == 'Checkout')
+						else if(rec[j].name == 'Checkout')
 						{
-							if (results[i].Status == 'Confirm') 
+							if (results[i].status == 'Confirm') 
 							{
 								type = 'checkout confirm';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							} 
-							else if (results[i].Status == 'Waiting for Payment') 
+							else if (results[i].status == 'Waiting for Payment') 
 							{
 								type = 'checkout payment';
-								if (results[i].Amount__c != null) 
+								if (results[i].amount__c != null) 
 								{
-									message = 'มีค่าใช้จ่าย ' + results[i].Amount__c + ' บาท เนื่องจาก ' + results[i].Payment_Detail__c;
+									message = 'มีค่าใช้จ่าย ' + results[i].amount__c + ' บาท เนื่องจาก ' + results[i].payment_detail__c;
 								}
 							}
 						}
 						
 						//Early and Late Access
-						else if(rec[j].Name == 'Early and Late Access')
+						else if(rec[j].name == 'Early and Late Access')
 						{
-							if (results[i].Problem_Type__c == 'ขออนุญาตเข้าหอ หลังเวลา') 
+							if (results[i].problem_type__c == 'ขออนุญาตเข้าหอ หลังเวลา') 
 							{
-								if (results[i].Status == 'Approve') 
+								if (results[i].status == 'Approve') 
 								{
 								    type = 'access approve';
 								} 
-								else if (results[i].Status == 'Reject') 
+								else if (results[i].status == 'Reject') 
 								{
 								    type = 'access reject';
-								    message = results[i].Response_Message__c;
+								    message = results[i].response_message__c;
 								}
 							} 
-							else if (results[i].Problem_Type__c == 'ขออนุญาตออกหอ ก่อนเวลา') 
+							else if (results[i].problem_type__c == 'ขออนุญาตออกหอ ก่อนเวลา') 
 							{
-								if (results[i].Status == 'Approve') 
+								if (results[i].status == 'Approve') 
 								{
 								    type = 'leave approve';
 								} 
-								else if (results[i].Status == 'Reject') 
+								else if (results[i].status == 'Reject') 
 								{
 								    type = 'leave reject';
 								    message = results[i].Response_Message__c;
@@ -259,76 +259,77 @@ function caseNotification()
 						}
 						
 						//Request to Stay
-						else if(rec[j].Name == 'Request to Stay')
+						else if(rec[j].name == 'Request to Stay')
 						{
-							if (results[i].Status == 'Approve') 
+							if (results[i].status == 'Approve') 
 							{
 								type = 'stay approve';
 							} 
-							else if (results[i].Status == 'Reject') 
+							else if (results[i].status == 'Reject') 
 							{
 								type = 'stay reject';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							}
 						}
 						
 						//Check Mailing
-						else if(rec[j].Name == 'Check Mailing')
+						else if(rec[j].name == 'Check Mailing')
 						{
-							if (results[i].Status == 'Found') 
+							if (results[i].status == 'Found') 
 							{
 								type = 'mail found';
 							} 
-							else if (results[i].Status == 'Not Found') 
+							else if (results[i].status == 'Not Found') 
 							{
 								type = 'mail not found';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							}
 						}
 						
 						//Request Household
-						else if(rec[j].Name == 'Request Household')
+						else if(rec[j].name == 'Request Household')
 						{
-							if (results[i].Status == 'Working') 
+							if (results[i].status == 'Working') 
 							{
 								type = 'household in progress';
-							} else if (results[i].Status == 'Waiting Document') 
+							} 
+							else if (results[i].status == 'Waiting Document') 
 							{
 								type = 'household wait doc';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							} 
-							else if (results[i].Status == 'Completed') 
+							else if (results[i].status == 'Completed') 
 							{
 								type = 'household completed';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							}
 						}
 						
 						//Other
-						else if(rec[j].Name == 'Other')
+						else if(rec[j].name == 'Other')
 						{
-							if (results[i].Status == 'In Progress') 
+							if (results[i].status == 'In Progress') 
 							{
 								type = 'other in progress';
 							} 
-							else if (results[i].Status == 'Completed') 
+							else if (results[i].status == 'Completed') 
 							{
 								type = 'other completed';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							}
 						}
 						
 						//Move Room
-						else if(rec[j].Name == 'Move Room')
+						else if(rec[j].name == 'Move Room')
 						{
-							if (results[i].Status == 'Approve') 
+							if (results[i].status == 'Approve') 
 							{
 								type = 'room accepted';
 							} 
-							else if (results[i].Status == 'Reject') 
+							else if (results[i].status == 'Reject') 
 							{
 								type = 'room reject';
-								message = results[i].Response_Message__c;
+								message = results[i].response_message__c;
 							}
 						}
 						
@@ -341,7 +342,7 @@ function caseNotification()
 						  method: 'POST',
 						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
 						};
-						console.log('Type:' + rec[j].Name + 'Status:' + results[i].Status + ', ' + options);
+						console.log('Type:' + rec[j].name + 'Status:' + results[i].status + ', ' + options);
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
 						httprequest.on('error', (e) => {
@@ -381,7 +382,7 @@ function workorderNotification()
 					{
 						sfid = results[i].sfid;
 						message = '';
-						if (results[i].Status == 'Closed') 
+						if (results[i].status == 'Closed') 
 						{
 							type = 'clean closed';
 						}
