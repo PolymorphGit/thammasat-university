@@ -344,15 +344,18 @@ function caseNotification()
 							  method: 'POST',
 							  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(message) }
 							};
-							console.log('Type:' + rec[j].name + 'Status:' + results[i].status);
-							console.log(options);
-							console.log(message);
+							//console.log('Type:' + rec[j].name + 'Status:' + results[i].status);
+							//console.log(options);
+							//console.log(message);
 							callback = function(results) { };
 							var httprequest = https.request(options, callback);
 							httprequest.on('error', (e) => {
 								console.log('problem with request: ${e.message}');
 							});
-							httprequest.write(message);
+							if(message != undefined)
+							{
+								httprequest.write(message);
+							}
 							httprequest.end();
 						}
 					}
