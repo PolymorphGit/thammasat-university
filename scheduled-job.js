@@ -358,7 +358,7 @@ function caseNotification()
 				}
 				db.select("UPDATE salesforce.Case SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "' RETURNING *")
 				.then(function(results) {
-					console.log('Send Case : ' + results[i].sfid);
+					//console.log('Send Case : ' + results[i].sfid);
 				})
 				.catch(function(e){console.log(e);});
 			}
@@ -415,7 +415,7 @@ function workorderNotification()
 				}
 				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "' RETURNING *")
 				.then(function(results) {
-					console.log('Send Clean : ' + results[i].sfid);
+					//console.log('Send Clean : ' + results[i].sfid);
 				})
 				.catch(function(e){console.log(e);});
 			}
