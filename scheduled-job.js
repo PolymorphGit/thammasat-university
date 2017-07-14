@@ -349,7 +349,7 @@ function caseNotification()
 							callback = function(results) { };
 							var httprequest = https.request(options, callback);
 							httprequest.on('error', (e) => {
-								res.send('problem with request: ${e.message}');
+								console.log('problem with request: ${e.message}');
 							});
 							httprequest.write(postBody);
 							httprequest.end();
@@ -406,7 +406,7 @@ function workorderNotification()
 							callback = function(results) { };
 							var httprequest = https.request(options, callback);
 							httprequest.on('error', (e) => {
-								res.send('problem with request: ${e.message}');
+								console.log('problem with request: ${e.message}');
 							});
 							httprequest.write(postBody);
 							httprequest.end();
