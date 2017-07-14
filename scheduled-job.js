@@ -339,7 +339,7 @@ function caseNotification()
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'content-type', 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
+						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody) }
 						};
 						console.log(options);
 						callback = function(results) { };
@@ -393,7 +393,7 @@ function workorderNotification()
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'content-type', 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
+						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
 						};
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
