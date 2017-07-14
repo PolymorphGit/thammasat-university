@@ -121,7 +121,7 @@ function sendContractExpire()
 	var to;
 	var noti;
 	var payload;
-	db.select("SELECT * FROM salesforce.Asset WHERE active__c=true and send_notification__c=false and contract_end__c > NOW() - interval '1 months' limit 5")
+	db.select("SELECT * FROM salesforce.Asset WHERE active__c=true and send_notification__c=false and contract_end__c > NOW() - interval '1 months' limit 10")
 	.then(function(results) {
 		console.log(results);
 		for(var i = 0 ; i < results.length ; i++)
@@ -163,3 +163,201 @@ function sendContractExpire()
 	.catch(function(e){console.log(e);});
 }
 sendContractExpire();
+
+function caseNotification()
+{
+	var sfid, type, message;
+	var listCaseId = '(';
+	db.select("SELECT * FROM salesforce.RecordType WHERE name !='Care and Clean'")
+	.then(function(rec) {
+		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10)
+		.then(function(results) {
+			console.log(results);
+			for(var i = 0 ; i < results.length ; i++)
+			{
+				for(var j = 0 ; j < rec.length ; j++)
+				{
+					if(results[i].recordtypeid == rec[j].sfid)
+					{
+						message = '';
+						//Services
+						if(rec[j].Name == 'Services')
+						{
+							if (results[i].Status == 'Working') {
+								type = 'problem working';
+							} 
+							else if (results[i].Status == 'On Hold') 
+							{
+								type = 'problem on hold';
+								message = results[i].Reason_On_Hold__c;
+							} 
+							else if (results[i].Status == 'Completed') 
+							{
+								type = 'problem closed';
+								if(results[i].Amount__c != null)
+								{
+								    message = 'มีค่าใช้จ่าย ' + results[i].Amount__c + ' บาท เนื่องจาก ' + results[i].Payment_Detail__c;
+								}
+							}
+						}
+						
+						//Complain
+						else if(rec[j].Name == 'Complain')
+						{
+							if (results[i].Status == 'Accepted') {
+								type = 'complain accept';
+								message = results[i].Response_Message__c;
+						    	}
+						}
+						
+						//Checkout
+						else if(rec[j].Name == 'Checkout')
+						{
+							if (results[i].Status == 'Confirm') 
+							{
+								type = 'checkout confirm';
+								message = results[i].Response_Message__c;
+							} 
+							else if (results[i].Status == 'Waiting for Payment') 
+							{
+								type = 'checkout payment';
+								if (results[i].Amount__c != null) 
+								{
+									message = 'มีค่าใช้จ่าย ' + results[i].Amount__c + ' บาท เนื่องจาก ' + results[i].Payment_Detail__c;
+								}
+							}
+						}
+						
+						//Early and Late Access
+						else if(rec[j].Name == 'Early and Late Access')
+						{
+							if (results[i].Problem_Type__c == 'ขออนุญาตเข้าหอ หลังเวลา') 
+							{
+								if (results[i].Status == 'Approve') 
+								{
+								    type = 'access approve';
+								} 
+								else if (results[i].Status == 'Reject') 
+								{
+								    type = 'access reject';
+								    message = results[i].Response_Message__c;
+								}
+							} 
+							else if (results[i].Problem_Type__c == 'ขออนุญาตออกหอ ก่อนเวลา') 
+							{
+								if (results[i].Status == 'Approve') 
+								{
+								    type = 'leave approve';
+								} 
+								else if (results[i].Status == 'Reject') 
+								{
+								    type = 'leave reject';
+								    message = results[i].Response_Message__c;
+								}
+							}
+						}
+						
+						//Request to Stay
+						else if(rec[j].Name == 'Request to Stay')
+						{
+							if (results[i].Status == 'Approve') 
+							{
+								type = 'stay approve';
+							} 
+							else if (results[i].Status == 'Reject') 
+							{
+								type = 'stay reject';
+								message = results[i].Response_Message__c;
+							}
+						}
+						
+						//Check Mailing
+						else if(rec[j].Name == 'Check Mailing')
+						{
+							if (results[i].Status == 'Found') 
+							{
+								type = 'mail found';
+							} 
+							else if (results[i].Status == 'Not Found') 
+							{
+								type = 'mail not found';
+								message = results[i].Response_Message__c;
+							}
+						}
+						
+						//Request Household
+						else if(rec[j].Name == 'Request Household')
+						{
+							if (results[i].Status == 'Working') 
+							{
+								type = 'household in progress';
+							} else if (results[i].Status == 'Waiting Document') 
+							{
+								type = 'household wait doc';
+								message = results[i].Response_Message__c;
+							} 
+							else if (results[i].Status == 'Completed') 
+							{
+								type = 'household completed';
+								message = results[i].Response_Message__c;
+							}
+						}
+						
+						//Other
+						else if(rec[j].Name == 'Other')
+						{
+							if (results[i].Status == 'In Progress') 
+							{
+								type = 'other in progress';
+							} 
+							else if (results[i].Status == 'Completed') 
+							{
+								type = 'other completed';
+								message = results[i].Response_Message__c;
+							}
+						}
+						
+						//Move Room
+						else if(rec[j].Name == 'Move Room')
+						{
+							if (results[i].Status == 'Approve') 
+							{
+								type = 'room accepted';
+							} 
+							else if (results[i].Status == 'Reject') 
+							{
+								type = 'room reject';
+								message = results[i].Response_Message__c;
+							}
+						}
+						
+						var https = require('https');
+						var options = {
+						  host: 'thammasat-university.herokuapp.com',
+						  path: '/notification',
+						  port: '443',
+						  method: 'POST',
+						  headers: { 'sfid': sfid, 'type': type, 'message': message }
+						};
+						callback = function(results) { };
+						var httprequest = https.request(options, callback);
+						httprequest.on('error', (e) => {
+							res.send('problem with request: ${e.message}');
+						});
+						httprequest.write(postBody);
+						httprequest.end();
+					}
+				}
+				db.select("UPDATE salesforce.Case SET send_notification__c=true WHERE SFID = " + results[i].sfid)
+				.then(function(results) {
+					console.log('Send Case : ' + results[i].sfid);
+				})
+				.catch(function(e){console.log(e);});
+			}
+		})
+		.catch(function(e){console.log(e);});
+	})		  
+	.catch(function(e){console.log(e);});
+}
+caseNotification();
+	
