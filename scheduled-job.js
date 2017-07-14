@@ -170,7 +170,7 @@ function caseNotification()
 	var listCaseId = '(';
 	db.select("SELECT * FROM salesforce.RecordType WHERE name !='Care and Clean'")
 	.then(function(rec) {
-		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10)
+		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10")
 		.then(function(results) {
 			console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
@@ -366,7 +366,7 @@ function workorderNotification()
 	var listCaseId = '(';
 	db.select("SELECT * FROM salesforce.RecordType WHERE name='Maid'")
 	.then(function(rec) {
-		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and ")
+		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = " + rec[0].sfid +" limit 10")
 		.then(function(results) {
 			console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
