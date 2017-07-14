@@ -347,6 +347,7 @@ function caseNotification()
 							};
 							console.log('Type:' + rec[j].name + 'Status:' + results[i].status);
 							console.log(options);
+							console.log(postBody);
 							callback = function(results) { };
 							var httprequest = https.request(options, callback);
 							httprequest.on('error', (e) => {
