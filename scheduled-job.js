@@ -170,7 +170,7 @@ function caseNotification()
 	var listCaseId = '(';
 	db.select("SELECT * FROM salesforce.RecordType WHERE name !='Care and Clean' and sobjecttype = 'Case'")
 	.then(function(rec) {
-		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10")
+		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' and status != 'New' limit 10")
 		.then(function(results) {
 			//console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
@@ -351,10 +351,7 @@ function caseNotification()
 							httprequest.on('error', (e) => {
 								console.log('problem with request: ${e.message}');
 							});
-							if(message != '')
-							{
-								httprequest.write(postBody);
-							}
+							httprequest.write(postBody);
 							httprequest.end();
 						}
 					}
@@ -378,7 +375,7 @@ function workorderNotification()
 	var listCaseId = '(';
 	db.select("SELECT * FROM salesforce.RecordType WHERE name='Maid'")
 	.then(function(rec) {
-		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = '" + rec[0].sfid + "' limit 10")
+		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and recordtypeid = '" + rec[0].sfid + "' and status ='Closed' limit 10")
 		.then(function(results) {
 			//console.log(results);
 			for(var i = 0 ; i < results.length ; i++)
@@ -389,34 +386,24 @@ function workorderNotification()
 					{
 						sfid = results[i].sfid;
 						message = '';
-						type = '';
-						if (results[i].status == 'Closed') 
-						{
-							type = 'clean closed';
-						}
+						type = 'clean closed';
 						
-						if(type != '')
-						{
-							var https = require('https');
-							var postBody = JSON.stringify(message);
-							var options = {
-							  host: 'thammasat-university.herokuapp.com',
-							  path: '/notification',
-							  port: '443',
-							  method: 'POST',
-							  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
-							};
-							callback = function(results) { };
-							var httprequest = https.request(options, callback);
-							httprequest.on('error', (e) => {
-								console.log('problem with request: ${e.message}');
-							});
-							if(message != '')
-							{
-								httprequest.write(postBody);
-							}
-							httprequest.end();
-						}
+						var https = require('https');
+						var postBody = JSON.stringify(message);
+						var options = {
+						  host: 'thammasat-university.herokuapp.com',
+						  path: '/notification',
+						  port: '443',
+						  method: 'POST',
+						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(postBody)}
+						};
+						callback = function(results) { };
+						var httprequest = https.request(options, callback);
+						httprequest.on('error', (e) => {
+							console.log('problem with request: ${e.message}');
+						});
+						httprequest.write(postBody);
+						httprequest.end();
 					}
 				}
 				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = '" + results[i].sfid + "' RETURNING *")
