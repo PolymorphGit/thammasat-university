@@ -344,7 +344,6 @@ function caseNotification()
 						httprequest.on('error', (e) => {
 							res.send('problem with request: ${e.message}');
 						});
-						httprequest.write(postBody);
 						httprequest.end();
 					}
 				}
@@ -361,3 +360,51 @@ function caseNotification()
 }
 caseNotification();
 	
+function workorderNotification()
+{
+	var sfid, type, message;
+	var listCaseId = '(';
+	db.select("SELECT * FROM salesforce.RecordType WHERE name='Maid'")
+	.then(function(rec) {
+		db.select("SELECT * FROM salesforce.workorder WHERE send_notification__c=false and ")
+		.then(function(results) {
+			console.log(results);
+			for(var i = 0 ; i < results.length ; i++)
+			{
+				for(var j = 0 ; j < rec.length ; j++)
+				{
+					if(results[i].recordtypeid == rec[j].sfid)
+					{
+						if (results[i].Status == 'Closed') 
+						{
+							type = 'clean closed';
+						}
+						
+						var https = require('https');
+						var options = {
+						  host: 'thammasat-university.herokuapp.com',
+						  path: '/notification',
+						  port: '443',
+						  method: 'POST',
+						  headers: { 'sfid': sfid, 'type': type, 'message': message }
+						};
+						callback = function(results) { };
+						var httprequest = https.request(options, callback);
+						httprequest.on('error', (e) => {
+							res.send('problem with request: ${e.message}');
+						});
+						httprequest.end();
+					}
+				}
+				db.select("UPDATE salesforce.workorder SET send_notification__c=true WHERE SFID = " + results[i].sfid)
+				.then(function(results) {
+					console.log('Send Clean : ' + results[i].sfid);
+				})
+				.catch(function(e){console.log(e);});
+			}
+		})
+		.catch(function(e){console.log(e);});
+	})		  
+	.catch(function(e){console.log(e);});
+}
+workorderNotification();
