@@ -168,7 +168,7 @@ function caseNotification()
 {
 	var sfid, type, message;
 	var listCaseId = '(';
-	db.select("SELECT * FROM salesforce.RecordType WHERE name !='Care and Clean'")
+	db.select("SELECT * FROM salesforce.RecordType WHERE name !='Care and Clean' and sobjecttype = 'Case'")
 	.then(function(rec) {
 		db.select("SELECT * FROM salesforce.Case WHERE send_notification__c=false and type != 'Care and Clean' limit 10")
 		.then(function(results) {
@@ -179,6 +179,7 @@ function caseNotification()
 				{
 					if(results[i].recordtypeid == rec[j].sfid)
 					{
+						sfid = results[i].sfid;
 						message = '';
 						//Services
 						if(rec[j].Name == 'Services')
@@ -337,7 +338,7 @@ function caseNotification()
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'message': message }
+						  headers: { 'sfid': sfid, 'type': type, 'message': message }
 						};
 						console.log(options);
 						callback = function(results) { };
@@ -376,6 +377,7 @@ function workorderNotification()
 				{
 					if(results[i].recordtypeid == rec[j].sfid)
 					{
+						sfid = results[i].sfid;
 						if (results[i].Status == 'Closed') 
 						{
 							type = 'clean closed';
@@ -387,7 +389,7 @@ function workorderNotification()
 						  path: '/notification',
 						  port: '443',
 						  method: 'POST',
-						  headers: { 'sfid': sfid, 'type': type, 'message': message }
+						  headers: { 'sfid': sfid, 'type': type}
 						};
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
