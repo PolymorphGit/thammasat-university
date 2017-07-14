@@ -339,6 +339,7 @@ function caseNotification()
 						  method: 'POST',
 						  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'message': message }
 						};
+						console.log(options);
 						callback = function(results) { };
 						var httprequest = https.request(options, callback);
 						httprequest.on('error', (e) => {
