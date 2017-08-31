@@ -352,7 +352,7 @@ function caseNotification()
 							httprequest.on('error', (e) => {
 								console.log('problem with request: ${e.message}');
 							});
-							if(message != undefined)
+							//if(message != undefined)
 							{
 								//message = JSON.stringify({'message': message});
 								//console.log('----Message : ' + message + '------');
