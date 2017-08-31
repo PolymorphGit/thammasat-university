@@ -345,8 +345,8 @@ function caseNotification()
 							  headers: { 'sfid': sfid, 'content-type': 'application/x-www-form-urlencoded', 'type': type, 'Content-Length': Buffer.byteLength(message) }
 							};
 							//console.log('Type:' + rec[j].name + 'Status:' + results[i].status);
-							//console.log(options);
-							//console.log(message);
+							console.log(options);
+							console.log(message);
 							callback = function(results) { };
 							var httprequest = https.request(options, callback);
 							httprequest.on('error', (e) => {
@@ -355,7 +355,7 @@ function caseNotification()
 							if(message != undefined)
 							{
 								//message = JSON.stringify({'message': message});
-								console.log('----Message : ' + message + '------');
+								//console.log('----Message : ' + message + '------');
 								httprequest.write(message);
 							}
 							httprequest.end();
