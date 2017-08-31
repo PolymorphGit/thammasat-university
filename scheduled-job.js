@@ -339,6 +339,10 @@ function caseNotification()
 						{
 							message = ''	
 						}
+						else
+						{
+							message = JSON.stringify({'message': message});	
+						}
 						if(type != '')
 						{
 							var https = require('https');
