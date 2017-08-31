@@ -334,7 +334,7 @@ function caseNotification()
 							}
 						}
 						
-						if(message != undefined)
+						if(message == undefined)
 						{
 							message = ''	
 						}
