@@ -334,6 +334,10 @@ function caseNotification()
 							}
 						}
 						
+						if(message != undefined)
+						{
+							message = ''	
+						}
 						if(type != '')
 						{
 							var https = require('https');
