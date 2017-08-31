@@ -16,6 +16,7 @@ exports.push = function(req, res, next)
 	var type = req.headers['type'];
 	var message = req.body.message;
 	console.log('----' + message + '----');
+	console.log('----' + req.body + '----');
 	var result = true;
 	switch(type)
 	{
