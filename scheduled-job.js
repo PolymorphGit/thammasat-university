@@ -208,6 +208,7 @@ function caseNotification()
 						{
 							if (results[i].status == 'Accepted') {
 								type = 'complain accept';
+								console.log('-----Message : ' + results[i].response_message__c + '-----');
 								message = results[i].response_message__c;
 						    	}
 						}
