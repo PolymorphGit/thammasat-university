@@ -195,7 +195,7 @@ exports.challengecode = function(req, res, next) {
 				.then(function(results2) {
 					console.log(results2);
 					phone = results2[0].personmobilephone;
-					msg = 'Your verify code is ' + results2[0].auth_code__c;
+					msg = 'Your%20verify%20code%20is%20' + results2[0].auth_code__c;
 					var valid = results2[0].auth_code_valid__c;
 					if(phone != null)
 					{
