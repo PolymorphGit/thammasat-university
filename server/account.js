@@ -255,6 +255,7 @@ exports.challengecode = function(req, res, next) {
 						var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
 						query += "auth_code_valid__c='" + datetime + "' ";
 						query += " WHERE SFID='" + results2[0].SFID + "'";
+						console.log(query);
 						db.select(query)
 						.then(function(results4) {
 							console.log(results4);	
