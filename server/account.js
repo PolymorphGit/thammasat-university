@@ -192,32 +192,55 @@ exports.challengecode = function(req, res, next) {
 				var Sender = 'PSM.TU';
 				
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-				.then(function(results) {
-					console.log(results);
-					phone = results[0].personmobilephone;
-					msg = results[0].auth_code__c;
-					var options2 = {
-					  host: 'member.smsmkt.com',
-					  path: '/SMSLink/SendMsg/index.php',
-					  port: '443',
-					  method: 'GET',
-					  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender: Sender}
-					};
-					callback2 = function(results){
-						var str = '';
-						results.on('data', function(chunk) {
-							str += chunk;
-						});
-						results.on('end', function() {
-							res.send(str);
+				.then(function(results2) {
+					console.log(results2);
+					phone = results2[0].personmobilephone;
+					msg = 'Your verify code is ' + results2[0].auth_code__c;
+					var valid = results2[0].auth_code_valid__c;
+					if(phone != null)
+					{
+						//Check auth code valid
+						var today = new Date();
+						if(valid == null || valid < today)
+						{
+							//Generate new code	
+							onsole.log(Math.floor(100000 + Math.random() * 900000));
+							
 						}
+						/*
+						var options2 = {
+						  host: 'member.smsmkt.com',
+						  path: '/SMSLink/SendMsg/index.php',
+						  port: '443',
+						  method: 'GET',
+						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender: Sender}
+						};
+						callback2 = function(results){
+							var str = '';
+							results.on('data', function(chunk) {
+								str += chunk;
+							});
+							results.on('end', function() {
+								res.send(str);
+								if(valid == null || valid < today)
+								{
+									//write new code to DB
+									
+								}
+							}
+						}
+						var httprequest = https.request(options2, callback2);
+						httprequest.on('error', (e) => {
+							//console.log(`problem with request: ${e.message}`);
+							res.send('problem with request: ${e.message}');
+						});
+						httprequest.end();
+						*/
 					}
-					var httprequest = https.request(options2, callback2);
-					httprequest.on('error', (e) => {
-						//console.log(`problem with request: ${e.message}`);
-						res.send('problem with request: ${e.message}');
-					});
-					httprequest.end();
+					else
+					{
+						res.send('User no phone number');
+					}
 				})
 			        .catch(next);
 			}
