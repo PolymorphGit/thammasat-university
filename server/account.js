@@ -219,12 +219,12 @@ exports.challengecode = function(req, res, next) {
 						  method: 'GET',
 						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender': Sender}
 						};
-						callback2 = function(results){
+						callback2 = function(results3){
 							var str = '';
-							results.on('data', function(chunk) {
+							results3.on('data', function(chunk) {
 								str += chunk;
 							});
-							results.on('end', function() {
+							results3.on('end', function() {
 								res.send(str);
 								if(valid == null || valid < today)
 								{
@@ -233,9 +233,9 @@ exports.challengecode = function(req, res, next) {
 									query += "auth_code_valid__c='" + valid + "' ";
 									query += " WHERE SFID='" + results2[0].SFID + "'";
 									db.select(query)
-									.then(function(results) {
-										console.log(results);	
-										res.json(results);
+									.then(function(results4) {
+										console.log(results4);	
+										res.json(results4);
 									})	
 								    	.catch(next);
 								}
@@ -266,11 +266,11 @@ exports.challengecode = function(req, res, next) {
 		res.send('problem with request: ${e.message}');
 	});
 	httprequest.end();
-}
+};
 
 exports.verifycode = function(req, res, next) {
 	
-}
+};
 
 exports.checkStatus = function(req, res, next) {
 	var head = req.headers['authorization'];
