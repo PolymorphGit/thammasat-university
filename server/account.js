@@ -211,7 +211,7 @@ exports.challengecode = function(req, res, next) {
 							valid.setMinutes( valid.getMinutes() + 5 );
 							console.log('Expired ' + valid);
 						}
-						console.log('User: ' + Username + ', Password: ' + Password + ', Msnlist: ' + phone + ', Msg: ' + msg + ', Sender :' + Sender);
+						//console.log('User: ' + Username + ', Password: ' + Password + ', Msnlist: ' + phone + ', Msg: ' + msg + ', Sender :' + Sender);
 						
 						var options2 = {
 						  host: 'member.smsmkt.com',
@@ -220,6 +220,7 @@ exports.challengecode = function(req, res, next) {
 						  method: 'GET',
 						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender': Sender}
 						};
+						console.log(options2);
 						callback2 = function(results3){
 							var str = '';
 							results3.on('data', function(chunk) {
