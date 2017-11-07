@@ -296,6 +296,7 @@ exports.challengecode = function(req, res, next) {
 exports.verifycode = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var otp = req.headers['otp'];
+	var https = require('https');
 	
 	var options = {
 	  host: 'app64319644.auth0.com',
