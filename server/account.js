@@ -212,7 +212,7 @@ exports.challengecode = function(req, res, next) {
 							console.log('Expired ' + valid);
 						}
 						//console.log('User: ' + Username + ', Password: ' + Password + ', Msnlist: ' + phone + ', Msg: ' + msg + ', Sender :' + Sender);
-						var path = '/SMSLink/SendMsg/index.php?User=' + Username + '&Password=' + Passsword + '&Msnlist=' + phone + '&Msg=' + msg + '&Sender=' + Sender;
+						var path = '/SMSLink/SendMsg/index.php?User=' + Username + '&Password=' + Password + '&Msnlist=' + phone + '&Msg=' + msg + '&Sender=' + Sender;
 						var options2 = {
 						  host: 'member.smsmkt.com',
 						  path: path,
