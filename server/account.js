@@ -212,13 +212,13 @@ exports.challengecode = function(req, res, next) {
 							console.log('Expired ' + valid);
 						}
 						//console.log('User: ' + Username + ', Password: ' + Password + ', Msnlist: ' + phone + ', Msg: ' + msg + ', Sender :' + Sender);
-						
+						var path = '/SMSLink/SendMsg/index.php?User=' + Username + '&Password=' + Passsword + '&Msnlist=' + phone + '&Msg=' + msg + '&Sender=' + Sender;
 						var options2 = {
 						  host: 'member.smsmkt.com',
-						  path: '/SMSLink/SendMsg/index.php',
+						  path: path,
 						  port: '443',
-						  method: 'GET',
-						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender': Sender}
+						  method: 'GET'
+						  //headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender': Sender}
 						};
 						console.log(options2);
 						callback2 = function(results3){
