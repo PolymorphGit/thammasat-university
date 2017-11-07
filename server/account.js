@@ -294,7 +294,60 @@ exports.challengecode = function(req, res, next) {
 };
 
 exports.verifycode = function(req, res, next) {
+	var head = req.headers['authorization'];
+	var otp = req.headers['otp'];
 	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  //host: 'thammasat-university.herokuapp.com',
+	  //path: '/',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results2) { 
+					console.log(results2);	
+					if(results2[0].auth_code__c == otp)
+					{
+					   	var valid = new Date();
+						if(results2[0].auth_code_valid__c < valid)
+						{
+							res.send('OK');
+						}
+						else
+						{
+							res.send('Verify Code Expire');
+						}
+					}
+					else
+					{
+						res.send('Incorrect Code');
+					}
+				})
+				.catch(next);
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
 };
 
 exports.checkStatus = function(req, res, next) {
