@@ -217,7 +217,7 @@ exports.challengecode = function(req, res, next) {
 						  path: '/SMSLink/SendMsg/index.php',
 						  port: '443',
 						  method: 'GET',
-						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender: Sender}
+						  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender': Sender}
 						};
 						callback2 = function(results){
 							var str = '';
