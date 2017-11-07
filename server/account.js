@@ -241,12 +241,12 @@ exports.challengecode = function(req, res, next) {
 								}
 							}
 						}
-						var httprequest = https.request(options2, callback2);
-						httprequest.on('error', (e) => {
+						var httprequest2 = https.request(options2, callback2);
+						httprequest2.on('error', (e) => {
 							//console.log(`problem with request: ${e.message}`);
 							res.send('problem with request: ${e.message}');
 						});
-						httprequest.end();
+						httprequest2.end();
 						
 					}
 					else
