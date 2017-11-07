@@ -228,7 +228,7 @@ exports.challengecode = function(req, res, next) {
 							});
 							results3.on('end', function() {
 								res.send(str);
-								if(valid == null || valid < today)
+								if(results2[0].auth_code_valid__c == null || results2[0].auth_code_valid__c < today)
 								{
 									//write new code to DB
 									var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
