@@ -231,18 +231,26 @@ exports.challengecode = function(req, res, next) {
 								console.log(str);
 								//res.send(str);
 								var send = str.includes('Status=0');
-								if(send && (results2[0].auth_code_valid__c == null || results2[0].auth_code_valid__c < today))
+								if(send == true)
 								{
-									//write new code to DB
-									var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
-									query += "auth_code_valid__c='" + valid.toLocaleString() + "' ";
-									query += " WHERE SFID='" + results2[0].sfid + "'";
-									db.select(query)
-									.then(function(results4) {
-										console.log(results4);	
-										//res.json(results4);
-									})	
-								    	.catch(next);
+									res.send('OK');
+									if(results2[0].auth_code_valid__c == null || results2[0].auth_code_valid__c < today)
+									{
+										//write new code to DB
+										var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
+										query += "auth_code_valid__c='" + valid.toLocaleString() + "' ";
+										query += " WHERE SFID='" + results2[0].sfid + "'";
+										db.select(query)
+										.then(function(results4) {
+											console.log(results4);	
+											//res.json(results4);
+										})	
+										.catch(next);
+									}
+								}
+								else
+								{
+									res.send('Fail');	
 								}
 							});
 						}
