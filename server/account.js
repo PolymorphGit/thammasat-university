@@ -211,6 +211,7 @@ exports.challengecode = function(req, res, next) {
 							valid.setMinutes( valid.getMinutes() + 5 );
 							console.log('Expired ' + valid);
 						}
+						/*
 						//console.log('User: ' + Username + ', Password: ' + Password + ', Msnlist: ' + phone + ', Msg: ' + msg + ', Sender :' + Sender);
 						var path = '/SMSLink/SendMsg/index.php?User=' + Username + '&Password=' + Password + '&Msnlist=' + phone + '&Msg=' + msg + '&Sender=' + Sender;
 						var options2 = {
@@ -249,7 +250,16 @@ exports.challengecode = function(req, res, next) {
 							res.send('problem with request: ${e.message}');
 						});
 						httprequest2.end();
-						
+						*/
+						var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
+						query += "auth_code_valid__c='" + to_char(valid, ''yyyymmdd hh:mi:ss tt') + "' ";
+						query += " WHERE SFID='" + results2[0].SFID + "'";
+						db.select(query)
+						.then(function(results4) {
+							console.log(results4);	
+							res.json(results4);
+						})	
+						.catch(next);
 					}
 					else
 					{
