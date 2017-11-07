@@ -162,6 +162,14 @@ exports.getInfo2 = function(req, res, next) {
 	httprequest.end();
 };
 
+exports.challengeotp = function(req, res, next) {
+	
+}
+
+exports.verifycode = function(req, res, next) {
+	
+}
+
 exports.checkStatus = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var https = require('https');
