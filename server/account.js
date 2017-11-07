@@ -204,8 +204,12 @@ exports.challengecode = function(req, res, next) {
 						if(valid == null || valid < today)
 						{
 							//Generate new code	
-							console.log(Math.floor(100000 + Math.random() * 900000));
-							
+							results2[0].auth_code__c = Math.floor(100000 + Math.random() * 900000);
+							console.log('Verify Code ' + results2[0].auth_code__c);
+							msg = 'Your verify code is ' + results2[0].auth_code__c;
+							valid = today;
+							valid.setMinutes( valid.getMinutes() + 5 );
+							console.log('Expired ' + valid);
 						}
 						/*
 						var options2 = {
