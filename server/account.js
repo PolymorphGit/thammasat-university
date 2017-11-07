@@ -239,7 +239,7 @@ exports.challengecode = function(req, res, next) {
 									})	
 								    	.catch(next);
 								}
-							}
+							});
 						}
 						var httprequest2 = https.request(options2, callback2);
 						httprequest2.on('error', (e) => {
