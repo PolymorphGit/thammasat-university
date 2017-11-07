@@ -211,7 +211,7 @@ exports.challengecode = function(req, res, next) {
 							valid.setMinutes( valid.getMinutes() + 5 );
 							console.log('Expired ' + valid);
 						}
-						/*
+					
 						var options2 = {
 						  host: 'member.smsmkt.com',
 						  path: '/SMSLink/SendMsg/index.php',
@@ -229,7 +229,15 @@ exports.challengecode = function(req, res, next) {
 								if(valid == null || valid < today)
 								{
 									//write new code to DB
-									
+									var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
+									query += "auth_code_valid__c='" + valid + "' ";
+									query += " WHERE SFID='" + results2[0].SFID + "'";
+									db.select(query)
+									.then(function(results) {
+										console.log(results);	
+										res.json(results);
+									})	
+								    	.catch(next);
 								}
 							}
 						}
@@ -239,7 +247,7 @@ exports.challengecode = function(req, res, next) {
 							res.send('problem with request: ${e.message}');
 						});
 						httprequest.end();
-						*/
+						
 					}
 					else
 					{
@@ -565,7 +573,7 @@ exports.update = function(req, res, next) {
 		console.log(results);	
 		res.json(results);
 	})	
-    .catch(next);
+    	.catch(next);
 };
 
 exports.getRoommate = function(req, res, next) {
