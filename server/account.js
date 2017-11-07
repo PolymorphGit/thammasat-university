@@ -228,8 +228,10 @@ exports.challengecode = function(req, res, next) {
 								str += chunk;
 							});
 							results3.on('end', function() {
-								res.send(str);
-								if(results2[0].auth_code_valid__c == null || results2[0].auth_code_valid__c < today)
+								console.log(str);
+								//res.send(str);
+								var send = str.includes('Status=0');
+								if(send && (results2[0].auth_code_valid__c == null || results2[0].auth_code_valid__c < today))
 								{
 									//write new code to DB
 									var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
@@ -238,7 +240,7 @@ exports.challengecode = function(req, res, next) {
 									db.select(query)
 									.then(function(results4) {
 										console.log(results4);	
-										res.json(results4);
+										//res.json(results4);
 									})	
 								    	.catch(next);
 								}
