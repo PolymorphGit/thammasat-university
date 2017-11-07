@@ -252,7 +252,7 @@ exports.challengecode = function(req, res, next) {
 						httprequest2.end();
 						*/
 						var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
-						query += "auth_code_valid__c='" + to_char(valid, ''yyyymmdd hh:mi:ss tt') + "' ";
+						query += "auth_code_valid__c='" + to_char(valid, 'yyyymmdd hh:mi:ss tt') + "' ";
 						query += " WHERE SFID='" + results2[0].SFID + "'";
 						db.select(query)
 						.then(function(results4) {
