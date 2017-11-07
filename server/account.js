@@ -234,7 +234,7 @@ exports.challengecode = function(req, res, next) {
 									//write new code to DB
 									var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
 									query += "auth_code_valid__c='" + valid + "' ";
-									query += " WHERE SFID='" + results2[0].SFID + "'";
+									query += " WHERE SFID='" + results2[0].sfid + "'";
 									db.select(query)
 									.then(function(results4) {
 										console.log(results4);	
@@ -254,7 +254,7 @@ exports.challengecode = function(req, res, next) {
 						var datetime = valid.toLocaleString();
 						var query = "UPDATE salesforce.Account SET auth_code__c='" + results2[0].auth_code__c + "', "; 
 						query += "auth_code_valid__c='" + datetime + "' ";
-						query += " WHERE SFID='" + results2[0].SFID + "'";
+						query += " WHERE SFID='" + results2[0].sfid + "'";
 						console.log(query);
 						db.select(query)
 						.then(function(results4) {
