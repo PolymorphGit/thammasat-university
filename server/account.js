@@ -323,7 +323,7 @@ exports.verifycode = function(req, res, next) {
 					if(results2[0].auth_code__c == otp)
 					{
 					   	var valid = new Date();
-						if(results2[0].auth_code_valid__c < valid)
+						if(results2[0].auth_code_valid__c > valid)
 						{
 							res.send('OK');
 						}
