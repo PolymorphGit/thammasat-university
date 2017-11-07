@@ -162,8 +162,75 @@ exports.getInfo2 = function(req, res, next) {
 	httprequest.end();
 };
 
-exports.challengeotp = function(req, res, next) {
+exports.challengecode = function(req, res, next) {
+	var head = req.headers['authorization'];
+	var https = require('https');
 	
+	var options = {
+	  host: 'app64319644.auth0.com',
+	  path: '/userinfo',
+	  //host: 'thammasat-university.herokuapp.com',
+	  //path: '/',
+	  port: '443',
+	  method: 'GET',
+	  headers: { 'authorization': head }
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+				var obj = JSON.parse(str);
+				var Username = 'tupsm';
+				var Password = 'sms1234';
+				var phone;
+				var msg;
+				var Sender = 'PSM.TU';
+				
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					console.log(results);
+					phone = results[0].personmobilephone;
+					msg = results[0].auth_code__c;
+					var options2 = {
+					  host: 'member.smsmkt.com',
+					  path: '/SMSLink/SendMsg/index.php',
+					  port: '443',
+					  method: 'GET',
+					  headers: { 'User': Username, 'Password': Password, 'Msnlist': phone, 'Msg': msg, 'Sender: Sender}
+					};
+					callback2 = function(results){
+						var str = '';
+						results.on('data', function(chunk) {
+							str += chunk;
+						});
+						results.on('end', function() {
+							res.send(str);
+						}
+					}
+					var httprequest = https.request(options2, callback2);
+					httprequest.on('error', (e) => {
+						//console.log(`problem with request: ${e.message}`);
+						res.send('problem with request: ${e.message}');
+					});
+					httprequest.end();
+				})
+			        .catch(next);
+			}
+			catch(ex) {	res.status(887).send("{ status: \"Invalid access token\" }");	}
+		});
+	}
+	
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
 }
 
 exports.verifycode = function(req, res, next) {
