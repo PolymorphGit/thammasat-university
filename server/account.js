@@ -406,13 +406,13 @@ exports.verifycode = function(req, res, next) {
 						}
 						else
 						{
-							res.send("{ \"status\": \"Verify Code Expire\" }");
+							res.send("[{ \"status\": \"Verify Code Expire\" }]");
 							//res.send('Verify Code Expire');
 						}
 					}
 					else
 					{
-						res.send("{ \"status\": \"Incorrect Code\" }");
+						res.send("[{ \"status\": \"Incorrect Code\" }]");
 						//res.send('Incorrect Code');
 					}
 				})
