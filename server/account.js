@@ -1,4 +1,5 @@
 var db = require('./pghelper');
+var md5 = require('md5');
 
 exports.getInfo = function(req, res, next) {
 	var head = req.headers['authorization'];
@@ -43,6 +44,79 @@ exports.getInfo = function(req, res, next) {
 	httprequest.end();
 };
 
+function buildprofilejson(acc, room, eazy) {
+	var output = '';
+	var date = acc.birthdate__c;
+	date.setHours(date.getHours() + 7);
+	date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
+	output = '[{"id":"' + acc.sfid;
+	output += '", "salutation":"' + acc.salutation;
+	output += '", "name":"' + acc.name;
+	output += '", "firstname":"' + acc.firstname;
+	output += '", "lastname":"' + acc.lastname;
+	output += '", "title_th__c":"' + acc.title_th__c;
+	output += '", "first_name_th__c":"' + acc.first_name_th__c;		
+	output += '", "last_name_th__c":"' + acc.last_name_th__c;
+	output += '", "identification_number__c":"' + acc.identification_number__c;
+	output += '", "passport_number__c":"' + acc.passport_number__c;
+	if(acc.student_id__c != null)
+	{
+		output += '", "student_id__c":"' + acc.student_id__c;
+	}
+	else
+	{
+		output += '", "student_id__c":"';
+	}
+	output += '", "personemail":"' + acc.personemail;
+	output += '", "personmobilephone":"' + acc.personmobilephone;
+	output += '", "birthdate__c":"' + date;
+	output += '", "faculty__c":"' + acc.faculty__c;
+	output += '", "status__c":"' + acc.status__c;
+	output += '", "allow_check_out__c":"' + acc.allow_check_out__c;
+	if(room != null)
+	{
+		output += '", "room__c":"' + room.name;
+		output += '", "building__c":"' + room.building__c;
+	}
+	else
+	{
+		output += '", "room__c":"no room';
+		output += '", "building__c":"no building';
+	}
+	if(eazy != null)
+	{
+		output += '", "balance":"' + eazy.Balance;
+		output += '", "eazy_id":"' + acc.eazy_card__c;
+	}
+	else
+	{
+		output += '", "balance":"0';
+		output += '", "eazy_id":"';
+	}
+	output += '", "zone__c":"' + acc.zone__c;
+	output += '", "gender__c":"' + acc.gender__c;
+	output += '", "billingstreet":"' + acc.billingstreet;
+	output += '", "billingcountry":"' + acc.billingcountry;
+	output += '", "billingcity":"' + acc.billingcity;
+	output += '", "billingpostalcode":"' + acc.billingpostalcode;
+	output += '", "billingstate":"' + acc.billingstate;
+	output += '", "parent_name__c":"' + acc.parent_name__c;
+	output += '", "parent_phone__c":"' + acc.parent_phone__c;
+	output += '", "parent_name_2__c":"' + acc.parent_name_2__c;
+	output += '", "parent_phone_2__c":"' + acc.parent_phone_2__c;
+	output += '", "scholarship__c":"' + acc.scholarship__c;
+	output += '", "disabled__c":"' + acc.disabled__c;
+	output += '", "renew__c":"' + acc.renew__c;
+	output += '", "graduated_from__c":"' + acc.graduated_from__c;
+	output += '", "sleep_after_midnight__c":"' + acc.sleep_after_midnight__c;
+	output += '", "sleep_soundly__c":"' + acc.sleep_soundly__c;
+	output += '", "sleep_with_light_on__c":"' + acc.sleep_with_light_on__c;
+	output += '", "love_cleaning__c":"' + acc.love_cleaning__c;
+	output += '", "sleep_with_turn_off_air_condition__c":"' + acc.sleep_with_turn_off_air_condition__c;
+	output += '", "picture_url__c":"' + acc.picture_url__c + '"}]';
+	return output;
+}
+
 exports.getInfo2 = function(req, res, next) {
 	var head = req.headers['authorization'];
 	var https = require('https');
@@ -50,8 +124,6 @@ exports.getInfo2 = function(req, res, next) {
 	var options = {
 	  host: 'app64319644.auth0.com',
 	  path: '/userinfo',
-	  //host: 'thammasat-university.herokuapp.com',
-	  //path: '/',
 	  port: '443',
 	  method: 'GET',
 	  headers: { 'authorization': head }
@@ -85,66 +157,47 @@ exports.getInfo2 = function(req, res, next) {
 					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + room + "'")
 					.then(function(results2) {
 						console.log(results2);	
-						date = results[0].birthdate__c;
-						date.setHours(date.getHours() + 7);
-						date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + date.getMonth()).slice(-2) + '/' + date.getFullYear();	
-						output = '[{"id":"' + results[0].sfid;
-						output += '", "salutation":"' + results[0].salutation;
-						output += '", "name":"' + results[0].name;
-						output += '", "firstname":"' + results[0].firstname;
-						output += '", "lastname":"' + results[0].lastname;
-						output += '", "title_th__c":"' + results[0].title_th__c;
-						output += '", "first_name_th__c":"' + results[0].first_name_th__c;		
-						output += '", "last_name_th__c":"' + results[0].last_name_th__c;
-						output += '", "identification_number__c":"' + results[0].identification_number__c;
-						output += '", "passport_number__c":"' + results[0].passport_number__c;
-						if(results[0].student_id__c != null)
-						{
-							output += '", "student_id__c":"' + results[0].student_id__c;
+						
+						//Check Balance
+						var refid = today.valueOf();
+						var dateString = today.getFullYear();
+						dateString += ("0" + (today.getMonth() + 1)).slice(-2);
+						dateString += ("0" + today.getDate()).slice(-2);
+						dateString += ("0" + today.getHours()).slice(-2);
+						dateString += ("0" + today.getMinutes()).slice(-2);
+						dateString += ("0" + today.getSeconds()).slice(-2);
+						var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + results[0].personemail + dateString);
+						var https2 = require('https');
+						var options2 = {
+						  host: 'easycard.club',
+						  path: '/api/TUHOUSE/Checkbalance.php',
+						  port: '443',
+						  method: 'GET',
+						  headers: { 'refid': refid, 'email': results[0].personemail, 
+							     'date' : dateString, 'hash' : hash }
+						};
+						
+						callback2 = function(results2) {
+							var str2 = '';
+							results2.on('data', function(chunk) {
+								str2 += chunk;
+							});
+							results.on('end', function() {
+								try
+								{
+							    		var obj2 = JSON.parse(str2);
+									output = buildprofilejson(results[0], results2[0], obj2);
+									res.json(JSON.parse(output));
+								}
+								catch(ex) {	res.send("{ \"status\": \"Eazy Card Can't connect\" }");	}
+							});
 						}
-						else
-						{
-							output += '", "student_id__c":"';
-						}
-						output += '", "personemail":"' + results[0].personemail;
-						output += '", "personmobilephone":"' + results[0].personmobilephone;
-						output += '", "birthdate__c":"' + date;
-						output += '", "faculty__c":"' + results[0].faculty__c;
-						output += '", "status__c":"' + results[0].status__c;
-						output += '", "allow_check_out__c":"' + results[0].allow_check_out__c;
-						if(results2.length > 0)
-						{
-							output += '", "room__c":"' + results2[0].name;
-							output += '", "building__c":"' + results2[0].building__c;
-						}
-						else
-						{
-							output += '", "room__c":"no room';
-							output += '", "building__c":"no building';
-						}
-						output += '", "zone__c":"' + results[0].zone__c;
-						output += '", "gender__c":"' + results[0].gender__c;
-						output += '", "billingstreet":"' + results[0].billingstreet;
-						output += '", "billingcountry":"' + results[0].billingcountry;
-						output += '", "billingcity":"' + results[0].billingcity;
-						output += '", "billingpostalcode":"' + results[0].billingpostalcode;
-						output += '", "billingstate":"' + results[0].billingstate;
-						output += '", "parent_name__c":"' + results[0].parent_name__c;
-						output += '", "parent_phone__c":"' + results[0].parent_phone__c;
-						output += '", "parent_name_2__c":"' + results[0].parent_name_2__c;
-						output += '", "parent_phone_2__c":"' + results[0].parent_phone_2__c;
-						output += '", "scholarship__c":"' + results[0].scholarship__c;
-						output += '", "disabled__c":"' + results[0].disabled__c;
-						output += '", "renew__c":"' + results[0].renew__c;
-						output += '", "graduated_from__c":"' + results[0].graduated_from__c;
-						output += '", "sleep_after_midnight__c":"' + results[0].sleep_after_midnight__c;
-						output += '", "sleep_soundly__c":"' + results[0].sleep_soundly__c;
-						output += '", "sleep_with_light_on__c":"' + results[0].sleep_with_light_on__c;
-						output += '", "love_cleaning__c":"' + results[0].love_cleaning__c;
-						output += '", "sleep_with_turn_off_air_condition__c":"' + results[0].sleep_with_turn_off_air_condition__c;
-						//output += '", "check_in_comment__c":"' + results[0].check_in_comment__c;
-						output += '", "picture_url__c":"' + results[0].picture_url__c + '"}]';
-						res.json(JSON.parse(output));
+						var httprequest2 = https.request(options2, callback2);
+						httprequest2.on('error', (e) => {
+							//console.log(`problem with request: ${e.message}`);
+							res.send('problem with request: ${e.message}');
+						});
+						httprequest2.end();
 					})
 				    .catch(next);
 				})
