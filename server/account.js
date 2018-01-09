@@ -182,7 +182,7 @@ exports.getInfo2 = function(req, res, next) {
 							results2.on('data', function(chunk) {
 								str2 += chunk;
 							});
-							results.on('end', function() {
+							results2.on('end', function() {
 								try
 								{
 							    		var obj2 = JSON.parse(str2);
