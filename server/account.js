@@ -1,5 +1,5 @@
 var db = require('./pghelper');
-var md5 = require('./md5');
+var md5 = require('md5');
 
 exports.getInfo = function(req, res, next) {
 	var head = req.headers['authorization'];
