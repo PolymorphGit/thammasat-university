@@ -157,56 +157,63 @@ exports.getInfo2 = function(req, res, next) {
 					db.select("SELECT * FROM salesforce.Product2 WHERE SFID='" + room + "'")
 					.then(function(results2) {
 						console.log(results2);	
-						
-						//Check Balance
-						var refid = today.valueOf();
-						var dateString = today.getFullYear();
-						dateString += ("0" + (today.getMonth() + 1)).slice(-2);
-						dateString += ("0" + today.getDate()).slice(-2);
-						dateString += ("0" + today.getHours()).slice(-2);
-						dateString += ("0" + today.getMinutes()).slice(-2);
-						dateString += ("0" + today.getSeconds()).slice(-2);
-						var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + results[0].personemail + dateString);
-						var https2 = require('https');
-						/*var options2 = {
-						  host: 'easycard.club',
-						  path: '/api/TUHOUSE/Checkbalance.php',
-						  port: '443',
-						  method: 'GET',
-						  headers: { 'refid': refid, 'email': results[0].personemail, 
-							     'date' : dateString, 'hash' : hash }
-						};*/
-						var options2 = {
-						  host: 'easycard.club',
-						  path: '/api/TUHOUSE/Checkbalance.php?refid='+refid+'&email='+results[0].personemail+'&date='+dateString+'&hash='+hash,
-						  port: '443',
-						  method: 'GET',
-						  headers: { }
-						};
-						
-						callback2 = function(results2) {
-							var str2 = '';
-							results2.on('data', function(chunk) {
-								str2 += chunk;
+						if(results[0].eazy_card__c != null)
+						{
+							//Check Balance
+							var refid = today.valueOf();
+							var dateString = today.getFullYear();
+							dateString += ("0" + (today.getMonth() + 1)).slice(-2);
+							dateString += ("0" + today.getDate()).slice(-2);
+							dateString += ("0" + today.getHours()).slice(-2);							
+							dateString += ("0" + today.getMinutes()).slice(-2);
+							dateString += ("0" + today.getSeconds()).slice(-2);
+							var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + results[0].personemail + dateString);
+							var https2 = require('https');
+							/*var options2 = {
+							  host: 'easycard.club',
+							  path: '/api/TUHOUSE/Checkbalance.php',
+							  port: '443',
+							  method: 'GET',
+							  headers: { 'refid': refid, 'email': results[0].personemail, 
+								     'date' : dateString, 'hash' : hash }
+							};*/
+							var options2 = {
+							  host: 'easycard.club',
+							  path: '/api/TUHOUSE/Checkbalance.php?refid='+refid+'&email='+results[0].personemail+'&date='+dateString+'&hash='+hash,
+							  port: '443',
+							  method: 'GET',
+							  headers: { }
+							};
+
+							callback2 = function(results2) {
+								var str2 = '';
+								results2.on('data', function(chunk) {
+									str2 += chunk;
+								});
+								results2.on('end', function() {
+									try
+									{
+										console.log('--------------Eazy Card----------');
+										console.log(str2);
+										var obj2 = JSON.parse(str2);
+										output = buildprofilejson(results[0], results2[0], obj2);
+										res.json(JSON.parse(output));
+									}
+									catch(ex) {	res.send("{ \"status\": \"Eazy Card Can't connect\" }");	}
+								});
+							}
+							var httprequest2 = https.request(options2, callback2);
+							httprequest2.on('error', (e) => {
+								//console.log(`problem with request: ${e.message}`);
+								res.send('problem with request: ${e.message}');
 							});
-							results2.on('end', function() {
-								try
-								{
-									console.log('--------------Eazy Card----------');
-									console.log(str2);
-							    		var obj2 = JSON.parse(str2);
-									output = buildprofilejson(results[0], results2[0], obj2);
-									res.json(JSON.parse(output));
-								}
-								catch(ex) {	res.send("{ \"status\": \"Eazy Card Can't connect\" }");	}
-							});
+							httprequest2.end();
 						}
-						var httprequest2 = https.request(options2, callback2);
-						httprequest2.on('error', (e) => {
-							//console.log(`problem with request: ${e.message}`);
-							res.send('problem with request: ${e.message}');
-						});
-						httprequest2.end();
+						else
+						{
+							output = buildprofilejson(results[0], results2[0], null);
+							res.json(JSON.parse(output));
+						}
 					})
 				    .catch(next);
 				})
