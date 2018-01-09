@@ -185,6 +185,8 @@ exports.getInfo2 = function(req, res, next) {
 							results2.on('end', function() {
 								try
 								{
+									console.log('--------------Eazy Card----------');
+									console.log(str2);
 							    		var obj2 = JSON.parse(str2);
 									output = buildprofilejson(results[0], results2[0], obj2);
 									res.json(JSON.parse(output));
