@@ -1,12 +1,13 @@
 var express = require('express')
-var	account = require('./server/account')
+var account = require('./server/account')
+var eazycard = require('./server/eazycard')
 var room = require('./server/Room')
 var announcement = require('./server/announcement')
 var feed = require('./server/task')
 var mail = require('./server/mailing')
 var pay = require('./server/payment')
 var case2 = require('./server/case')
-var	clean = require('./server/careandclean')
+var clean = require('./server/careandclean')
 var noti = require('./notification')
 var roommate = require('./server/roommate')
 var fyi = require('./server/fyi')
@@ -96,6 +97,9 @@ app.get('/view_account/:id', function(request, response){
 	console.log(request.params.id);
 	response.redirect('/view_account.html?id=' + request.params.id)
 });
+
+app.get('/topupone2callprepare', eazycard.topupone2callprepare);
+app.get('/topupone2callconfirm', eazycard.topupone2callconfirm);
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
