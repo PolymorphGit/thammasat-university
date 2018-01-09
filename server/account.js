@@ -168,13 +168,20 @@ exports.getInfo2 = function(req, res, next) {
 						dateString += ("0" + today.getSeconds()).slice(-2);
 						var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + results[0].personemail + dateString);
 						var https2 = require('https');
-						var options2 = {
+						/*var options2 = {
 						  host: 'easycard.club',
 						  path: '/api/TUHOUSE/Checkbalance.php',
 						  port: '443',
 						  method: 'GET',
 						  headers: { 'refid': refid, 'email': results[0].personemail, 
 							     'date' : dateString, 'hash' : hash }
+						};*/
+						var options2 = {
+						  host: 'easycard.club',
+						  path: '/api/TUHOUSE/Checkbalance.php?refid='+refid+'&email='+results[0].personemail+'&date='+dateString+'&hash='+hash,
+						  port: '443',
+						  method: 'GET',
+						  headers: { }
 						};
 						
 						callback2 = function(results2) {
