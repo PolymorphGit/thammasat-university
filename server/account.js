@@ -85,7 +85,7 @@ function buildprofilejson(acc, room, eazy) {
 	}
 	if(eazy != null)
 	{
-		output += '", "balance":"' + eazy.Balance;
+		output += '", "balance":"' + eazy.resultdata.Balance;
 		output += '", "eazy_id":"' + acc.eazy_card__c;
 	}
 	else
