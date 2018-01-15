@@ -85,13 +85,19 @@ function buildprofilejson(acc, room, eazy) {
 	}
 	if(eazy != null)
 	{
-		output += '", "balance":"' + eazy.resultdata.Balance;
 		output += '", "eazy_id":"' + acc.eazy_card__c;
+		output += '", "eazy_balance":"' + eazy.resultdata.Account_balance;
+		output += '", "eazy_status":"' + eazy.resultdata.Account_status;
+		output += '", "eazy_bank":"' + eazy.resultdata.Bank_acc_name;
+		output += '", "eazy_bank_account":"' + eazy.resultdata.Bank_acc_no;
 	}
 	else
 	{
-		output += '", "balance":"0';
 		output += '", "eazy_id":"';
+		output += '", "balance":"0';
+		output += '", "eazy_status":"';
+		output += '", "eazy_bank":"';
+		output += '", "eazy_bank_account":"';
 	}
 	output += '", "zone__c":"' + acc.zone__c;
 	output += '", "gender__c":"' + acc.gender__c;
@@ -160,14 +166,15 @@ exports.getInfo2 = function(req, res, next) {
 						if(results[0].eazy_card__c != null)
 						{
 							//Check Balance
-							var refid = today.valueOf();
+							//var refid = today.valueOf();
+							var memid = results[0].eazy_card__c;
 							var dateString = today.getFullYear();
 							dateString += ("0" + (today.getMonth() + 1)).slice(-2);
 							dateString += ("0" + today.getDate()).slice(-2);
 							dateString += ("0" + today.getHours()).slice(-2);							
 							dateString += ("0" + today.getMinutes()).slice(-2);
 							dateString += ("0" + today.getSeconds()).slice(-2);
-							var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + results[0].personemail + dateString);
+							var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + memid + dateString);
 							var https2 = require('https');
 							/*var options2 = {
 							  host: 'easycard.club',
@@ -179,7 +186,7 @@ exports.getInfo2 = function(req, res, next) {
 							};*/
 							var options2 = {
 							  host: 'easycard.club',
-							  path: '/api/TUHOUSE/Checkbalance.php?refid='+refid+'&email='+results[0].personemail+'&date='+dateString+'&hash='+hash,
+							  path: '/api/TUHOUSE/Checkbalance.php?memberid='+memid+'&requestdate='+dateString+'&hash='+hash,
 							  port: '443',
 							  method: 'GET',
 							  headers: { }
