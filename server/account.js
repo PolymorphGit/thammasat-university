@@ -186,7 +186,7 @@ exports.getInfo2 = function(req, res, next) {
 							};*/
 							var options2 = {
 							  host: 'easycard.club',
-							  path: '/api/TUHOUSE/Checkbalance.php?memberid='+memid+'&requestdate='+dateString+'&hash='+hash,
+							  path: '/api/TUHOUSE/customerinfo.php?memberid='+memid+'&requestdate='+dateString+'&hash='+hash,
 							  port: '443',
 							  method: 'GET',
 							  headers: { }
