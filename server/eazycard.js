@@ -28,12 +28,12 @@ exports.topupone2callprepare = function(req, res, next) {
 			        .then(function(results3) {
 					var today = new Date();
 					var refid = today.valueOf();
-					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + mobile + results3.personemail + price);
+					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + mobile + results3[0].personemail + price);
 					var https2 = require('https');
 
 					var options2 = {
 					  host: 'easycard.club',
-					  path: '/api/TUHOUSE/TopupOne2call_prepare.php?refid='+refid+'&msisdn='+mobile+'&email='+results3.personemail+'&price='+price+'&hash='+hash,
+					  path: '/api/TUHOUSE/TopupOne2call_prepare.php?refid='+refid+'&msisdn='+mobile+'&email='+results3[0].personemail+'&price='+price+'&hash='+hash,
 					  port: '443',
 					  method: 'GET',
 					  headers: { }
@@ -102,12 +102,12 @@ exports.topupone2callconfirm = function(req, res, next) {
 				var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 				.then(function(results2) {
-					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refcode + mobile + results3.personemail + price);
+					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refcode + mobile + results2[0].personemail + price);
 					var https2 = require('https');
 
 					var options2 = {
 					  host: 'easycard.club',
-					  path: '/api/TUHOUSE/TopupOne2call_confirm.php?refcode='+refcode+'&email='+results2.personemail+'&msisdn='+mobile+'&price='+price+'&otp='+otp+'&hash='+hash,
+					  path: '/api/TUHOUSE/TopupOne2call_confirm.php?refcode='+refcode+'&email='+results2[0].personemail+'&msisdn='+mobile+'&price='+price+'&otp='+otp+'&hash='+hash,
 					  port: '443',
 					  method: 'GET',
 					  headers: { }
