@@ -128,6 +128,11 @@ exports.topupone2callconfirm = function(req, res, next) {
 						    catch(ex) {	res.status(887).send("{ \"status\": \"Can't connect wallet.\" }");	}
 						});
 					}
+					var httprequest2 = https2.request(options2, callback2);
+					httprequest2.on('error', (e) => {
+						res.send('problem with request: ${e.message}');
+					});
+					httprequest2.end();
 				})
 				.catch(next);
 			}
