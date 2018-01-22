@@ -23,41 +23,42 @@ exports.topupone2callprepare = function(req, res, next) {
 		results.on('end', function() {
 			try
 			{
-        db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
-              .then(function(results) {
- 
-                var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + mobile + email + price);
-                var https2 = require('https');
+				var obj = JSON.parse(str);
+				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				      .then(function(results3) {
+					var refid = today.valueOf();
+					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + mobile + results3.personemail + price);
+					var https2 = require('https');
 
-                var options2 = {
-                  host: 'easycard.club',
-                  path: '/api/TUHOUSE/TopupOne2call_prepare.php?refid='+refid+'&msisdn='+mobile+'&email='+hash+'&price='+price+'&hash='+hash,
-                  port: '443',
-                  method: 'GET',
-                  headers: { }
-                };
+					var options2 = {
+					  host: 'easycard.club',
+					  path: '/api/TUHOUSE/TopupOne2call_prepare.php?refid='+refid+'&msisdn='+mobile+'&email='+hash+'&price='+price+'&hash='+hash,
+					  port: '443',
+					  method: 'GET',
+					  headers: { }
+					};
 
-                callback2 = function(results2) {
-                  var str2 = '';
-                  results2.on('data', function(chunk2) {
-                    str2 += chunk;
-                  });
-                  results2.on('end', function() {
-                    try
-                    {
-                      res.send("Topup One2call Prepare, Price:" + price);
-                    }
-                    catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
-                  });
-                }
+					callback2 = function(results2) {
+					  var str2 = '';
+					  results2.on('data', function(chunk2) {
+					    str2 += chunk;
+					  });
+					  results2.on('end', function() {
+					    try
+					    {
+					      res.send("Topup One2call Prepare, Price:" + price);
+					    }
+					    catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
+					  });
+					}
 
-                var httprequest2 = https2.request(options, callback2);
-                httprequest2.on('error', (e) => {
-                  //console.log(`problem with request: ${e.message}`);
-                  res.send('problem with request: ${e.message}');
-                });
-                httprequest2.end();
-          })
+					var httprequest2 = https2.request(options, callback2);
+					httprequest2.on('error', (e) => {
+					  //console.log(`problem with request: ${e.message}`);
+					  res.send('problem with request: ${e.message}');
+					});
+					httprequest2.end();
+				  })
 			    .catch(next);
 			}
 			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
