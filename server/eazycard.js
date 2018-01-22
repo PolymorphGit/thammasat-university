@@ -26,6 +26,7 @@ exports.topupone2callprepare = function(req, res, next) {
 				var obj = JSON.parse(str);
 				db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
 			        .then(function(results3) {
+					var today = new Date();
 					var refid = today.valueOf();
 					var hash = md5('TU_HoUseTu2018EzHn*ZDr^561' + refid + mobile + results3.personemail + price);
 					var https2 = require('https');
