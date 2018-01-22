@@ -42,7 +42,7 @@ exports.topupone2callprepare = function(req, res, next) {
 					callback2 = function(results2) {
 						var str2 = '';
 						results2.on('data', function(chunk2) {
-							str2 += chunk;
+							str2 += chunk2;
 						});
 						results2.on('end', function() {
 							try
@@ -116,7 +116,7 @@ exports.topupone2callconfirm = function(req, res, next) {
 					callback2 = function(results3) {
 						var str2 = '';
 						results3.on('data', function(chunk2) {
-							str2 += chunk;
+							str2 += chunk2;
 						});
 						results3.on('end', function() {
 						    try
