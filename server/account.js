@@ -781,6 +781,9 @@ exports.update = function(req, res, next) {
 	query += "using_air_conditioner__c='" + req.body.using_air_conditioner__c + "', ";
 	
 	//New Field
+	var charter_room = (req.body.charter_room__c ? req.body.charter_room__c : 'false');
+	query += "charter_room__c=" + charter_room + ", ";
+	
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
 	console.log(Scholarship);
 	console.log(req.body.scholarship__c);
