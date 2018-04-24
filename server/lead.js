@@ -56,12 +56,14 @@ exports.createLead = function(req, res, next) {
 	var sleep_soundly__c =(req.body.sleep_soundly__c? req.body.sleep_soundly__c : 'false');
 	var love_cleaning__c =(req.body.love_cleaning__c? req.body.love_cleaning__c : 'false');
 	
+	var charter_room__c =(req.body.charter_room__c? req.body.charter_room__c : 'false');
+	
 	var query2 = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c,";
 	query2 += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query2 += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
 	query2 += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c,";
 	query2 += "Scholarship__c,Scholarship_Name__c,";
-	query2 +="Disabled__c, Birthdate__c, Parent_Income__c,";
+	query2 +="Disabled__c, Birthdate__c, Parent_Income__c,charter_room__c,";
 	//query2 += "Sleeping_Time__c,Sleeping_Behavior__c,Using,Ait_Conditioner__c"
 	query2 += "Sleep_After_Midnight__c, Sleep_with_Light_On__c, Sleep_with_Turn_Off_Air_Condition__c, Sleep_Soundly__c,Love_Cleaning__c";
 	query2 +=") VALUES ('";
@@ -75,6 +77,7 @@ exports.createLead = function(req, res, next) {
 	query2 += scholarship + "', '" + scholarship_name + "', '";
 	query2 += disable + "', '" + birthdate__c + "' , '";
 	query2 += parent_income__c + "','"
+	query2 += charter_room__c + "','"
 	//query2 += sleeping_time__c+"','"+sleeping_behavior__c+"','"+using_air_conditioner__c+"'" 
 	query2 += sleep_after_midnight__c+"','"+sleep_with_light_on__c+"','"+sleep_with_turn_off_air_condition__c+"' , '" +sleep_soundly__c+"','"+	love_cleaning__c+"') RETURNING *";
 	
@@ -164,6 +167,9 @@ exports.updateLead = function(req, res, next) {
 	
 	
 	//New Field
+	var charter_room = (req.body.charter_room__c ? req.body.charter_room__c : 'false');
+	query += "charter_room__c=" + charter_room + ", ";
+	
 	var Scholarship = (req.body.scholarship__c ? req.body.scholarship__c : 'false');
 	//console.log(req.body.graduated_from__c.replace('\'', '\'\''));
 	//console.log(req.body.scholarship__c);
