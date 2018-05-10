@@ -171,7 +171,11 @@ exports.updateLead = function(req, res, next) {
 	query += "sleep_with_turn_off_air_condition__c='" + req.body.sleep_with_turn_off_air_condition__c + "', ";
 	query += "sleep_soundly__c='" + req.body.sleep_soundly__c + "', ";
 	query += "love_cleaning__c='" + req.body.love_cleaning__c + "', ";
-	
+	query += "prefer_staying_dorm_to_going_out__c ='" + req.body.prefer_staying_dorm_to_going_out__c + "', ";
+	query += "go_home_on_weekend__c='" + req.body.go_home_on_weekend__c + "', ";
+	query += "flexible_time__c='" + req.body.flexible_time__c + "', ";
+	query += "love_exercise__c='" + req.body.love_exercise__c + "', ";
+	query += "activist__c='" + req.body.activist__c + "', ";
 	
 	//New Field
 	var charter_room = (req.body.charter_room__c ? req.body.charter_room__c : 'false');
