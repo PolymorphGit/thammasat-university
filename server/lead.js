@@ -57,6 +57,11 @@ exports.createLead = function(req, res, next) {
 	var love_cleaning__c =(req.body.love_cleaning__c? req.body.love_cleaning__c : 'false');
 	
 	var charter_room__c =(req.body.charter_room__c? req.body.charter_room__c : 'false');
+	var prefer_staying_dorm_to_going_out__c = (req.body.prefer_staying_dorm_to_going_out__c? req.body.prefer_staying_dorm_to_going_out__c : 'false');
+	var go_home_on_weekend__c =(req.body.go_home_on_weekend__c? req.body.go_home_on_weekend__c : 'false');
+	var flexible_time__c =(req.body.flexible_time__c? req.body.flexible_time__c : 'false');
+	var love_exercise__c =(req.body.love_exercise__c? req.body.love_exercise__c : 'false');
+	var activist__c =(req.body.activist__c? req.body.activist__c : 'false');
 	
 	var query2 = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c,";
 	query2 += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
@@ -65,7 +70,8 @@ exports.createLead = function(req, res, next) {
 	query2 += "Scholarship__c,Scholarship_Name__c,";
 	query2 +="Disabled__c, Birthdate__c, Parent_Income__c,charter_room__c,";
 	//query2 += "Sleeping_Time__c,Sleeping_Behavior__c,Using,Ait_Conditioner__c"
-	query2 += "Sleep_After_Midnight__c, Sleep_with_Light_On__c, Sleep_with_Turn_Off_Air_Condition__c, Sleep_Soundly__c,Love_Cleaning__c";
+	query2 += "Sleep_After_Midnight__c, Sleep_with_Light_On__c, Sleep_with_Turn_Off_Air_Condition__c, Sleep_Soundly__c,Love_Cleaning__c,";
+	query2 +="prefer_staying_dorm_to_going_out__c, go_home_on_weekend__c, flexible_time__c, love_exercise__c, activist__c";
 	query2 +=") VALUES ('";
 	query2 += identification_number__c + "', '" + passport_number__c + "', '" + gender__c + "', '";
 	query2 += first_name_th__c + "', '" + last_name_th__c + "', '";
@@ -79,7 +85,8 @@ exports.createLead = function(req, res, next) {
 	query2 += parent_income__c + "','"
 	query2 += charter_room__c + "','"
 	//query2 += sleeping_time__c+"','"+sleeping_behavior__c+"','"+using_air_conditioner__c+"'" 
-	query2 += sleep_after_midnight__c+"','"+sleep_with_light_on__c+"','"+sleep_with_turn_off_air_condition__c+"' , '" +sleep_soundly__c+"','"+	love_cleaning__c+"') RETURNING *";
+	query2 += sleep_after_midnight__c+"','"+sleep_with_light_on__c+"','"+sleep_with_turn_off_air_condition__c+"' , '" +sleep_soundly__c+"','"+love_cleaning__c+ "', '";
+	query2 += prefer_staying_dorm_to_going_out__c+"','"+go_home_on_weekend__c+"','"+flexible_time__c+"','"+love_exercise__c+"','"+activist__c+"') RETURNING *";
 	
 	
 	
