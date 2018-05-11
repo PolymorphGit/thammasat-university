@@ -1280,3 +1280,47 @@ exports.getroommate = function(req, res, next) {
     .catch(next);
 }
 
+exports.changeroomsmart = function(req, res, next) {
+	var head = req.headers['Authorization'];
+	var https = require('http');
+	var postBody = JSON.stringify(req.body);
+	
+	var options = {
+	  host: '203.131.211.120',
+	  path: '/oauth2/token',
+	  port: '1024',
+	  method: 'PATCH',
+	  headers: { 'Content-Type': 'application/json', 'Authorization': head, 'Content-Length': Buffer.byteLength(postBody)}
+	};
+	
+	callback = function(results) {
+		var str = '';
+		results.on('data', function(chunk) {
+			str += chunk;
+		});
+		results.on('end', function() {
+			try
+			{
+		            /*
+			    var obj = JSON.parse(str);
+			    //res.send(obj.identities[0].user_id);
+			    db.select("SELECT * FROM salesforce.Account WHERE Mobile_Id__c='" + obj.identities[0].user_id + "'")
+				.then(function(results) {
+					console.log(results);	
+					res.json(results);
+				})
+			    .catch(next);
+			    */
+			}
+			catch(ex) {	res.status(887).send("{ \"status\": \"Invalid access token\" }");	}
+		});
+	}
+	
+	var httprequest = https.request(options, callback);
+	httprequest.on('error', (e) => {
+		//console.log(`problem with request: ${e.message}`);
+		res.send('problem with request: ${e.message}');
+	});
+	httprequest.end();
+};
+
