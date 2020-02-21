@@ -28,7 +28,7 @@ angular.module('leadApp', [])
                     ,'Faculty of Nursing','Faculty of Pharmacy','Faculty of Political Science','Pridi Banomyong International College'
                     ,'Faculty of Public Health','Puey Ungphakorn School of Development Studies','School of Global Studies'
                     ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
-                    ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Others'];
+                    ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Thammasat Frontier School','Others'];
   $scope.zone = [{'Gender':'Male', 'Scholar': false, 'zones':['Zone B (4-person room)'
                                             ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
                                             ,'Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
