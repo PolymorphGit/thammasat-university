@@ -139,6 +139,8 @@ exports.updateLead = function(req, res, next) {
 	console.log(req.body);
 	var query = "UPDATE salesforce.Lead SET identification_number__c='" + req.body.identification_number__c + "', "; 
 	query += "passport_number__c='" + req.body.passport_number__c + "', ";
+
+	query += "sex__c='" + req.body.sex__c + "', ";
 	query += "gender__c='" + req.body.gender__c + "', ";
 	//query += "title_th__c='" + req.body.title_th__c + "', ";
 	query += "first_name_th__c='" + req.body.first_name_th__c.replace('\'', '\'\'') + "', ";
@@ -204,8 +206,6 @@ exports.updateLead = function(req, res, next) {
 	{
 		query += "term__c='" + req.body.term__c + "' ";
 	}
-	
-	
 	
 	query += " WHERE SFID='" + id + "' RETURNING *";
 	db.select(query)

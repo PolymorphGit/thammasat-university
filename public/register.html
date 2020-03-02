@@ -60,7 +60,7 @@
            
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
-            var ddlSex = document.getElementById("pick_gender__c");
+            var ddlSex = document.getElementById("pick_sex__c");
             
             switch(ddlSalutationText) {
                 case 'mr.' : 
@@ -88,23 +88,23 @@
            
             var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
             
-            var ddlSex = document.getElementById("pick_gender__c");
+            var ddlSex = document.getElementById("pick_sex__c");
             
             switch(ddlSalutationText) {
                 case 'mr.' : 
-                    angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
+                    angular.element(document.getElementById('main')).scope().lead.sex__c = 'Male';
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
                     break;
                 case 'ms.' :
-                	angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
+                	angular.element(document.getElementById('main')).scope().lead.sex__c = 'Female';
                 	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นางสาว';
                 	break;
                 case 'mrs.' : 
-                    angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
+                    angular.element(document.getElementById('main')).scope().lead.sex__c = 'Female';
                     angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
                     break;
                 default:
-                	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
+                	angular.element(document.getElementById('main')).scope().lead.sex__c = '';
                     break;
             }
             
