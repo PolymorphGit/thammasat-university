@@ -80,6 +80,34 @@
                     break;
             }
             
+		}
+		
+		function setSex(){
+            
+            var ddlSalutation = document.getElementById("pick_title_en__c");
+           
+            var ddlSalutationText=ddlSalutation.options[ddlSalutation.selectedIndex].text.toLowerCase();
+            
+            var ddlSex = document.getElementById("pick_gender__c");
+            
+            switch(ddlSalutationText) {
+                case 'mr.' : 
+                    angular.element(document.getElementById('main')).scope().lead.gender__c = 'Male';
+                    angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาย';
+                    break;
+                case 'ms.' :
+                	angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
+                	angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นางสาว';
+                	break;
+                case 'mrs.' : 
+                    angular.element(document.getElementById('main')).scope().lead.gender__c = 'Female';
+                    angular.element(document.getElementById('main')).scope().lead.title_th__c = 'นาง';
+                    break;
+                default:
+                	angular.element(document.getElementById('main')).scope().lead.gender__c = '';
+                    break;
+            }
+            
 	    }
 		
 		 
@@ -655,6 +683,19 @@
 				return false;
 			}
 		}
+
+		function chkCondition() {
+            var x = document.getElementById("chkCondition").checked;
+
+            // console.log("xxx", x)
+            if (x) {
+				document.getElementById("submit").disabled = false;
+				submit.style.background='limegreen';
+            } else {
+				document.getElementById("submit").disabled = true;
+				submit.style.background='lightgray';
+            }
+        }
 		
 	
 		$("#validate").bind("click", validate);
@@ -797,6 +838,32 @@
 							<td>                       
 								<select ng-model="lead.salutation" id="pick_title_en__c"  ng-options="g for g in salutation2" onchange="setDependenciesTitle()"></select>
 								<label id="lbl_title_en__c"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td align="right" class="CustomLayout2">
+								Sex / เพศ
+							</td>
+							<td class="CustomLayout2">
+								<b style="color:red">*</b>
+							</td>
+							<td>
+								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlength="10" />
+								<label id="lbl_student_id__c" />
+							</td>
+						</tr>
+
+						<tr>
+							<td align="right" class="CustomLayout2">
+								Gender / เพศภาวะ
+							</td>
+							<td class="CustomLayout2">
+								<b style="color:red">*</b>
+							</td>
+							<td>
+								<input type="text" ng-model="lead.student_id__c" id="txt_student_id__c" maxlength="10" />
+								<label id="lbl_student_id__c" />
 							</td>
 						</tr>
 						
@@ -1059,7 +1126,7 @@
 						    <td><a href="http://www.psm.tu.ac.th/main.php?page_name=dormitory.m1.p01" target="_blank" />Residence Details / รายละเอียดหอพัก</a></td>
 						</tr>
 						
-						<tr>
+						<!-- <tr>
                         	<td align="right">
                             <b>สามารถเลือกตอบได้มากกว่า 1 ข้อ</b>
 	                        </td>
@@ -1175,7 +1242,7 @@
 	                        <td class='CustomLayout1'>
 	                            <input type="checkbox" ng-model="lead.activist__c" id="chk_activist__c" />
 	                        </td>
-	                    </tr>
+	                    </tr> -->
 					</table>
 					</td>
 					
@@ -1367,7 +1434,15 @@
 								<label id="parentPhone2Result" />
 							</td>
 						</tr>
-						
+						<tr>
+							<td></td>
+							<td></td>
+							<td>
+								<input type="checkbox" id="chkCondition" onClick="javascript:chkCondition()"/>
+								<label>ฉันยอมรับในข้อกำหนดและได้อ่าน <a target="blank" href="https://drive.google.com/file/d/1Maqel39hR6qD9mdg4saGdAZAFF49RMzR/view?usp=sharing">ข้อตกลงและระเบียบมหาวิทยาลัยธรรมว่าด้วยหอพักนักศึกษาและบุคคลากร พ.ศ. 2551</a>  </label>
+							</td>
+
+						</tr>
 					</table>
 					</td>
 				
@@ -1441,7 +1516,7 @@
 			-->
 			<br/>
 			
-			<br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Submit</button>
+			<br/><center><button id="submit" onclick="update();" style="background:lightgray; color:white; width:80px; height:30px" disabled>Submit</button>
 			
 		</div>
 		
