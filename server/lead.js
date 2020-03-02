@@ -13,6 +13,8 @@ exports.getInfobyId = function(req, res, next) {
 exports.createLead = function(req, res, next) {
 	if (!req.body) return res.sendStatus(400);
 	//console.log(req.body);
+
+	var sex__c = (req.body.sex__c == 'underfined' || req.body.sex__c==null ||req.body.sex__c=='null'? '' : req.body.sex__c)
 	
 	var identification_number__c = (req.body.identification_number__c=='undefined' || req.body.identification_number__c==null ||req.body.identification_number__c=='null'? '' : req.body.identification_number__c);
 	var passport_number__c  = (req.body.passport_number__c =='undefined' || req.body.passport_number__c ==null || req.body.passport_number__c=='null'? '' :req.body.passport_number__c);
@@ -63,7 +65,7 @@ exports.createLead = function(req, res, next) {
 	var love_exercise__c =(req.body.love_exercise__c? req.body.love_exercise__c : 'false');
 	var activist__c =(req.body.activist__c? req.body.activist__c : 'false');
 	
-	var query2 = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, gender__c,";
+	var query2 = "INSERT INTO salesforce.lead (identification_number__c, passport_number__c, sex__c, gender__c,";
 	query2 += "first_name_th__c, last_name_th__c, salutation, firstname, lastname, mobilephone, email, congenital_disease__c, ";
 	query2 += "student_id__c, faculty__c, request_zone__c, street, city, state, postalcode, ";
 	query2 += "country, parent_name__c, parent_phone__c, parent_name_2__c, parent_phone_2__c,";
@@ -73,7 +75,7 @@ exports.createLead = function(req, res, next) {
 	query2 += "Sleep_After_Midnight__c, Sleep_with_Light_On__c, Sleep_with_Turn_Off_Air_Condition__c, Sleep_Soundly__c,Love_Cleaning__c,";
 	query2 +="prefer_staying_dorm_to_going_out__c, go_home_on_weekend__c, flexible_time__c, love_exercise__c, activist__c";
 	query2 +=") VALUES ('";
-	query2 += identification_number__c + "', '" + passport_number__c + "', '" + gender__c + "', '";
+	query2 += identification_number__c + "', '" + passport_number__c + "', '" + gender__c + "', '" + sex__c + "' , '";
 	query2 += first_name_th__c + "', '" + last_name_th__c + "', '";
 	query2 += salutation + "', '" + firstname + "', '" + lastname + "', '" + mobilephone + "', '";
 	query2 += email + "', '" + congenital_disease__c + "', '" + student_id__c + "', '" + faculty__c + "', '";

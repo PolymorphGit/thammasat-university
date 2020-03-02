@@ -650,7 +650,9 @@
         }
 		
 		
-	    </script>
+		</script>
+		
+
 	    <style type="text/css">
 	    	.myclass {
 				text-transform:uppercase!important;
@@ -671,7 +673,20 @@
 	            if (pageblock != null){ pageblock.firstChild.style.cssText = "background-color: #C80000; color: white;";}
 	        }
 	    </script>
-	    
+	    <script>
+			function chkCondition() {
+            var x = document.getElementById("chkCondition").checked;
+
+            // console.log("xxx", x)
+            if (x) {
+				document.getElementById("submit").disabled = false;
+				submit.style.background='limegreen';
+            } else {
+				document.getElementById("submit").disabled = true;
+				submit.style.background='lightgray';
+            }
+        }
+		</script>
 	  
 	</header>
 	
@@ -782,7 +797,31 @@
 							</td>
 						</tr>
 						
-						
+						<tr>
+							<td align="right" class="CustomLayout2">
+								Sex / เพศ
+							</td>
+							<td class="CustomLayout2">
+								<b style="color:red">*</b>
+							</td>
+							<td>
+								<select ng-model="lead.sex__c" ng-options="g for g in sex" id='pick_sex__c'></select>
+								<label id="lbl_sex__c" />
+							</td>
+						</tr>
+
+						<tr>
+							<td align="right" class="CustomLayout2">
+								Gender / เพศภาวะ
+							</td>
+							<td class="CustomLayout2">
+								<b style="color:red">*</b>
+							</td>
+							<td>
+								<select ng-model="lead.gender__c" ng-options="g for g in gender" id='pick_gender__c'></select>
+								<label id="lbl_gender__c" />
+							</td>
+						</tr>
 						
 						
 						<tr>
@@ -1337,6 +1376,15 @@
 								<label id="parentPhone2Result" />
 							</td>
 						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>
+								<input type="checkbox" id="chkCondition" onClick="javascript:chkCondition()"/>
+								<label>ฉันยอมรับในข้อกำหนดและได้อ่าน <a target="blank" href="https://drive.google.com/file/d/1Maqel39hR6qD9mdg4saGdAZAFF49RMzR/view?usp=sharing">ข้อตกลงและระเบียบมหาวิทยาลัยธรรมว่าด้วยหอพักนักศึกษาและบุคคลากร พ.ศ. 2551</a>  </label>
+							</td>
+
+						</tr>
 						
 					</table>
 					</td>
@@ -1412,7 +1460,7 @@
 			
 			<br/>	
 			
-			<br/><center><button onclick="update();" style="background:limegreen; color:white; width:80px; height:30px">Submit</button>
+			<br/><center><button id="submit" onclick="update();" style="background:lightgray; color:white; width:80px; height:30px" disabled>Submit</button>
 			
 		</div>
 		
