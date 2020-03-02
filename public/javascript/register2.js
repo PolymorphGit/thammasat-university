@@ -31,8 +31,8 @@ angular.module('leadApp', [])
                     ,'Faculty of Public Health','Puey Ungphakorn School of Development Studies','School of Global Studies'
                     ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
                     ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Others'];
-  $scope.zone = [{'Gender':'Male', 'zones':['TU Lampang Dome 2 with Air Conditioner (4 students)','TU Lampang Dome 2 with Fan (4 students)']}, 
-	  			 {'Gender':'Female', 'zones':['TU Lampang Dome 1 with Air Conditioner (4 students)','TU Lampang Dome 1 with Fan (4 students)',
+  $scope.zone = [{'Sex':'Male', 'zones':['TU Lampang Dome 2 with Air Conditioner (4 students)','TU Lampang Dome 2 with Fan (4 students)']}, 
+	  			 {'Sex':'Female', 'zones':['TU Lampang Dome 1 with Air Conditioner (4 students)','TU Lampang Dome 1 with Fan (4 students)',
 	  				 						  'TU Lampang Dome 2 with Air Conditioner (4 students)','TU Lampang Dome 2 with Fan (4 students)']}];
   
   $scope.sleepingtime = ['Before 10:00 PM','After 10:00 PM'];
@@ -107,7 +107,10 @@ angular.module('leadApp', [])
     	data[0].Name = data[0].Name == null || data[0].Name =='null' ? '' : data[0].Name;
     	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' ? '' : data[0].identification_number__c;
     	data[0].passport_number__c = data[0].passport_number__c == null || data[0].passport_number__c =='null' ? '' : data[0].passport_number__c;
-    	data[0].gender__c = data[0].gender__c == null || data[0].gender__c =='null' ? '' : data[0].gender__c;
+		data[0].gender__c = data[0].gender__c == null || data[0].gender__c =='null' ? '' : data[0].gender__c;
+		
+		data[0].sex__c = data[0].sex__c == null || data[0].sex__c =='null' ? '' : data[0].sex__c;
+
     	data[0].title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
     	data[0].first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
     	data[0].last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;

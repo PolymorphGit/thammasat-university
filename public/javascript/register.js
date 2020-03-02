@@ -30,17 +30,17 @@ angular.module('leadApp', [])
                     ,'Faculty of Public Health','Puey Ungphakorn School of Development Studies','School of Global Studies'
                     ,'Faculty of Science and Technology','Sirindhorn International Institute of Technology'
                     ,'Faculty of Social Administration','Faculty of Sociology and Anthropology','Thammasat Frontier School','Others'];
-  $scope.zone = [{'Gender':'Male', 'Scholar': false, 'zones':['Zone B (4-person room)'
+  $scope.zone = [{'Sex':'Male', 'Scholar': false, 'zones':['Zone B (4-person room)'
                                             ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
                                             ,'Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
                                             ,'Zone M (4-person room | fan | share WC)','Zone M (4-person room | fan | private WC)']}, 
-                 {'Gender':'Male', 'Scholar': true, 'zones':['Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
+                 {'Sex':'Male', 'Scholar': true, 'zones':['Zone M (4-person room | air-condition | share WC)','Zone M (4-person room | air-condition | private WC)'
                                             ,'Zone M (4-person room | fan | share WC)','Zone M (4-person room | fan | private WC)']}, 
-	  			 {'Gender':'Female', 'Scholar': false, 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
+	  			 {'Sex':'Female', 'Scholar': false, 'zones':['Zone B (4-person room)','Zone B8 (4-person room)'
 	  			                              ,'Zone C and E (2-person room)','Zone C Plus (2-person room)'
 	  			                              ,'Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
 	  			                              ,'Zone F (4-person room | fan | share WC)','Zone F (4-person room | fan | private WC)']},
-	  			 {'Gender':'Female', 'Scholar': true, 'zones':['Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
+	  			 {'Sex':'Female', 'Scholar': true, 'zones':['Zone F (4-person room | air-condition | share WC)','Zone F (4-person room | air-condition | private WC)'
 	  			                              ,'Zone F (4-person room | fan | share WC)','Zone F (4-person room | fan | private WC)']
 	  			                              }];
   
@@ -120,17 +120,17 @@ angular.module('leadApp', [])
     	  //alert($scope.lead.scholarship__c);
     	  angular.forEach($scope.zone , function(value)
 	      {
-    		  if(value.Gender == $scope.lead.gender__c && value.Scholar == $scope.lead.scholarship__c)
+    		  if(value.Sex == $scope.lead.sex__c && value.Scholar == $scope.lead.scholarship__c)
     		  {
     			  //alert(value.zones);
     	  			$scope.zones = value.zones;
     	  			if($scope.lead.scholarship__c)
         	  		{
-        	  			if($scope.lead.gender__c == 'Male' && !$scope.lead.request_zone__c.include('zone M'))
+        	  			if($scope.lead.sex__c == 'Male' && !$scope.lead.request_zone__c.include('zone M'))
         	  			{
         	  				$scope.lead.request_zone__c = '';
         	  			}
-        	  			else if($scope.lead.gender__c == 'Female' && !$scope.lead.request_zone__c.include('zone F'))
+        	  			else if($scope.lead.sex__c == 'Female' && !$scope.lead.request_zone__c.include('zone F'))
         	  			{
         	  				$scope.lead.request_zone__c = '';
         	  			}
@@ -149,7 +149,10 @@ angular.module('leadApp', [])
     	data[0].Name = data[0].Name == null || data[0].Name =='null' ? '' : data[0].Name;
     	data[0].identification_number__c = data[0].identification_number__c == null || data[0].identification_number__c =='null' ? '' : data[0].identification_number__c;
     	data[0].passport_number__c = data[0].passport_number__c == null || data[0].passport_number__c =='null' ? '' : data[0].passport_number__c;
-    	data[0].gender__c = data[0].gender__c == null || data[0].gender__c =='null' ? '' : data[0].gender__c;
+		data[0].gender__c = data[0].gender__c == null || data[0].gender__c =='null' ? '' : data[0].gender__c;
+		
+		data[0].sex__c = data[0].sex__c == null || data[0].sex__c =='null' ? '' : data[0].sex__c;
+
     	data[0].title_th__c = data[0].title_th__c == null || data[0].title_th__c =='null' ? '' : data[0].title_th__c;
     	data[0].first_name_th__c = data[0].first_name_th__c == null || data[0].first_name_th__c =='null' ? '' : data[0].first_name_th__c;
     	data[0].last_name_th__c = data[0].last_name_th__c == null || data[0].last_name_th__c =='null' ? '' : data[0].last_name_th__c;
